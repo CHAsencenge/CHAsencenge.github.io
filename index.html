@@ -299,7 +299,7 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-07-03T18:38:23+08:00">
+              <time title="Post modified" itemprop="dateModified" datetime="2019-07-03T18:42:42+08:00">
                 2019-07-03
               </time>
             
@@ -387,27 +387,17 @@
 
       
         
-          
-            <blockquote class="blockquote-center">blog中添加wordcount功能</blockquote>
+          <blockquote class="blockquote-center">blog中添加wordcount功能</blockquote>
 
 <p>1.在根目录git bash： <code>npm install hexo-wordcount --save</code></p>
 <p>2.在主题配置文件(hexo\themes\next\config.yml)中打开wordcount功能</p>
-<pre><code># Post wordcount display settings
-# Dependencies: https://github.com/willin/hexo-wordcount
-post_wordcount:
-  item_text: true
-  wordcount: true
-  min2read: true
-  totalcount: true
-  separated_meta: true</code></pre><p>3.修改 hexo\themes\next\layout\post.swig，将下面代码复制到文件中：</p>
-<pre><code>&lt;span title=&quot;{{ __('post.wordcount') }}&quot;&gt;
-     {{ wordcount(post.content) }} 字
-&lt;/span&gt;
-
-&lt;span title=&quot;{{ __('post.min2read') }}&quot;&gt;
-     {{ min2read(post.content) }} 分钟
-&lt;/span&gt;</code></pre>
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/07/03/wordcount/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
