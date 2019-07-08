@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="解字">
 <meta property="og:description" content="基于可见光的无线网络认证">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-05T09:37:46.189Z">
+<meta property="og:updated_time" content="2019-07-08T14:52:25.488Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="light frequency authenticate">
 <meta name="twitter:description" content="基于可见光的无线网络认证">
@@ -298,8 +298,8 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-07-05T17:37:46+08:00">
-                2019-07-05
+              <time title="Post modified" itemprop="dateModified" datetime="2019-07-08T22:52:25+08:00">
+                2019-07-08
               </time>
             
           </span>
@@ -348,7 +348,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  1.6k
+                  2.2k
                 </span>
               
 
@@ -364,7 +364,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  5
+                  8
                 </span>
               
             </div>
@@ -388,6 +388,7 @@
         <blockquote class="blockquote-center">基于可见光的无线网络认证</blockquote>
 <a id="more"></a>
 
+<p>2019-07-05</p>
 <h2 id="802-1x认证过程："><a href="#802-1x认证过程：" class="headerlink" title="802.1x认证过程："></a>802.1x认证过程：</h2><ol>
 <li><p>当用户有访问网络需求时打开802.1X客户端程序，输入已经申请、登记过的用户名和密码，发起连接请求（EAPOL-Start报文）。此时，客户端程序将发出请求认证的报文给设备端，开始启动一次认证过程。</p>
 </li>
@@ -452,6 +453,38 @@
 <p><strong>将笔记本搭建成服务器</strong></p>
 <p><strong>添加对LED的频率提取功能</strong></p>
 <p><strong>实现动态调节LED频率,将此功能添加至系统</strong></p>
+<hr>
+<p>2019/07/08</p>
+<h2 id="路由器刷openwrt系统"><a href="#路由器刷openwrt系统" class="headerlink" title="路由器刷openwrt系统"></a>路由器刷openwrt系统</h2><p>恢复出厂：断电后，先按住reset再通电。<br><br>登陆192.168.1.1（breed web），先点“恢复出厂”，选择“openwrt”；再点击“更新固件”，选中已下载好的openwrt镜像，进行固件更新。<br></p>
+<h3 id="解决路由器联网问题"><a href="#解决路由器联网问题" class="headerlink" title="解决路由器联网问题"></a>解决路由器联网问题</h3><ol>
+<li>设置密码：点击<code>Go to password configuration...</code>，敲入2遍新的路由器密码，点击页面最下面的 保存执行按钮，密码修改即时生效。 </li>
+<li>设置主机名和时区：<code>System</code>菜单的<code>system</code>进去，主机名改为自己希望的名称，时区设置为<code>Asia/Shanghai</code>，保存。</li>
+<li><strong>联网设置</strong> :点击菜单<code>Network</code>中的第二项，可以选择2G或5G无线网络连接WIFI，按 <code>scan</code>扫描按钮，稍等出现列表中，选择自己(想通过这个路由连接)的WIFI，输入密码，按提交，然后稍等，按保存执行。</li>
+</ol>
+<h2 id="ubuntu16-04编译OpenWrt环境搭建："><a href="#ubuntu16-04编译OpenWrt环境搭建：" class="headerlink" title="ubuntu16.04编译OpenWrt环境搭建："></a>ubuntu16.04编译OpenWrt环境搭建：</h2><ol>
+<li>ubuntu下OpenWrt编译环境需要安装很多组件：<br><br><code>sudo apt-get install gcc</code><br><br><code>sudo apt-get install g++</code> <br><br><code>sudo apt-get install binutils</code><br><br><code>sudo apt-get install patch</code><br><br><code>sudo apt-get install bzip2</code><br><br><code>sudo apt-get install flex</code><br><br><code>sudo apt-get install bison</code><br><br><code>sudo apt-get install make</code><br><br><code>sudo apt-get install autoconf</code><br><br><code>sudo apt-get install gettext</code><br><br><code>sudo apt-get install texinfo</code><br><br><code>sudo apt-get install unzip</code><br><br><code>sudo apt-get install sharutils</code><br><br><code>sudo apt-get install subversion</code><br><br><code>sudo apt-get install libncurses5-dev</code><br><br><code>sudo apt-get install ncurses-term</code><br><br><code>sudo apt-get install zlib1g-dev</code><br><br><code>sudo apt-get install subversion</code><br><br><code>sudo apt-get install  git-core</code><br><br><code>sudo apt-get install gawk</code><br><br><code>sudo apt-get install asciidoc</code><br><br><code>sudo apt-get install libz-dev</code><br></li>
+</ol>
+<p>当然安装之前最好先更新下组件包：<br><br><code>sudo apt-get update</code><br><br>逐个安装…<br></p>
+<ol start="2">
+<li><p>新建一个openwrt目录，使用命令：<br><br><code>mkdir openwrt</code><br><br><code>sudo chmod 777 openwrt</code><br><br>接下来的所有命令都在/openwrt目录下运行<br></p>
+</li>
+<li><p>下载OpenWrt源码:<br><br><code>git clone git://git.openwrt.org/openwrt/openwrt.git</code></p>
+</li>
+<li><p>添加软件扩展包：<br><br><code>cd /home/ngmi/openwrt/openwrt/</code><br><br><code>cp feeds.conf.default feeds.conf</code>(将feeds.conf.default修改为feeds.conf)</p>
+</li>
+<li><p>更新扩展，安装扩展：<br><br><code>./scripts/feeds update -a</code><br><br><code>./scripts/feeds install -a</code><br></p>
+</li>
+<li><p>测试下编译环境，使用命令：<br><br><code>make defconfig</code><br></p>
+</li>
+<li><p><code>make menuconfig</code><br><br>如果一切正常，会出现一个配置菜单，可以选择要编译的固件平台、型号，还能选择固件中要添加的功能和组件，至此编译环境就搭建好了。</p>
+</li>
+</ol>
+<h2 id="在OpenWrt的路由器上安装Wifidog应用程序"><a href="#在OpenWrt的路由器上安装Wifidog应用程序" class="headerlink" title="在OpenWrt的路由器上安装Wifidog应用程序"></a>在OpenWrt的路由器上安装Wifidog应用程序</h2><ol>
+<li>在OpenWrt系统的源码文件下，编辑<code>feeds.conf.default</code>文件<br><br><code>vim feeds.conf.default</code><br><br>在其中增加一行：<br><br><code>src-git wifidog https://github.com/wifidog/wifidog-gateway.git</code><br></li>
+<li>然后更新，再安装：<br><br><code>./scripts/feeds update -a</code><br><br><code>./scripts/feeds install -a</code><br></li>
+<li>终端执行编译命令<br><br><code>make menuconfig</code><br></li>
+<li>在<code>Network/captive portals/</code>下选择wifidog 就有选择 WiFiDog 这一项了</li>
+</ol>
 
       
     </div>
@@ -624,7 +657,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#802-1x认证过程："><span class="nav-number">1.</span> <span class="nav-text">802.1x认证过程：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于WiFidog："><span class="nav-number">2.</span> <span class="nav-text">关于WiFidog：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Wifidog的工作原理："><span class="nav-number">2.1.</span> <span class="nav-text">Wifidog的工作原理：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#待完成工作："><span class="nav-number">3.</span> <span class="nav-text">待完成工作：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#802-1x认证过程："><span class="nav-number">1.</span> <span class="nav-text">802.1x认证过程：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于WiFidog："><span class="nav-number">2.</span> <span class="nav-text">关于WiFidog：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Wifidog的工作原理："><span class="nav-number">2.1.</span> <span class="nav-text">Wifidog的工作原理：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#待完成工作："><span class="nav-number">3.</span> <span class="nav-text">待完成工作：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#路由器刷openwrt系统"><span class="nav-number">4.</span> <span class="nav-text">路由器刷openwrt系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决路由器联网问题"><span class="nav-number">4.1.</span> <span class="nav-text">解决路由器联网问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ubuntu16-04编译OpenWrt环境搭建："><span class="nav-number">5.</span> <span class="nav-text">ubuntu16.04编译OpenWrt环境搭建：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在OpenWrt的路由器上安装Wifidog应用程序"><span class="nav-number">6.</span> <span class="nav-text">在OpenWrt的路由器上安装Wifidog应用程序</span></a></li></ol></div>
             
 
           </div>
@@ -658,7 +691,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">6.4k</span>
+    <span title="Site words total count">7.1k</span>
   
 </div>
 
