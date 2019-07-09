@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="解字">
 <meta property="og:description" content="基于可见光的无线网络认证">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-09T01:32:25.845Z">
+<meta property="og:updated_time" content="2019-07-09T06:38:45.077Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="light frequency authenticate">
 <meta name="twitter:description" content="基于可见光的无线网络认证">
@@ -298,7 +298,7 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-07-09T09:32:25+08:00">
+              <time title="Post modified" itemprop="dateModified" datetime="2019-07-09T14:38:45+08:00">
                 2019-07-09
               </time>
             
@@ -348,7 +348,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  2.2k
+                  2.5k
                 </span>
               
 
@@ -364,7 +364,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  8
+                  10
                 </span>
               
             </div>
@@ -483,6 +483,19 @@
 <li>终端执行编译命令<br><code>make menuconfig</code></li>
 <li>在<code>Network/captive portals/</code>下选择wifidog 就有选择 WiFiDog 这一项了</li>
 </ol>
+<hr>
+<p>2019/07/09</p>
+<h2 id="配置服务器中遇到的问题"><a href="#配置服务器中遇到的问题" class="headerlink" title="配置服务器中遇到的问题"></a>配置服务器中遇到的问题</h2><p><strong>问题：</strong></p>
+<figure class="highlight plain"><figcaption><span>python3 manage.py runserver 0.0.0.0:8000</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;manage.py&quot;, line 22, in &lt;module&gt;</span><br><span class="line">    execute_from_command_line(sys.argv)</span><br><span class="line">  File &quot;/usr/local/lib/python3.5/dist-packages/django/core/management/__init__.py&quot;, line 381, in execute_from_command_line</span><br><span class="line">    utility.execute()</span><br><span class="line">  File &quot;/usr/local/lib/python3.5/dist-packages/django/core/management/__init__.py&quot;, line 375, in execute</span><br><span class="line">    self.fetch_command(subcommand).run_from_argv(self.argv)</span><br><span class="line">  File &quot;/usr/local/lib/python3.5/dist-packages/django/core/management/base.py&quot;, line 323, in run_from_argv</span><br><span class="line">    self.execute(*args, **cmd_options)</span><br><span class="line">  File &quot;/usr/local/lib/python3.5/dist-packages/django/core/management/commands/runserver.py&quot;, line 60, in execute</span><br><span class="line">    super().execute(*args, **options)</span><br><span class="line">  File &quot;/usr/local/lib/python3.5/dist-packages/django/core/management/base.py&quot;, line 364, in execute</span><br><span class="line">    output = self.handle(*args, **options)</span><br><span class="line">  File &quot;/home/ngmi/lightFreq-master/my_wifi_auth_server/django_pdb/management/commands/runserver.py&quot;, line 59, in handle</span><br><span class="line">    and middleware not in settings.MIDDLEWARE_CLASSES):</span><br><span class="line">  File &quot;/usr/local/lib/python3.5/dist-packages/django/conf/__init__.py&quot;, line 80, in __getattr__</span><br><span class="line">    val = getattr(self._wrapped, name)</span><br><span class="line">AttributeError: &apos;Settings&apos; object has no attribute &apos;MIDDLEWARE_CLASSES&apos;</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决方法：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">middleware = <span class="string">'django_pdb.middleware.PdbMiddleware'</span></span><br><span class="line">        <span class="keyword">if</span> ((pdb_option <span class="keyword">or</span> settings.DEBUG)</span><br><span class="line">            <span class="keyword">and</span> middleware <span class="keyword">not</span> <span class="keyword">in</span> settings.MIDDLEWARE):</span><br><span class="line">            settings.MIDDLEWARE += (middleware,)</span><br></pre></td></tr></table></figure>
+
+<p>由于Django版本的问题，需要将（lightFreq-master/my_wifi_auth_server/django_pdb/management/conmands/runserver.py）以上代码中原本的MIDDLEWARE_CLASSES改为MIDDLEWARE。</p>
+<p><strong>问题：</strong></p>
+<figure class="highlight plain"><figcaption><span>HTTP_HOST header: '0.0.0.0:8000'. You may need to add '0.0.0.0' to ALLOWED_HOSTS.</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Bad Request: /</span><br><span class="line">[09/Jul/2019 14:14:40] &quot;GET / HTTP/1.1&quot; 400 66219</span><br></pre></td></tr></table></figure>
+
+<p>进入<a href="http://0.0.0.0:8000页面显示Invalid" target="_blank" rel="noopener">http://0.0.0.0:8000页面显示Invalid</a>…<br><br><strong>解决办法：</strong><br>将lightFreq-master/my_wifi_auth_server/Auth_server/settings.py文件中<code>ALLOWED_HOSTS = [&#39;192.168.1.162&#39;,&#39;127.0.0.1&#39;]</code>修改为<code>ALLOWED_HOSTS = [&#39;*&#39;]</code></p>
 
       
     </div>
@@ -655,7 +668,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#802-1x认证过程："><span class="nav-number">1.</span> <span class="nav-text">802.1x认证过程：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于WiFidog："><span class="nav-number">2.</span> <span class="nav-text">关于WiFidog：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Wifidog的工作原理："><span class="nav-number">2.1.</span> <span class="nav-text">Wifidog的工作原理：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#待完成工作："><span class="nav-number">3.</span> <span class="nav-text">待完成工作：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#路由器刷openwrt系统"><span class="nav-number">4.</span> <span class="nav-text">路由器刷openwrt系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决路由器联网问题"><span class="nav-number">4.1.</span> <span class="nav-text">解决路由器联网问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ubuntu16-04编译OpenWrt环境搭建："><span class="nav-number">5.</span> <span class="nav-text">ubuntu16.04编译OpenWrt环境搭建：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在OpenWrt的路由器上安装Wifidog应用程序"><span class="nav-number">6.</span> <span class="nav-text">在OpenWrt的路由器上安装Wifidog应用程序</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#802-1x认证过程："><span class="nav-number">1.</span> <span class="nav-text">802.1x认证过程：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于WiFidog："><span class="nav-number">2.</span> <span class="nav-text">关于WiFidog：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Wifidog的工作原理："><span class="nav-number">2.1.</span> <span class="nav-text">Wifidog的工作原理：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#待完成工作："><span class="nav-number">3.</span> <span class="nav-text">待完成工作：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#路由器刷openwrt系统"><span class="nav-number">4.</span> <span class="nav-text">路由器刷openwrt系统</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决路由器联网问题"><span class="nav-number">4.1.</span> <span class="nav-text">解决路由器联网问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ubuntu16-04编译OpenWrt环境搭建："><span class="nav-number">5.</span> <span class="nav-text">ubuntu16.04编译OpenWrt环境搭建：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在OpenWrt的路由器上安装Wifidog应用程序"><span class="nav-number">6.</span> <span class="nav-text">在OpenWrt的路由器上安装Wifidog应用程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置服务器中遇到的问题"><span class="nav-number">7.</span> <span class="nav-text">配置服务器中遇到的问题</span></a></li></ol></div>
             
 
           </div>
@@ -689,7 +702,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">7k</span>
+    <span title="Site words total count">7.3k</span>
   
 </div>
 
