@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="解字">
 <meta property="og:description" content="关于Android开发中的Gradle">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-18T08:49:28.681Z">
+<meta property="og:updated_time" content="2019-07-18T08:53:19.829Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Gradle(转载自Bonker)">
 <meta name="twitter:description" content="关于Android开发中的Gradle">
@@ -298,7 +298,7 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-07-18T16:49:28+08:00">
+              <time title="Post modified" itemprop="dateModified" datetime="2019-07-18T16:53:19+08:00">
                 2019-07-18
               </time>
             
@@ -388,6 +388,7 @@
         <blockquote class="blockquote-center">关于Android开发中的Gradle</blockquote>
 <a id="more"></a>
 
+<p>(转载自Bonker）原文链接：<a href="https://www.cnblogs.com/Bonker/p/5619458.html" target="_blank" rel="noopener">https://www.cnblogs.com/Bonker/p/5619458.html</a></p>
 <h2 id="什么是Gradle"><a href="#什么是Gradle" class="headerlink" title="什么是Gradle"></a>什么是Gradle</h2><p>简单的说，Gradle是一个构建工具，它是用来帮助我们构建app的，构建包括编译、打包等过程。我们可以为Gradle指定构建规则，然后它就会根据我们的“命令”自动为我们构建app。Android Studio中默认就使用Gradle来完成应用的构建。有些同学可能会有疑问：”我用AS不记得给Gradle指定过什么构建规则呀，最后不还是能搞出来个apk。“ 实际上，app的构建过程是大同小异的，有一些过程是”通用“的，也就是每个app的构建都要经历一些公共步骤。因此，在我们在创建工程时，Android Studio自动帮我们生成了一些通用构建规则，很多时候我们甚至完全不用修改这些规则就能完成我们app的构建。</p>
 <p>有些时候，我们会有一些个性化的构建需求，比如我们引入了第三方库，或者我们想要在通用构建过程中做一些其他的事情，这时我们就要自己在系统默认构建规则上做一些修改。这时候我们就要自己向Gradle”下命令“了，这时候我们就需要用Gradle能听懂的话了，也就是Groovy。Groovy是一种基于JVM的动态语言，关于它的具体介绍，感兴趣的同学可以文末参考”延伸阅读“部分给出的链接。</p>
 <p>我们在开头处提到“Gradle是一种构建工具”。实际上，当我们想要更灵活的构建过程时，Gradle就成为了一个编程框架——我们可以通过编程让构建过程按我们的意愿进行。也就是说，当我们把Gradle作为构建工具使用时，我们只需要掌握它的配置脚本的基本写法就OK了；而当我们需要对构建流程进行高度定制时，就务必要掌握Groovy等相关知识了。限于篇幅，本文只从构建工具使用者的角度来介绍Gradle的一些最佳实践，在文末“延伸阅读”部分给出了几篇高质量的深入介绍Gradle的文章，其中包含了Groovy等知识的介绍。</p>
