@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="blog中添加wordcount功能">
+<meta name="description" content="The article has been encrypted, please enter your password to view.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Wordcount-Function">
-<meta property="og:url" content="http://yoursite.com/2019/07/03/wordcount/index.html">
+<meta property="og:title" content="非极客">
+<meta property="og:url" content="http://yoursite.com/2019/07/19/非极客/index.html">
 <meta property="og:site_name" content="解字">
-<meta property="og:description" content="blog中添加wordcount功能">
+<meta property="og:description" content="The article has been encrypted, please enter your password to view.">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-03T10:53:03.370Z">
+<meta property="og:updated_time" content="2019-07-19T02:52:28.893Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Wordcount-Function">
-<meta name="twitter:description" content="blog中添加wordcount功能">
+<meta name="twitter:title" content="非极客">
+<meta name="twitter:description" content="The article has been encrypted, please enter your password to view.">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/07/03/wordcount/">
+  <link rel="canonical" href="http://yoursite.com/2019/07/19/非极客/">
 
 
 
 
 
-  <title>Wordcount-Function | 解字</title>
+  <title>非极客 | 解字</title>
   
 
 
@@ -252,7 +252,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/03/wordcount/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/19/非极客/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="CHAsencenge">
@@ -269,7 +269,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Wordcount-Function</h1>
+          <h1 class="post-title" itemprop="name headline">非极客</h1>
         
 
         <div class="post-meta">
@@ -281,8 +281,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-03T18:22:33+08:00">
-                2019-07-03
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-19T10:26:12+08:00">
+                2019-07-19
               </time>
             
 
@@ -297,8 +297,8 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-07-03T18:53:03+08:00">
-                2019-07-03
+              <time title="Post modified" itemprop="dateModified" datetime="2019-07-19T10:52:28+08:00">
+                2019-07-19
               </time>
             
           </span>
@@ -316,8 +316,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/blogthings/" itemprop="url" rel="index">
-                    <span itemprop="name">blogthings</span>
+                  <a href="/categories/writing/" itemprop="url" rel="index">
+                    <span itemprop="name">writing</span>
                   </a>
                 </span>
 
@@ -347,7 +347,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  111
+                  234
                 </span>
               
 
@@ -384,27 +384,20 @@
       
 
       
-        <blockquote class="blockquote-center">blog中添加wordcount功能</blockquote>
-
-<a id="more"></a>
-
-<p>1.在根目录git bash： <code>npm install hexo-wordcount --save</code></p>
-<p>2.在主题配置文件(hexo\themes\next\config.yml)中打开wordcount功能</p>
-<pre><code># Post wordcount display settings
-# Dependencies: https://github.com/willin/hexo-wordcount
-post_wordcount:
-  item_text: true
-  wordcount: true
-  min2read: true
-  totalcount: true
-  separated_meta: true</code></pre><p>3.修改 hexo\themes\next\layout\post.swig，将下面代码复制到文件中：</p>
-<pre><code>&lt;span title=&quot;{{ __('post.wordcount') }}&quot;&gt;
-     {{ wordcount(post.content) }} 字
-&lt;/span&gt;
-
-&lt;span title=&quot;{{ __('post.min2read') }}&quot;&gt;
-     {{ min2read(post.content) }} 分钟
-&lt;/span&gt;</code></pre>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<div id="hbe-security">
+  <div class="hbe-input-container">
+  <input type="password" class="hbe-form-control" id="pass" placeholder="Please enter the password to read the blog.">
+    <label for="pass">Please enter the password to read the blog.</label>
+    <div class="bottom-line"></div>
+  </div>
+</div>
+<div id="decryptionError" style="display: none;">Incorrect Password!</div>
+<div id="noContentError" style="display: none;">No content to display!</div>
+<div id="encrypt-blog" style="display:none">
+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
+</div>
+<script src="/lib/crypto-js.js"></script><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">
       
     </div>
     
@@ -428,8 +421,8 @@ post_wordcount:
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/07/03/first-python-code-in-windows/" rel="next" title="First Python Code in Windows">
-                <i class="fa fa-chevron-left"></i> First Python Code in Windows
+              <a href="/2019/07/18/复现vifi相关/" rel="next" title="复现vifi相关">
+                <i class="fa fa-chevron-left"></i> 复现vifi相关
               </a>
             
           </div>
@@ -437,10 +430,6 @@ post_wordcount:
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/07/03/Private-Function/" rel="prev" title="Private Function">
-                Private Function <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
