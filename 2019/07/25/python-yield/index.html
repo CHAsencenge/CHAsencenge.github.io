@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="windows下的python程序运行">
+<meta name="description" content="python中yield关键字的用法">
 <meta name="keywords" content="python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="First Python Code in Windows">
-<meta property="og:url" content="http://yoursite.com/2019/07/03/first-python-code-in-windows/index.html">
+<meta property="og:title" content="python yield">
+<meta property="og:url" content="http://yoursite.com/2019/07/25/python-yield/index.html">
 <meta property="og:site_name" content="解字">
-<meta property="og:description" content="windows下的python程序运行">
+<meta property="og:description" content="python中yield关键字的用法">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-03T10:53:16.553Z">
+<meta property="og:updated_time" content="2019-07-25T08:31:29.469Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="First Python Code in Windows">
-<meta name="twitter:description" content="windows下的python程序运行">
+<meta name="twitter:title" content="python yield">
+<meta name="twitter:description" content="python中yield关键字的用法">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/07/03/first-python-code-in-windows/">
+  <link rel="canonical" href="http://yoursite.com/2019/07/25/python-yield/">
 
 
 
 
 
-  <title>First Python Code in Windows | 解字</title>
+  <title>python yield | 解字</title>
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/03/first-python-code-in-windows/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/25/python-yield/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="CHAsencenge">
@@ -270,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">First Python Code in Windows</h1>
+          <h1 class="post-title" itemprop="name headline">python yield</h1>
         
 
         <div class="post-meta">
@@ -282,8 +282,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-03T12:39:09+08:00">
-                2019-07-03
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-25T14:59:22+08:00">
+                2019-07-25
               </time>
             
 
@@ -298,8 +298,8 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-07-03T18:53:16+08:00">
-                2019-07-03
+              <time title="Post modified" itemprop="dateModified" datetime="2019-07-25T16:31:29+08:00">
+                2019-07-25
               </time>
             
           </span>
@@ -317,8 +317,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/python-100-practices/" itemprop="url" rel="index">
-                    <span itemprop="name">python-100-practices</span>
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
                   </a>
                 </span>
 
@@ -348,7 +348,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  158
+                  708
                 </span>
               
 
@@ -364,7 +364,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  1
+                  2
                 </span>
               
             </div>
@@ -385,13 +385,39 @@
       
 
       
-        <blockquote class="blockquote-center">windows下的python程序运行</blockquote>
-
+        <blockquote class="blockquote-center">python中yield关键字的用法
+</blockquote>
 <a id="more"></a>
 
-<h2 id="problem："><a href="#problem：" class="headerlink" title="problem："></a>problem：</h2><p>在CMD中进入python后 使用“python+space+拖拽py文件”的方式运行py文件。</p>
-<h2 id="error："><a href="#error：" class="headerlink" title="error："></a>error：</h2><p>File “&lt;stdin&gt;”, line 1<br>    <code>python C:\Users\DELL\Desktop\code_py\combination.py</code><br>SyntaxError: invalid syntax</p>
-<h2 id="solution"><a href="#solution" class="headerlink" title="solution:"></a>solution:</h2><p>在<strong>shell脚本</strong>中，运行shell脚本命令；在 <strong>Python命令行</strong> (就是之前现在CMD中键入python进入的&gt;&gt;&gt;)中，运行Python代码。<br>然而，“python combination.py”是一个脚本命令，不是python代码。<br>因此，退出python命令行(“ <strong>exit()</strong> “)，直接cd到combination.py所在目录( <strong>如果文件所在目录在根目录内部，直接cd+space+后面的路径，space后面不加“\”</strong> )，运行python combination.py，即可。</p>
+<h2 id="迭代-iteration-与可迭代-iterable"><a href="#迭代-iteration-与可迭代-iterable" class="headerlink" title="迭代(iteration)与可迭代(iterable)"></a>迭代(iteration)与可迭代(iterable)</h2><p>使用<strong>容器</strong>时逐个获取元素的过程为<strong>迭代</strong>。</p>
+<h2 id="哪些类型是可迭代的"><a href="#哪些类型是可迭代的" class="headerlink" title="哪些类型是可迭代的"></a>哪些类型是可迭代的</h2><ul>
+<li>python中的顺序类型： <code>list</code>, <code>tuple</code>(元组，列表可修改元组不可修改，列表用中括号元组用小括号), <code>string</code>.</li>
+<li><code>dict</code>, <code>set</code>, <code>file</code>.</li>
+<li>某类对象提供了 <code>__iter__()</code> 或者 <code>__getitem__()</code> 方法.</li>
+</ul>
+<h2 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h2><p>对迭代器不断调用<code>next()</code>方法，可依次获取下一个元素，迭代器<code>__iter__()</code>方法返回迭代器自身，因此迭代器也是可迭代的。</p>
+<h2 id="迭代器协议-iterator-protocol"><a href="#迭代器协议-iterator-protocol" class="headerlink" title="迭代器协议(iterator protocol)"></a>迭代器协议(iterator protocol)</h2><p>一个容器提供<code>__iter__()</code>方法，该方法能返回一个能逐个访问容器内所有元素的迭代器，则该容器实现了迭代器协议。</p>
+<h3 id="python处理for循环的过程"><a href="#python处理for循环的过程" class="headerlink" title="python处理for循环的过程"></a>python处理for循环的过程</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> something:</span><br><span class="line">	print(x)</span><br></pre></td></tr></table></figure>
+
+<p>处理for循环首先调用内建函数<code>iter(something)</code>,内建函数调用<code>something.__iter__()</code>,返回something对应的迭代器，然后for循环会调用内建函数<code>next()</code>，作用在迭代器上获取迭代器的下一个元素，并赋值给x</p>
+<h2 id="生成器函数-generaor-function-和生成器-generator"><a href="#生成器函数-generaor-function-和生成器-generator" class="headerlink" title="生成器函数(generaor function)和生成器(generator)"></a>生成器函数(generaor function)和生成器(generator)</h2><p>如果一个函数包含 yield 表达式，那么它是一个生成器函数；调用它会返回一个特殊的迭代器，称为生成器。</p>
+<p>生成器函数被调用后，其函数体内的代码并不会立即执行，而是返回一个生成器（generator-iterator）。当返回的生成器调用成员方法时，相应的生成器函数中的代码才会执行。</p>
+<h2 id="“下一个yield表达式”"><a href="#“下一个yield表达式”" class="headerlink" title="“下一个yield表达式”"></a>“下一个yield表达式”</h2><p>调用 generator.next() 时，生成器函数会从当前位置开始执行到下一个 yield 表达式。这里的「下一个」指的是执行逻辑的下一个。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f123</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">yield</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">yield</span> <span class="number">2</span></span><br><span class="line">    <span class="keyword">yield</span> <span class="number">3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> f123(): <span class="comment"># 1, 2, and 3, will be printed</span></span><br><span class="line">    print(item)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f13</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">yield</span> <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">False</span>:</span><br><span class="line">        <span class="keyword">yield</span> <span class="number">2</span></span><br><span class="line">    <span class="keyword">yield</span> <span class="number">3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> f13(): <span class="comment"># 1 and 3, will be printed</span></span><br><span class="line">    print(item)</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用-send-方法与生成器函数通信"><a href="#使用-send-方法与生成器函数通信" class="headerlink" title="使用 send() 方法与生成器函数通信"></a>使用 send() 方法与生成器函数通信</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func</span><span class="params">()</span>:</span></span><br><span class="line">    x = <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        y = (<span class="keyword">yield</span> x)</span><br><span class="line">        x += y</span><br><span class="line"></span><br><span class="line">geniter = func()</span><br><span class="line">geniter.next()  <span class="comment"># 1</span></span><br><span class="line">geniter.send(<span class="number">3</span>) <span class="comment"># 4</span></span><br><span class="line">geniter.send(<span class="number">10</span>)<span class="comment"># 14</span></span><br></pre></td></tr></table></figure>
+
+<p>生成器函数 func 用 yield 表达式，将处理好的 x 发送给生成器的调用者；与此同时，生成器的调用者通过 send 函数，将外部信息作为生成器函数内部的 yield 表达式的值，保存在 y 当中，并参与后续的处理。</p>
+<h2 id="yield的好处"><a href="#yield的好处" class="headerlink" title="yield的好处"></a>yield的好处</h2><p>顺序访问容器内的前五个元素：</p>
+<ul>
+<li>way1:获取所有元素然后取前五</li>
+<li>way2:逐个迭代，至第五个元素</li>
+</ul>
+<p>假设对于一个func(),返回值为列表，调用者对其返回值只有逐个迭代：</p>
+<ul>
+<li>若等函数生成所有元素可能需要很长时间</li>
+<li>使用yield把func()变成一个生成器函数，每次产生一个元素，可以节省开销</li>
+</ul>
 
       
     </div>
@@ -422,8 +448,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/07/02/function/" rel="next" title="Layout Grammar">
-                <i class="fa fa-chevron-left"></i> Layout Grammar
+              <a href="/2019/07/19/又梦/" rel="next" title="又梦">
+                <i class="fa fa-chevron-left"></i> 又梦
               </a>
             
           </div>
@@ -431,10 +457,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/07/03/wordcount/" rel="prev" title="Wordcount-Function">
-                Wordcount-Function <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -568,7 +590,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#problem："><span class="nav-number">1.</span> <span class="nav-text">problem：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#error："><span class="nav-number">2.</span> <span class="nav-text">error：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#solution"><span class="nav-number">3.</span> <span class="nav-text">solution:</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#迭代-iteration-与可迭代-iterable"><span class="nav-number">1.</span> <span class="nav-text">迭代(iteration)与可迭代(iterable)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#哪些类型是可迭代的"><span class="nav-number">2.</span> <span class="nav-text">哪些类型是可迭代的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#迭代器"><span class="nav-number">3.</span> <span class="nav-text">迭代器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#迭代器协议-iterator-protocol"><span class="nav-number">4.</span> <span class="nav-text">迭代器协议(iterator protocol)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#python处理for循环的过程"><span class="nav-number">4.1.</span> <span class="nav-text">python处理for循环的过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生成器函数-generaor-function-和生成器-generator"><span class="nav-number">5.</span> <span class="nav-text">生成器函数(generaor function)和生成器(generator)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#“下一个yield表达式”"><span class="nav-number">6.</span> <span class="nav-text">“下一个yield表达式”</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-send-方法与生成器函数通信"><span class="nav-number">6.1.</span> <span class="nav-text">使用 send() 方法与生成器函数通信</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#yield的好处"><span class="nav-number">7.</span> <span class="nav-text">yield的好处</span></a></li></ol></div>
             
 
           </div>
