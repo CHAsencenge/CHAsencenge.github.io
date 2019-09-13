@@ -74,6 +74,8 @@
 
 
 
+  <link rel="alternate" href="/atom.xml" title="解字" type="application/atom+xml">
+
 
 
 
@@ -87,7 +89,7 @@
 <meta property="og:site_name" content="解字">
 <meta property="og:description" content="关于Android开发中的Gradle">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-18T08:53:19.829Z">
+<meta property="og:updated_time" content="2019-07-18T08:53:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Gradle(转载自Bonker)">
 <meta name="twitter:description" content="关于Android开发中的Gradle">
@@ -298,7 +300,7 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-07-18T16:53:19+08:00">
+              <time title="Post modified" itemprop="dateModified" datetime="2019-07-18T16:53:20+08:00">
                 2019-07-18
               </time>
             
@@ -444,7 +446,8 @@ buildTypes { //针对不同的构建版本进行一些设置
 <p>RELEASE_STOREFILE=xxx.jks<br>RELEASE_STORE_PASSWORD = xxx<br>RELEASE_KEY_ALIAS=xxx<br>RELEASE_KEY_PASSWORD=xxx</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">然后在build.gradle中直接引用即可：</span><br></pre></td></tr></table></figure>
 
-<p>signingConfigs {<br>    myConfig {<br>        storeFilefile(RELEASE_STOREFILE)<br>        storePassword RELEASE_STORE_PASSWORD<br>        keyAlias RELEASE_KEY_ALIAS<br>        keyPassword RELEASE_KEY_PASSWORD<br>    }<br>}<br>``` </p>
+<p>signingConfigs {<br>    myConfig {<br>        storeFilefile(RELEASE_STOREFILE)<br>        storePassword RELEASE_STORE_PASSWORD<br>        keyAlias RELEASE_KEY_ALIAS<br>        keyPassword RELEASE_KEY_PASSWORD<br>    }<br>}</p>
+<p>``` </p>
 <p>关于Gradle的其他配置方法大家可以参考“延伸阅读”部分的“Gradle最佳实践”。</p>
 
       
@@ -598,6 +601,13 @@ buildTypes { //针对不同的构建版本进行一些设置
           </nav>
 
           
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
 
           
 
@@ -656,7 +666,7 @@ buildTypes { //针对不同的构建版本进行一些设置
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">11.2k</span>
+    <span title="Site words total count">10k</span>
   
 </div>
 
