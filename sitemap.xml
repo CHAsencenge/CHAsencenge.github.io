@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2019/12/04/talent/</loc>
+    
+    <lastmod>2019-12-04T12:39:54.705Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2019/11/20/push-to-git/</loc>
     
-    <lastmod>2019-11-25T18:25:44.757Z</lastmod>
+    <lastmod>2019-11-25T18:31:28.447Z</lastmod>
     
   </url>
   
