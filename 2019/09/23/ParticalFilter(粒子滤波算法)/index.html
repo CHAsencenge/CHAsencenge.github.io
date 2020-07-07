@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content>
+  <meta name="author" content="CHAsencenge">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="ParticalFilter(粒子滤波算法)">
+  <meta property="og:description" content="解字无果">
+  <meta property="og:site_name" content="解字">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="http://yoursite.com">
+  
+    <link rel="alternate" href="/atom.xml" title="解字" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>解字</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.dark.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">ParticalFilter(粒子滤波算法)</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/CHAsencenge">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:958198376@qq.com">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By CHAsencenge</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2019-09-23</span>
+            <span class="time">12:06:55</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/Python/">Python</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/python/">#python</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <blockquote class="blockquote-center">粒子滤波算法</blockquote>
+<a id="more"></a>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> scipy <span class="keyword">as</span> scipy</span><br><span class="line"><span class="keyword">from</span> numpy.random <span class="keyword">import</span> uniform</span><br><span class="line"><span class="keyword">import</span> scipy.stats</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">np.set_printoptions(threshold=<span class="number">3</span>)</span><br><span class="line">np.set_printoptions(suppress=<span class="literal">True</span>)</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">drawLines</span><span class="params">(img, points, r, g, b)</span>:</span></span><br><span class="line">    cv2.polylines(img, [np.int32(points)], isClosed=<span class="literal">False</span>, color=(r, g, b))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">drawCross</span><span class="params">(img, center, r, g, b)</span>:</span></span><br><span class="line">    d = <span class="number">5</span></span><br><span class="line">    t = <span class="number">2</span></span><br><span class="line">    LINE_AA = cv2.LINE_AA <span class="keyword">if</span> cv2.__version__[<span class="number">0</span>] == <span class="string">'3'</span> <span class="keyword">else</span> cv2.CV_AA</span><br><span class="line">    color = (r, g, b)</span><br><span class="line">    ctrx = center[<span class="number">0</span>,<span class="number">0</span>]</span><br><span class="line">    ctry = center[<span class="number">0</span>,<span class="number">1</span>]</span><br><span class="line">    cv2.line(img, (ctrx - d, ctry - d), (ctrx + d, ctry + d), color, t, LINE_AA)</span><br><span class="line">    cv2.line(img, (ctrx + d, ctry - d), (ctrx - d, ctry + d), color, t, LINE_AA)</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mouseCallback</span><span class="params">(event, x, y, flags,null)</span>:</span></span><br><span class="line">    <span class="keyword">global</span> center</span><br><span class="line">    <span class="keyword">global</span> trajectory</span><br><span class="line">    <span class="keyword">global</span> previous_x</span><br><span class="line">    <span class="keyword">global</span> previous_y</span><br><span class="line">    <span class="keyword">global</span> zs</span><br><span class="line">    </span><br><span class="line">    center=np.array([[x,y]])</span><br><span class="line">    trajectory=np.vstack((trajectory,np.array([x,y])))</span><br><span class="line">    <span class="comment">#noise=sensorSigma * np.random.randn(1,2) + sensorMu</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> previous_x &gt;<span class="number">0</span>:</span><br><span class="line">        heading=np.arctan2(np.array([y-previous_y]), np.array([previous_x-x ]))</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> heading&gt;<span class="number">0</span>:</span><br><span class="line">            heading=-(heading-np.pi)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            heading=-(np.pi+heading)</span><br><span class="line">            </span><br><span class="line">        distance=np.linalg.norm(np.array([[previous_x,previous_y]])-np.array([[x,y]]) ,axis=<span class="number">1</span>)</span><br><span class="line">        </span><br><span class="line">        std=np.array([<span class="number">2</span>,<span class="number">4</span>])</span><br><span class="line">        u=np.array([heading,distance])</span><br><span class="line">        predict(particles, u, std, dt=<span class="number">1.</span>)</span><br><span class="line">        zs = (np.linalg.norm(landmarks - center, axis=<span class="number">1</span>) + (np.random.randn(NL) * sensor_std_err))</span><br><span class="line">        update(particles, weights, z=zs, R=<span class="number">50</span>, landmarks=landmarks)</span><br><span class="line">        </span><br><span class="line">        indexes = systematic_resample(weights)</span><br><span class="line">        resample_from_index(particles, weights, indexes)</span><br><span class="line"></span><br><span class="line">    previous_x=x</span><br><span class="line">    previous_y=y</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">WIDTH=<span class="number">800</span></span><br><span class="line">HEIGHT=<span class="number">600</span></span><br><span class="line">WINDOW_NAME=<span class="string">"Particle Filter"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#sensorMu=0</span></span><br><span class="line"><span class="comment">#sensorSigma=3</span></span><br><span class="line"></span><br><span class="line">sensor_std_err=<span class="number">5</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_uniform_particles</span><span class="params">(x_range, y_range, N)</span>:</span></span><br><span class="line">    particles = np.empty((N, <span class="number">2</span>))</span><br><span class="line">    particles[:, <span class="number">0</span>] = uniform(x_range[<span class="number">0</span>], x_range[<span class="number">1</span>], size=N)</span><br><span class="line">    particles[:, <span class="number">1</span>] = uniform(y_range[<span class="number">0</span>], y_range[<span class="number">1</span>], size=N)</span><br><span class="line">    <span class="keyword">return</span> particles</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">predict</span><span class="params">(particles, u, std, dt=<span class="number">1.</span>)</span>:</span></span><br><span class="line">    N = len(particles)</span><br><span class="line">    dist = (u[<span class="number">1</span>] * dt) + (np.random.randn(N) * std[<span class="number">1</span>])</span><br><span class="line">    particles[:, <span class="number">0</span>] += np.cos(u[<span class="number">0</span>]) * dist</span><br><span class="line">    particles[:, <span class="number">1</span>] += np.sin(u[<span class="number">0</span>]) * dist</span><br><span class="line">   </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">update</span><span class="params">(particles, weights, z, R, landmarks)</span>:</span></span><br><span class="line">    weights.fill(<span class="number">1.</span>)</span><br><span class="line">    <span class="keyword">for</span> i, landmark <span class="keyword">in</span> enumerate(landmarks):</span><br><span class="line">       </span><br><span class="line">        distance=np.power((particles[:,<span class="number">0</span>] - landmark[<span class="number">0</span>])**<span class="number">2</span> +(particles[:,<span class="number">1</span>] - landmark[<span class="number">1</span>])**<span class="number">2</span>,<span class="number">0.5</span>)</span><br><span class="line">        weights *= scipy.stats.norm(distance, R).pdf(z[i])</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line">    weights += <span class="number">1.e-300</span> <span class="comment"># avoid round-off to zero</span></span><br><span class="line">    weights /= sum(weights)</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">neff</span><span class="params">(weights)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">1.</span> / np.sum(np.square(weights))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">systematic_resample</span><span class="params">(weights)</span>:</span></span><br><span class="line">    N = len(weights)</span><br><span class="line">    positions = (np.arange(N) + np.random.random()) / N</span><br><span class="line"></span><br><span class="line">    indexes = np.zeros(N, <span class="string">'i'</span>)</span><br><span class="line">    cumulative_sum = np.cumsum(weights)</span><br><span class="line">    i, j = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> i &lt; N <span class="keyword">and</span> j&lt;N:</span><br><span class="line">        <span class="keyword">if</span> positions[i] &lt; cumulative_sum[j]:</span><br><span class="line">            indexes[i] = j</span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            j += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> indexes</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">estimate</span><span class="params">(particles, weights)</span>:</span></span><br><span class="line">    pos = particles[:, <span class="number">0</span>:<span class="number">1</span>]</span><br><span class="line">    mean = np.average(pos, weights=weights, axis=<span class="number">0</span>)</span><br><span class="line">    var = np.average((pos - mean)**<span class="number">2</span>, weights=weights, axis=<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> mean, var</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">resample_from_index</span><span class="params">(particles, weights, indexes)</span>:</span></span><br><span class="line">    particles[:] = particles[indexes]</span><br><span class="line">    weights[:] = weights[indexes]</span><br><span class="line">    weights /= np.sum(weights)</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">x_range=np.array([<span class="number">0</span>,<span class="number">800</span>])</span><br><span class="line">y_range=np.array([<span class="number">0</span>,<span class="number">600</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment">#Number of partciles</span></span><br><span class="line">N=<span class="number">400</span></span><br><span class="line"></span><br><span class="line">landmarks=np.array([ [<span class="number">144</span>,<span class="number">73</span>], [<span class="number">410</span>,<span class="number">13</span>], [<span class="number">336</span>,<span class="number">175</span>], [<span class="number">718</span>,<span class="number">159</span>], [<span class="number">178</span>,<span class="number">484</span>], [<span class="number">665</span>,<span class="number">464</span>]  ])</span><br><span class="line">NL = len(landmarks)</span><br><span class="line">particles=create_uniform_particles(x_range, y_range, N)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">weights = np.array([<span class="number">1.0</span>]*N)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Create a black image, a window and bind the function to window</span></span><br><span class="line">img = np.zeros((HEIGHT,WIDTH,<span class="number">3</span>), np.uint8)</span><br><span class="line">cv2.namedWindow(WINDOW_NAME)</span><br><span class="line">cv2.setMouseCallback(WINDOW_NAME,mouseCallback)</span><br><span class="line"></span><br><span class="line">center=np.array([[<span class="number">-10</span>,<span class="number">-10</span>]])</span><br><span class="line"></span><br><span class="line">trajectory=np.zeros(shape=(<span class="number">0</span>,<span class="number">2</span>))</span><br><span class="line">robot_pos=np.zeros(shape=(<span class="number">0</span>,<span class="number">2</span>))</span><br><span class="line">previous_x=<span class="number">-1</span></span><br><span class="line">previous_y=<span class="number">-1</span></span><br><span class="line">DELAY_MSEC=<span class="number">50</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(<span class="number">1</span>):</span><br><span class="line"></span><br><span class="line">    cv2.imshow(WINDOW_NAME,img)</span><br><span class="line">    img = np.zeros((HEIGHT,WIDTH,<span class="number">3</span>), np.uint8)</span><br><span class="line">    drawLines(img, trajectory,   <span class="number">0</span>,   <span class="number">255</span>, <span class="number">0</span>)</span><br><span class="line">    drawCross(img, center, r=<span class="number">255</span>, g=<span class="number">0</span>, b=<span class="number">0</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#landmarks</span></span><br><span class="line">    <span class="keyword">for</span> landmark <span class="keyword">in</span> landmarks:</span><br><span class="line">        cv2.circle(img,tuple(landmark),<span class="number">10</span>,(<span class="number">255</span>,<span class="number">0</span>,<span class="number">0</span>),<span class="number">-1</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#draw_particles:</span></span><br><span class="line">    <span class="keyword">for</span> particle <span class="keyword">in</span> particles:</span><br><span class="line">        cv2.circle(img,tuple((int(particle[<span class="number">0</span>]),int(particle[<span class="number">1</span>]))),<span class="number">1</span>,(<span class="number">255</span>,<span class="number">255</span>,<span class="number">255</span>),<span class="number">-1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> cv2.waitKey(DELAY_MSEC) &amp; <span class="number">0xFF</span> == <span class="number">27</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    </span><br><span class="line">    cv2.circle(img,(<span class="number">10</span>,<span class="number">10</span>),<span class="number">10</span>,(<span class="number">255</span>,<span class="number">0</span>,<span class="number">0</span>),<span class="number">-1</span>)</span><br><span class="line">    cv2.circle(img,(<span class="number">10</span>,<span class="number">30</span>),<span class="number">3</span>,(<span class="number">255</span>,<span class="number">255</span>,<span class="number">255</span>),<span class="number">-1</span>)</span><br><span class="line">    cv2.putText(img,<span class="string">"Landmarks"</span>,(<span class="number">30</span>,<span class="number">20</span>),<span class="number">1</span>,<span class="number">1.0</span>,(<span class="number">255</span>,<span class="number">0</span>,<span class="number">0</span>))</span><br><span class="line">    cv2.putText(img,<span class="string">"Particles"</span>,(<span class="number">30</span>,<span class="number">40</span>),<span class="number">1</span>,<span class="number">1.0</span>,(<span class="number">255</span>,<span class="number">255</span>,<span class="number">255</span>))</span><br><span class="line">    cv2.putText(img,<span class="string">"Robot Trajectory(Ground truth)"</span>,(<span class="number">30</span>,<span class="number">60</span>),<span class="number">1</span>,<span class="number">1.0</span>,(<span class="number">0</span>,<span class="number">255</span>,<span class="number">0</span>))</span><br><span class="line"></span><br><span class="line">    drawLines(img, np.array([[<span class="number">10</span>,<span class="number">55</span>],[<span class="number">25</span>,<span class="number">55</span>]]), <span class="number">0</span>, <span class="number">255</span>, <span class="number">0</span>)</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">cv2.destroyAllWindows()</span><br></pre></td></tr></table></figure>
+
+<h2 id="如何安装依赖并运行"><a href="#如何安装依赖并运行" class="headerlink" title="如何安装依赖并运行"></a>如何安装依赖并运行</h2><p>打开anaconda prompt</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">conda create -n Filters python=3</span><br><span class="line">conda activate Filters</span><br><span class="line">conda install -c menpo opencv3</span><br><span class="line">conda install numpy scipy matplotlib sympy</span><br></pre></td></tr></table></figure>
+
+<p>cd python_code<br>python partical.py<br>python partical_v2.py</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
