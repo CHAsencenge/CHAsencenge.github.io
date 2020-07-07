@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content>
+  <meta name="author" content="CHAsencenge">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="Unity DOTS(直播笔记)">
+  <meta property="og:description" content="解字无果">
+  <meta property="og:site_name" content="解字">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="http://yoursite.com">
+  
+    <link rel="alternate" href="/atom.xml" title="解字" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>解字</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.dark.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">Unity DOTS(直播笔记)</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/CHAsencenge">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:958198376@qq.com">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By CHAsencenge</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2020-07-07</span>
+            <span class="time">21:13:30</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/Unity/">Unity</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/DOTS/">#DOTS</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <blockquote class="blockquote-center">ECS优化缓存行--
+ECS和传统游戏对象--
+原型Archtype--
+栈帧--
+组件与共享组件--
+ECS实例--
+汇编指令--
+SIMD--
+Burst编译器--
+Unity.mathematics数学库--
+Job多线程计算--
+系统生命周期--
+</blockquote>
+
+<a id="more"></a>
+
+
+
+<h4 id="ECS优化缓存行："><a href="#ECS优化缓存行：" class="headerlink" title="ECS优化缓存行："></a>ECS优化缓存行：</h4><p>怎样提高缓冲区命中率，每个对象只加载xy坐标和旋转一共12b，那么一个缓存行能存五个对象，浪费64-21*5 = 4b</p>
+<h4 id="ECS和传统游戏对象："><a href="#ECS和传统游戏对象：" class="headerlink" title="ECS和传统游戏对象："></a>ECS和传统游戏对象：</h4><p>ECS：Entity（实体）、Component（组件）、System（系统）</p>
+<p>传统：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class Game : MonoBehaviour</span><br><span class="line">&#123;</span><br><span class="line">    public int x;</span><br><span class="line">    private void Update()</span><br><span class="line">    &#123;</span><br><span class="line">        x++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>ECS：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public struct GameComponentData : IComponentData // 组件</span><br><span class="line">    //结构体只保存数据，不能写逻辑</span><br><span class="line">&#123;</span><br><span class="line">    public int x;</span><br><span class="line">&#125;</span><br><span class="line">public class MyGameSystem : ComponentSystem //在System里找关心的组件</span><br><span class="line">&#123;</span><br><span class="line">    protected override void OnUpdate()</span><br><span class="line">    &#123;</span><br><span class="line">        this.Entities.ForEach((ref GameComponentData data) =&gt; </span><br><span class="line">    	&#123;</span><br><span class="line">        	data.x++;</span><br><span class="line">    	&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="原型Archtype："><a href="#原型Archtype：" class="headerlink" title="原型Archtype："></a>原型Archtype：</h4><p>即使不同的实体Entity，只要组件相同都会保存在原型ArcheType。</p>
+<p>ArcheType是16KB的数组容器。</p>
+<h4 id="栈帧："><a href="#栈帧：" class="headerlink" title="栈帧："></a>栈帧：</h4><p>栈上会保留值类型数据和指向堆的指针。</p>
+<h4 id="组件与共享组件："><a href="#组件与共享组件：" class="headerlink" title="组件与共享组件："></a>组件与共享组件：</h4><p>值类型组件和共享类型组件。</p>
+<p>System可以找到它关心的组件去遍历。</p>
+<p>Component System在Main Thread，Job Component System(JCS)可以在多线程。 Main Thread–JCS &gt;&gt;&gt; Worker Thread–Job, Job, Job……</p>
+<h4 id="JobSystem应用："><a href="#JobSystem应用：" class="headerlink" title="JobSystem应用："></a>JobSystem应用：</h4><h4 id="ECS实例："><a href="#ECS实例：" class="headerlink" title="ECS实例："></a>ECS实例：</h4><p>ArcheType Chunk容量16KB，包含Trees #1, Trees #2, Rocks #1, Big Enemies #1, Small Enemies #1, Small Enemies #2, Query出符合条件的实体组件，大敌人、小敌人统一Update（相比Rocks，Trees更感兴趣）</p>
+<h4 id="汇编指令："><a href="#汇编指令：" class="headerlink" title="汇编指令："></a>汇编指令：</h4><p>mov指令：内存中数据传到寄存器/寄存器数据传到另一寄存器</p>
+<p><code>mov ax 8</code>  数据-&gt;寄存器</p>
+<p><code>mov ax bx</code> 寄存器-&gt;寄存器</p>
+<h4 id="SIMD："><a href="#SIMD：" class="headerlink" title="SIMD："></a>SIMD：</h4><p>没听懂用来干嘛</p>
+<p>SIMD指令优化总结：</p>
+<p>避免代码出现分支预测（会打断SIMD的向量化指令），使用math.select和math.lerp代替分支预测</p>
+<p>使用float4 bool4等代替float bool</p>
+<p>使用m128自己组织128位数据</p>
+<p>编译后尽量使用v开头指令，结尾尽量是ps指令而不是ss指令</p>
+<h4 id="Burst编译器："><a href="#Burst编译器：" class="headerlink" title="Burst编译器："></a>Burst编译器：</h4><p>Burst只支持值类型数据的编译，不支持引用类型数据编译（因为C#的GC做的不好）。</p>
+<p>Burst编译器是以LLVM为基础的后端编译技术。</p>
+<p>怎么启动Burst编译器？在Job上面加上[BurstCompile]，如果在Job外怎么工作呢？使用有一个限制是需要静态方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[BurstCompile]</span><br><span class="line">public class MyClass</span><br><span class="line">&#123;</span><br><span class="line">    [BurstCompile]</span><br><span class="line">    public static float add(float a, float b)</span><br><span class="line">    &#123;</span><br><span class="line">        return a * b;</span><br><span class="line">    &#125;</span><br><span class="line">    [BurstCompile]</span><br><span class="line">    &#123;</span><br><span class="line">        public static unsafe void dot(float3* a, float3* b, float* c)</span><br><span class="line">        &#123;</span><br><span class="line">            *c = math.dot(*a, *b);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Unity-mathematics数学库："><a href="#Unity-mathematics数学库：" class="headerlink" title="Unity.mathematics数学库："></a>Unity.mathematics数学库：</h4><p>提供矢量类型（float4 float3…）可直接映射到硬件SIMD寄存器</p>
+<p>Math类也提供了直接映射到硬件SIMD寄存器</p>
+<p>原本CPU一个一个计算的有了SIMD可以一次性计算</p>
+<h4 id="Job多线程计算："><a href="#Job多线程计算：" class="headerlink" title="Job多线程计算："></a>Job多线程计算：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">[BurstCompile]</span><br><span class="line">public struct MyJob1 : IJob</span><br><span class="line">&#123;</span><br><span class="line">    [ReadOnly] public int left;</span><br><span class="line">    [ReadOnly] public int right;</span><br><span class="line">    [WriteOnly] public NativeArray&lt;int&gt; @out;</span><br><span class="line">    public Execute()</span><br><span class="line">    &#123;</span><br><span class="line">        @out[0] = left * right;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">private void Start()</span><br><span class="line">&#123;</span><br><span class="line">    MyJob1 myJob = new MyJob1();</span><br><span class="line">    myJob.left = 2;</span><br><span class="line">    myJob.right = 3;</span><br><span class="line">    myJob.@out = new NativeArray&lt;int&gt;(1, Allocator.TempJob);</span><br><span class="line">    myJob.Schedule().Complete(); //在一个子线程中计算并且等待完成</span><br><span class="line">    Debug.Log(myJob.@out[0]); // log 6;</span><br><span class="line">    myJob.@out.Dispose();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">// IJobFor</span><br><span class="line">[BurstCompile]</span><br><span class="line">public struct MyJob2 : IJobFor</span><br><span class="line">&#123;</span><br><span class="line">    public NativeArray&lt;int&gt; left;</span><br><span class="line">    [ReadOnly] public NativeArra&lt;int&gt; right;</span><br><span class="line">    public void Execute(int index)</span><br><span class="line">    &#123;</span><br><span class="line">        left[index] = left[index] * right[index];</span><br><span class="line">        //输出线程ID和当前执行的索引</span><br><span class="line">        Debug.Log(System.Threading.Thread.CurrentThread.ManagedThreadId + &quot;,&quot; + index);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">private void start()</span><br><span class="line">&#123;</span><br><span class="line">    MyJob2 myJob = new MyJob2();</span><br><span class="line">    myJob.left = new NativeArray&lt;int&gt;(100, Allocator.TempJob);</span><br><span class="line">    myJob.right = new NativeArray&lt;int&gt;(100, Allocator.TempJob);</span><br><span class="line">    myJob.Schedule(myJob.left.Length, new JobHandle()).Complete(); //实际上是在一个子线程里面开了个for循环，Schedule是在一个子线程中执行，可以保证顺序</span><br><span class="line">    myJob.left.Dispose();</span><br><span class="line">    myJob.right.Dispose();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Schedule和ScheduleParallel对比：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//ScheduleParallel可以在多个子线程中并行运行，不保证顺序</span><br><span class="line">myJob.ScheduleParallel(myJob.left.Length, 64, new JobHandle()).Complete();</span><br></pre></td></tr></table></figure>
+
+<p>IJobFor和IJobParallelFor</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">[BurstCompile]</span><br><span class="line">public struct MyJob2 : IJobParallelFor</span><br><span class="line">&#123;</span><br><span class="line">    public NativeArray&lt;int&gt; left;</span><br><span class="line">    [ReadOnly] public NativeArra&lt;int&gt; right;</span><br><span class="line">    public void Execute(int index)</span><br><span class="line">    &#123;</span><br><span class="line">        left[index] = left[index] * right[index];</span><br><span class="line">        //输出线程ID和当前执行的索引</span><br><span class="line">        Debug.Log(System.Threading.Thread.CurrentThread.ManagedThreadId + &quot;,&quot; + index);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">private void start()</span><br><span class="line">&#123;</span><br><span class="line">    MyJob2 myJob = new MyJob2();</span><br><span class="line">    myJob.left = new NativeArray&lt;int&gt;(100, Allocator.TempJob);</span><br><span class="line">    myJob.right = new NativeArray&lt;int&gt;(100, Allocator.TempJob);</span><br><span class="line">    //因为接口是IJobParallelFor，这里的Schedule就完全是并行执行不保证顺序了(注意参数有些不同，多了个“64”)</span><br><span class="line">    myJob.Schedule(myJob.left.Length, 64,  new JobHandle()).Complete();</span><br><span class="line">    myJob.left.Dispose();</span><br><span class="line">    myJob.right.Dispose();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Complete是实现在主线程等待执行的结果</p>
+<p>myJob.Schedule和myJob.Run对比：Schedule是在多核子线程中并行计算，Run是完全在主线程执行</p>
+<p>Job的处理依赖关系：</p>
+<p>我有Job1和Job2，怎么并行执行快一些？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">MyJob2 myJob1 = new MyJob2();</span><br><span class="line">MyJob3 myJob2 = new MyJob3();</span><br><span class="line"></span><br><span class="line">//同时并行执行</span><br><span class="line">myJob1.Schedule(100, 64);</span><br><span class="line">myJob2.Schedule(100, 64);</span><br><span class="line"></span><br><span class="line">//Job1执行完毕后再并行执行Job2</span><br><span class="line">//缺点是要在主线程等待Job1结束(因为用了Complete())</span><br><span class="line">myJob1.Schedule(100, 64).Complete();</span><br><span class="line">myJob2.Schedule(100, 64);</span><br><span class="line">    </span><br><span class="line">//设置Job2依赖Job1，这样不需要在主线程等待</span><br><span class="line">//JobHandle和依赖项：调用Schedule方法时会返回JobHandle，可以用Job1的JobHandle作为Job2的依赖项</span><br><span class="line">JobHandle jobHandle = new JobHandle();</span><br><span class="line">JobHandle scheduleJobDependencyJob = myJob1.Schedule(100, 64, jobHandle);</span><br><span class="line">myJob2.Schedule(100, 64, scheduleJobDependencyJob).Complete();</span><br></pre></td></tr></table></figure>
+
+<h4 id="设计模式-组合模式："><a href="#设计模式-组合模式：" class="headerlink" title="设计模式-组合模式："></a>设计模式-组合模式：</h4><h4 id="系统生命周期："><a href="#系统生命周期：" class="headerlink" title="系统生命周期："></a>系统生命周期：</h4><p>OnCreate(), OnStartRunning(), OnUpdate(), OnStopRunning(), OnDestory()</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
