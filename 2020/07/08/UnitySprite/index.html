@@ -8,7 +8,7 @@
   <meta name="description" content>
   <meta name="author" content="CHAsencenge">
   <!-- Open Graph Data -->
-  <meta property="og:title" content="ProjectTinyWorkshop核心知识点">
+  <meta property="og:title" content="UnitySprite">
   <meta property="og:description" content="解字无果">
   <meta property="og:site_name" content="解字">
   <meta property="og:type" content="article">
@@ -43,7 +43,7 @@
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <div class="page-title with-background-image">
-          <p class="title">ProjectTinyWorkshop核心知识点</p>
+          <p class="title">UnitySprite</p>
           <p class="subtitle"></p>
         </div>
         <div class="site-menu with-background-image">
@@ -99,14 +99,14 @@
           
           <!-- Date -->
           <span class="date-time info">On
-            <span class="date">2020-07-07</span>
+            <span class="date">2020-07-08</span>
             <span class="time">15:26:01</span>
           </span>
           
           <!--  Categories  -->
             <span class="categories info">Under 
 
-<a href="/categories/Project-Tiny/">Project Tiny</a>
+<a href="/categories/Unity/">Unity</a>
 </span>
           
         </div>
@@ -115,29 +115,31 @@
           <div class="post-tags text-muted">
             Tags: 
 
-<a class="tag" href="/tags/DOTS/">#DOTS</a>
+<a class="tag" href="/tags/Sprite/">#Sprite</a> <a class="tag" href="/tags/Unity/">#Unity</a>
 
 
           </div>
         
         <!-- Post Main Content -->
         <div class="post-content">
-          <blockquote class="blockquote-center">ECS & Monobehaviours</blockquote>
+          <blockquote class="blockquote-center">Sprite相关</blockquote>
 <a id="more"></a>
 
-<p>Monobehaviours: C#类，引用类型，数据分散在内存中，当数据取回时，系统需要遍历内存去寻找，操作时不需要的数据也被处理</p>
-<p>ECS: 使用值类型，数据会在内存中紧密地装在一块(chunk)，仅处理需要操作的数据</p>
-<p>Entities只是帮助我们找到(component)数据的handle</p>
-<p>Components举例：(Component只是模块化的数据)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">struct Health : IComponentData</span><br><span class="line">&#123;</span><br><span class="line">    int current;</span><br><span class="line">    int max;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">struct Sprite2D : IComponentData</span><br><span class="line">&#123;</span><br><span class="line">    Entity image;</span><br><span class="line">    Rect imageRegion;</span><br><span class="line">    Vector2 pivot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Entities举例：</p>
-<p>比如某个Entity 1有四个组件(Component)，LocalPosition组件，Sprite2DRenderer组件，Health组件，Player组件（这里没有行为，行为由系统（System）给出）</p>
-<p>Systems不在乎它处理的生命值是玩家的生命值还是一个兽人或者哥布林的生命值</p>
-<p>Systems包括两部分，一是query，帮我找到这个数据，那个数据…，找到了之后对数据的action</p>
-<p>用System的方式筛选要操作的rntities:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public override void OnUpdate()</span><br><span class="line">&#123;</span><br><span class="line">    var dt = Scheduler.DeltaTime();</span><br><span class="line">    ForEach(</span><br><span class="line">    		LocalPosition</span><br><span class="line">        	MoveToTarget</span><br><span class="line">        	Not : Frozen =&gt; //注意查询时的这种筛选，用Not</span><br><span class="line">        &#123;</span><br><span class="line">            //actions</span><br><span class="line">        &#125;</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<h4 id="Sprite-Renderer"><a href="#Sprite-Renderer" class="headerlink" title="Sprite Renderer"></a>Sprite Renderer</h4><p>Flip：勾选后图片会在X或Y轴方向上翻转</p>
+<p>Material:材质，默认是Sprites - Default，场景中的灯光不会影响到图片，改为Default - Diffuse，灯光可以照亮图片</p>
+<p>Draw Mode：绘图模式, 普通，拉伸，平铺</p>
+<p>Sorting Layer：分类层，控制图片的渲染顺序，点开Sorting Layer，越靠下的越后渲染，越在最前面，挡住后面的图片</p>
+<p>Order In Layer：在同一层中的次序，当图片在同一个层下时，设置此数值可以再次控制渲染顺序</p>
+<p>Mask Interaction：遮罩交互</p>
+<h4 id="打包图集"><a href="#打包图集" class="headerlink" title="打包图集"></a>打包图集</h4><p>Editor-&gt;Project Settings-&gt;Editor下面有sprite packer的模式。Disabled表示不启用它，Enabled For Builds 表示只有打包的时候才会启用它，Always Enabled 表示永远启用它。 这里的启用它就表示是否将小图自动打成图集。</p>
+<h4 id="prefab文件"><a href="#prefab文件" class="headerlink" title=".prefab文件"></a>.prefab文件</h4><p> .prefab文件在Unity引擎中，扮演着配置文件的作用，用它将多个组件关联在了一起，组成了一个整体，默认是一个二进制文件</p>
+<h4 id="meta文件"><a href="#meta文件" class="headerlink" title=".meta文件"></a>.meta文件</h4><p>新的资源导入Unity时，Unity会自动做下面这件事：</p>
+<p>1.分配唯一ID</p>
+<p>2.创建.meta文件</p>
+<p>3.处理资源</p>
+<p>.meta文件包含内容：</p>
+<p>guid：分配的唯一ID存在这里</p>
+<p>MonoImporter：它的数据是不同的ImprotSetting数据，比如Mode Improter，Audio Improter等等，对照Inspector面板就可以看懂每行数据</p>
 
         </div>
       </div>

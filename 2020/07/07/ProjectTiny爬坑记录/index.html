@@ -8,7 +8,7 @@
   <meta name="description" content>
   <meta name="author" content="CHAsencenge">
   <!-- Open Graph Data -->
-  <meta property="og:title" content="ProjectTinyWorkshop核心知识点">
+  <meta property="og:title" content="ProjectTiny爬坑记录">
   <meta property="og:description" content="解字无果">
   <meta property="og:site_name" content="解字">
   <meta property="og:type" content="article">
@@ -43,7 +43,7 @@
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <div class="page-title with-background-image">
-          <p class="title">ProjectTinyWorkshop核心知识点</p>
+          <p class="title">ProjectTiny爬坑记录</p>
           <p class="subtitle"></p>
         </div>
         <div class="site-menu with-background-image">
@@ -103,42 +103,12 @@
             <span class="time">15:26:01</span>
           </span>
           
-          <!--  Categories  -->
-            <span class="categories info">Under 
-
-<a href="/categories/Project-Tiny/">Project Tiny</a>
-</span>
-          
         </div>
         <!-- Tags -->
         
-          <div class="post-tags text-muted">
-            Tags: 
-
-<a class="tag" href="/tags/DOTS/">#DOTS</a>
-
-
-          </div>
-        
         <!-- Post Main Content -->
         <div class="post-content">
-          <blockquote class="blockquote-center">ECS & Monobehaviours</blockquote>
-<a id="more"></a>
-
-<p>Monobehaviours: C#类，引用类型，数据分散在内存中，当数据取回时，系统需要遍历内存去寻找，操作时不需要的数据也被处理</p>
-<p>ECS: 使用值类型，数据会在内存中紧密地装在一块(chunk)，仅处理需要操作的数据</p>
-<p>Entities只是帮助我们找到(component)数据的handle</p>
-<p>Components举例：(Component只是模块化的数据)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">struct Health : IComponentData</span><br><span class="line">&#123;</span><br><span class="line">    int current;</span><br><span class="line">    int max;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">struct Sprite2D : IComponentData</span><br><span class="line">&#123;</span><br><span class="line">    Entity image;</span><br><span class="line">    Rect imageRegion;</span><br><span class="line">    Vector2 pivot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Entities举例：</p>
-<p>比如某个Entity 1有四个组件(Component)，LocalPosition组件，Sprite2DRenderer组件，Health组件，Player组件（这里没有行为，行为由系统（System）给出）</p>
-<p>Systems不在乎它处理的生命值是玩家的生命值还是一个兽人或者哥布林的生命值</p>
-<p>Systems包括两部分，一是query，帮我找到这个数据，那个数据…，找到了之后对数据的action</p>
-<p>用System的方式筛选要操作的rntities:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public override void OnUpdate()</span><br><span class="line">&#123;</span><br><span class="line">    var dt = Scheduler.DeltaTime();</span><br><span class="line">    ForEach(</span><br><span class="line">    		LocalPosition</span><br><span class="line">        	MoveToTarget</span><br><span class="line">        	Not : Frozen =&gt; //注意查询时的这种筛选，用Not</span><br><span class="line">        &#123;</span><br><span class="line">            //actions</span><br><span class="line">        &#125;</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
+          
         </div>
       </div>
     </div>
