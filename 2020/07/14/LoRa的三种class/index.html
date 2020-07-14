@@ -8,7 +8,7 @@
   <meta name="description" content>
   <meta name="author" content="CHAsencenge">
   <!-- Open Graph Data -->
-  <meta property="og:title" content="本地代码提交至git">
+  <meta property="og:title" content="LoRa的三种class">
   <meta property="og:description" content="解字无果">
   <meta property="og:site_name" content="解字">
   <meta property="og:type" content="article">
@@ -43,7 +43,7 @@
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <div class="page-title with-background-image">
-          <p class="title">本地代码提交至git</p>
+          <p class="title">LoRa的三种class</p>
           <p class="subtitle"></p>
         </div>
         <div class="site-menu with-background-image">
@@ -99,14 +99,14 @@
           
           <!-- Date -->
           <span class="date-time info">On
-            <span class="date">2019-11-20</span>
+            <span class="date">2020-07-14</span>
             <span class="time">00:02:33</span>
           </span>
           
           <!--  Categories  -->
             <span class="categories info">Under 
 
-<a href="/categories/Git/">Git</a>
+<a href="/categories/LoRa/">LoRa</a>
 </span>
           
         </div>
@@ -115,21 +115,24 @@
           <div class="post-tags text-muted">
             Tags: 
 
-<a class="tag" href="/tags/git/">#git</a>
+<a class="tag" href="/tags/LoRa/">#LoRa</a>
 
 
           </div>
         
         <!-- Post Main Content -->
         <div class="post-content">
-          <blockquote class="blockquote-center">本地更新如何提交至GitHub
-</blockquote>
+          <blockquote class="blockquote-center">LoRa class A, class B, class C三种工作模式</blockquote>
 <a id="more"></a>
 
-<h3 id="for-first-use"><a href="#for-first-use" class="headerlink" title="for first use"></a>for first use</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git init   ***init .git***  </span><br><span class="line">git status   ***check files to be added to the local repository***  </span><br><span class="line">git add xxx  ***add files to repo***   </span><br><span class="line">git commit -m &quot;commit description&quot;  ***commit to repo***   </span><br><span class="line">git remote add origin git@github.com:mobinets/hyblora.git  ***link local repo to github***    </span><br><span class="line">git pull --rebase origin master  ***pull = fetch + merge***  </span><br><span class="line">git push -u origin master  ***upload***</span><br></pre></td></tr></table></figure>
-
-<h3 id="not-first-use-repo"><a href="#not-first-use-repo" class="headerlink" title="not first use repo"></a>not first use repo</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add xxx  </span><br><span class="line">git commit -m &quot;commit discription&quot;  </span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
-
+<h4 id="class-A"><a href="#class-A" class="headerlink" title="class A"></a>class A</h4><p>接收窗口RX1一般是在上行后1秒开始，接收窗口RX2是在上行后2秒开始</p>
+<p>终端有数据了，就上报，顺便收一下服务器下发的指令。终端没数据的时候，服务器下发不了指令</p>
+<h4 id="class-B"><a href="#class-B" class="headerlink" title="class B"></a>class B</h4><p>有一个同步时隙beacon，还有一个固定周期的接收窗口ping时隙。(隔几十秒收一个数据。其他时候都在休眠)</p>
+<p>终端和基站约定一个时间下发数据，终端和基站依靠beacon信号校对时间，确保约定的时间不会错位</p>
+<p>ClassB的目的是使得节点具有在预定时间打开接收窗口（称之为ping slot）的能力。一个支持ClassB的网络，所有的网关都必须同步发送beacon</p>
+<h4 id="class-C"><a href="#class-C" class="headerlink" title="class C"></a>class C</h4><p>在class A的基础上，在class A休眠期间，一直打开接收窗口RX2（几乎随时可以接收数据）</p>
+<h4 id="Beacon"><a href="#Beacon" class="headerlink" title="Beacon"></a>Beacon</h4><p>LoRa一旦约定好了时间，基站就默认设备一定会在那个时间点接收，所以需要严格的时间同步。Beacon则是时间同步的最关键的地方</p>
+<p>节点由ClassA切换到ClassB之前必须收到beacon，进入ClassB之后还需要周期搜索/接收beacon，从而同步时钟。Class B节点可能临时收不到beacon，此时节点要逐渐加宽beacon和ping的接收窗。如果收到beacon后2小时收不到新的beacon，节点需使用内部时钟保持同步</p>
 
         </div>
       </div>

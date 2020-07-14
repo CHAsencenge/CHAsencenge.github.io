@@ -8,7 +8,7 @@
   <meta name="description" content>
   <meta name="author" content="CHAsencenge">
   <!-- Open Graph Data -->
-  <meta property="og:title" content="本地代码提交至git">
+  <meta property="og:title" content="C++.h和.cpp">
   <meta property="og:description" content="解字无果">
   <meta property="og:site_name" content="解字">
   <meta property="og:type" content="article">
@@ -43,7 +43,7 @@
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
         <div class="page-title with-background-image">
-          <p class="title">本地代码提交至git</p>
+          <p class="title">C++.h和.cpp</p>
           <p class="subtitle"></p>
         </div>
         <div class="site-menu with-background-image">
@@ -99,14 +99,14 @@
           
           <!-- Date -->
           <span class="date-time info">On
-            <span class="date">2019-11-20</span>
+            <span class="date">2020-07-13</span>
             <span class="time">00:02:33</span>
           </span>
           
           <!--  Categories  -->
             <span class="categories info">Under 
 
-<a href="/categories/Git/">Git</a>
+<a href="/categories/C/">C++</a>
 </span>
           
         </div>
@@ -115,20 +115,31 @@
           <div class="post-tags text-muted">
             Tags: 
 
-<a class="tag" href="/tags/git/">#git</a>
+<a class="tag" href="/tags/C/">#C++</a>
 
 
           </div>
         
         <!-- Post Main Content -->
         <div class="post-content">
-          <blockquote class="blockquote-center">本地更新如何提交至GitHub
-</blockquote>
+          <blockquote class="blockquote-center">C++的.h文件和.cpp文件各应该包含什么内容</blockquote>
 <a id="more"></a>
 
-<h3 id="for-first-use"><a href="#for-first-use" class="headerlink" title="for first use"></a>for first use</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git init   ***init .git***  </span><br><span class="line">git status   ***check files to be added to the local repository***  </span><br><span class="line">git add xxx  ***add files to repo***   </span><br><span class="line">git commit -m &quot;commit description&quot;  ***commit to repo***   </span><br><span class="line">git remote add origin git@github.com:mobinets/hyblora.git  ***link local repo to github***    </span><br><span class="line">git pull --rebase origin master  ***pull = fetch + merge***  </span><br><span class="line">git push -u origin master  ***upload***</span><br></pre></td></tr></table></figure>
+<h4 id="h文件"><a href="#h文件" class="headerlink" title=".h文件"></a>.h文件</h4><p>类的声明，成员函数声明…</p>
+<p>记得在头部添加：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> XXXX_H <span class="comment">//这里如果头文件名为LoraNode.h, 则写为LORANODE_H</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> XXXX_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> once <span class="comment">//这个一般在创建头文件的时候会自动添加</span></span></span><br></pre></td></tr></table></figure>
 
-<h3 id="not-first-use-repo"><a href="#not-first-use-repo" class="headerlink" title="not first use repo"></a>not first use repo</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add xxx  </span><br><span class="line">git commit -m &quot;commit discription&quot;  </span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+<p>尾部添加：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<p>目的是为了防止重复编译而报错</p>
+<h4 id="cpp文件"><a href="#cpp文件" class="headerlink" title=".cpp文件"></a>.cpp文件</h4><p>填写类成员函数的定义</p>
+<p>首先引用头文件</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"xxxx.h"</span></span></span><br></pre></td></tr></table></figure>
+
+<p>注：不用再重写class Name{}，否则会报错为class重定义，直接使用::进行外部定义类成员函数即可</p>
+<p>例：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> LoraNode::th(si)&#123;</span><br><span class="line">...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
         </div>
