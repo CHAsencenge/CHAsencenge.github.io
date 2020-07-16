@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content>
+  <meta name="author" content="CHAsencenge">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="Laya Basketball踩坑记录">
+  <meta property="og:description" content="解字无果">
+  <meta property="og:site_name" content="解字">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="http://yoursite.com">
+  
+    <link rel="alternate" href="/atom.xml" title="解字" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>解字</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.dark.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">Laya Basketball踩坑记录</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/CHAsencenge">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:958198376@qq.com">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By CHAsencenge</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2020-07-16</span>
+            <span class="time">23:53:12</span>
+          </span>
+          
+          <!--  Categories  -->
+            <span class="categories info">Under 
+
+<a href="/categories/Laya/">Laya</a>
+</span>
+          
+        </div>
+        <!-- Tags -->
+        
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/Laya/">#Laya</a> <a class="tag" href="/tags/TypeScript/">#TypeScript</a>
+
+
+          </div>
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <blockquote class="blockquote-center">Laya3D小项目中的踩坑历程</blockquote>
+<a id="more"></a>
+
+<p>测试Unity导出的Scene（仅包含3D球架）在导入Laya后的显示，发现若导出.lh文件，在Laya创建的Scene中挂载脚本运行时会报“cannot read ‘_addCamera’ of undefined”错误，解决此问题时选择重新导出.ls文件</p>
+<p>相应脚本：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; ui &#125; <span class="keyword">from</span> <span class="string">"./../ui/layaMaxUI"</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> SmallScene <span class="keyword">extends</span> Laya.Script &#123;    </span><br><span class="line">    <span class="keyword">constructor</span>(<span class="params"></span>) &#123; <span class="keyword">super</span>(); &#125;</span><br><span class="line">    </span><br><span class="line">    onEnable(): <span class="built_in">void</span> &#123;</span><br><span class="line">        Laya3D.init(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">        Laya.Stat.show();</span><br><span class="line">        Laya.stage.scaleMode = Laya.Stage.SCALE_FULL;</span><br><span class="line">        Laya.stage.screenMode = Laya.Stage.SCREEN_NONE;</span><br><span class="line">        Laya.Scene3D.load(<span class="string">"res/Loading/LayaScene_SmallScene/Conventional/SmallScene.ls"</span>, Laya.Handler.create(<span class="literal">null</span>, <span class="function"><span class="keyword">function</span>(<span class="params">scene:Laya.Scene3D</span>):<span class="title">void</span> </span>&#123;</span><br><span class="line">            Laya.stage.addChild(scene) <span class="keyword">as</span> Laya.Scene3D;</span><br><span class="line">        &#125;));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    onDisable(): <span class="built_in">void</span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">new</span> SmallScene;</span><br></pre></td></tr></table></figure>
+
+<h5 id="导出文件说明："><a href="#导出文件说明：" class="headerlink" title="导出文件说明："></a>导出文件说明：</h5><p>ls     —   场景文件： Json文件，包含场景中所有节点的数据信息，包含光照贴图信息<br>lh    —   层级文件： Json文件，包含场景中所有节点的数据信息，不包含光照贴图信息<br>lt     —   地形文件： Json文件，包含地形中的数据信息<br>lm    —   网格文件： 二进制文件，包含模型所有顶点的数据信息<br>lmat  —   材质文件： Json文件，包含光照，贴图，渲染模式等基本材质信息<br>lsani  —   蒙皮动画文件：二进制文件，包含骨骼动画帧率信息<br>lrani  —   刚体动画文件：二进制文件，包含刚体动画帧率信息<br>lav    —   新版动画节点文件：Json文件，只包含Animator组件下节点的数据信息<br>lani   —   新版动画文件：二进制文件，包含Animator动画帧率信息</p>
+<h4 id="Mesh-Collider-和-Box-Collider的选择："><a href="#Mesh-Collider-和-Box-Collider的选择：" class="headerlink" title="Mesh Collider 和 Box Collider的选择："></a>Mesh Collider 和 Box Collider的选择：</h4><p>篮筐处有两个Trigger，一个在篮筐一个在篮网，篮筐环附近用Box Collider（元碰撞器），篮网用Mesh Collider（网格），后者渲染时消耗资源比前者大很多</p>
+<h4 id="如何进一步操作导入的Scene中的子对象？"><a href="#如何进一步操作导入的Scene中的子对象？" class="headerlink" title="如何进一步操作导入的Scene中的子对象？"></a>如何进一步操作导入的Scene中的子对象？</h4><p><a href="http://layaair2.ldc2.layabox.com/api/?category=Core&class=laya.display.Node#numChildren" target="_blank" rel="noopener">laya.display.Node</a></p>
+<p>测试时在Laya.Scene3D.load的call中添加：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">"scene.numChildren:"</span>, scene.numChildren);</span><br></pre></td></tr></table></figure>
+
+<p>可在运行时查看scene中的子对象个数</p>
+<p>其他类似操作代码如下：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Laya.Scene3D.load(<span class="string">"res/Loading/LayaScene_SmallScene/Conventional/SmallScene.ls"</span>, Laya.Handler.create(<span class="literal">null</span>, <span class="function"><span class="keyword">function</span>(<span class="params">scene:Laya.Scene3D</span>):<span class="title">void</span> </span>&#123;</span><br><span class="line">            <span class="comment">//myScene = scene;</span></span><br><span class="line">            Laya.stage.addChild(scene) <span class="keyword">as</span> Laya.Scene3D;</span><br><span class="line">            <span class="comment">//var camera = new Laya.Camera(0, 3, 10);</span></span><br><span class="line">            <span class="comment">//scene.addChild(camera);</span></span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">"scene.numChildren:"</span>, scene.numChildren);</span><br><span class="line">            <span class="keyword">let</span> sprite:Laya.Sprite3D = <span class="keyword">new</span> Laya.Sprite3D();</span><br><span class="line">            scene.addChildAt(sprite, <span class="number">5</span>);</span><br><span class="line">            <span class="built_in">console</span>.log(scene.getChildAt(<span class="number">3</span>).name);</span><br><span class="line">            <span class="built_in">console</span>.log(scene.getChildAt(<span class="number">4</span>).name);</span><br><span class="line">            <span class="built_in">console</span>.log(scene.getChildAt(<span class="number">5</span>).name);</span><br><span class="line">        &#125;));</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:%5CUsers%5CThink-Pad%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200716180837646.png" alt="image-20200716180837646"></p>
+<h4 id="关于Laya-Handler-create"><a href="#关于Laya-Handler-create" class="headerlink" title="关于Laya.Handler.create"></a>关于Laya.Handler.create</h4><p>Handler是事件处理器类</p>
+<p><a href="http://layaair2.ldc2.layabox.com/api/?category=Core&class=laya.utils.Handler#caller" target="_blank" rel="noopener">laya.utils.Handler</a></p>
+<p>create(caller:*, method:Fuction, args:Array = null, once:Boolean = true): Handler</p>
+<p>caller:*  -执行域(this)</p>
+<p>method:Function   -回调方法</p>
+<p>args:Array   -携带的参数</p>
+<p>once:Boolean   -是否只执行一次，默认为true</p>
+<p>注意once后或者Handler.recover()后不要再使用此对象</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
