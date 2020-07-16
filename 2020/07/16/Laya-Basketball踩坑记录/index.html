@@ -100,7 +100,7 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2020-07-16</span>
-            <span class="time">23:53:12</span>
+            <span class="time">23:58:34</span>
           </span>
           
           <!--  Categories  -->
@@ -139,7 +139,7 @@
 <p>其他类似操作代码如下：</p>
 <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Laya.Scene3D.load(<span class="string">"res/Loading/LayaScene_SmallScene/Conventional/SmallScene.ls"</span>, Laya.Handler.create(<span class="literal">null</span>, <span class="function"><span class="keyword">function</span>(<span class="params">scene:Laya.Scene3D</span>):<span class="title">void</span> </span>&#123;</span><br><span class="line">            <span class="comment">//myScene = scene;</span></span><br><span class="line">            Laya.stage.addChild(scene) <span class="keyword">as</span> Laya.Scene3D;</span><br><span class="line">            <span class="comment">//var camera = new Laya.Camera(0, 3, 10);</span></span><br><span class="line">            <span class="comment">//scene.addChild(camera);</span></span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">"scene.numChildren:"</span>, scene.numChildren);</span><br><span class="line">            <span class="keyword">let</span> sprite:Laya.Sprite3D = <span class="keyword">new</span> Laya.Sprite3D();</span><br><span class="line">            scene.addChildAt(sprite, <span class="number">5</span>);</span><br><span class="line">            <span class="built_in">console</span>.log(scene.getChildAt(<span class="number">3</span>).name);</span><br><span class="line">            <span class="built_in">console</span>.log(scene.getChildAt(<span class="number">4</span>).name);</span><br><span class="line">            <span class="built_in">console</span>.log(scene.getChildAt(<span class="number">5</span>).name);</span><br><span class="line">        &#125;));</span><br></pre></td></tr></table></figure>
 
-<p><img src="C:%5CUsers%5CThink-Pad%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200716180837646.png" alt="image-20200716180837646"></p>
+<p><img src="C:%5CUsers%5CThink-Pad%5CDesktop%5Chexo%5Cimages%5CgetChildName.png" alt="getChildName"></p>
 <h4 id="关于Laya-Handler-create"><a href="#关于Laya-Handler-create" class="headerlink" title="关于Laya.Handler.create"></a>关于Laya.Handler.create</h4><p>Handler是事件处理器类</p>
 <p><a href="http://layaair2.ldc2.layabox.com/api/?category=Core&class=laya.utils.Handler#caller" target="_blank" rel="noopener">laya.utils.Handler</a></p>
 <p>create(caller:*, method:Fuction, args:Array = null, once:Boolean = true): Handler</p>
