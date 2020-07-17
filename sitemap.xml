@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2020/07/17/hexo%E6%9B%B4%E6%8D%A2flex-block%E4%B8%BB%E9%A2%98/</loc>
+    
+    <lastmod>2020-07-17T08:50:45.238Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2019/07/18/Gradle%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86(%E8%BD%AC%E8%BD%BD%E8%87%AABonker)/</loc>
     
     <lastmod>2020-07-17T07:10:09.817Z</lastmod>
@@ -138,13 +145,6 @@
     <loc>http://yoursite.com/2020/07/13/C-h%E5%92%8C-cpp/</loc>
     
     <lastmod>2020-07-17T05:27:51.580Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/07/17/hexo%E6%9B%B4%E6%8D%A2flex-block%E4%B8%BB%E9%A2%98/</loc>
-    
-    <lastmod>2020-07-17T05:24:49.044Z</lastmod>
     
   </url>
   
