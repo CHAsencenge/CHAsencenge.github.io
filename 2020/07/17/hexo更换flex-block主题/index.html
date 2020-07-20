@@ -180,8 +180,8 @@
 <p>在F12调试工具中-&gt;Application，对比主页和文章页查看，发现各自的image加载是在各自的index.html同级目录下，故将用到的所有文件资源复制到hexo/public目录下，但是此目录仅支持主页正常显示，翻页时会进入page2，page3等等，所以将所用到的card资源同样放置在hexo/public/page/2、hexo/public/page/3等目录下</p>
 <p><img src="/2020/07/17/hexo更换flex-block主题/homeImageSave.png" alt="homeImageSave"></p>
 <p>btw，为了保证主页card显示的图片不冲突，以上目录下的图片不可重名，又由于以上目录的图片名需与hexo/source/_post中的每一篇的cover同名，故每个文章的asset-folder中的cover命名不要重名，文章front-matter同理</p>
-<p><img src="/2020/07/17/hexo更换flex-block主题/postFolderImageName.png" alt="postFolderImageName"></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json">cover: cover22.jpg<br></code></pre></td></tr></table></figure>
+<h6 id="asset-folder的cover命名："><a href="#asset-folder的cover命名：" class="headerlink" title="asset-folder的cover命名："></a>asset-folder的cover命名：</h6><p><img src="/2020/07/17/hexo更换flex-block主题/postFolderImageName.png" alt="postFolderImageName"></p>
+<h6 id="front-matter的cover命名保证与asset-folder一致，并与hexo-public中的资源名称一致："><a href="#front-matter的cover命名保证与asset-folder一致，并与hexo-public中的资源名称一致：" class="headerlink" title="front-matter的cover命名保证与asset-folder一致，并与hexo/public中的资源名称一致："></a>front-matter的cover命名保证与asset-folder一致，并与hexo/public中的资源名称一致：</h6><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json">cover: cover22.jpg<br></code></pre></td></tr></table></figure>
 
 
       </section>
@@ -195,8 +195,10 @@
 <nav class="card-container card-article-nav">
   <div class="card-wrap">
     
-      <div id="article-nav-newer" class="card-item">
+      <div id="article-nav-newer" class="card-item img">
         <article>
+          
+            <div class="card-cover" style="background-image: url(cover25.jpg)"></div>
           
           <a class="card-link article-nav-link" href="/2020/07/20/Python实现Lora节点拓扑自动规划/"></a>
           <strong class="article-nav-caption">Newer</strong>
