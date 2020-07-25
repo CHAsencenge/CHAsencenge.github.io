@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#3367D6">
+  <link rel="apple-touch-icon" href="/icons-192.png">
+  <link rel="manifest" href="/manifest.json">
+
+  
+    <meta name="description" content="解字无果">
+  
+
+  
+
+  
+    <meta name="author" content="CHAsencenge">
+  
+
+  
+
+  
+
+  <title>Unity项目对接到Laya | 解字</title>
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    <link href="https://cdn.bootcss.com/highlight.js/9.15.6/styles/railscasts.min.css" rel="stylesheet">
+  
+
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="root-container">
+    <!-- navbar -->
+<nav class="navbar">
+  <div class="navbar-content">
+    <!-- logo -->
+    <div class="navbar-logo">
+      <a href="/">
+        
+          解字
+        
+      </a>
+    </div>
+    <!-- link -->
+    <div class="navbar-link">
+      <div class="navbar-btn">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <ul class="navbar-list">
+        
+          <li class="navbar-list-item"><a href="/">主页</a></li>
+        
+          <li class="navbar-list-item"><a href="/about">关于</a></li>
+        
+          <li class="navbar-list-item"><a href="/links">友链</a></li>
+        
+          <li class="navbar-list-item"><a href="/tags">标签</a></li>
+        
+          <li class="navbar-list-item"><a href="/categories">分类</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    
+<!-- header container -->
+<header class="header-container post">
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+    <div class="header-content">
+      <div class="post-image" style="background-image: url(cover13.jpg)"></div>
+      <div class="post-text">
+        <div class="type-wrap">
+          <a class="article-category-link" href="/categories/Unity/">Unity</a><a class="article-category-link" href="/categories/Unity/Laya/">Laya</a><a class="article-category-link" href="/categories/Unity/Laya/C/">C#</a><a class="article-category-link" href="/categories/Unity/Laya/C/TypeScript/">TypeScript</a>
+        </div>
+        <h1 class="title-wrap">Unity项目对接到Laya</h1>
+        <h2 class="title-sub-wrap">
+          <strong>CHAsencenge</strong>
+          <span>发布于</span>
+          
+  <a href="javascript:;" class="article-date">
+    <time datetime="2020-07-21T09:29:24.000Z" itemprop="datePublished">2020-07-21</time>
+  </a>
+
+        </h2>
+      </div>
+    </div>
+  
+
+  
+  
+
+  </header>
+
+    <!-- 文章 -->
+
+<!-- 文章内容 -->
+
+<div class="body-container">
+  <article class="content-container article-container">
+    <div class="article-content">
+      
+      
+
+      <section class="article-entry">
+        <h2 id="Unity-API"><a href="#Unity-API" class="headerlink" title="Unity API"></a>Unity API</h2><h4 id="GameObject-FindWithTag"><a href="#GameObject-FindWithTag" class="headerlink" title="GameObject.FindWithTag"></a>GameObject.FindWithTag</h4><p>通过Tag名找到游戏对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c#">ring = GameObject.FindWithTag(&quot;ring&quot;)<br></code></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th><a href="https://docs.unity3d.com/cn/current/ScriptReference/GameObject.FindWithTag.html" target="_blank" rel="noopener">FindWithTag</a></th>
+<th>返回一个标记为 tag 的活动 GameObject。如果未找到 GameObject，则返回 null。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://docs.unity3d.com/cn/current/ScriptReference/GameObject.Find.html" target="_blank" rel="noopener">Find</a></td>
+<td>按 name 查找 GameObject，然后返回它。</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id="Rigidbody"><a href="#Rigidbody" class="headerlink" title="Rigidbody"></a><a href="https://docs.unity3d.com/cn/current/ScriptReference/Rigidbody.html" target="_blank" rel="noopener">Rigidbody</a></h4><p>Rigidbody是刚体，可以为游戏对象赋予物理属性，向对象添加 Rigidbody 组件后，其运动将受到 Unity 物理引擎的控制。即使不添加任何代码，Rigidbody 对象也受到向下的重力，并在与其他对象碰撞时作出反应（需有适当的collider）</p>
+<table>
+<thead>
+<tr>
+<th><a href="https://docs.unity3d.com/cn/current/ScriptReference/Rigidbody-position.html" target="_blank" rel="noopener">position</a></th>
+<th>刚体的位置</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://docs.unity3d.com/cn/current/ScriptReference/Rigidbody-rotation.html" target="_blank" rel="noopener">rotation</a></td>
+<td>刚体的旋转</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/current/ScriptReference/Rigidbody-useGravity.html" target="_blank" rel="noopener">useGravity</a></td>
+<td>控制重力是否影响该刚体</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/current/ScriptReference/Rigidbody-angularVelocity.html" target="_blank" rel="noopener">angularVelocity</a></td>
+<td>刚体的角速度矢量（以弧度/秒为单位）</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/current/ScriptReference/Rigidbody-velocity.html" target="_blank" rel="noopener">velocity</a></td>
+<td>刚体的速度矢量</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th><a href="https://docs.unity3d.com/cn/current/ScriptReference/Rigidbody.AddForce.html" target="_blank" rel="noopener">AddForce</a></th>
+<th>向 Rigidbody 添加力</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://docs.unity3d.com/cn/current/ScriptReference/Rigidbody.Sleep.html" target="_blank" rel="noopener">Sleep</a></td>
+<td>强制刚体进入睡眠状态至少一帧</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/current/ScriptReference/Rigidbody.AddTorque.html" target="_blank" rel="noopener">AddTorque</a></td>
+<td>向刚体添加扭矩</td>
+</tr>
+</tbody></table>
+<h4 id="Quaternion"><a href="#Quaternion" class="headerlink" title="Quaternion"></a><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Quaternion.html" target="_blank" rel="noopener">Quaternion</a></h4><p>在API中的UnityEngine-&gt;classes，四元数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c#">Vector3 dir = hoopPoint.position - ballPoint.position;<br>Quaternion wantedRotation = Quaternion.LookRotation(dir);<br></code></pre></td></tr></table></figure>
+
+<p>Quaternion.LookRotation(dir)使用指定的 forward 和 upwards 方向创建旋转</p>
+<table>
+<thead>
+<tr>
+<th><a href="https://docs.unity3d.com/cn/current/ScriptReference/Quaternion.AngleAxis.html" target="_blank" rel="noopener">AngleAxis</a></th>
+<th>创建一个围绕 axis 旋转 angle 度的旋转</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://docs.unity3d.com/cn/current/ScriptReference/Quaternion.LookRotation.html" target="_blank" rel="noopener">LookRotation</a></td>
+<td>使用指定的 forward 和 upwards 方向创建旋转</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id="GameObject-GetComponent"><a href="#GameObject-GetComponent" class="headerlink" title="GameObject.GetComponent"></a>GameObject.GetComponent</h4><p>GameObject.GetComponent<type>() 在UnityEngine-&gt;classes-&gt;GameObject</type></p>
+<p>返回 GameObject 中类型为 type 的所有组件</p>
+<p>示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c#">void Start()<br>&#123;<br>    Component[] hingeJoints;<br>    hingeJoints = GetComponents(typeof(HingeJoint));<br><br>    foreach (HingeJoint joint in hingeJoints)<br>        joint.useSpring = false;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="ForceMode"><a href="#ForceMode" class="headerlink" title="ForceMode"></a><a href="https://docs.unity3d.com/cn/current/ScriptReference/ForceMode.html" target="_blank" rel="noopener">ForceMode</a></h4><p>位于UnityEngine-&gt;Enumerations</p>
+<p>使用 ForceMode 指定如何使用 <a href="https://docs.unity3d.com/cn/current/ScriptReference/Rigidbody.AddForce.html" target="_blank" rel="noopener">Rigidbody.AddForce</a> 来施加力。</p>
+<p>AddForce 函数可定义自己的力矢量，以及选择如何将此力施加于 GameObject（此 GameObject 必须附加有 Rigidbody 组件），从而影响您的 GameObject 的移动方式。</p>
+<table>
+<thead>
+<tr>
+<th><a href="https://docs.unity3d.com/cn/current/ScriptReference/ForceMode.Force.html" target="_blank" rel="noopener">Force</a></th>
+<th>向此刚体添加连续力，使用其质量</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://docs.unity3d.com/cn/current/ScriptReference/ForceMode.Acceleration.html" target="_blank" rel="noopener">Acceleration</a></td>
+<td>向此刚体添加连续加速度，忽略其质量</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/current/ScriptReference/ForceMode.Impulse.html" target="_blank" rel="noopener">Impulse</a></td>
+<td>向此刚体添加瞬时力冲击，考虑其质量</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/current/ScriptReference/ForceMode.VelocityChange.html" target="_blank" rel="noopener">VelocityChange</a></td>
+<td>向此刚体添加瞬时速度变化，忽略其质量</td>
+</tr>
+</tbody></table>
+<h4 id="transform"><a href="#transform" class="headerlink" title="transform"></a>transform</h4><p>对象的位置、旋转和缩放</p>
+<p>每个变换都可以有一个父级，使得能够分层应用位置、旋转和缩放</p>
+<table>
+<thead>
+<tr>
+<th><a href="https://docs.unity3d.com/cn/current/ScriptReference/Transform-parent.html" target="_blank" rel="noopener">parent</a></th>
+<th>变换的父级</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://docs.unity3d.com/cn/current/ScriptReference/Transform-position.html" target="_blank" rel="noopener">position</a></td>
+<td>世界空间中的变换位置</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/current/ScriptReference/Transform-rotation.html" target="_blank" rel="noopener">rotation</a></td>
+<td>一个四元数，用于存储变换在世界空间中的旋转</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/current/ScriptReference/Transform-localEulerAngles.html" target="_blank" rel="noopener">localEulerAngles</a></td>
+<td>以欧拉角表示的相对于父变换旋转的旋转（以度为单位）</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/current/ScriptReference/Transform-localPosition.html" target="_blank" rel="noopener">localPosition</a></td>
+<td>相对于父变换的变换位置</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/current/ScriptReference/Transform-localRotation.html" target="_blank" rel="noopener">localRotation</a></td>
+<td>相对于父级变换旋转的变换旋转</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/current/ScriptReference/Transform-localScale.html" target="_blank" rel="noopener">localScale</a></td>
+<td>相对于父对象的变换缩放</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/current/ScriptReference/Transform-childCount.html" target="_blank" rel="noopener">childCount</a></td>
+<td>父变换具有的子项数</td>
+</tr>
+</tbody></table>
+<h4 id="Camera-ScreenPointToRay"><a href="#Camera-ScreenPointToRay" class="headerlink" title="Camera.ScreenPointToRay"></a><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Camera.html" target="_blank" rel="noopener">Camera.ScreenPointToRay</a></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c#">Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);<br></code></pre></td></tr></table></figure>
+
+<h4 id="Physics-Raycast"><a href="#Physics-Raycast" class="headerlink" title="Physics.Raycast"></a><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Physics.html" target="_blank" rel="noopener">Physics.Raycast</a></h4><p>参数：</p>
+<table>
+<thead>
+<tr>
+<th>origin</th>
+<th>射线在世界坐标系中的起点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>direction</td>
+<td>射线的方向</td>
+</tr>
+<tr>
+<td>maxDistance</td>
+<td>射线应检查碰撞的最大距离</td>
+</tr>
+<tr>
+<td>layerMask</td>
+<td>层遮罩，用于在投射射线时有选择地忽略碰撞体</td>
+</tr>
+<tr>
+<td>queryTriggerInteraction</td>
+<td>指定该查询是否应该命中触发器</td>
+</tr>
+</tbody></table>
+<p><strong>bool</strong> 如果射线与任何碰撞体相交，返回 true，否则为 false。</p>
+<h4 id="RaycastHit"><a href="#RaycastHit" class="headerlink" title="RaycastHit"></a><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/RaycastHit.html" target="_blank" rel="noopener">RaycastHit</a></h4><p>用于从射线投射获取信息的结构</p>
+<table>
+<thead>
+<tr>
+<th><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/RaycastHit-barycentricCoordinate.html" target="_blank" rel="noopener">barycentricCoordinate</a></th>
+<th>命中的三角形的重心坐标</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/RaycastHit-collider.html" target="_blank" rel="noopener">collider</a></td>
+<td>命中的 Collider</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/RaycastHit-distance.html" target="_blank" rel="noopener">distance</a></td>
+<td>从射线原点到撞击点的距离</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/RaycastHit-lightmapCoord.html" target="_blank" rel="noopener">lightmapCoord</a></td>
+<td>撞击点处的 UV 光照贴图坐标</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/RaycastHit-normal.html" target="_blank" rel="noopener">normal</a></td>
+<td>射线命中的表面的法线</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/RaycastHit-point.html" target="_blank" rel="noopener">point</a></td>
+<td>世界空间中射线命中碰撞体的撞击点</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/RaycastHit-rigidbody.html" target="_blank" rel="noopener">rigidbody</a></td>
+<td>命中的碰撞体的 Rigidbody。如果该碰撞体未附加到刚体，则值为 /null/</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/RaycastHit-textureCoord.html" target="_blank" rel="noopener">textureCoord</a></td>
+<td>碰撞位置处的 UV 纹理坐标</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/RaycastHit-textureCoord2.html" target="_blank" rel="noopener">textureCoord2</a></td>
+<td>撞击点处的辅助 UV 纹理坐标</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/RaycastHit-transform.html" target="_blank" rel="noopener">transform</a></td>
+<td>命中的刚体或碰撞体的 Transform</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/RaycastHit-triangleIndex.html" target="_blank" rel="noopener">triangleIndex</a></td>
+<td>命中的三角形的索引</td>
+</tr>
+</tbody></table>
+<h4 id="Collider"><a href="#Collider" class="headerlink" title="Collider"></a><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Collider.html" target="_blank" rel="noopener">Collider</a></h4><p>所有碰撞体的基类</p>
+<p><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/BoxCollider.html" target="_blank" rel="noopener">BoxCollider</a>、<a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/SphereCollider.html" target="_blank" rel="noopener">SphereCollider</a>、<a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/CapsuleCollider.html" target="_blank" rel="noopener">CapsuleCollider</a>、<a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/MeshCollider.html" target="_blank" rel="noopener">MeshCollider</a>、<a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/PhysicMaterial.html" target="_blank" rel="noopener">PhysicMaterial</a>、<a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Rigidbody.html" target="_blank" rel="noopener">Rigidbody</a></p>
+<p>如果在游戏过程中需要移动具有 Collider 的对象，还应将 Rigidbody 组件附加到该对象。如果不想使该对象与其他对象进行物理交互，可将 Rigidbody 设置为运动刚体</p>
+<p>变量：</p>
+<table>
+<thead>
+<tr>
+<th><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Collider-attachedRigidbody.html" target="_blank" rel="noopener">attachedRigidbody</a></th>
+<th>碰撞体附加到的刚体</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Collider-bounds.html" target="_blank" rel="noopener">bounds</a></td>
+<td>碰撞体的世界空间包围体积（只读）</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Collider-contactOffset.html" target="_blank" rel="noopener">contactOffset</a></td>
+<td>该碰撞体的接触偏移值</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Collider-enabled.html" target="_blank" rel="noopener">enabled</a></td>
+<td>启用的 Collider 将与其他 Collider 碰撞，禁用的 Collider 不会这样</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Collider-isTrigger.html" target="_blank" rel="noopener">isTrigger</a></td>
+<td>碰撞体是不是触发器</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Collider-material.html" target="_blank" rel="noopener">material</a></td>
+<td>碰撞体使用的材质</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Collider-sharedMaterial.html" target="_blank" rel="noopener">sharedMaterial</a></td>
+<td>该碰撞体的共享物理材质</td>
+</tr>
+</tbody></table>
+<p>消息：</p>
+<table>
+<thead>
+<tr>
+<th><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Collider.OnCollisionEnter.html" target="_blank" rel="noopener">OnCollisionEnter</a></th>
+<th>当该碰撞体/刚体已开始接触另一个刚体/碰撞体时，调用 OnCollisionEnter</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Collider.OnCollisionExit.html" target="_blank" rel="noopener">OnCollisionExit</a></td>
+<td>当该碰撞体/刚体已停止接触另一个刚体/碰撞体时，调用 OnCollisionExit</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Collider.OnCollisionStay.html" target="_blank" rel="noopener">OnCollisionStay</a></td>
+<td>对应正在接触刚体/碰撞体的每一个碰撞体/刚体，每帧调用一次 OnCollisionStay</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Collider.OnTriggerEnter.html" target="_blank" rel="noopener">OnTriggerEnter</a></td>
+<td>当 Collider other 事件进入该触发器时调用 OnTriggerEnter</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Collider.OnTriggerExit.html" target="_blank" rel="noopener">OnTriggerExit</a></td>
+<td>当 Collider other 已停止接触该触发器时调用 OnTriggerExit</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Collider.OnTriggerStay.html" target="_blank" rel="noopener">OnTriggerStay</a></td>
+<td>对于正在接触该触发器的每个其他 Collider，“几乎”所有帧都调用 OnTriggerStay。此函数位于物理计时器上，因此它不必运行每个帧</td>
+</tr>
+</tbody></table>
+<h5 id="继承的成员"><a href="#继承的成员" class="headerlink" title="继承的成员"></a>继承的成员</h5><p>变量：</p>
+<table>
+<thead>
+<tr>
+<th><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Component-gameObject.html" target="_blank" rel="noopener">gameObject</a></th>
+<th>此组件附加到的游戏对象。始终将组件附加到游戏对象</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Component-tag.html" target="_blank" rel="noopener">tag</a></td>
+<td>此游戏对象的标签</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Component-transform.html" target="_blank" rel="noopener">transform</a></td>
+<td>附加到此 GameObject 的 Transform</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Object-hideFlags.html" target="_blank" rel="noopener">hideFlags</a></td>
+<td>该对象应该隐藏、随场景一起保存还是由用户修改</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Object-name.html" target="_blank" rel="noopener">name</a></td>
+<td>对象的名称</td>
+</tr>
+</tbody></table>
+<p>公共函数：</p>
+<table>
+<thead>
+<tr>
+<th><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Component.BroadcastMessage.html" target="_blank" rel="noopener">BroadcastMessage</a></th>
+<th>调用此游戏对象或其任何子项中的每个 MonoBehaviour 上名为 methodName 的方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Component.CompareTag.html" target="_blank" rel="noopener">CompareTag</a></td>
+<td>此游戏对象是否使用 tag 进行了标记</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Component.GetComponent.html" target="_blank" rel="noopener">GetComponent</a></td>
+<td>如果游戏对象附加了类型为 type 的组件，则将其返回，否则返回 null</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Component.GetComponentInChildren.html" target="_blank" rel="noopener">GetComponentInChildren</a></td>
+<td>使用深度首次搜索返回 GameObject 或其任何子项中类型为 type 的组件</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Component.GetComponentInParent.html" target="_blank" rel="noopener">GetComponentInParent</a></td>
+<td>返回 GameObject 或其任何父项中类型为 type 的组件</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Component.GetComponents.html" target="_blank" rel="noopener">GetComponents</a></td>
+<td>返回 GameObject 中类型为 type 的所有组件</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Component.GetComponentsInChildren.html" target="_blank" rel="noopener">GetComponentsInChildren</a></td>
+<td>返回 GameObject 或其任何子项中类型为 type 的所有组件</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Component.GetComponentsInParent.html" target="_blank" rel="noopener">GetComponentsInParent</a></td>
+<td>返回 GameObject 或其任何父项中类型为 type 的所有组件</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Component.SendMessage.html" target="_blank" rel="noopener">SendMessage</a></td>
+<td>调用此游戏对象中的每个 MonoBehaviour 上名为 methodName 的方法</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Component.SendMessageUpwards.html" target="_blank" rel="noopener">SendMessageUpwards</a></td>
+<td>调用此游戏对象中的每个 MonoBehaviour 上或此行为的每个父级上名为 methodName 的方法</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Object.GetInstanceID.html" target="_blank" rel="noopener">GetInstanceID</a></td>
+<td>返回对象的实例 ID</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Object.ToString.html" target="_blank" rel="noopener">ToString</a></td>
+<td>返回 GameObject 的名称</td>
+</tr>
+</tbody></table>
+<p>静态函数：</p>
+<table>
+<thead>
+<tr>
+<th><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Object.Destroy.html" target="_blank" rel="noopener">Destroy</a></th>
+<th>删除 GameObject、组件或资源</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Object.DestroyImmediate.html" target="_blank" rel="noopener">DestroyImmediate</a></td>
+<td>立即销毁对象 /obj/。强烈建议您改用 Destroy</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Object.DontDestroyOnLoad.html" target="_blank" rel="noopener">DontDestroyOnLoad</a></td>
+<td>在加载新的 Scene 时，请勿销毁 Object</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Object.FindObjectOfType.html" target="_blank" rel="noopener">FindObjectOfType</a></td>
+<td>返回第一个类型为 type 的已加载的激活对象</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Object.FindObjectsOfType.html" target="_blank" rel="noopener">FindObjectsOfType</a></td>
+<td>返回所有类型为 type 的已加载的激活对象的列表</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Object.Instantiate.html" target="_blank" rel="noopener">Instantiate</a></td>
+<td>克隆 original 对象并返回克隆对象</td>
+</tr>
+</tbody></table>
+<h2 id="C"><a href="#C" class="headerlink" title="C#"></a>C#</h2><h4 id="out"><a href="#out" class="headerlink" title="out"></a>out</h4><p>out同ref一样，都是有一级地址传递的，也就是，带有这两个修饰符的参数，如果被修改了原来的值，将以新的值作为他的值（在函数执行完毕后，该参数的值将返回给函数调用中使用的变量，有点像C++ &amp;）</p>
+<p>在函数中使用out参数时，必须将其看成尚未赋值。也就是说调用代码可以把已赋值的变量用作out参数，但在函数执行时该变量的值会丢失，所以就算在函数外已经初始化，在函数内也要重新初始化</p>
+<p>示例：</p>
+<p>// 第一行hit不用初始化，参数中hit前加out，尽管Physics.Raycast返回bool，hit已在其中赋值，所以下一个if语句中hit可以调用其对象的属性方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs c#">RaycastHit hit;<br>if (Physics.Raycast(ray, out hit, 1000, 1 &lt;&lt; 8))<br>   &#123;<br>		if (hit.collider.gameObject.tag == &quot;Basketball&quot; &amp;&amp; !hit.collider.gameObject.GetComponent&lt;BSKBall&gt;().IsShooting())<br>		&#123;<br>			currentBall = hit.collider.gameObject;<br>			Rigidbody r = currentBall.GetComponent&lt;Rigidbody&gt;();<br>			r.isKinematic = true;<br><br>			Vector3 touchPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, depth));<br>			touchPoint.x = Mathf.Clamp(touchPoint.x, leftEdge.transform.position.x + 0.29f, rightEdge.transform.position.x - 0.29f);<br>			touchPoint.y = selectBallPosY;<br>			currentBall.transform.position = touchPoint;<br>		&#125;<br>	&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="Unity坐标"><a href="#Unity坐标" class="headerlink" title="Unity坐标"></a>Unity坐标</h4><h5 id="四种坐标："><a href="#四种坐标：" class="headerlink" title="四种坐标："></a>四种坐标：</h5><p>世界坐标(World Space)：游戏物体在创造的世界中的坐标</p>
+<p><strong>transfrom.position</strong>获得的是物体相对于世界坐标的位置</p>
+<p><strong>transfrom.localPosition</strong>获得的是物体相对于父物体坐标的位置</p>
+<!--注：模型Mesh保存的顶点坐标均为局部坐标系下的坐标-->
+
+<p>屏幕坐标(Screen Space)：以像素记</p>
+<p>视口坐标(Viewport Space)：将屏幕坐标单位化</p>
+<h5 id="坐标转换："><a href="#坐标转换：" class="headerlink" title="坐标转换："></a>坐标转换：</h5><p>物体B相对于物体A的局部坐标：<strong>A.transform.InverseTransformPoint(B)</strong></p>
+<p>屏幕坐标转世界坐标：<strong>Camera.main.ScreenToWorldPoint</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c#">Vector3 mousePos = Input.mousePosition;<br>Vector3 screenToWorld = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, -Camera.main.transform.position.z));<br></code></pre></td></tr></table></figure>
+
+<p>世界坐标转屏幕坐标：<strong>Camera.main.WorldToScreenPoint</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c#">Vector3 worldToScreen = Camera.main.WorldToScreenPoint(transform.position);<br></code></pre></td></tr></table></figure>
+
+<h4 id="Mathf-Clamp"><a href="#Mathf-Clamp" class="headerlink" title="Mathf.Clamp"></a><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Mathf.html" target="_blank" rel="noopener">Mathf.Clamp</a></h4><p>在给定的最小浮点值和最大浮点值之间钳制给定值。如果在最小和最大范围内，则返回给定值</p>
+<p>如果给定的浮点值小于最小值，则返回最小值。如果给定值大于最大值，则返回最大值。使用 Clamp 可将某个值限制为最小值和最大值定义的某个范围内</p>
+<h5 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h5><table>
+<thead>
+<tr>
+<th><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Component-gameObject.html" target="_blank" rel="noopener">gameObject</a></th>
+<th>此组件附加到的游戏对象。始终将组件附加到游戏对象。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Component-tag.html" target="_blank" rel="noopener">tag</a></td>
+<td>此游戏对象的标签。</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Component-transform.html" target="_blank" rel="noopener">transform</a></td>
+<td>附加到此 GameObject 的 Transform。</td>
+</tr>
+</tbody></table>
+<h5 id="公共函数"><a href="#公共函数" class="headerlink" title="公共函数"></a>公共函数</h5><table>
+<thead>
+<tr>
+<th><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Component.BroadcastMessage.html" target="_blank" rel="noopener">BroadcastMessage</a></th>
+<th>调用此游戏对象或其任何子项中的每个 MonoBehaviour 上名为 methodName 的方法。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Component.CompareTag.html" target="_blank" rel="noopener">CompareTag</a></td>
+<td>此游戏对象是否使用 tag 进行了标记？</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Component.GetComponent.html" target="_blank" rel="noopener">GetComponent</a></td>
+<td>如果游戏对象附加了类型为 type 的组件，则将其返回，否则返回 null。</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Component.GetComponentInChildren.html" target="_blank" rel="noopener">GetComponentInChildren</a></td>
+<td>使用深度首次搜索返回 GameObject 或其任何子项中类型为 type 的组件。</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Component.GetComponentInParent.html" target="_blank" rel="noopener">GetComponentInParent</a></td>
+<td>返回 GameObject 或其任何父项中类型为 type 的组件。</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Component.GetComponents.html" target="_blank" rel="noopener">GetComponents</a></td>
+<td>返回 GameObject 中类型为 type 的所有组件。</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Component.GetComponentsInChildren.html" target="_blank" rel="noopener">GetComponentsInChildren</a></td>
+<td>返回 GameObject 或其任何子项中类型为 type 的所有组件。</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Component.GetComponentsInParent.html" target="_blank" rel="noopener">GetComponentsInParent</a></td>
+<td>返回 GameObject 或其任何父项中类型为 type 的所有组件。</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Component.SendMessage.html" target="_blank" rel="noopener">SendMessage</a></td>
+<td>调用此游戏对象中的每个 MonoBehaviour 上名为 methodName 的方法。</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Component.SendMessageUpwards.html" target="_blank" rel="noopener">SendMessageUpwards</a></td>
+<td>调用此游戏对象中的每个 MonoBehaviour 上或此行为的每个父级上名为 methodName 的方法。</td>
+</tr>
+</tbody></table>
+<h5 id="继承的成员-1"><a href="#继承的成员-1" class="headerlink" title="继承的成员"></a>继承的成员</h5><h5 id="变量-1"><a href="#变量-1" class="headerlink" title="变量"></a>变量</h5><table>
+<thead>
+<tr>
+<th><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Object-hideFlags.html" target="_blank" rel="noopener">hideFlags</a></th>
+<th>该对象应该隐藏、随场景一起保存还是由用户修改？</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Object-name.html" target="_blank" rel="noopener">name</a></td>
+<td>对象的名称。</td>
+</tr>
+</tbody></table>
+<h5 id="公共函数-1"><a href="#公共函数-1" class="headerlink" title="公共函数"></a>公共函数</h5><table>
+<thead>
+<tr>
+<th><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Object.GetInstanceID.html" target="_blank" rel="noopener">GetInstanceID</a></th>
+<th>返回对象的实例 ID。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Object.ToString.html" target="_blank" rel="noopener">ToString</a></td>
+<td>返回 GameObject 的名称。</td>
+</tr>
+</tbody></table>
+<h4 id="Component"><a href="#Component" class="headerlink" title="Component"></a><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Component.html" target="_blank" rel="noopener">Component</a></h4><p>附加到 <a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/GameObject.html" target="_blank" rel="noopener">GameObject</a> 的所有内容的基本类</p>
+<p>注：代码不会直接创建 Component，而是编写脚本代码，然后将该脚本附加到GameObject</p>
+<h4 id="Resources"><a href="#Resources" class="headerlink" title="Resources"></a><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Resources.html" target="_blank" rel="noopener">Resources</a></h4><p>Resources 类允许您查找和访问资源等对象</p>
+<p>在编辑器中，<a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Resources.FindObjectsOfTypeAll.html" target="_blank" rel="noopener">Resources.FindObjectsOfTypeAll</a> 可用于定位资源和场景对象</p>
+<p>通过 <a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Resources.Load.html" target="_blank" rel="noopener">Resources.Load</a> 函数，可访问 Assets 文件夹中处于任意位置的名为“Resources”的文件夹中的所有资源。 可以存在多个“Resources”文件夹，加载对象时，将对每个文件夹进行检查</p>
+<p><strong>注意：</strong>Assets 中的 <a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Resources.html" target="_blank" rel="noopener">Resources</a> 文件夹需要在使用前创建。创建新项目时，不会创建该文件夹</p>
+<p>静态函数：（函数调用的结果不会访问或者修改任何对象（非static）数据成员，这样的成员声明为静态成员函数比较好）</p>
+<table>
+<thead>
+<tr>
+<th><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Resources.FindObjectsOfTypeAll.html" target="_blank" rel="noopener">FindObjectsOfTypeAll</a></th>
+<th>返回所有类型为 type 的对象的列表。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Resources.Load.html" target="_blank" rel="noopener">Load</a></td>
+<td>加载存储在 Resources 文件夹中的 path 处的资源。</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Resources.LoadAll.html" target="_blank" rel="noopener">LoadAll</a></td>
+<td>加载位于 Resources 文件夹中的 path 处的文件夹中的所有资源，或加载位于该处的文件。</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Resources.LoadAsync.html" target="_blank" rel="noopener">LoadAsync</a></td>
+<td>异步加载存储在 Resources 文件夹中的 path 处的资源。</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Resources.UnloadAsset.html" target="_blank" rel="noopener">UnloadAsset</a></td>
+<td>从内存中卸载 /assetToUnload/。</td>
+</tr>
+<tr>
+<td><a href="https://docs.unity3d.com/cn/2018.4/ScriptReference/Resources.UnloadUnusedAssets.html" target="_blank" rel="noopener">UnloadUnusedAssets</a></td>
+<td>卸载未使用的资源。</td>
+</tr>
+</tbody></table>
+<h2 id="Laya-API"><a href="#Laya-API" class="headerlink" title="Laya API"></a>Laya API</h2><h4 id="Rigidbody3D"><a href="#Rigidbody3D" class="headerlink" title="Rigidbody3D"></a><a href="https://layaair2.ldc2.layabox.com/api2/Chinese/index.html?category=&class=_laya_d3_physics_rigidbody3d_.rigidbody3d#applytorque" target="_blank" rel="noopener">Rigidbody3D</a></h4><p>对应于Unity中<strong>Rigidbody.AddForce</strong>，<strong>Rigidbody.AddTorque</strong>， Laya提供的类为Rigidbody3D，对应的方法为<strong>Rigidbody3D.applyForce</strong>，<strong>Rigidbody3D.applyTorque</strong></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs typescript">applyForce(force: Vector3, localOffset?: Vector3): <span class="hljs-built_in">void</span><br><br>applyImpulse(impulse: Vector3, localOffset?: Vector3): <span class="hljs-built_in">void</span><br><br>applyTorque(torque: Vector3): <span class="hljs-built_in">void</span><br></code></pre></td></tr></table></figure>
+
+
+      </section>
+
+      <section class="article-footer">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">#C#</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Laya/">#Laya</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TypeScript/">#TypeScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Unity/">#Unity</a></li></ul>
+      </section>
+
+      <section class="article-navs">
+        
+<nav class="card-container card-article-nav">
+  <div class="card-wrap">
+    
+      <div id="article-nav-newer" class="card-item img">
+        <article>
+          
+            <div class="card-cover" style="background-image: url(cover17.jpg)"></div>
+          
+          <a class="card-link article-nav-link" href="/2020/07/24/游戏客户端面经知识点/"></a>
+          <strong class="article-nav-caption">Newer</strong>
+          <p class="article-nav-title">
+            
+              游戏客户端面经知识点
+            
+          </p>
+        </article>
+      </div>
+    
+    
+      <div id="article-nav-older" class="card-item img">
+        <article>
+          
+            <div class="card-cover" style="background-image: url(cover23.jpg)"></div>
+          
+          <a class="card-link article-nav-link" href="/2020/07/20/Python实现Lora节点拓扑自动规划/"></a>
+          <strong class="article-nav-caption">Older</strong>
+          <p class="article-nav-title">
+            
+              Python实现Lora节点拓扑自动规划
+            
+          </p>
+        </article>
+      </div>
+    
+  </div>
+</nav>
+
+      </section>
+
+      
+
+  
+  
+
+  
+  
+
+
+    </div>
+  </article>
+</div>
+
+    <!-- footer container -->
+<footer id="footer" class="footer">
+  <div class="footer-container">
+    
+    <div class="social-icons social-icons-footer">
+      <a href="mailto:958198376@qq.com" target="_blank" rel="noopener noreferrer">
+  <svg class="icon icon-email" viewbox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <path d="M490.338462 592.738462c11.815385 11.815385 29.538462 11.815385 41.353846 0l445.046154-413.538462c7.876923-15.753846 5.907692-41.353846-25.6-41.353846l-880.246154 1.969231c-23.630769 0-43.323077 21.661538-25.6 41.353846l445.046154 411.569231zM984.615385 340.676923c0-19.692308-23.630769-31.507692-39.384616-17.723077L596.676923 643.938462c-23.630769 21.661538-53.169231 33.476923-84.676923 33.476923s-61.046154-11.815385-84.676923-31.507693L80.738462 322.953846c-15.753846-13.784615-39.384615-3.938462-39.384616 17.723077C39.384615 334.769231 39.384615 787.692308 39.384615 787.692308c0 43.323077 35.446154 78.769231 78.769231 78.76923h787.692308c43.323077 0 78.769231-35.446154 78.769231-78.76923V340.676923z"/>
+  </svg>
+</a><a href="https://github.com/CHAsencenge" target="_blank" rel="noopener noreferrer">
+  <svg class="icon icon-github" viewbox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <path d="M64.6 512c0 195.6 125.4 361.9 300.1 422.9 23.5 5.9 19.9-10.8 19.9-22.2v-77.6c-135.8 15.9-141.3-74-150.5-89-18.5-31.5-61.9-39.5-49-54.5 31-15.9 62.5 4 98.9 58 26.4 39.1 77.9 32.5 104.1 26 5.7-23.5 17.9-44.5 34.7-60.9-140.7-25.2-199.4-111.1-199.4-213.3 0-49.5 16.4-95.1 48.4-131.8-20.4-60.6 1.9-112.4 4.9-120.1 58.2-5.2 118.5 41.6 123.3 45.3 33.1-8.9 70.8-13.7 112.9-13.7 42.4 0 80.3 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.4-43.9 2.9 7.7 24.7 58.3 5.5 118.1 32.5 36.8 49 82.8 49 132.4 0 102.3-59 188.3-200.2 213.2 23.5 23.3 38.1 55.5 38.1 91.1v112.7c0.8 9 0 17.9 15.1 17.9C832.7 877 960.4 709.4 960.4 512.1c0-247.5-200.6-447.9-447.9-447.9C265 64.1 64.6 264.5 64.6 512z"/>
+  </svg>
+</a><a href="https://weibo.com/u/5701921017" target="_blank" rel="noopener noreferrer">
+  <svg class="icon icon-weibo" viewbox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <path d="M385.682429 733.696q11.995429-19.456 6.290286-39.424t-25.746286-28.598857q-19.456-7.972571-41.691429-0.585143t-34.304 26.258286q-12.580571 19.456-7.460571 39.131429t24.576 28.891429 42.569143 1.462857 35.693714-27.136zM439.442429 664.576q4.534857-7.460571 1.974857-15.140571t-10.020571-10.605714q-7.972571-2.852571-16.310857 0.292571t-12.288 10.605714q-9.728 17.700571 7.460571 25.746286 7.972571 2.852571 16.603429-0.292571t12.580571-10.605714zM538.843572 725.723429q-25.746286 58.294857-90.258286 85.723429t-128 6.875429q-61.147429-19.456-84.260571-72.265143t3.730286-107.154286q26.843429-53.174857 86.601143-79.433143t120.32-10.825143q63.414857 16.603429 90.550857 68.315429t1.462857 108.836571zM717.165858 634.294857q-5.12-54.857143-50.834286-97.133714t-119.149714-62.317714-156.891429-11.995429q-127.414857 13.165714-211.163429 80.822857t-75.702857 151.113143q5.12 54.857143 50.834286 97.133714t119.149714 62.317714 156.891429 11.995429q127.414857-13.165714 211.163429-80.822857t75.702857-151.113143zM893.147572 636.562286q0 38.838857-21.138286 79.725714t-62.317714 78.262857-96.256 67.145143-129.170286 47.396571-154.550857 17.700571-157.110857-19.163429-137.435429-53.174857-98.011429-86.308571-37.156571-114.029714q0-65.682286 39.716571-139.995429t112.859429-147.456q96.548571-96.548571 195.145143-134.875429t140.873143 4.022857q37.156571 36.571429 11.410286 119.442286-2.267429 7.972571-0.585143 11.410286t5.705143 4.022857 8.265143-0.292571 7.68-1.974857l3.437714-1.170286q79.433143-33.718857 140.580571-33.718857t87.405714 34.889143q25.746286 35.986286 0 101.741714-1.170286 7.460571-2.56 11.410286t2.56 7.168 6.875429 4.315429 9.728 3.437714q32.548571 10.313143 58.88 26.843429t45.714286 46.592 19.456 66.56zM850.871001 279.990857q23.990857 26.843429 31.158857 62.025143t-3.730286 67.145143q-4.534857 13.165714-16.822857 19.456t-25.453714 2.267429q-13.165714-4.534857-19.456-16.822857t-2.267429-25.453714q11.410286-35.986286-13.677714-63.414857t-61.147429-19.968q-13.677714 2.852571-25.746286-4.534857t-14.262857-21.138286q-2.852571-13.677714 4.534857-25.453714t21.138286-14.555429q34.304-7.460571 68.022857 3.145143t57.709714 37.449143zM954.295001 186.88q49.737143 54.857143 64.292571 127.122286t-7.68 138.020571q-5.12 15.433143-19.456 22.820571t-29.696 2.267429-22.820571-19.456-2.852571-29.696q16.018286-46.884571 5.705143-98.304t-45.714286-90.258286q-35.401143-39.424-84.553143-54.564571t-98.889143-4.827429q-16.018286 3.437714-29.696-5.412571t-17.115429-24.868571 5.412571-29.403429 24.868571-16.822857q70.290286-14.848 139.410286 6.582857t118.857143 76.873143z"/>
+  </svg>
+</a><a href="https://music.163.com/#/user/home?id=92407481" target="_blank" rel="noopener noreferrer">
+  <svg class="icon icon-cloudmusic" viewbox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <path d="M952.17867 503.263237a341.054956 341.054956 0 0 0-56.853199-113.706399 408.604266 408.604266 0 0 0-109.723463-98.352823 304.662484 304.662484 0 0 0-143.257215-42.077792L621.305897 170.238394a40.343287 40.343287 0 0 1 10.792472-36.392472 56.88532 56.88532 0 0 1 36.392472-18.758344 102.785445 102.785445 0 0 1 56.853199 18.758344c6.263488 3.404768 10.792472 9.090088 17.05596 13.073024a57.335006 57.335006 0 0 0 82.999247-70.632873 66.521455 66.521455 0 0 0-22.74128-27.848432 237.691343 237.691343 0 0 0-89.262735-43.202007A170.559598 170.559598 0 0 0 625.288833 6.42409a167.026349 167.026349 0 0 0-60.836135 37.516688 164.328231 164.328231 0 0 0-40.921456 51.713927 156.908407 156.908407 0 0 0-8.54404 113.706399l13.651192 52.870264a284.298118 284.298118 0 0 0-158.064743 109.209535 256.963614 256.963614 0 0 0-43.202007 156.908407 248.419573 248.419573 0 0 0 13.651192 74.487327 205.281807 205.281807 0 0 0 80.718695 104.616312 185.945295 185.945295 0 0 0 136.447679 25.696361 193.879046 193.879046 0 0 0 156.330238-196.705646L708.802008 503.263237c-11.948808-46.060728-24.443664-91.543287-35.814304-137.025847a182.283563 182.283563 0 0 1 47.763112 18.180176 316.611292 316.611292 0 0 1 47.763111 34.690088A239.907654 239.907654 0 0 1 840.752823 529.987453a284.169636 284.169636 0 0 1 0 158.064743 252.241907 252.241907 0 0 1-21.584943 51.167879 308.741782 308.741782 0 0 1-168.279047 144.542033 387.918695 387.918695 0 0 1-130.184191 23.319448 332.607277 332.607277 0 0 1-155.206022-37.516688A367.233124 367.233124 0 0 1 194.87478 672.666499a373.014806 373.014806 0 0 1-20.460727-180.806022A366.173149 366.173149 0 0 1 406.869762 198.536512a57.399247 57.399247 0 0 0 13.073023-100.055207 76.189711 76.189711 0 0 0-63.662735-3.404768A479.815307 479.815307 0 0 0 68.705646 436.163614a488.905395 488.905395 0 0 0 129.027855 450.84266 454.857716 454.857716 0 0 0 248.997741 131.886574 470.885822 470.885822 0 0 0 138.117942 0A454.889837 454.889837 0 0 0 773.042911 952.949561a427.523212 427.523212 0 0 0 170.559598-209.232622 417.276788 417.276788 0 0 0 22.74128-109.209536 378.089837 378.089837 0 0 0-14.165119-131.244166z m-412.747804 118.845671a72.174655 72.174655 0 0 1-56.8532-10.792471 98.352823 98.352823 0 0 1-37.516687-61.382184 170.68808 170.68808 0 0 1 0-65.943287 133.042911 133.042911 0 0 1 33.533751-63.662735 181.35207 181.35207 0 0 1 80.718695-46.606776l39.219072 148.364367a204.189711 204.189711 0 0 1 5.107152 26.146048 79.594479 79.594479 0 0 1-64.208783 73.844918z"/>
+  </svg>
+</a>    </div>
+     
+    <p>&copy; 2020 <a href="/" target="_blank">CHAsencenge</a></p>
+
+    
+      <p id="hitokoto"></p>
+      <script src="https://v1.hitokoto.cn/?c=a&amp;encode=js&select=%23hitokoto" defer></script>
+    
+
+    
+
+    <p>Powered by <a href="https://hexo.io" target="_blank" rel="noopener noreferrer">Hexo</a> Theme - <a href="https://github.com/miiiku/flex-block" target="_blank" rel="noopener noreferrer author">flex-block</a></p>
+  </div>
+</footer>
+  </div>
+
+  <div class="back-to-top-fixed">
+    <svg class="icon icon-back-to-top" viewbox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path d="M725.333333 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8l-213.333333-213.333333c-17.066667-17.066667-17.066667-42.666667 0-59.733333s42.666667-17.066667 59.733333 0l213.333333 213.333333c17.066667 17.066667 17.066667 42.666667 0 59.733333C746.666667 422.4 738.133333 426.666667 725.333333 426.666667z"/>
+  <path d="M298.666667 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8-17.066667-17.066667-17.066667-42.666667 0-59.733333l213.333333-213.333333c17.066667-17.066667 42.666667-17.066667 59.733333 0s17.066667 42.666667 0 59.733333l-213.333333 213.333333C320 422.4 311.466667 426.666667 298.666667 426.666667z"/>
+  <path d="M512 896c-25.6 0-42.666667-17.066667-42.666667-42.666667L469.333333 170.666667c0-25.6 17.066667-42.666667 42.666667-42.666667s42.666667 17.066667 42.666667 42.666667l0 682.666667C554.666667 878.933333 537.6 896 512 896z"/>
+</svg> 
+  </div>
+
+  
+  
+
+
+  <!-- aplayer 音频 start -->
+  <link rel="stylesheet" href="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.css">
+  <script type="text/javascript" src="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.js"></script>
+  <script type="text/javascript">
+    const aplayer = document.querySelectorAll(".aplayer");
+    aplayer && initaplayer(aplayer);
+    function initaplayer(els) {
+      let elsArr = Array.from(els);
+      elsArr.forEach(el => {
+        new APlayer({
+          container: el,
+          audio: { ...el.dataset },
+          theme: "#b7daff",
+          lrcType: 3,
+          autoplay: false,
+          loop: false,
+          mutex: true,
+        });
+      });
+    }
+  </script>
+  <!-- aplayer 音频 end -->
+  
+
+<!-- dplayer 视频 start -->
+<script type="text/javascript" src="https://unpkg.com/dplayer@1.25.1/dist/DPlayer.min.js"></script>
+<script type="text/javascript">
+  const dplayer = document.querySelectorAll(".dplayer");
+  dplayer && initDPlayer(dplayer);
+  function initDPlayer(els) {
+    let elsArr = Array.from(els);
+    elsArr.forEach(el => {
+      let url = el.dataset.url;
+      let cover = el.dataset.cover;
+      let subtitle = el.dataset.subtitle;
+
+      let options = {
+        container: el,
+        video: { url: url, pic: cover },
+        theme: "#b7daff",
+        autoplay: false,
+        loop: false,
+        mutex: true,
+      }
+
+      if (subtitle) {
+        options.subtitle = {
+          url: el.dataset.subtitle,
+        }
+      }
+      new DPlayer(options);
+    });
+  }
+</script>
+<!-- dplayer 视频 end -->
+
+
+<!-- waterfall 瀑布流 start -->
+<script src="/lib/waterfall.min.js"></script>
+<script type="text/javascript">
+
+const waterfalls = document.querySelectorAll(".waterfall-container");
+
+if (waterfalls && waterfalls.length > 0) {
+  waterfalls.forEach((waterfall, index) => {
+    let cls = "waterfall-container-" + index;
+    waterfall.classList.add(cls);
+    initWaterfall(cls, waterfall);
+  });
+}
+
+function initWaterfall(selector, el) {
+  const options = {};
+  if (Object.keys(el.dataset).length > 0) {
+    for (let k in el.dataset) {
+      options[k] = el.dataset[k];
+    }
+  }
+  waterfall(`.${selector}`, options);
+}
+</script>
+<!-- waterfall 瀑布流 end -->
+
+
+  <!-- zoom start -->
+  <script src="/lib/zoom.min.js"></script>
+  <script type="text/javascript">
+    document.querySelector(".article-content") && zoom(".article-content");
+  </script>
+  <!-- zoom end -->
+  
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+<script src="/js/script.js"></script>
+  
+  <!-- 尾部用户自定义相关内容 -->
+
+</body>
+</html>

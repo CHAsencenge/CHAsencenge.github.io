@@ -32,7 +32,7 @@
 
   
     <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-    <link href="https://cdn.bootcss.com/highlight.js/9.15.6/styles/pojoaque.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/highlight.js/9.15.6/styles/railscasts.min.css" rel="stylesheet">
   
 
   <link rel="stylesheet" href="/css/style.css">
@@ -155,6 +155,18 @@
 <p>args:Array   -携带的参数</p>
 <p>once:Boolean   -是否只执行一次，默认为true</p>
 <p>注意once后或者Handler.recover()后不要再使用此对象</p>
+<h4 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h4><p>GolbalDataScene -&gt; StartScene -&gt; LoadingScene -&gt; GameScene</p>
+<p>GolbalDataScene/GameStaticController/ConfigController中控制加载Assets/Resources/Config中的BallsData和StageData</p>
+<h4 id="一些说明"><a href="#一些说明" class="headerlink" title="一些说明"></a>一些说明</h4><p>每个Scene中的UIController是用相同的BSK Manager脚本，即，所有场景能用到的UI相关的管理控制都放在这个脚本，其他通用的Cotorller也如此</p>
+<p>reset球的函数在BSKGameController -&gt; resetBalls，设置了篮球的初始化位置，Rotation，layer，放到balls列表（但是没有设置其物理属性如重力、碰撞）</p>
+<p>给篮球（balls）获取BSKBall组件、添加刚体、并且siKinematic = true使物理影响刚体在BSKShooter中的Update函数中（Update每一帧都调用）</p>
+<p>在Laya中创建的对应脚本的类型的选择要考虑Unity中对应脚本是否有Update等逐帧刷新的功能</p>
+<p>对Unity中具有Update等逐帧刷新的Component（Monobehavior），在Laya中创建对应脚本所选类型要考虑是否有相同逐帧刷新的内置函数</p>
+<p>BSKBall -&gt; Start函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c#">gameObject.GetComponent&lt;Renderer&gt;().material = BSKGameConfig.s_Instance.GetBallMaterial();<br></code></pre></td></tr></table></figure>
+
+<p>篮球资源是如何加载进去的：在BSKGameController声明一个GameObject对象-BallPrefab，然后在Unity的Inspector中可以直接选取需要的“lanqiu”资源</p>
+<p>将Unity中的Scene导入Laya时，games_bg不能导入，因为不支持Sprite Renderer </p>
 
       </section>
 
