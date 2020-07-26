@@ -22,7 +22,7 @@
 
   
 
-  <title>Archives | 解字</title>
+  <title>百度之星2020---1001.Discount | 解字</title>
 
   
 
@@ -76,7 +76,16 @@
 
     
 <!-- header container -->
-<header class="header-container">
+<header class="header-container post">
+
+  
+  
+
+  
+  
+
+  
+  
 
   
   
@@ -84,21 +93,23 @@
   
   
     <div class="header-content">
-      <div class="post-image" style="background-image: url(https://chasencenge.github.io/links/Asset/cover27.jpg)"></div>
+      <div class="post-image" style="background-image: url(cover18.jpg)"></div>
       <div class="post-text">
-        <h1 class="title-wrap">归档</h1>
-        <h2 class="title-sub-wrap">共有27篇文章</h2>
+        <div class="type-wrap">
+          <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a><a class="article-category-link" href="/categories/Algorithm/C/">C++</a>
+        </div>
+        <h1 class="title-wrap">百度之星2020---1001.Discount</h1>
+        <h2 class="title-sub-wrap">
+          <strong>CHAsencenge</strong>
+          <span>发布于</span>
+          
+  <a href="javascript:;" class="article-date">
+    <time datetime="2020-07-26T10:03:53.000Z" itemprop="datePublished">2020-07-26</time>
+  </a>
+
+        </h2>
       </div>
     </div>
-  
-
-  
-  
-
-  
-  
-
-  
   
 
   
@@ -106,277 +117,96 @@
 
   </header>
 
-    <!-- 归档 -->
+    <!-- 文章 -->
 
-<!-- post list container -->
-<div class="body-container float">
-  <div class="content-container article-list">
-    <div class="card-container card-articles">
-      <div class="card-wrap">
+<!-- 文章内容 -->
+
+<div class="body-container">
+  <article class="content-container article-container">
+    <div class="article-content">
+      
+      
+
+      <section class="article-entry">
+        <p><strong>Problem Description</strong></p>
+<p>学皇来到了一个餐馆吃饭。他觉得这家餐馆很好吃，于是就想办个会员。</p>
+<p>一共有 n种会员充值卡套餐，假设学皇这餐饭的消费为 a元，选择第 i种套餐，需要充值 b[i] * a 的钱，这次吃饭可以打 c[i]×10 折，由充值的钱支付（即这次吃饭只需要从充值金额中扣除 a×<em>c</em>[i] 元）。以后用剩余的充值的钱吃饭不再打折。</p>
+<p>请问学皇应该选择哪个套餐（必须选择恰好一个套餐），使得优惠的比例最大？</p>
+<p>优惠比例的定义是把充的钱用完以后，(本来应该付的钱 - 实际付的钱) / 本来应该付的钱。在这个题目里，实际付的钱就是这次充值的花费。</p>
+<p><strong>Input</strong></p>
+<p>第一行一个整数 test(1≤test≤100) 表示数据组数。</p>
+<p>对于每组数据，第一行一个正整数 n(1≤n≤100) 表示套餐的数目。</p>
+<p>接下来 n行，每行一个正整数 b[i]和一个小数 c[i]。</p>
+<p><strong>Output</strong></p>
+<p>对于每组数据，输出一个五位小数表示最大的优惠比例。如果小数点后超过五位，四舍五入到五位。</p>
+<p><strong>Sample Input</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs undefined">1<br>2<br>2 0.5<br>3 0.1<br></code></pre></td></tr></table></figure>
+
+<p><strong>Sample Output</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs undefined">0.23077<br><br>样例解释<br>对于第一种套餐，优惠比例为 0.5a / (2a + 0.5a） = 0.2；<br>对于第二种套餐，优惠比例为 0.9a / (3a + 0.9a） = 9 / 39；<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;vector&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;algorithm&gt;</span></span><br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;<br><br><span class="hljs-function"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">float</span>&gt; <span class="hljs-title">compute</span><span class="hljs-params">()</span> <br></span>&#123;<br>    <span class="hljs-keyword">int</span> groupNum;<br>    <span class="hljs-built_in">cin</span> &gt;&gt; groupNum;<br>    <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">float</span>&gt; output;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; groupNum; i++)<br>    &#123;<br>        <span class="hljs-keyword">float</span> res = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">int</span> choiseNum;<br>        <span class="hljs-built_in">cin</span> &gt;&gt; choiseNum;<br>        <span class="hljs-comment">//cout &lt;&lt; "choiseNum:" &lt;&lt; choiseNum &lt;&lt; endl;</span><br>        <span class="hljs-keyword">int</span> b;<br>        <span class="hljs-keyword">float</span> c;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; choiseNum; j++)<br>        &#123;<br>            <span class="hljs-built_in">cin</span> &gt;&gt; b;<br>            <span class="hljs-comment">//cout &lt;&lt; "b:" &lt;&lt; b &lt;&lt; endl;</span><br>            <span class="hljs-built_in">cin</span> &gt;&gt; c;<br>            <span class="hljs-comment">//cout &lt;&lt; "c:" &lt;&lt; c &lt;&lt; endl;</span><br>            <span class="hljs-keyword">float</span> temp = (<span class="hljs-number">1</span> - c) / (b + <span class="hljs-number">1</span> - c);<br>            res = max(res, temp);<br>        &#125;<br>        output.push_back(res);<br>    &#125;<br>    <span class="hljs-keyword">return</span> output;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span><br></span>&#123;<br>    <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">float</span>&gt; res = compute();<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; res.size(); i++)<br>    &#123;<br>        <span class="hljs-comment">//cout &lt;&lt; res[i];</span><br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%.5f\n"</span>, res[i]);<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+      </section>
+
+      <section class="article-footer">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/">#Algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">#C++</a></li></ul>
+      </section>
+
+      <section class="article-navs">
         
-          
-          <div class="card-item large img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover15.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/26/百度之星2020-1003-Permutation/" itemprop="url"></a>
-              
-              <h2 class="article-title">百度之星2020---1003.Permutation</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/26/百度之星2020-1003-Permutation/" class="article-date">
-    <time datetime="2020-07-26T10:04:53.000Z" itemprop="datePublished">2020-07-26</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a><a class="article-category-link" href="/categories/Algorithm/C/">C++</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover14.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/26/百度之星2020-1002-Game/" itemprop="url"></a>
-              
-              <h2 class="article-title">百度之星2020---1002.Game</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/26/百度之星2020-1002-Game/" class="article-date">
-    <time datetime="2020-07-26T10:04:18.000Z" itemprop="datePublished">2020-07-26</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a><a class="article-category-link" href="/categories/Algorithm/C/">C++</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item large img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover18.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/26/百度之星2020-1001-Discount/" itemprop="url"></a>
-              
-              <h2 class="article-title">百度之星2020---1001.Discount</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/26/百度之星2020-1001-Discount/" class="article-date">
-    <time datetime="2020-07-26T10:03:53.000Z" itemprop="datePublished">2020-07-26</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a><a class="article-category-link" href="/categories/Algorithm/C/">C++</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover17.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/24/游戏客户端面经知识点/" itemprop="url"></a>
-              
-              <h2 class="article-title">游戏客户端面经知识点</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/24/游戏客户端面经知识点/" class="article-date">
-    <time datetime="2020-07-24T05:40:54.000Z" itemprop="datePublished">2020-07-24</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Unity/">Unity</a><a class="article-category-link" href="/categories/Unity/Unreal/">Unreal</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover13.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/21/Unity项目对接到Laya/" itemprop="url"></a>
-              
-              <h2 class="article-title">Unity项目对接到Laya</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/21/Unity项目对接到Laya/" class="article-date">
-    <time datetime="2020-07-21T09:29:24.000Z" itemprop="datePublished">2020-07-21</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Unity/">Unity</a><a class="article-category-link" href="/categories/Unity/Laya/">Laya</a><a class="article-category-link" href="/categories/Unity/Laya/C/">C#</a><a class="article-category-link" href="/categories/Unity/Laya/C/TypeScript/">TypeScript</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover23.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/20/Python实现Lora节点拓扑自动规划/" itemprop="url"></a>
-              
-              <h2 class="article-title">Python实现Lora节点拓扑自动规划</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/20/Python实现Lora节点拓扑自动规划/" class="article-date">
-    <time datetime="2020-07-20T02:57:58.000Z" itemprop="datePublished">2020-07-20</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Python/">Python</a><a class="article-category-link" href="/categories/Python/Lora/">Lora</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover22.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/17/hexo更换flex-block主题/" itemprop="url"></a>
-              
-              <h2 class="article-title">hexo更换flex-block主题</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/17/hexo更换flex-block主题/" class="article-date">
-    <time datetime="2020-07-17T03:00:22.000Z" itemprop="datePublished">2020-07-17</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Hexo/">Hexo</a><a class="article-category-link" href="/categories/Hexo/Environment/">Environment</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item large img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover24.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/17/Laya-Basketball小游戏踩坑历程/" itemprop="url"></a>
-              
-              <h2 class="article-title">Laya Basketball小游戏踩坑历程</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/17/Laya-Basketball小游戏踩坑历程/" class="article-date">
-    <time datetime="2020-07-17T01:39:43.000Z" itemprop="datePublished">2020-07-17</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Laya/">Laya</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover4.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/14/LoRa的三种class/" itemprop="url"></a>
-              
-              <h2 class="article-title">LoRa的三种class</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/14/LoRa的三种class/" class="article-date">
-    <time datetime="2020-07-14T14:30:06.000Z" itemprop="datePublished">2020-07-14</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/LoRa/">LoRa</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover20.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/13/C-h和-cpp/" itemprop="url"></a>
-              
-              <h2 class="article-title">C++.h和.cpp</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/13/C-h和-cpp/" class="article-date">
-    <time datetime="2020-07-13T03:04:52.000Z" itemprop="datePublished">2020-07-13</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/C/">C++</a>
-              </div>
-            </article>
-          </div>
-        
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- page container -->
-
-  <nav class="page-container">
+<nav class="card-container card-article-nav">
+  <div class="card-wrap">
     
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2020/page/2/">2</a><a class="extend next" rel="next" href="/archives/2020/page/2/">ɞ</a>
-  </nav>
+      <div id="article-nav-newer" class="card-item img">
+        <article>
+          
+            <div class="card-cover" style="background-image: url(cover14.jpg)"></div>
+          
+          <a class="card-link article-nav-link" href="/2020/07/26/百度之星2020-1002-Game/"></a>
+          <strong class="article-nav-caption">Newer</strong>
+          <p class="article-nav-title">
+            
+              百度之星2020---1002.Game
+            
+          </p>
+        </article>
+      </div>
+    
+    
+      <div id="article-nav-older" class="card-item img">
+        <article>
+          
+            <div class="card-cover" style="background-image: url(cover17.jpg)"></div>
+          
+          <a class="card-link article-nav-link" href="/2020/07/24/游戏客户端面经知识点/"></a>
+          <strong class="article-nav-caption">Older</strong>
+          <p class="article-nav-title">
+            
+              游戏客户端面经知识点
+            
+          </p>
+        </article>
+      </div>
+    
+  </div>
+</nav>
+
+      </section>
+
+      
+
+  
+  
+
+  
+  
 
 
+    </div>
+  </article>
+</div>
 
     <!-- footer container -->
 <footer id="footer" class="footer">
