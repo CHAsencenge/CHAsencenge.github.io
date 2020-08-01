@@ -22,7 +22,7 @@
 
   
 
-  <title>Archives | 解字</title>
+  <title>字节夏令营20游戏程序笔试题 | 解字</title>
 
   
 
@@ -76,7 +76,16 @@
 
     
 <!-- header container -->
-<header class="header-container">
+<header class="header-container post">
+
+  
+  
+
+  
+  
+
+  
+  
 
   
   
@@ -84,21 +93,23 @@
   
   
     <div class="header-content">
-      <div class="post-image" style="background-image: url(https://chasencenge.github.io/links/Asset/cover27.jpg)"></div>
+      <div class="post-image" style="background-image: url(cover16.jpg)"></div>
       <div class="post-text">
-        <h1 class="title-wrap">归档</h1>
-        <h2 class="title-sub-wrap">共有30篇文章</h2>
+        <div class="type-wrap">
+          <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a><a class="article-category-link" href="/categories/Algorithm/C/">C++</a>
+        </div>
+        <h1 class="title-wrap">字节夏令营20游戏程序笔试题</h1>
+        <h2 class="title-sub-wrap">
+          <strong>CHAsencenge</strong>
+          <span>发布于</span>
+          
+  <a href="javascript:;" class="article-date">
+    <time datetime="2020-08-01T03:42:48.000Z" itemprop="datePublished">2020-08-01</time>
+  </a>
+
+        </h2>
       </div>
     </div>
-  
-
-  
-  
-
-  
-  
-
-  
   
 
   
@@ -106,277 +117,70 @@
 
   </header>
 
-    <!-- 归档 -->
+    <!-- 文章 -->
 
-<!-- post list container -->
-<div class="body-container float">
-  <div class="content-container article-list">
-    <div class="card-container card-articles">
-      <div class="card-wrap">
+<!-- 文章内容 -->
+
+<div class="body-container">
+  <article class="content-container article-container">
+    <div class="article-content">
+      
+      
+
+      <section class="article-entry">
+        <p>给素材分类，若作品1中有素材1和素材2，则认为素材1和素材2为一类，若作品2中有素材2和素材3，那么此后认为素材1、2、3为一类</p>
+<p>输入：第一行为作品数n，此后n行中每行第一位为该作品中的素材总数m，此后m个数字为素材名（int型）</p>
+<p>输出：素材的分类，并且每一类素材，类内顺序由小到大，类外顺序按照类内最小值由小到大排序输出</p>
+<p>示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs undefined">输入：<br>4<br>2 1 3<br>3 0 5 6<br>3 2 3 4<br>1 7<br><br>输出：<br>0 5 6<br>1 2 3 4<br>7<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;vector&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;string&gt;</span></span><br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span><br></span>&#123;<br>    <span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&gt; resV;<br>    <span class="hljs-keyword">int</span> num;<br>    <span class="hljs-built_in">cin</span> &gt;&gt; num;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; num; i++)<br>    &#123;<br>        <span class="hljs-keyword">int</span> cat;<br>        <span class="hljs-built_in">cin</span> &gt;&gt; cat;<br>        <span class="hljs-comment">//存放该作品内所有素材的vector</span><br>        <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; tempV;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; cat; j++)<br>        &#123;<br>            <span class="hljs-keyword">int</span> mem;<br>            <span class="hljs-built_in">cin</span> &gt;&gt; mem;<br>            tempV.push_back(mem);<br>            <span class="hljs-comment">//cout &lt;&lt; tempV[j];</span><br>        &#125;<br>        <span class="hljs-comment">//能否找到已存在的类，能找到就将tempV添加进去</span><br>        <span class="hljs-keyword">int</span> label = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> k = <span class="hljs-number">0</span>; k &lt; tempV.size(); k++)<br>        &#123;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> out = <span class="hljs-number">0</span>; out &lt; resV.size(); out++)<br>            &#123;<br>                <span class="hljs-keyword">int</span> flag = <span class="hljs-number">0</span>;<br>                <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> in = <span class="hljs-number">0</span>; in &lt; resV[out].size(); in++)<br>                &#123;<br>                    <br>                    <span class="hljs-keyword">if</span> (tempV[k] == resV[out][in])<br>                    &#123;<br>                        label = <span class="hljs-number">1</span>;<br>                        flag = <span class="hljs-number">1</span>;<br>                        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> copy = <span class="hljs-number">0</span>; copy &lt; tempV.size(); copy++)<br>                        &#123;<br>                            <span class="hljs-comment">//检查重复素材，重复的素材不添加，只在已有的分类中添加还未加入的素材</span><br>                            <span class="hljs-keyword">if</span> (find(resV[out].begin(), resV[out].end(), tempV[copy]) == resV[out].end())<br>                                resV[out].push_back(tempV[copy]);<br>                        &#125;<br>                        <span class="hljs-keyword">break</span>;<br>                    &#125;   <br>                &#125;<br>                <span class="hljs-comment">//不用再继续遍历后面的子vector了，添加进一个分类中就一定不会添加进另外一个分类</span><br>                <span class="hljs-keyword">if</span> (flag == <span class="hljs-number">1</span>)<br>                    <span class="hljs-keyword">break</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-comment">//是新的素材分类</span><br>        <span class="hljs-keyword">if</span> (label == <span class="hljs-number">0</span>)<br>        &#123;<br>            resV.push_back(tempV);<br>        &#125;<br>    &#125;<br>    <span class="hljs-comment">//子vector按最小元素排序</span><br>    sort(resV.begin(), resV.end());<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; resV.size(); i++)<br>    &#123;<br>        <span class="hljs-comment">//子vector内部排序</span><br>        sort(resV[i].begin(), resV[i].end());<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; resV[i].size(); j++)<br>            <span class="hljs-built_in">cout</span> &lt;&lt; resV[i][j] &lt;&lt; <span class="hljs-string">" "</span>;<br>        <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-built_in">endl</span>;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+      </section>
+
+      <section class="article-footer">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/">#Algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">#C++</a></li></ul>
+      </section>
+
+      <section class="article-navs">
         
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover14.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/07/UnityDOTS(直播笔记)/" itemprop="url"></a>
-              
-              <h2 class="article-title">Unity DOTS(直播笔记)</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/07/UnityDOTS(直播笔记)/" class="article-date">
-    <time datetime="2020-07-07T12:52:13.000Z" itemprop="datePublished">2020-07-07</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Unity/">Unity</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover6.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2019/11/20/本地代码提交至git/" itemprop="url"></a>
-              
-              <h2 class="article-title">本地代码提交至git</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2019/11/20/本地代码提交至git/" class="article-date">
-    <time datetime="2019-11-20T15:02:36.000Z" itemprop="datePublished">2019-11-20</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Git/">Git</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item large img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover12.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2019/09/23/ParticalFilter(粒子滤波算法)/" itemprop="url"></a>
-              
-              <h2 class="article-title">ParticalFilter(粒子滤波算法)</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2019/09/23/ParticalFilter(粒子滤波算法)/" class="article-date">
-    <time datetime="2019-09-23T05:36:58.000Z" itemprop="datePublished">2019-09-23</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Python/">Python</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover10.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2019/09/14/Hexo发布/" itemprop="url"></a>
-              
-              <h2 class="article-title">Hexo发布</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2019/09/14/Hexo发布/" class="article-date">
-    <time datetime="2019-09-14T15:52:50.000Z" itemprop="datePublished">2019-09-14</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover23.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2019/07/25/Python的yield关键字/" itemprop="url"></a>
-              
-              <h2 class="article-title">Python---yield关键字</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2019/07/25/Python的yield关键字/" class="article-date">
-    <time datetime="2019-07-25T06:59:22.000Z" itemprop="datePublished">2019-07-25</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Python/">Python</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item large img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover15.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2019/07/18/Gradle相关知识(转载自Bonker)/" itemprop="url"></a>
-              
-              <h2 class="article-title">Gradle相关知识(转载自Bonker)</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2019/07/18/Gradle相关知识(转载自Bonker)/" class="article-date">
-    <time datetime="2019-07-18T08:38:29.000Z" itemprop="datePublished">2019-07-18</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Android/">Android</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover11.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2019/07/17/Linux远程登录/" itemprop="url"></a>
-              
-              <h2 class="article-title">Linux远程登录及服务器配置</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2019/07/17/Linux远程登录/" class="article-date">
-    <time datetime="2019-07-17T13:45:43.000Z" itemprop="datePublished">2019-07-17</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Linux/">Linux</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover7.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2019/07/05/可见光认证/" itemprop="url"></a>
-              
-              <h2 class="article-title">可见光认证相关</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2019/07/05/可见光认证/" class="article-date">
-    <time datetime="2019-07-05T03:09:43.000Z" itemprop="datePublished">2019-07-05</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Light-Frequency-Authenticate/">Light Frequency Authenticate</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover16.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2019/07/03/时间刻痕/" itemprop="url"></a>
-              
-              <h2 class="article-title">时间刻痕</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2019/07/03/时间刻痕/" class="article-date">
-    <time datetime="2019-07-03T11:56:50.000Z" itemprop="datePublished">2019-07-03</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Writing/">Writing</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover8.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2019/07/03/为Hexo的Next主题添加计数功能/" itemprop="url"></a>
-              
-              <h2 class="article-title">为Hexo的Next主题添加计数功能</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2019/07/03/为Hexo的Next主题添加计数功能/" class="article-date">
-    <time datetime="2019-07-03T10:22:33.000Z" itemprop="datePublished">2019-07-03</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Hexo/">Hexo</a>
-              </div>
-            </article>
-          </div>
-        
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- page container -->
-
-  <nav class="page-container">
+<nav class="card-container card-article-nav">
+  <div class="card-wrap">
     
-    <a class="extend prev" rel="prev" href="/archives/page/2/">ʚ</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span>
-  </nav>
+    
+      <div id="article-nav-older" class="card-item img">
+        <article>
+          
+            <div class="card-cover" style="background-image: url(cover6.jpg)"></div>
+          
+          <a class="card-link article-nav-link" href="/2020/07/31/网易20秋招Unity工程师笔试编程题/"></a>
+          <strong class="article-nav-caption">Older</strong>
+          <p class="article-nav-title">
+            
+              网易20秋招Unity工程师笔试编程题
+            
+          </p>
+        </article>
+      </div>
+    
+  </div>
+</nav>
+
+      </section>
+
+      
+
+  
+  
+
+  
+  
 
 
+    </div>
+  </article>
+</div>
 
     <!-- footer container -->
 <footer id="footer" class="footer">
