@@ -22,7 +22,7 @@
 
   
 
-  <title>Tag: Algorithm | 解字</title>
+  <title>LeetCode广度优先搜索 | 解字</title>
 
   
 
@@ -76,7 +76,7 @@
 
     
 <!-- header container -->
-<header class="header-container">
+<header class="header-container post">
 
   
   
@@ -89,17 +89,27 @@
 
   
   
-    
+
+  
+  
     <div class="header-content">
-      <div class="post-image" style="background-image: url(https://chasencenge.github.io/links/Asset/cover27.jpg)"></div>
+      <div class="post-image" style="background-image: url(cover4.jpg)"></div>
       <div class="post-text">
-        <h1 class="title-wrap">Algorithm</h1>
-        <h2 class="title-sub-wrap">当前标签下共有7篇文章</h2>
+        <div class="type-wrap">
+          <a class="article-category-link" href="/categories/C/">C++</a><a class="article-category-link" href="/categories/C/Algorithm/">Algorithm</a>
+        </div>
+        <h1 class="title-wrap">LeetCode广度优先搜索</h1>
+        <h2 class="title-sub-wrap">
+          <strong>CHAsencenge</strong>
+          <span>发布于</span>
+          
+  <a href="javascript:;" class="article-date">
+    <time datetime="2020-08-01T10:13:29.000Z" itemprop="datePublished">2020-08-01</time>
+  </a>
+
+        </h2>
       </div>
     </div>
-  
-
-  
   
 
   
@@ -107,196 +117,90 @@
 
   </header>
 
-    <!-- 标签归档 -->
+    <!-- 文章 -->
 
-<!-- post list container -->
-<div class="body-container float">
-  <div class="content-container article-list">
-    <div class="card-container card-articles">
-      <div class="card-wrap">
+<!-- 文章内容 -->
+
+<div class="body-container">
+  <article class="content-container article-container">
+    <div class="article-content">
+      
+      
+
+      <section class="article-entry">
+        <h4 id="107-二叉树的层次遍历"><a href="#107-二叉树的层次遍历" class="headerlink" title="107. 二叉树的层次遍历"></a>107. 二叉树的层次遍历</h4><p>给定一个二叉树，返回其节点值自底向上的层次遍历。 （即按从叶子节点所在层到根节点所在的层，逐层从左向右遍历）</p>
+<h5 id="STL-queue："><a href="#STL-queue：" class="headerlink" title="STL queue："></a>STL queue：</h5><p>原理：队尾（rear）插入，队首（front）删除</p>
+<p>头文件： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined">#include&lt;queue&gt;<br></code></pre></td></tr></table></figure>
+
+<p>方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs undefined">push(): 推一个元素进队列<br>front(): 返回队首元素(栈对应的是top())<br>back(): 返回队尾元素<br>pop(): 移除队首元素<br>empty()<br>size()<br></code></pre></td></tr></table></figure>
+
+<p>创建：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined">queue&lt;string&gt; q;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">/**<br> * Definition for a binary tree node.<br> * struct TreeNode &#123;<br> *     int val;<br> *     TreeNode *left;<br> *     TreeNode *right;<br> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;<br> * &#125;;<br> */</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> &#123;</span><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&gt; <span class="hljs-title">levelOrderBottom</span><span class="hljs-params">(TreeNode* root)</span> </span>&#123;<br>        <span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&gt; resV;<br>        <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; levelNumV;<br>        TreeNode* cur = root;<br>        <span class="hljs-comment">//层次遍历借助队列实现</span><br>        <span class="hljs-built_in">queue</span>&lt;TreeNode*&gt; q;<br>        q.push(cur);<br>        <span class="hljs-comment">//跳出遍历的条件为队列为空</span><br>        <span class="hljs-keyword">while</span>(!q.empty())<br>        &#123;<br>            <span class="hljs-keyword">int</span> size = q.size();<br>            <span class="hljs-keyword">while</span>(size-- &gt; <span class="hljs-number">0</span>)<br>            &#123;<br>                cur = q.front();<br>                <span class="hljs-comment">//砍头操作</span><br>                q.pop();<br>                <span class="hljs-keyword">if</span>(cur)<br>                &#123;<br>                levelNumV.push_back(cur-&gt;val);<br>                <span class="hljs-comment">//爆菊操作</span><br>                q.push(cur-&gt;left);<br>                q.push(cur-&gt;right);<br>                &#125;<br>            &#125;<br>            <span class="hljs-keyword">if</span>(!levelNumV.empty())<br>            &#123;<br>            <span class="hljs-comment">//输出格式不是规则的二维数组可选用vector&lt;vector&gt;，它的push_back内容为vector（不限制子vector长度）</span><br>            resV.push_back(levelNumV);<br>            levelNumV.clear();<br>            &#125;<br>        &#125;<br>        <span class="hljs-comment">//vector中reverse的使用</span><br>        reverse(resV.begin(), resV.end());<br>        <span class="hljs-keyword">return</span> resV;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+
+      </section>
+
+      <section class="article-footer">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/">#Algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">#C++</a></li></ul>
+      </section>
+
+      <section class="article-navs">
         
+<nav class="card-container card-article-nav">
+  <div class="card-wrap">
+    
+      <div id="article-nav-newer" class="card-item img">
+        <article>
           
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover35.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/08/02/LeetCode200周赛/" itemprop="url"></a>
-              
-              <h2 class="article-title">LeetCode200周赛</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/08/02/LeetCode200周赛/" class="article-date">
-    <time datetime="2020-08-02T14:18:15.000Z" itemprop="datePublished">2020-08-02</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/C/">C++</a><a class="article-category-link" href="/categories/C/Algorithm/">Algorithm</a>
-              </div>
-            </article>
-          </div>
-        
+            <div class="card-cover" style="background-image: url(cover35.jpg)"></div>
           
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover4.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/08/01/LeetCode广度优先搜索/" itemprop="url"></a>
-              
-              <h2 class="article-title">LeetCode广度优先搜索</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/08/01/LeetCode广度优先搜索/" class="article-date">
-    <time datetime="2020-08-01T10:13:29.000Z" itemprop="datePublished">2020-08-01</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/C/">C++</a><a class="article-category-link" href="/categories/C/Algorithm/">Algorithm</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover16.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/08/01/字节夏令营20游戏程序笔试题/" itemprop="url"></a>
-              
-              <h2 class="article-title">字节夏令营20游戏程序笔试题</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/08/01/字节夏令营20游戏程序笔试题/" class="article-date">
-    <time datetime="2020-08-01T03:42:48.000Z" itemprop="datePublished">2020-08-01</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a><a class="article-category-link" href="/categories/Algorithm/C/">C++</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover6.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/31/网易20秋招Unity工程师笔试编程题/" itemprop="url"></a>
-              
-              <h2 class="article-title">网易20秋招Unity工程师笔试编程题</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/31/网易20秋招Unity工程师笔试编程题/" class="article-date">
-    <time datetime="2020-07-31T14:25:33.000Z" itemprop="datePublished">2020-07-31</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a><a class="article-category-link" href="/categories/Algorithm/C/">C++</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item large img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover15.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/26/百度之星2020-1003-Permutation/" itemprop="url"></a>
-              
-              <h2 class="article-title">百度之星2020---1003.Permutation</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/26/百度之星2020-1003-Permutation/" class="article-date">
-    <time datetime="2020-07-26T10:04:53.000Z" itemprop="datePublished">2020-07-26</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a><a class="article-category-link" href="/categories/Algorithm/C/">C++</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover14.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/26/百度之星2020-1002-Game/" itemprop="url"></a>
-              
-              <h2 class="article-title">百度之星2020---1002.Game</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/26/百度之星2020-1002-Game/" class="article-date">
-    <time datetime="2020-07-26T10:04:18.000Z" itemprop="datePublished">2020-07-26</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a><a class="article-category-link" href="/categories/Algorithm/C/">C++</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item large img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover18.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/26/百度之星2020-1001-Discount/" itemprop="url"></a>
-              
-              <h2 class="article-title">百度之星2020---1001.Discount</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/26/百度之星2020-1001-Discount/" class="article-date">
-    <time datetime="2020-07-26T10:03:53.000Z" itemprop="datePublished">2020-07-26</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a><a class="article-category-link" href="/categories/Algorithm/C/">C++</a>
-              </div>
-            </article>
-          </div>
-        
+          <a class="card-link article-nav-link" href="/2020/08/02/LeetCode200周赛/"></a>
+          <strong class="article-nav-caption">Newer</strong>
+          <p class="article-nav-title">
+            
+              LeetCode200周赛
+            
+          </p>
+        </article>
       </div>
-    </div>
+    
+    
+      <div id="article-nav-older" class="card-item img">
+        <article>
+          
+            <div class="card-cover" style="background-image: url(cover16.jpg)"></div>
+          
+          <a class="card-link article-nav-link" href="/2020/08/01/字节夏令营20游戏程序笔试题/"></a>
+          <strong class="article-nav-caption">Older</strong>
+          <p class="article-nav-title">
+            
+              字节夏令营20游戏程序笔试题
+            
+          </p>
+        </article>
+      </div>
+    
   </div>
+</nav>
+
+      </section>
+
+      
+
+  
+  
+
+  
+  
+
+
+    </div>
+  </article>
 </div>
-
-<!-- page container -->
-
 
     <!-- footer container -->
 <footer id="footer" class="footer">
