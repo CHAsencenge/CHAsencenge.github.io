@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://chasencenge.github.io/2020/08/03/LeetCode-top%E5%88%B7%E9%A2%98/</loc>
+    <lastmod>2020-08-03</lastmod>
+  </url>
+  <url>
+    <loc>https://chasencenge.github.io/2020/08/03/LeetCode%E6%AF%8F%E6%97%A5%E5%88%B7%E9%A2%98/</loc>
+    <lastmod>2020-08-03</lastmod>
+  </url>
+  <url>
     <loc>https://chasencenge.github.io/2020/07/17/hexo%E6%9B%B4%E6%8D%A2flex-block%E4%B8%BB%E9%A2%98/</loc>
     <lastmod>2020-08-02</lastmod>
   </url>

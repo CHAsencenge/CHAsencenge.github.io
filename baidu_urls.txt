@@ -1,3 +1,5 @@
+https://chasencenge.github.io/2020/08/03/LeetCode每日刷题/
+https://chasencenge.github.io/2020/08/03/LeetCode-top刷题/
 https://chasencenge.github.io/2020/08/02/LeetCode200周赛/
 https://chasencenge.github.io/2020/08/01/LeetCode广度优先搜索/
 https://chasencenge.github.io/2020/08/01/字节夏令营20游戏程序笔试题/
