@@ -1,3 +1,5 @@
+https://chasencenge.github.io/2020/08/24/剑指offer/
+https://chasencenge.github.io/2020/08/18/dp专题/
 https://chasencenge.github.io/2020/08/03/LeetCode每日刷题/
 https://chasencenge.github.io/2020/08/03/LeetCode-top刷题/
 https://chasencenge.github.io/2020/08/02/LeetCode周赛/
