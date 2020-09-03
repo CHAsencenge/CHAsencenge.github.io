@@ -132,6 +132,12 @@
 
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">spiralOrder</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&gt;&amp; matrix)</span> </span>&#123;<br>    <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; order;<br><br>    <span class="hljs-keyword">if</span> (matrix.size() == <span class="hljs-number">0</span> || matrix[<span class="hljs-number">0</span>].size() == <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-keyword">return</span> &#123;&#125;;<br>    &#125;<br><br>    <span class="hljs-keyword">int</span> rowRange = matrix.size();<br>    <span class="hljs-keyword">int</span> colRange = matrix[<span class="hljs-number">0</span>].size();<br>    <span class="hljs-function"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">bool</span>&gt;&gt; <span class="hljs-title">visit</span><span class="hljs-params">(rowRange, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">bool</span>&gt;(colRange))</span></span>;<br>    <span class="hljs-keyword">int</span> total = rowRange * colRange;<br>    <span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&gt; move&#123; &#123;<span class="hljs-number">0</span>, <span class="hljs-number">1</span>&#125;, &#123;<span class="hljs-number">1</span>, <span class="hljs-number">0</span>&#125;, &#123;<span class="hljs-number">0</span>, <span class="hljs-number">-1</span>&#125;, &#123;<span class="hljs-number">-1</span>, <span class="hljs-number">0</span>&#125; &#125;;<br>    <span class="hljs-keyword">int</span> row = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">int</span> col = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">int</span> moveIndex = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">int</span> nextRow, nextCol;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; total; i++)<br>    &#123;<br>        order.push_back(matrix[row][col]);<br>        visit[row][col] = <span class="hljs-literal">true</span>;<br>        nextRow = row + move[moveIndex][<span class="hljs-number">0</span>];<br>        nextCol = col + move[moveIndex][<span class="hljs-number">1</span>];<br>        <span class="hljs-keyword">if</span> (nextRow &gt;= rowRange || nextRow &lt; <span class="hljs-number">0</span> || nextCol &gt;= colRange || nextCol &lt; <span class="hljs-number">0</span> || visit[nextRow][nextCol])<br>        &#123;<br>            moveIndex = (moveIndex + <span class="hljs-number">1</span>) % <span class="hljs-number">4</span>;<br>        &#125;<br>        row += move[moveIndex][<span class="hljs-number">0</span>];<br>        col += move[moveIndex][<span class="hljs-number">1</span>];<br>    &#125;<br>    <span class="hljs-keyword">return</span> order;<br>&#125;<br></code></pre></td></tr></table></figure>
 
+<h4 id="47-礼物的最大价值"><a href="#47-礼物的最大价值" class="headerlink" title="47. 礼物的最大价值"></a>47. 礼物的最大价值</h4><p>构造“矩阵最优路径的寻径问题”的dp矩阵，dp矩阵每个元素的含义是到当前点的最大收益</p>
+<p>转移方程：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined">dp[i][j] = max(dp[i-1][j], dp[i][j-1]) + grid[i][j];<br></code></pre></td></tr></table></figure>
+
+<p>这样的话就需要填充边界：使dp矩阵的维度加一，填充0</p>
+<p>本题的优化：可将dp矩阵维度降为一维，在每一个外层循环中覆盖更新dp</p>
 
       </section>
 
@@ -143,6 +149,21 @@
         
 <nav class="card-container card-article-nav">
   <div class="card-wrap">
+    
+      <div id="article-nav-newer" class="card-item img">
+        <article>
+          
+            <div class="card-cover" style="background-image: url(cover6.jpg)"></div>
+          
+          <a class="card-link article-nav-link" href="/2020/09/03/滑动窗口专题/"></a>
+          <strong class="article-nav-caption">Newer</strong>
+          <p class="article-nav-title">
+            
+              滑动窗口专题
+            
+          </p>
+        </article>
+      </div>
     
     
       <div id="article-nav-older" class="card-item img">

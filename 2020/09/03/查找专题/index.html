@@ -22,7 +22,7 @@
 
   
 
-  <title>Archives | 解字</title>
+  <title>查找专题 | 解字</title>
 
   
 
@@ -76,7 +76,16 @@
 
     
 <!-- header container -->
-<header class="header-container">
+<header class="header-container post">
+
+  
+  
+
+  
+  
+
+  
+  
 
   
   
@@ -84,21 +93,23 @@
   
   
     <div class="header-content">
-      <div class="post-image" style="background-image: url(https://chasencenge.github.io/links/Asset/cover31.jpg)"></div>
+      <div class="post-image" style="background-image: url(cover31.jpg)"></div>
       <div class="post-text">
-        <h1 class="title-wrap">归档</h1>
-        <h2 class="title-sub-wrap">共有38篇文章</h2>
+        <div class="type-wrap">
+          <a class="article-category-link" href="/categories/C/">C++</a><a class="article-category-link" href="/categories/C/Algorithm/">Algorithm</a>
+        </div>
+        <h1 class="title-wrap">查找专题</h1>
+        <h2 class="title-sub-wrap">
+          <strong>CHAsencenge</strong>
+          <span>发布于</span>
+          
+  <a href="javascript:;" class="article-date">
+    <time datetime="2020-09-03T12:56:48.000Z" itemprop="datePublished">2020-09-03</time>
+  </a>
+
+        </h2>
       </div>
     </div>
-  
-
-  
-  
-
-  
-  
-
-  
   
 
   
@@ -106,277 +117,64 @@
 
   </header>
 
-    <!-- 归档 -->
+    <!-- 文章 -->
 
-<!-- post list container -->
-<div class="body-container float">
-  <div class="content-container article-list">
-    <div class="card-container card-articles">
-      <div class="card-wrap">
+<!-- 文章内容 -->
+
+<div class="body-container">
+  <article class="content-container article-container">
+    <div class="article-content">
+      
+      
+
+      <section class="article-entry">
+        <h4 id="4-寻找两个正序数组的中位数"><a href="#4-寻找两个正序数组的中位数" class="headerlink" title="4. 寻找两个正序数组的中位数"></a>4. 寻找两个正序数组的中位数</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">//二分查找</span><br><span class="hljs-comment">//写一个查找第k大的函数，k值在运行过程中会慢慢减小</span><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">findKthElement</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums1, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums2, <span class="hljs-keyword">int</span> k)</span><br></span>&#123;<br>    <span class="hljs-keyword">int</span> m = nums1.size();<br>    <span class="hljs-keyword">int</span> n = nums2.size();<br>    <span class="hljs-keyword">int</span> index1 = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">int</span> index2 = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>)<br>    &#123;<br>        <span class="hljs-comment">//nums1中的指针位置已经到了末尾，直接在num2中找剩下的第k大</span><br>        <span class="hljs-keyword">if</span> (index1 == m)<br>        &#123;<br>            <span class="hljs-keyword">return</span> nums2[index2 + k - <span class="hljs-number">1</span>];<br>        &#125;<br>        <span class="hljs-keyword">if</span> (index2 == n)<br>        &#123;<br>            <span class="hljs-keyword">return</span> nums1[index1 + k - <span class="hljs-number">1</span>];<br>        &#125;<br>        <span class="hljs-keyword">if</span> (k == <span class="hljs-number">1</span>)<br>        &#123;<br>            <span class="hljs-keyword">return</span> min(nums1[index1], nums2[index2]);<br>        &#125;<br>		<span class="hljs-comment">//边界检测，index如果加了k / 2 - 1越界了，就直接将新的index设置为数组的最后一位</span><br>        <span class="hljs-keyword">int</span> newIndex1 = min(index1 + k / <span class="hljs-number">2</span> - <span class="hljs-number">1</span>, m - <span class="hljs-number">1</span>);<br>        <span class="hljs-keyword">int</span> newIndex2 = min(index2 + k / <span class="hljs-number">2</span> - <span class="hljs-number">1</span>, n - <span class="hljs-number">1</span>);<br>        <span class="hljs-keyword">int</span> pivot1 = nums1[newIndex1];<br>        <span class="hljs-keyword">int</span> pivot2 = nums2[newIndex2];<br>        <span class="hljs-keyword">if</span> (pivot1 &lt;= pivot2)<br>        &#123;<br>            <span class="hljs-comment">//更新k和index</span><br>            k -= newIndex1 - index1 + <span class="hljs-number">1</span>;<br>            index1 = newIndex1 + <span class="hljs-number">1</span>;<br>        &#125;<br>        <span class="hljs-keyword">else</span><br>        &#123;<br>            k -= newIndex2 - index2 + <span class="hljs-number">1</span>;<br>            index2 = newIndex2 + <span class="hljs-number">1</span>;<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">findMedianSortedArrays</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums1, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums2)</span> </span>&#123;<br>    <span class="hljs-keyword">int</span> totalLength = nums1.size() + nums2.size();<br>    <span class="hljs-keyword">if</span> (totalLength % <span class="hljs-number">2</span> == <span class="hljs-number">1</span>)<br>    &#123;	<span class="hljs-comment">//奇数总数和偶数总数分开讨论</span><br>        <span class="hljs-keyword">return</span> findKthElement(nums1, nums2, (totalLength + <span class="hljs-number">1</span>) / <span class="hljs-number">2</span>);<br>    &#125;<br>    <span class="hljs-keyword">else</span><br>    &#123;<br>        <span class="hljs-keyword">return</span> (findKthElement(nums1, nums2, totalLength / <span class="hljs-number">2</span>) + findKthElement(nums1, nums2, totalLength / <span class="hljs-number">2</span> + <span class="hljs-number">1</span>)) / <span class="hljs-number">2.0</span>;<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+      </section>
+
+      <section class="article-footer">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/">#Algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">#C++</a></li></ul>
+      </section>
+
+      <section class="article-navs">
         
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover4.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/14/LoRa的三种class/" itemprop="url"></a>
-              
-              <h2 class="article-title">LoRa的三种class</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/14/LoRa的三种class/" class="article-date">
-    <time datetime="2020-07-14T14:30:06.000Z" itemprop="datePublished">2020-07-14</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/LoRa/">LoRa</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover20.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/13/C-h和-cpp/" itemprop="url"></a>
-              
-              <h2 class="article-title">C++.h和.cpp</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/13/C-h和-cpp/" class="article-date">
-    <time datetime="2020-07-13T03:04:52.000Z" itemprop="datePublished">2020-07-13</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/C/">C++</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover15.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/09/将Unity场景导入到LayaAir/" itemprop="url"></a>
-              
-              <h2 class="article-title">将Unity场景导入到LayaAir</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/09/将Unity场景导入到LayaAir/" class="article-date">
-    <time datetime="2020-07-09T01:02:46.000Z" itemprop="datePublished">2020-07-09</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Laya/">Laya</a><a class="article-category-link" href="/categories/Laya/Environment/">Environment</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item large img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover17.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/09/为Sublime添加TypeScript高亮支持/" itemprop="url"></a>
-              
-              <h2 class="article-title">为Sublime添加TypeScript高亮支持</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/09/为Sublime添加TypeScript高亮支持/" class="article-date">
-    <time datetime="2020-07-09T00:50:23.000Z" itemprop="datePublished">2020-07-09</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Laya/">Laya</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover1.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/08/命局·墨敛粲星大纲/" itemprop="url"></a>
-              
-              <h2 class="article-title">命局·墨敛粲星大纲</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/08/命局·墨敛粲星大纲/" class="article-date">
-    <time datetime="2020-07-08T07:22:24.000Z" itemprop="datePublished">2020-07-08</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Writing/">Writing</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover5.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/08/命局·墨敛粲星/" itemprop="url"></a>
-              
-              <h2 class="article-title">命局·墨敛粲星</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/08/命局·墨敛粲星/" class="article-date">
-    <time datetime="2020-07-08T07:06:26.000Z" itemprop="datePublished">2020-07-08</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Writing/">Writing</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover3.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/08/UnitySprite/" itemprop="url"></a>
-              
-              <h2 class="article-title">UnitySprite</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/08/UnitySprite/" class="article-date">
-    <time datetime="2020-07-08T01:35:52.000Z" itemprop="datePublished">2020-07-08</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Unity/">Unity</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover13.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/07/ProjectTiny爬坑记录/" itemprop="url"></a>
-              
-              <h2 class="article-title">ProjectTiny爬坑记录</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/07/ProjectTiny爬坑记录/" class="article-date">
-    <time datetime="2020-07-07T13:23:22.000Z" itemprop="datePublished">2020-07-07</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Tiny/">Tiny</a><a class="article-category-link" href="/categories/Tiny/Unity/">Unity</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item large img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/07/ProjectTinyWorkshop核心知识点/" itemprop="url"></a>
-              
-              <h2 class="article-title">ProjectTinyWorkshop核心知识点</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/07/ProjectTinyWorkshop核心知识点/" class="article-date">
-    <time datetime="2020-07-07T13:03:53.000Z" itemprop="datePublished">2020-07-07</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Project-Tiny/">Project Tiny</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover14.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/07/UnityDOTS(直播笔记)/" itemprop="url"></a>
-              
-              <h2 class="article-title">Unity DOTS(直播笔记)</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/07/UnityDOTS(直播笔记)/" class="article-date">
-    <time datetime="2020-07-07T12:52:13.000Z" itemprop="datePublished">2020-07-07</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Unity/">Unity</a>
-              </div>
-            </article>
-          </div>
-        
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- page container -->
-
-  <nav class="page-container">
+<nav class="card-container card-article-nav">
+  <div class="card-wrap">
     
-    <a class="extend prev" rel="prev" href="/archives/2020/07/">ʚ</a><a class="page-number" href="/archives/2020/07/">1</a><span class="page-number current">2</span>
-  </nav>
+    
+      <div id="article-nav-older" class="card-item img">
+        <article>
+          
+            <div class="card-cover" style="background-image: url(cover6.jpg)"></div>
+          
+          <a class="card-link article-nav-link" href="/2020/09/03/滑动窗口专题/"></a>
+          <strong class="article-nav-caption">Older</strong>
+          <p class="article-nav-title">
+            
+              滑动窗口专题
+            
+          </p>
+        </article>
+      </div>
+    
+  </div>
+</nav>
+
+      </section>
+
+      
+
+  
+  
+
+  
+  
 
 
+    </div>
+  </article>
+</div>
 
     <!-- footer container -->
 <footer id="footer" class="footer">

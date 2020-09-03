@@ -22,7 +22,7 @@
 
   
 
-  <title>Archives | 解字</title>
+  <title>滑动窗口专题 | 解字</title>
 
   
 
@@ -76,7 +76,16 @@
 
     
 <!-- header container -->
-<header class="header-container">
+<header class="header-container post">
+
+  
+  
+
+  
+  
+
+  
+  
 
   
   
@@ -84,21 +93,23 @@
   
   
     <div class="header-content">
-      <div class="post-image" style="background-image: url(https://chasencenge.github.io/links/Asset/cover31.jpg)"></div>
+      <div class="post-image" style="background-image: url(cover6.jpg)"></div>
       <div class="post-text">
-        <h1 class="title-wrap">归档</h1>
-        <h2 class="title-sub-wrap">共有38篇文章</h2>
+        <div class="type-wrap">
+          <a class="article-category-link" href="/categories/C/">C++</a><a class="article-category-link" href="/categories/C/Algorithm/">Algorithm</a>
+        </div>
+        <h1 class="title-wrap">滑动窗口专题</h1>
+        <h2 class="title-sub-wrap">
+          <strong>CHAsencenge</strong>
+          <span>发布于</span>
+          
+  <a href="javascript:;" class="article-date">
+    <time datetime="2020-09-03T11:18:54.000Z" itemprop="datePublished">2020-09-03</time>
+  </a>
+
+        </h2>
       </div>
     </div>
-  
-
-  
-  
-
-  
-  
-
-  
   
 
   
@@ -106,277 +117,79 @@
 
   </header>
 
-    <!-- 归档 -->
+    <!-- 文章 -->
 
-<!-- post list container -->
-<div class="body-container float">
-  <div class="content-container article-list">
-    <div class="card-container card-articles">
-      <div class="card-wrap">
+<!-- 文章内容 -->
+
+<div class="body-container">
+  <article class="content-container article-container">
+    <div class="article-content">
+      
+      
+
+      <section class="article-entry">
+        <h4 id="3-无重复的最长字串"><a href="#3-无重复的最长字串" class="headerlink" title="3.  无重复的最长字串"></a>3.  无重复的最长字串</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">lengthOfLongestSubstring</span><span class="hljs-params">(<span class="hljs-built_in">string</span> s)</span> </span>&#123;<br>    <span class="hljs-keyword">int</span> res = <span class="hljs-number">0</span>;<br>    <span class="hljs-comment">//右指针</span><br>    <span class="hljs-keyword">int</span> rp = <span class="hljs-number">-1</span>;<br>    <span class="hljs-built_in">unordered_set</span>&lt;<span class="hljs-keyword">char</span>&gt; seri;<br>    <span class="hljs-comment">//i是左指针</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; s.size(); i++)<br>    &#123;<br>        <span class="hljs-comment">//每次循环开始的时候把上一次左指针指向的值删掉</span><br>        <span class="hljs-keyword">if</span> (i != <span class="hljs-number">0</span>)<br>        &#123;<br>            seri.erase(s[i - <span class="hljs-number">1</span>]);<br>        &#125;<br>        <span class="hljs-comment">//例如abcdcefgh，到了第二个c会产生重复，rp会停在d这里，然后删掉a继续循环，发现仍不满足!seri.count(s[rp + 1])，因为c并没被删掉，所以跳过while继续循环，删掉b，知道删掉第一个c，while中才满足!seri.count(s[rp + 1])，这时才能进入while，rp继续向后走</span><br>        <span class="hljs-keyword">while</span> (rp + <span class="hljs-number">1</span> &lt; s.size() &amp;&amp; !seri.count(s[rp + <span class="hljs-number">1</span>]))<br>        &#123;<br>            seri.insert(s[rp + <span class="hljs-number">1</span>]);<br>            rp++;<br>        &#125;<br>        res = max(res, rp - i + <span class="hljs-number">1</span>);<br>    &#125;<br>    <span class="hljs-keyword">return</span> res;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+      </section>
+
+      <section class="article-footer">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/">#Algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">#C++</a></li></ul>
+      </section>
+
+      <section class="article-navs">
         
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover4.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/14/LoRa的三种class/" itemprop="url"></a>
-              
-              <h2 class="article-title">LoRa的三种class</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/14/LoRa的三种class/" class="article-date">
-    <time datetime="2020-07-14T14:30:06.000Z" itemprop="datePublished">2020-07-14</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/LoRa/">LoRa</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover20.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/13/C-h和-cpp/" itemprop="url"></a>
-              
-              <h2 class="article-title">C++.h和.cpp</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/13/C-h和-cpp/" class="article-date">
-    <time datetime="2020-07-13T03:04:52.000Z" itemprop="datePublished">2020-07-13</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/C/">C++</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover15.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/09/将Unity场景导入到LayaAir/" itemprop="url"></a>
-              
-              <h2 class="article-title">将Unity场景导入到LayaAir</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/09/将Unity场景导入到LayaAir/" class="article-date">
-    <time datetime="2020-07-09T01:02:46.000Z" itemprop="datePublished">2020-07-09</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Laya/">Laya</a><a class="article-category-link" href="/categories/Laya/Environment/">Environment</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item large img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover17.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/09/为Sublime添加TypeScript高亮支持/" itemprop="url"></a>
-              
-              <h2 class="article-title">为Sublime添加TypeScript高亮支持</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/09/为Sublime添加TypeScript高亮支持/" class="article-date">
-    <time datetime="2020-07-09T00:50:23.000Z" itemprop="datePublished">2020-07-09</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Laya/">Laya</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover1.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/08/命局·墨敛粲星大纲/" itemprop="url"></a>
-              
-              <h2 class="article-title">命局·墨敛粲星大纲</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/08/命局·墨敛粲星大纲/" class="article-date">
-    <time datetime="2020-07-08T07:22:24.000Z" itemprop="datePublished">2020-07-08</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Writing/">Writing</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover5.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/08/命局·墨敛粲星/" itemprop="url"></a>
-              
-              <h2 class="article-title">命局·墨敛粲星</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/08/命局·墨敛粲星/" class="article-date">
-    <time datetime="2020-07-08T07:06:26.000Z" itemprop="datePublished">2020-07-08</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Writing/">Writing</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover3.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/08/UnitySprite/" itemprop="url"></a>
-              
-              <h2 class="article-title">UnitySprite</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/08/UnitySprite/" class="article-date">
-    <time datetime="2020-07-08T01:35:52.000Z" itemprop="datePublished">2020-07-08</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Unity/">Unity</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover13.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/07/ProjectTiny爬坑记录/" itemprop="url"></a>
-              
-              <h2 class="article-title">ProjectTiny爬坑记录</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/07/ProjectTiny爬坑记录/" class="article-date">
-    <time datetime="2020-07-07T13:23:22.000Z" itemprop="datePublished">2020-07-07</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Tiny/">Tiny</a><a class="article-category-link" href="/categories/Tiny/Unity/">Unity</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item large img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/07/ProjectTinyWorkshop核心知识点/" itemprop="url"></a>
-              
-              <h2 class="article-title">ProjectTinyWorkshop核心知识点</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/07/ProjectTinyWorkshop核心知识点/" class="article-date">
-    <time datetime="2020-07-07T13:03:53.000Z" itemprop="datePublished">2020-07-07</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Project-Tiny/">Project Tiny</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover14.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/07/UnityDOTS(直播笔记)/" itemprop="url"></a>
-              
-              <h2 class="article-title">Unity DOTS(直播笔记)</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/07/UnityDOTS(直播笔记)/" class="article-date">
-    <time datetime="2020-07-07T12:52:13.000Z" itemprop="datePublished">2020-07-07</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Unity/">Unity</a>
-              </div>
-            </article>
-          </div>
-        
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- page container -->
-
-  <nav class="page-container">
+<nav class="card-container card-article-nav">
+  <div class="card-wrap">
     
-    <a class="extend prev" rel="prev" href="/archives/2020/07/">ʚ</a><a class="page-number" href="/archives/2020/07/">1</a><span class="page-number current">2</span>
-  </nav>
+      <div id="article-nav-newer" class="card-item img">
+        <article>
+          
+            <div class="card-cover" style="background-image: url(cover31.jpg)"></div>
+          
+          <a class="card-link article-nav-link" href="/2020/09/03/查找专题/"></a>
+          <strong class="article-nav-caption">Newer</strong>
+          <p class="article-nav-title">
+            
+              查找专题
+            
+          </p>
+        </article>
+      </div>
+    
+    
+      <div id="article-nav-older" class="card-item img">
+        <article>
+          
+            <div class="card-cover" style="background-image: url(cover20.jpg)"></div>
+          
+          <a class="card-link article-nav-link" href="/2020/08/24/剑指offer/"></a>
+          <strong class="article-nav-caption">Older</strong>
+          <p class="article-nav-title">
+            
+              剑指offer
+            
+          </p>
+        </article>
+      </div>
+    
+  </div>
+</nav>
+
+      </section>
+
+      
+
+  
+  
+
+  
+  
 
 
+    </div>
+  </article>
+</div>
 
     <!-- footer container -->
 <footer id="footer" class="footer">
