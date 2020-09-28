@@ -128,7 +128,32 @@
       
 
       <section class="article-entry">
-        
+        <h3 id="容器与镜像"><a href="#容器与镜像" class="headerlink" title="容器与镜像"></a>容器与镜像</h3><p>进程可见、可相互通信、共享一份文件系统</p>
+<p>高级权限的进程可能破环低权限的进程</p>
+<p>资源抢占</p>
+<p>Linux通过 <code>chroot</code> 可将一个子目录变成根目录</p>
+<p><code>namespace</code>在资源视图上进行隔离</p>
+<p><code>cgroup</code>限制资源使用率</p>
+<h4 id="容器："><a href="#容器：" class="headerlink" title="容器："></a>容器：</h4><p>容器是一个视图隔离、资源可限制、独立文件系统的进程集合</p>
+<h4 id="镜像："><a href="#镜像：" class="headerlink" title="镜像："></a>镜像：</h4><p>运行容器需要的所有文件集合</p>
+<p>构建步骤所带来的文件系统的变化叫做changeset</p>
+<p>镜像可进行分层复用</p>
+<h4 id="如何构建镜像？"><a href="#如何构建镜像？" class="headerlink" title="如何构建镜像？"></a>如何构建镜像？</h4><p>编写Dockerfile</p>
+<p>// 表示以下的步骤是基于golang构建的</p>
+<p><code>FROM golang:1.12-alpine</code> </p>
+<p>// 类似于cd</p>
+<p><code>WORKDIR /go/src/app</code></p>
+<p>// 把数据拷入到容器内</p>
+<p><code>COPY</code></p>
+<p>//下载依赖</p>
+<p><code>RUN go get -d -v ./...</code></p>
+<p>//创建应用并安装</p>
+<p><code>RUN go install -v ./...</code></p>
+<p>//使用镜像默认程序的名字是什么</p>
+<p><code>CMD [&quot;app&quot;]</code></p>
+<p>有了这样一个Dockerfile<code>之后就可以通过docker build</code>构建镜像（存储到本地的）</p>
+<p>docker registry进行镜像数据的存储和转发，通过 <code>docker push</code>可以将本地的镜像推送到镜像仓库中</p>
+
       </section>
 
       <section class="article-footer">
@@ -139,6 +164,21 @@
         
 <nav class="card-container card-article-nav">
   <div class="card-wrap">
+    
+      <div id="article-nav-newer" class="card-item img">
+        <article>
+          
+            <div class="card-cover" style="background-image: url(cover40.jpg)"></div>
+          
+          <a class="card-link article-nav-link" href="/2020/09/25/腾讯游戏开发精粹笔记/"></a>
+          <strong class="article-nav-caption">Newer</strong>
+          <p class="article-nav-title">
+            
+              腾讯游戏开发精粹笔记
+            
+          </p>
+        </article>
+      </div>
     
     
       <div id="article-nav-older" class="card-item img">
