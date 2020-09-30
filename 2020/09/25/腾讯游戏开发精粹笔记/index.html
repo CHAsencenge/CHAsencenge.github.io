@@ -153,10 +153,44 @@
 <h4 id="圆盘SDF"><a href="#圆盘SDF" class="headerlink" title="圆盘SDF:"></a>圆盘SDF:</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">//x为任意点坐标，c为圆盘中心，r为圆盘半径</span><br><span class="hljs-function"><span class="hljs-keyword">float</span> <span class="hljs-title">sdCircle</span><span class="hljs-params">(Vector2 x, Vector2 c, <span class="hljs-keyword">float</span> r)</span><br></span>&#123;<br>    <span class="hljs-keyword">return</span> (x - c).length() - r;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h4 id="矩形SDF"><a href="#矩形SDF" class="headerlink" title="矩形SDF:"></a>矩形SDF:</h4><p>d = (x - c)R(-θ) - b</p>
-<p>SD<del>x</del> = min(max(d<del>x</del>, d<del>y</del>), 0) + ||max(d, 0)||</p>
+<p>Φ<del>x</del> = min(max(d<del>x</del>, d<del>y</del>), 0) + ||max(d, 0)||</p>
 <p><img src="/2020/09/25/腾讯游戏开发精粹笔记/1.14%E7%9F%A9%E5%BD%A2SDF.png" alt="1.14矩形SDF"></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">//x为任意点坐标，c为矩形中心，rot为矩形旋转角度，b为矩形边长</span><br><span class="hljs-function"><span class="hljs-keyword">float</span> <span class="hljs-title">sdBox</span><span class="hljs-params">(Vector2 x, Vector c, Vector2 rot, Vector2 b)</span><br></span>&#123;<br>    Vector2 p = Vector2.Dot(x - c, -rot);<br>    Vector2 d = Vector2.Abs(p) - b;<br>    <span class="hljs-keyword">return</span> Mathf.Min(Mathf.Max(d.x, d.y), <span class="hljs-number">0f</span>) + Vector2.Max(d, Vector2.zero).Length(); <br>&#125;<br></code></pre></td></tr></table></figure>
 
+<h1 id="二、游戏物理"><a href="#二、游戏物理" class="headerlink" title="二、游戏物理"></a>二、游戏物理</h1><h2 id="1-一种高效的弧长参数化路径系统"><a href="#1-一种高效的弧长参数化路径系统" class="headerlink" title="1. 一种高效的弧长参数化路径系统"></a>1. 一种高效的弧长参数化路径系统</h2><h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><p>在跑酷游戏中，人物的移动靠路径引导；想要实现“弧长参数化”的特性—即令曲线参数t与曲线长度为L为线性关系，从而将参数t的线性变化映射到长度的线性变化上，实现曲线上的匀线速度运动。</p>
+<h4 id="曲线路径系统需求："><a href="#曲线路径系统需求：" class="headerlink" title="曲线路径系统需求："></a>曲线路径系统需求：</h4><p>路径布置简单，最直观的就是布置路点。</p>
+<p>修改具有局部性，修改一个路点只会影响上下游。</p>
+<p>曲线至少具有C1连续性，满足基本的光滑需求。</p>
+<p>两个路点之间的曲线可以是异面曲线，等同于可以自由控制邻接路点曲线的方向。</p>
+<p>与曲线相关的计算尽量简单，尽量少地进行迭代计算。</p>
+<h3 id="端点间二次样条的构建"><a href="#端点间二次样条的构建" class="headerlink" title="端点间二次样条的构建"></a>端点间二次样条的构建</h3><h4 id="为什么要拼接两条二次曲线？"><a href="#为什么要拼接两条二次曲线？" class="headerlink" title="为什么要拼接两条二次曲线？"></a>为什么要拼接两条二次曲线？</h4><p>要求两个路点可以自由控制位置和朝向（切线方向），单一的一段二次曲线自由度不够。</p>
+<h4 id="二次样条曲线："><a href="#二次样条曲线：" class="headerlink" title="二次样条曲线："></a>二次样条曲线：</h4><p><img src="/2020/09/25/腾讯游戏开发精粹笔记/3.1%E4%BA%8C%E6%AC%A1%E6%A0%B7%E6%9D%A1%E6%9B%B2%E7%BA%BF%E7%A4%BA%E6%84%8F%E5%9B%BE.png" alt="3.1二次样条曲线示意图"></p>
+<p>起点P<del>0</del>、起点切线T<del>0</del>、终点P<del>1</del>、终点切线T<del>1</del>。</p>
+<p>f<del>1</del>(t) = a<del>1</del>t^2^ + b<del>1</del>t + c<del>1</del></p>
+<p>f<del>2</del>(t) = a<del>2</del>t^2^ + b<del>2</del>t + c<del>2</del></p>
+<p>为了将分段曲线当作一段曲线使用，需将两段曲线的参数t归一化到统一的[0, 1]范围内，f<del>s</del>(0) = P<del>0</del>，f<del>s</del>(1) = P<del>1</del>。</p>
+<p><img src="/2020/09/25/腾讯游戏开发精粹笔记/%E5%8F%82%E6%95%B0t%E5%BD%92%E4%B8%80%E5%8C%96%E5%90%8E%E7%9A%84%E5%88%86%E6%AE%B5%E4%BA%8C%E6%AC%A1%E6%9B%B2%E7%BA%BF.png" alt="参数t归一化后的分段二次曲线"></p>
+<p>例如当L<del>1</del>长度为4，L<del>2</del>长度为6，归一化t = 0.3时，f<del>s</del>(t) = f<del>s</del>(0.3) = f<del>1</del>(0.3 x 10 / 4) = f<del>1</del>(3/4)，恰好对应L<del>1</del>的四分之三位置。</p>
+<h3 id="路径的构建"><a href="#路径的构建" class="headerlink" title="路径的构建"></a>路径的构建</h3><p>路径为路点间曲线的拼接，切线的设置模仿Catmull-Rom这类Cardinal曲线的做法：路点i处的切线由路点i-1和路点i+1的位置决定：</p>
+<p>T<del>i</del> = τ(P<del>i+1</del> - P<del>i-1</del>), τ为切线的缩放因子（张弛因子）</p>
+<p><img src="/2020/09/25/腾讯游戏开发精粹笔记/3.2Cardinal%E6%9B%B2%E7%BA%BF%E5%88%87%E7%BA%BF%E8%AE%BE%E7%BD%AE.png" alt="3.2Cardinal曲线切线设置"></p>
+<p>使用邻接路点的信息构建曲线时，将邻接路点转换到自己的<strong>局部坐标系</strong>下，在上图的构建中，P<del>i</del>处于坐标原点且旋转为(0, 0, 0)，最后在使用路径时，每段曲线的计算结果要做一次<strong>从局部到世界坐标系的转换</strong>，<strong>好处</strong>是路径作为一个整体不受刚体变换的影响，适合游戏中场景动态拼接的需求。</p>
+<h3 id="弧长的重参数化（arc-length-parametrization）"><a href="#弧长的重参数化（arc-length-parametrization）" class="headerlink" title="弧长的重参数化（arc-length parametrization）"></a>弧长的重参数化（arc-length parametrization）</h3><h4 id="为什么要做弧长的重参数化？"><a href="#为什么要做弧长的重参数化？" class="headerlink" title="为什么要做弧长的重参数化？"></a>为什么要做弧长的重参数化？</h4><p>可近似理解为在曲线上，每一点处的<strong>速度</strong>不同，相同的Δt内对应“走过”的弧长也不相同。</p>
+<p>例如，对于曲线：</p>
+<p><img src="/2020/09/25/腾讯游戏开发精粹笔记/%E6%9B%B2%E7%BA%BF.png" alt="曲线"></p>
+<p>直接用t取点，具有明显不均匀现象：</p>
+<p><img src="/2020/09/25/腾讯游戏开发精粹笔记/%E7%9B%B4%E6%8E%A5t%E5%8F%96%E7%82%B9.png" alt="直接t取点"></p>
+<h4 id="arc-length"><a href="#arc-length" class="headerlink" title="arc-length:"></a>arc-length:</h4><p>定义一个映射Δ: [a, b] -&gt; [0, L], 获取原弧线参数t的定义域到弧长区间上的一个满射：</p>
+<p><img src="/2020/09/25/腾讯游戏开发精粹笔记/%E6%BB%A1%E5%B0%84.png" alt="满射"></p>
+<p>其反函数设为Φ(s)，那么在给定s位置下，对应曲线参数为Φ(s)，对于上述曲线，先求Δ(t)，再求其反函数：</p>
+<p><img src="/2020/09/25/腾讯游戏开发精粹笔记/%E9%87%8D%E5%8F%82%E6%95%B01.png" alt="重参数1"></p>
+<p>其反函数：</p>
+<p><img src="/2020/09/25/腾讯游戏开发精粹笔记/%E9%87%8D%E5%8F%82%E6%95%B02.png" alt="重参数2"></p>
+<p>重参数化形式：</p>
+<p><img src="/2020/09/25/腾讯游戏开发精粹笔记/%E9%87%8D%E5%8F%82%E6%95%B03.png" alt="重参数3"></p>
+<p>arc-length参数化后结果：</p>
+<p><img src="/2020/09/25/腾讯游戏开发精粹笔记/%E9%87%8D%E5%8F%82%E6%95%B04.png" alt="重参数4"></p>
+<h3 id="曲线上的简单运动"><a href="#曲线上的简单运动" class="headerlink" title="曲线上的简单运动"></a>曲线上的简单运动</h3><p>法平面定义：过空间曲线的切点并且与切线垂直的平面。</p>
 
       </section>
 
