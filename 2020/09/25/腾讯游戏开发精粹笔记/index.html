@@ -157,6 +157,18 @@
 <p><img src="/2020/09/25/腾讯游戏开发精粹笔记/1.14%E7%9F%A9%E5%BD%A2SDF.png" alt="1.14矩形SDF"></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">//x为任意点坐标，c为矩形中心，rot为矩形旋转角度，b为矩形边长</span><br><span class="hljs-function"><span class="hljs-keyword">float</span> <span class="hljs-title">sdBox</span><span class="hljs-params">(Vector2 x, Vector c, Vector2 rot, Vector2 b)</span><br></span>&#123;<br>    Vector2 p = Vector2.Dot(x - c, -rot);<br>    Vector2 d = Vector2.Abs(p) - b;<br>    <span class="hljs-keyword">return</span> Mathf.Min(Mathf.Max(d.x, d.y), <span class="hljs-number">0f</span>) + Vector2.Max(d, Vector2.zero).Length(); <br>&#125;<br></code></pre></td></tr></table></figure>
 
+<h2 id="2-高性能的定点数实现方案"><a href="#2-高性能的定点数实现方案" class="headerlink" title="2. 高性能的定点数实现方案"></a>2. 高性能的定点数实现方案</h2><h3 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h3><p>解决不同平台上的浮点数运算结果不同而导致的对帧同步的严重影响。</p>
+<h3 id="32位浮点数结构"><a href="#32位浮点数结构" class="headerlink" title="32位浮点数结构"></a>32位浮点数结构</h3><p><img src="/2020/09/25/腾讯游戏开发精粹笔记/32%E4%BD%8D%E6%B5%AE%E7%82%B9%E6%95%B0%E7%BB%93%E6%9E%84.png" alt="32位浮点数结构"></p>
+<p>S=0时为正数，S=1时为负数</p>
+<h3 id="基于整数的二进制表示的定点数原理"><a href="#基于整数的二进制表示的定点数原理" class="headerlink" title="基于整数的二进制表示的定点数原理"></a>基于整数的二进制表示的定点数原理</h3><p>设a为定点数，f(a)为这个定点数对应的整数值</p>
+<p>a = 2^-n^f(a)</p>
+<h3 id="32和64位定点数表示原理"><a href="#32和64位定点数表示原理" class="headerlink" title="32和64位定点数表示原理"></a>32和64位定点数表示原理</h3><p><img src="/2020/09/25/腾讯游戏开发精粹笔记/%E5%AE%9A%E7%82%B9%E6%95%B0%E7%BB%93%E6%9E%84.png" alt="定点数结构"></p>
+<p>32位定点数表示的范围：[-2^21^, 2^21^ - 2^-10^]</p>
+<p>64位定点数表示的范围：[-2^31^, 2^31^ - 2^-32^]</p>
+<h3 id="定点数四则运算"><a href="#定点数四则运算" class="headerlink" title="定点数四则运算"></a>定点数四则运算</h3><p>a + b = 2^-n^ (f(a) + f(b))</p>
+<p>a - b = 2^-n^ (f(a) - f(b))</p>
+<p>ab = (2^-n^)^2^ f(a) f(b) = 2^-n^ (2^-n^ f(a) f(b))</p>
+<p>a / b = 2^-n^ (2^n^ f(a) / f(b))</p>
 <h1 id="二、游戏物理"><a href="#二、游戏物理" class="headerlink" title="二、游戏物理"></a>二、游戏物理</h1><h2 id="1-一种高效的弧长参数化路径系统"><a href="#1-一种高效的弧长参数化路径系统" class="headerlink" title="1. 一种高效的弧长参数化路径系统"></a>1. 一种高效的弧长参数化路径系统</h2><h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><p>在跑酷游戏中，人物的移动靠路径引导；想要实现“弧长参数化”的特性—即令曲线参数t与曲线长度为L为线性关系，从而将参数t的线性变化映射到长度的线性变化上，实现曲线上的匀线速度运动。</p>
 <h4 id="曲线路径系统需求："><a href="#曲线路径系统需求：" class="headerlink" title="曲线路径系统需求："></a>曲线路径系统需求：</h4><p>路径布置简单，最直观的就是布置路点。</p>
 <p>修改具有局部性，修改一个路点只会影响上下游。</p>
@@ -191,6 +203,28 @@
 <p>arc-length参数化后结果：</p>
 <p><img src="/2020/09/25/腾讯游戏开发精粹笔记/%E9%87%8D%E5%8F%82%E6%95%B04.png" alt="重参数4"></p>
 <h3 id="曲线上的简单运动"><a href="#曲线上的简单运动" class="headerlink" title="曲线上的简单运动"></a>曲线上的简单运动</h3><p>法平面定义：过空间曲线的切点并且与切线垂直的平面。</p>
+<h3 id="相邻路径的切换"><a href="#相邻路径的切换" class="headerlink" title="相邻路径的切换"></a>相邻路径的切换</h3><p>路径切换的过程中，使用当前路径上的基准点的法平面与另一路径的交点（等位点），由于路径的切换不能瞬时完成，将当前基准点变换到相邻路径基准点的局部坐标系下，将变换后的值和(O, X, Y, Z)插值的结果转换到世界坐标系，作为当前基准点及其关联的局部坐标系输入给物理模块。</p>
+<p><img src="/2020/09/25/腾讯游戏开发精粹笔记/3.4%E8%B7%AF%E5%BE%84%E5%88%87%E6%8D%A2%E6%8F%92%E5%80%BC%E8%BD%A8%E8%BF%B9.png" alt="3.4路径切换插值轨迹"></p>
+<h3 id="曲线上的旋转插值"><a href="#曲线上的旋转插值" class="headerlink" title="曲线上的旋转插值"></a>曲线上的旋转插值</h3><p><img src="/2020/09/25/腾讯游戏开发精粹笔记/3.5%E6%97%8B%E8%BD%AC%E6%8F%92%E5%80%BC%E5%AF%B9%E6%AF%94.png" alt="3.5旋转插值对比"></p>
+<h2 id="2-船的物理模拟及同步设计"><a href="#2-船的物理模拟及同步设计" class="headerlink" title="2. 船的物理模拟及同步设计"></a>2. 船的物理模拟及同步设计</h2><h3 id="船的两种刚体"><a href="#船的两种刚体" class="headerlink" title="船的两种刚体"></a>船的两种刚体</h3><p>移动碰撞体：用于计算浮力的动态刚体</p>
+<p>射击碰撞体：用来做射击检测的动力学动态刚体</p>
+<h3 id="浮力计算中计算多面体入水体积"><a href="#浮力计算中计算多面体入水体积" class="headerlink" title="浮力计算中计算多面体入水体积"></a>浮力计算中计算多面体入水体积</h3><p>分成三角面判断，一个三角面只有三种状态：完全入水、完全出水、部分出水。</p>
+<p>三角面完全入水，则三角面可以和P形成四面体为入水体积（点P必须在水面上）。</p>
+<p>三角面完全出水，丢弃。</p>
+<p>三角面部分入水，分两种情况，两点入水和一点入水。两点入水，分成的三个三角形，将水面上部的丢弃；一点入水，分成的三个三角形将水面上的两个三角形丢弃。</p>
+<p><img src="/2020/09/25/腾讯游戏开发精粹笔记/%E4%B8%89%E8%A7%92%E9%9D%A2%E9%83%A8%E5%88%86%E5%85%A5%E6%B0%B4.png" alt="三角面部分入水"></p>
+<p><strong>于是，入水体积的求解收敛为两个问题：</strong></p>
+<p>求一个四面体的体积。</p>
+<p>已知三角形的顶点A, B, C, 求与水面的交点问题。</p>
+<h3 id="浮力系统物理更新机制"><a href="#浮力系统物理更新机制" class="headerlink" title="浮力系统物理更新机制"></a>浮力系统物理更新机制</h3><p><img src="/2020/09/25/腾讯游戏开发精粹笔记/%E7%AC%AC%E4%B8%80%E6%96%B9%E5%92%8C%E7%AC%AC%E4%B8%89%E6%96%B9Component.png" alt="第一方和第三方Component"></p>
+<p>三种第三方位置同步方法：</p>
+<p>设置位置：会造成物体瞬移。</p>
+<p>设置速度：通过计算位移差求出速度，在物理引擎进行物理模拟前应用到动态刚体上。</p>
+<p>设置力：增加了一层间接性。</p>
+<h4 id="问题："><a href="#问题：" class="headerlink" title="问题："></a>问题：</h4><p>第三方同步组件会每帧更新刚体的速度，浮力组件会每帧更新刚体受到的力，会造成位置的不一致（例如第三方刚体本来以速度v移动到位置X，但是浮力组件在速度方向上施加了阻力、浮力和升力，从而使物理系统算出的速度和v有偏差，导致最终物理模拟结束时物体的位置不是X）。</p>
+<h4 id="解决："><a href="#解决：" class="headerlink" title="解决："></a>解决：</h4><p>浮力系统根据是否是第一方选择最终计算结果是力还是速度。</p>
+<h4 id="Component物理更新的过程："><a href="#Component物理更新的过程：" class="headerlink" title="Component物理更新的过程："></a>Component物理更新的过程：</h4><p>第一方通过引擎组件(EngineComponent)计算出驱动力，通过浮力组件(BuoyancyComponent)计算出浮力，将这些力在物理引擎进行物理模拟之前统一施加在刚体组件(PhyComponent)上；</p>
+<p>第三方通过同步组件(SyncComponent)计算出下一帧的同步速度，通过浮力组件计算出的浮力推算出下一帧的浮力速度，将这两个速度糅合后，在物理引擎进行物理模拟之前设置在刚体组件上。</p>
 
       </section>
 
