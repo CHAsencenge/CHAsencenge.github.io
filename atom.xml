@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://chasencenge.github.io/"/>
-  <updated>2020-10-02T12:13:46.595Z</updated>
+  <updated>2020-10-12T08:46:33.401Z</updated>
   <id>https://chasencenge.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>UE学习文档</title>
+    <link href="https://chasencenge.github.io/2020/10/12/UE%E5%AD%A6%E4%B9%A0%E6%96%87%E6%A1%A3/"/>
+    <id>https://chasencenge.github.io/2020/10/12/UE学习文档/</id>
+    <published>2020-10-12T08:43:46.000Z</published>
+    <updated>2020-10-12T08:46:33.401Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+      <category term="GameDev" scheme="https://chasencenge.github.io/categories/GameDev/"/>
+    
+      <category term="UE4" scheme="https://chasencenge.github.io/categories/GameDev/UE4/"/>
+    
+    
+      <category term="GameDev" scheme="https://chasencenge.github.io/tags/GameDev/"/>
+    
+      <category term="UE4" scheme="https://chasencenge.github.io/tags/UE4/"/>
+    
+  </entry>
   
   <entry>
     <title>实时计算机图形学笔记</title>
@@ -33,9 +56,9 @@
       <category term="GameDev" scheme="https://chasencenge.github.io/categories/%E5%9B%BE%E5%BD%A2%E5%AD%A6/GameDev/"/>
     
     
-      <category term="图形学" scheme="https://chasencenge.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/"/>
-    
       <category term="GameDev" scheme="https://chasencenge.github.io/tags/GameDev/"/>
+    
+      <category term="图形学" scheme="https://chasencenge.github.io/tags/%E5%9B%BE%E5%BD%A2%E5%AD%A6/"/>
     
   </entry>
   
@@ -582,29 +605,6 @@
       <category term="C++" scheme="https://chasencenge.github.io/tags/C/"/>
     
       <category term="Algorithm" scheme="https://chasencenge.github.io/tags/Algorithm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>游戏客户端面经知识点</title>
-    <link href="https://chasencenge.github.io/2020/07/24/%E6%B8%B8%E6%88%8F%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%9D%A2%E7%BB%8F%E7%9F%A5%E8%AF%86%E7%82%B9/"/>
-    <id>https://chasencenge.github.io/2020/07/24/游戏客户端面经知识点/</id>
-    <published>2020-07-24T05:40:54.000Z</published>
-    <updated>2020-07-24T05:43:25.394Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-      <category term="Unity" scheme="https://chasencenge.github.io/categories/Unity/"/>
-    
-      <category term="Unreal" scheme="https://chasencenge.github.io/categories/Unity/Unreal/"/>
-    
-    
-      <category term="Unity" scheme="https://chasencenge.github.io/tags/Unity/"/>
-    
-      <category term="Unreal" scheme="https://chasencenge.github.io/tags/Unreal/"/>
     
   </entry>
   
