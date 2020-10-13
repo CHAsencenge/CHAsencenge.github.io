@@ -128,14 +128,36 @@
       
 
       <section class="article-entry">
-        <h1 id="项目打包"><a href="#项目打包" class="headerlink" title="项目打包"></a>项目打包</h1><h2 id="项目打包注意事项"><a href="#项目打包注意事项" class="headerlink" title="项目打包注意事项"></a>项目打包注意事项</h2><h3 id="启动地图"><a href="#启动地图" class="headerlink" title="启动地图"></a>启动地图</h3><p>构建项目时会从游戏默认地图开始，需要点击project settings — maps &amp; modes 设置game default map</p>
+        <h1 id="项目打包"><a href="#项目打包" class="headerlink" title="项目打包"></a>项目打包</h1><h2 id="项目打包注意事项"><a href="#项目打包注意事项" class="headerlink" title="项目打包注意事项"></a>项目打包注意事项</h2><h3 id="启动地图"><a href="#启动地图" class="headerlink" title="启动地图"></a>启动地图</h3><p>构建项目时会从游戏默认地图开始，需要点击Project Settings — Maps &amp; Modes 设置game default map</p>
 <p><img src="/2020/10/12/UE学习文档/map.png" alt="设置启动地图"></p>
 <h3 id="选择目标平台"><a href="#选择目标平台" class="headerlink" title="选择目标平台"></a>选择目标平台</h3><p><img src="/2020/10/12/UE学习文档/platform.png" alt="设置平台"></p>
-<p>还要记得选择目标硬件(target hardware)</p>
+<p>还要记得选择目标硬件(Target Hardware)</p>
 <h3 id="编辑器查看方式"><a href="#编辑器查看方式" class="headerlink" title="编辑器查看方式"></a>编辑器查看方式</h3><p><img src="/2020/10/12/UE学习文档/editorview.png" alt="选择编辑器视口"></p>
 <h3 id="细化平台性能控制"><a href="#细化平台性能控制" class="headerlink" title="细化平台性能控制"></a>细化平台性能控制</h3><p><img src="/2020/10/12/UE学习文档/deviceprofile.png" alt="查看和修改设备描述"></p>
-<p>打开device profiles以后点击想要修改的设备型号后面的扳手即可对其值进行修改</p>
+<p>打开Device Profiles以后点击想要修改的设备型号后面的扳手即可对其值进行修改</p>
 <p><img src="/2020/10/12/UE学习文档/everydevice.png" alt="对其修改"></p>
+<h2 id="Android设置和打包方式"><a href="#Android设置和打包方式" class="headerlink" title="Android设置和打包方式"></a>Android设置和打包方式</h2><h3 id="设置方式"><a href="#设置方式" class="headerlink" title="设置方式"></a>设置方式</h3><p>寻找UE4 Android Works文件夹，一般默认为C:/Program Files/Epic Games/UE_4_版本/Engine/Extras/Android Works/Win64</p>
+<p>安装后可看到CodeWorks Manager窗口</p>
+<p>在手机端，有时需找到usb driver才能使用，一般连数据线即可</p>
+<p><a href="http://developer.android.com/tools/extras/oem-usb.html" target="_blank" rel="noopener">http://developer.android.com/tools/extras/oem-usb.html</a></p>
+<p>解锁设备时要开启开发者模式，开启usb调试</p>
+<p>在设置主页找到“已连接设备”选择启用文件传输</p>
+<p>在电脑上cmd输入adb devices，如果列出了自己的手机设备名，则准备就绪</p>
+<h3 id="打包方式"><a href="#打包方式" class="headerlink" title="打包方式"></a>打包方式</h3><p>为了更准确的测试，使用Play – Mobile Preview</p>
+<p><img src="/2020/10/12/UE学习文档/MobilePreview.png" alt="模拟移动端测试"></p>
+<p><strong>退出游戏方式：</strong> “~”打开控制台，输入quit game</p>
+<p><strong>确保项目做好准备：</strong></p>
+<p>Settings – Project Settings – Platforms – Android </p>
+<p>页面顶部会有警告称项目尚未对Android完成配置，点击configure now</p>
+<p>设置文件包名称，格式为：com.MyGameCompany.MyCoolGame</p>
+<p>并完成项目命名</p>
+<p>如果要计划使用Google Play服务，向下滚动到Google Play Services并点击Configure Now，以将平台构建到游戏中</p>
+<p><img src="/2020/10/12/UE学习文档/GooglePlayServices.png" alt="计划使用Google Play服务"></p>
+<p><strong>构建到设备：</strong></p>
+<p><img src="/2020/10/12/UE学习文档/toDivice.png" alt="构建到设备"></p>
+<p>测试并部署到自己的设备很方便，如果需要部署到其他设备，需打包</p>
+<p><img src="/2020/10/12/UE学习文档/package.png" alt="打包"></p>
+<p>双击生成的.bat项目可以将其安装到自己的Android设备上</p>
 
       </section>
 
