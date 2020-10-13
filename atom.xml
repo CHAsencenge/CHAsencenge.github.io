@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://chasencenge.github.io/"/>
-  <updated>2020-10-12T08:46:33.401Z</updated>
+  <updated>2020-10-13T00:35:17.367Z</updated>
   <id>https://chasencenge.github.io/</id>
   
   <author>
@@ -21,21 +21,24 @@
     <link href="https://chasencenge.github.io/2020/10/12/UE%E5%AD%A6%E4%B9%A0%E6%96%87%E6%A1%A3/"/>
     <id>https://chasencenge.github.io/2020/10/12/UE学习文档/</id>
     <published>2020-10-12T08:43:46.000Z</published>
-    <updated>2020-10-12T08:46:33.401Z</updated>
+    <updated>2020-10-13T00:35:17.367Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="项目打包"><a href="#项目打包" class="headerlink" title="项目打包"></a>项目打包</h1><h2 id="项目打包注意事项"><a href="#项目打包注意事项" class="headerlink" title="项目打包注意事项"></a>项目打包注意事项</h2><h3 id="启动地图"><a href="#启动地图" class="headerlink" title="启动地图"></a>启动地图</h3><p>构建项目时会从游戏默认地图开始，需要点击project settings — maps &amp; modes 设置game default map</p><p><img src="/2020/10/12/UE学习文档/map.png" alt="设置启动地图"></p><h3 id="选择目标平台"><a href="#选择目标平台" class="headerlink" title="选择目标平台"></a>选择目标平台</h3><p><img src="/2020/10/12/UE学习文档/platform.png" alt="设置平台"></p><p>还要记得选择目标硬件(target hardware)</p><h3 id="编辑器查看方式"><a href="#编辑器查看方式" class="headerlink" title="编辑器查看方式"></a>编辑器查看方式</h3><p><img src="/2020/10/12/UE学习文档/editorview.png" alt="选择编辑器视口"></p><h3 id="细化平台性能控制"><a href="#细化平台性能控制" class="headerlink" title="细化平台性能控制"></a>细化平台性能控制</h3><p><img src="/2020/10/12/UE学习文档/deviceprofile.png" alt="查看和修改设备描述"></p><p>打开device profiles以后点击想要修改的设备型号后面的扳手即可对其值进行修改</p><p><img src="/2020/10/12/UE学习文档/everydevice.png" alt="对其修改"></p>]]></content>
     
     <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;项目打包&quot;&gt;&lt;a href=&quot;#项目打包&quot; class=&quot;headerlink&quot; title=&quot;项目打包&quot;&gt;&lt;/a&gt;项目打包&lt;/h1&gt;&lt;h2 id=&quot;项目打包注意事项&quot;&gt;&lt;a href=&quot;#项目打包注意事项&quot; class=&quot;headerlink&quot; title=&quot;项
+      
     
     </summary>
     
     
       <category term="GameDev" scheme="https://chasencenge.github.io/categories/GameDev/"/>
     
-      <category term="UE4" scheme="https://chasencenge.github.io/categories/GameDev/UE4/"/>
-    
     
       <category term="GameDev" scheme="https://chasencenge.github.io/tags/GameDev/"/>
-    
-      <category term="UE4" scheme="https://chasencenge.github.io/tags/UE4/"/>
     
   </entry>
   
