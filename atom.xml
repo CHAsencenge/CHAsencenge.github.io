@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://chasencenge.github.io/"/>
-  <updated>2020-10-13T08:58:04.024Z</updated>
+  <updated>2020-10-25T09:11:34.919Z</updated>
   <id>https://chasencenge.github.io/</id>
   
   <author>
@@ -17,19 +17,74 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>UE学习文档</title>
-    <link href="https://chasencenge.github.io/2020/10/12/UE%E5%AD%A6%E4%B9%A0%E6%96%87%E6%A1%A3/"/>
-    <id>https://chasencenge.github.io/2020/10/12/UE学习文档/</id>
-    <published>2020-10-12T08:43:46.000Z</published>
-    <updated>2020-10-13T08:58:04.024Z</updated>
+    <title>C++ Lambda表达式</title>
+    <link href="https://chasencenge.github.io/2020/10/25/C-Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
+    <id>https://chasencenge.github.io/2020/10/25/C-Lambda表达式/</id>
+    <published>2020-10-25T09:01:24.000Z</published>
+    <updated>2020-10-25T09:11:34.919Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="项目打包"><a href="#项目打包" class="headerlink" title="项目打包"></a>项目打包</h1><h2 id="项目打包注意事项"><a href="#项目打包注意事项" class="headerlink" title="项目打包注意事项"></a>项目打包注意事项</h2><h3 id="启动地图"><a href="#启动地图" class="headerlink" title="启动地图"></a>启动地图</h3><p>构建项目时会从游戏默认地图开始，需要点击Project Settings — Maps &amp; Modes 设置game default map</p><p><img src="/2020/10/12/UE学习文档/map.png" alt="设置启动地图"></p><h3 id="选择目标平台"><a href="#选择目标平台" class="headerlink" title="选择目标平台"></a>选择目标平台</h3><p><img src="/2020/10/12/UE学习文档/platform.png" alt="设置平台"></p><p>还要记得选择目标硬件(Target Hardware)</p><h3 id="编辑器查看方式"><a href="#编辑器查看方式" class="headerlink" title="编辑器查看方式"></a>编辑器查看方式</h3><p><img src="/2020/10/12/UE学习文档/editorview.png" alt="选择编辑器视口"></p><h3 id="细化平台性能控制"><a href="#细化平台性能控制" class="headerlink" title="细化平台性能控制"></a>细化平台性能控制</h3><p><img src="/2020/10/12/UE学习文档/deviceprofile.png" alt="查看和修改设备描述"></p><p>打开Device Profiles以后点击想要修改的设备型号后面的扳手即可对其值进行修改</p><p><img src="/2020/10/12/UE学习文档/everydevice.png" alt="对其修改"></p><h2 id="Android设置和打包方式"><a href="#Android设置和打包方式" class="headerlink" title="Android设置和打包方式"></a>Android设置和打包方式</h2><h3 id="设置方式"><a href="#设置方式" class="headerlink" title="设置方式"></a>设置方式</h3><p>寻找UE4 Android Works文件夹，一般默认为C:/Program Files/Epic Games/UE_4_版本/Engine/Extras/Android Works/Win64</p><p>安装后可看到CodeWorks Manager窗口</p><p>在手机端，有时需找到usb driver才能使用，一般连数据线即可</p><p><a href="http://developer.android.com/tools/extras/oem-usb.html" target="_blank" rel="noopener">http://developer.android.com/tools/extras/oem-usb.html</a></p><p>解锁设备时要开启开发者模式，开启usb调试</p><p>在设置主页找到“已连接设备”选择启用文件传输</p><p>在电脑上cmd输入adb devices，如果列出了自己的手机设备名，则准备就绪</p><h3 id="打包方式"><a href="#打包方式" class="headerlink" title="打包方式"></a>打包方式</h3><p>为了更准确的测试，使用Play – Mobile Preview</p><p><img src="/2020/10/12/UE学习文档/MobilePreview.png" alt="模拟移动端测试"></p><p><strong>退出游戏方式：</strong> “~”打开控制台，输入quit game</p><p><strong>确保项目做好准备：</strong></p><p>Settings – Project Settings – Platforms – Android </p><p>页面顶部会有警告称项目尚未对Android完成配置，点击configure now</p><p>设置文件包名称，格式为：com.MyGameCompany.MyCoolGame</p><p>并完成项目命名</p><p>如果要计划使用Google Play服务，向下滚动到Google Play Services并点击Configure Now，以将平台构建到游戏中</p><p><img src="/2020/10/12/UE学习文档/GooglePlayServices.png" alt="计划使用Google Play服务"></p><p><strong>构建到设备：</strong></p><p><img src="/2020/10/12/UE学习文档/toDivice.png" alt="构建到设备"></p><p>测试并部署到自己的设备很方便，如果需要部署到其他设备，需打包</p><p><img src="/2020/10/12/UE学习文档/package.png" alt="打包"></p><p>双击生成的.bat项目可以将其安装到自己的Android设备上</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="Lambda申明方式"><a href="#Lambda申明方式" class="headerlink" title="Lambda申明方式"></a>Lambda申明方式</h1><p>Lambda表达式允许在函数内部创建一个匿名函数</p><h3 id="声明方式：-captrues-params-gt-ret-Statements"><a href="#声明方式：-captrues-params-gt-ret-Statements" class="headerlink" title="声明方式：[captrues(params) -&gt;ret {Statements};"></a>声明方式：[captrues(params) -&gt;ret {Statements};</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">auto</span> fadd = [](<span class="hljs-keyword">int</span> a, <span class="hljs-keyword">int</span> b)<br>&#123;<br><span class="hljs-keyword">return</span> a + b;<br>&#125;; <span class="hljs-comment">// 注意最后有分号</span><br></code></pre></td></tr></table></figure><p>[]表示开始定定义Lambda表达式，()里面是函数的参数 ，{}里面是函数体</p><h3 id="显示指明返回值："><a href="#显示指明返回值：" class="headerlink" title="显示指明返回值："></a>显示指明返回值：</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">auto</span> fadd = [](<span class="hljs-keyword">int</span> a, <span class="hljs-keyword">int</span> b) -&gt; ret<br>&#123;<br><span class="hljs-keyword">return</span> a + b;<br>&#125;;<br></code></pre></td></tr></table></figure><h1 id="Lambda表达式的变量截取"><a href="#Lambda表达式的变量截取" class="headerlink" title="Lambda表达式的变量截取"></a>Lambda表达式的变量截取</h1><p>[] 不截取任何变量</p><p>[&amp;] 截取外部作用域的所有变量，并作为引用在函数体中使用</p><p>[=] 截取外部作用域中的所有变量，并拷贝一份在函数体中使用</p><p>[=, &amp;foo] 截取外部作用域中所有变量并拷贝一份在函数体中使用，但对foo变量使用引用</p><p>[bar] 截取bar变量并拷贝一份在函数体使用，不截取其他变量</p><p>[this] 截取当前类中的指针</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h1 id=&quot;项目打包&quot;&gt;&lt;a href=&quot;#项目打包&quot; class=&quot;headerlink&quot; title=&quot;项目打包&quot;&gt;&lt;/a&gt;项目打包&lt;/h1&gt;&lt;h2 id=&quot;项目打包注意事项&quot;&gt;&lt;a href=&quot;#项目打包注意事项&quot; class=&quot;headerlink&quot; title=&quot;项
+        &lt;h1 id=&quot;Lambda申明方式&quot;&gt;&lt;a href=&quot;#Lambda申明方式&quot; class=&quot;headerlink&quot; title=&quot;Lambda申明方式&quot;&gt;&lt;/a&gt;Lambda申明方式&lt;/h1&gt;&lt;p&gt;Lambda表达式允许在函数内部创建一个匿名函数&lt;/p&gt;
+&lt;h3 id=&quot;声
+      
+    
+    </summary>
+    
+    
+      <category term="C++" scheme="https://chasencenge.github.io/categories/C/"/>
+    
+    
+      <category term="C++" scheme="https://chasencenge.github.io/tags/C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>双指针专题</title>
+    <link href="https://chasencenge.github.io/2020/10/16/%E5%8F%8C%E6%8C%87%E9%92%88%E4%B8%93%E9%A2%98/"/>
+    <id>https://chasencenge.github.io/2020/10/16/双指针专题/</id>
+    <published>2020-10-15T16:08:03.000Z</published>
+    <updated>2020-10-15T16:41:39.425Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="16-最接近的三数之和"><a href="#16-最接近的三数之和" class="headerlink" title="16. 最接近的三数之和"></a>16. 最接近的三数之和</h4><p>相对于暴力解法，双指针能够通过首尾指针和合理移动，减少不合理情况的遍历，即a+b+c &lt; target，则c向左移动，a+b+c &gt; target，b向右移动</p><p>进一步可以总结出：<strong>若想要使两数之和逼近某一个目标值</strong>，可使用双指针对已排序数组进行查找</p><p><strong>对已排序数组的遍历时跳过重复值</strong>的通用优化：</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">int</span> p0 = p + <span class="hljs-number">1</span>;<br><span class="hljs-keyword">while</span>(nums[p0] == nums[p] &amp;&amp; p0 &lt; q)<br>    p0++;<br></code></pre></td></tr></table></figure><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">threeSumClosest</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums, <span class="hljs-keyword">int</span> target)</span> </span>&#123;<br>    <span class="hljs-keyword">int</span> ans = <span class="hljs-number">1e7</span>;<br>    <span class="hljs-keyword">int</span> n = nums.size();<br>    sort(nums.begin(), nums.end());<br>    <span class="hljs-keyword">int</span> sum;<br>    <span class="hljs-keyword">auto</span> update = [&amp;](<span class="hljs-keyword">int</span> cur)<br>    &#123;<br>        <span class="hljs-keyword">if</span>(<span class="hljs-built_in">abs</span>(cur - target) &lt; <span class="hljs-built_in">abs</span>(ans - target))<br>        &#123;<br>            ans = cur;<br>        &#125;<br>    &#125;;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n - <span class="hljs-number">2</span>; i++)<br>    &#123;<br>        <span class="hljs-keyword">if</span>(i &gt; <span class="hljs-number">0</span> &amp;&amp; nums[i] == nums[i<span class="hljs-number">-1</span>])<br>            <span class="hljs-keyword">continue</span>;<br>        <span class="hljs-keyword">int</span> p = i + <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">int</span> q = n - <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">while</span>(p &lt; q)<br>        &#123;<br>            sum = nums[i] + nums[p] + nums[q];<br>            <span class="hljs-keyword">if</span>(sum == target)<br>            &#123;<br>                <span class="hljs-keyword">return</span> target;<br>            &#125;<br>            update(sum);<br>            <span class="hljs-keyword">if</span>(sum &lt; target)<br>            &#123;<br>                <span class="hljs-keyword">int</span> p0 = p + <span class="hljs-number">1</span>;<br>                <span class="hljs-keyword">while</span>(nums[p0] == nums[p] &amp;&amp; p0 &lt; q)<br>                    p0++;<br>                p = p0;<br>            &#125;<br>            <span class="hljs-keyword">if</span>(sum &gt; target)<br>            &#123;<br>                <span class="hljs-keyword">int</span> q0 = q - <span class="hljs-number">1</span>;<br>                <span class="hljs-keyword">while</span>(q0 &gt; p &amp;&amp; nums[q0] == nums[q])<br>                &#123;<br>                    q0--;<br>                &#125;<br>                q = q0;<br>            &#125;<br><br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> ans;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;16-最接近的三数之和&quot;&gt;&lt;a href=&quot;#16-最接近的三数之和&quot; class=&quot;headerlink&quot; title=&quot;16. 最接近的三数之和&quot;&gt;&lt;/a&gt;16. 最接近的三数之和&lt;/h4&gt;&lt;p&gt;相对于暴力解法，双指针能够通过首尾指针和合理移动，减少不合理情况
+      
+    
+    </summary>
+    
+    
+      <category term="Algorithm" scheme="https://chasencenge.github.io/categories/Algorithm/"/>
+    
+    
+      <category term="Algorithm" scheme="https://chasencenge.github.io/tags/Algorithm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>UE学习文档</title>
+    <link href="https://chasencenge.github.io/2020/10/12/UE%E5%AD%A6%E4%B9%A0%E6%96%87%E6%A1%A3/"/>
+    <id>https://chasencenge.github.io/2020/10/12/UE学习文档/</id>
+    <published>2020-10-12T08:43:46.000Z</published>
+    <updated>2020-10-18T09:07:57.581Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="UE4源码编译"><a href="#UE4源码编译" class="headerlink" title="UE4源码编译"></a>UE4源码编译</h1><p>git clone源码</p><p>运行Setup.bat下载依赖文件</p><p>运行GenerateProjectFiles.bat生成工程文件</p><p>运行UE.sln</p><p>在vs打开的工程中，最上方的解决方案配置设置为Development Editor，启动项目设置为UE4，平台WIN64，右键UE4 – Build进行编译</p><p>编译完成后按F5在vs中启动</p><p><strong>注意</strong></p><p>生成工程文件前可能会报错，根据报错信息可判断是否缺少相应的.NET Framework，如果缺少在vs installer中选中相应版本的vs – 修改 – 添加相应的.NET工具</p><p>Epic Game Launcher中不能识别非公版的引擎，向编译版的引擎创建的工程中添加保管库中的素材时，点击添加到工程–显示所有工程–为相应工程手动选择对应的版本号即可添加素材（因为又编译版引擎创建的工程在Launcher中显示的版本标识为“其他”，不选择相应的版本号则素材或插件都会显示不兼容）</p><h1 id="项目打包"><a href="#项目打包" class="headerlink" title="项目打包"></a>项目打包</h1><h2 id="项目打包注意事项"><a href="#项目打包注意事项" class="headerlink" title="项目打包注意事项"></a>项目打包注意事项</h2><h3 id="启动地图"><a href="#启动地图" class="headerlink" title="启动地图"></a>启动地图</h3><p>构建项目时会从游戏默认地图开始，需要点击Project Settings — Maps &amp; Modes 设置game default map</p><p><img src="/2020/10/12/UE学习文档/map.png" alt="设置启动地图"></p><h3 id="选择目标平台"><a href="#选择目标平台" class="headerlink" title="选择目标平台"></a>选择目标平台</h3><p><img src="/2020/10/12/UE学习文档/platform.png" alt="设置平台"></p><p>还要记得选择目标硬件(Target Hardware)</p><h3 id="编辑器查看方式"><a href="#编辑器查看方式" class="headerlink" title="编辑器查看方式"></a>编辑器查看方式</h3><p><img src="/2020/10/12/UE学习文档/editorview.png" alt="选择编辑器视口"></p><h3 id="细化平台性能控制"><a href="#细化平台性能控制" class="headerlink" title="细化平台性能控制"></a>细化平台性能控制</h3><p><img src="/2020/10/12/UE学习文档/deviceprofile.png" alt="查看和修改设备描述"></p><p>打开Device Profiles以后点击想要修改的设备型号后面的扳手即可对其值进行修改</p><p><img src="/2020/10/12/UE学习文档/everydevice.png" alt="对其修改"></p><h2 id="Android设置和打包方式"><a href="#Android设置和打包方式" class="headerlink" title="Android设置和打包方式"></a>Android设置和打包方式</h2><h3 id="设置方式"><a href="#设置方式" class="headerlink" title="设置方式"></a>设置方式</h3><p>寻找UE4 Android Works文件夹，一般默认为C:/Program Files/Epic Games/UE_4_版本/Engine/Extras/Android Works/Win64</p><p>安装后可看到CodeWorks Manager窗口</p><p>在手机端，有时需找到usb driver才能使用，一般连数据线即可</p><p><a href="http://developer.android.com/tools/extras/oem-usb.html" target="_blank" rel="noopener">http://developer.android.com/tools/extras/oem-usb.html</a></p><p>解锁设备时要开启开发者模式，开启usb调试</p><p>在设置主页找到“已连接设备”选择启用文件传输</p><p>在电脑上cmd输入adb devices，如果列出了自己的手机设备名，则准备就绪</p><p><strong>注意：</strong></p><p>手机开发者选项中不但需开启USB调试，还打开USB安装，允许通过USB安装应用</p><h3 id="打包方式"><a href="#打包方式" class="headerlink" title="打包方式"></a>打包方式</h3><p>为了更准确的测试，使用Play – Mobile Preview</p><p><img src="/2020/10/12/UE学习文档/MobilePreview.png" alt="模拟移动端测试"></p><p><strong>退出游戏方式：</strong> “~”打开控制台，输入quit game</p><p><strong>确保项目做好准备：</strong></p><p>Settings – Project Settings – Platforms – Android </p><p>页面顶部会有警告称项目尚未对Android完成配置，点击configure now</p><p>设置文件包名称，格式为：com.MyGameCompany.MyCoolGame</p><p>并完成项目命名</p><p>如果要计划使用Google Play服务，向下滚动到Google Play Services并点击Configure Now，以将平台构建到游戏中</p><p><img src="/2020/10/12/UE学习文档/GooglePlayServices.png" alt="计划使用Google Play服务"></p><p><strong>构建到设备：</strong></p><p><img src="/2020/10/12/UE学习文档/toDivice.png" alt="构建到设备"></p><p>测试并部署到自己的设备很方便，如果需要部署到其他设备，需打包</p><p><img src="/2020/10/12/UE学习文档/package.png" alt="打包"></p><p>双击生成的.bat项目可以将其安装到自己的Android设备上</p><p><strong>注意</strong></p><p>记得在项目设置 – Android勾选将游戏数据打包至.apk中</p><h1 id="UE4游戏框架"><a href="#UE4游戏框架" class="headerlink" title="UE4游戏框架"></a>UE4游戏框架</h1><p> 游戏架构的基类是GameMode，设置游戏规则，也分则处理生成玩家</p><h3 id="Pawn"><a href="#Pawn" class="headerlink" title="Pawn"></a>Pawn</h3><p>作为世界中的一个“代理”Actor，可由控制器处理 ，可接收输入并且可执行各种各样类似于玩家的动作（但不假定Pawn就是类人的）</p><h3 id="Character"><a href="#Character" class="headerlink" title="Character"></a>Character</h3><p>类人的Pawn，本身默认具有用于碰撞的CapsuleComponent（胶囊体组件）和CharacterMovementComponent（角色运动组件）；可进行基本的拟人运动、平滑地在网格上复制运动，并具有一些动画相关的功能</p><h3 id="控制Pawn"><a href="#控制Pawn" class="headerlink" title="控制Pawn"></a>控制Pawn</h3><p>Controller负责管理Pawn的Actor，一般分为PlayerController和AIController，控制器可以“具有”一个Pawn并控制它</p><h3 id="HUD"><a href="#HUD" class="headerlink" title="HUD"></a>HUD</h3><p>平视显示信息</p><h3 id="GameMode"><a href="#GameMode" class="headerlink" title="GameMode"></a>GameMode</h3><p>游戏的定义，包括像游戏规则和获胜条件这样的内容；仅存在于服务器上，一般在游戏过程中不会有太多数据改变，并且一定不会具有客户端需要的临时数据</p><h3 id="GameState"><a href="#GameState" class="headerlink" title="GameState"></a>GameState</h3><p>包含游戏状态，包括像关联玩家的列表、分数、象棋游戏中的棋子位置或在开放世界中已经完成的任务列表</p><p>存在于服务器和所有客户端上，可以自由地进行复制来保持同步</p><h3 id="PlayerState"><a href="#PlayerState" class="headerlink" title="PlayerState"></a>PlayerState</h3><p>表示游戏中一个参与者的状态（AI没有PlayerState），适合包含的实例数据有：玩家姓名，分数，多人在线竞技场比赛中的级别，夺旗模式游戏中玩家当前是否占领旗帜</p><p>所有玩家的PlayerStates在所有的机器上都存在，并且可以自由复制包持同步</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;UE4源码编译&quot;&gt;&lt;a href=&quot;#UE4源码编译&quot; class=&quot;headerlink&quot; title=&quot;UE4源码编译&quot;&gt;&lt;/a&gt;UE4源码编译&lt;/h1&gt;&lt;p&gt;git clone源码&lt;/p&gt;
+&lt;p&gt;运行Setup.bat下载依赖文件&lt;/p&gt;
+&lt;p&gt;运行Gene
       
     
     </summary>
@@ -530,71 +585,6 @@
         &lt;p&gt;&lt;strong&gt;Problem Description&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;一开始有 n个数，他们按 1…n的顺序排列，要求交换最多 m对数字（同一个数字可以参与多次交换），使得逆序对数目最大。&lt;/p&gt;
 &lt;p&gt;对于一个序列 A，如果存在正整数 i, j使得1≤&lt;
-      
-    
-    </summary>
-    
-    
-      <category term="Algorithm" scheme="https://chasencenge.github.io/categories/Algorithm/"/>
-    
-      <category term="C++" scheme="https://chasencenge.github.io/categories/Algorithm/C/"/>
-    
-    
-      <category term="C++" scheme="https://chasencenge.github.io/tags/C/"/>
-    
-      <category term="Algorithm" scheme="https://chasencenge.github.io/tags/Algorithm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>百度之星2020---1002.Game</title>
-    <link href="https://chasencenge.github.io/2020/07/26/%E7%99%BE%E5%BA%A6%E4%B9%8B%E6%98%9F2020-1002-Game/"/>
-    <id>https://chasencenge.github.io/2020/07/26/百度之星2020-1002-Game/</id>
-    <published>2020-07-26T10:04:18.000Z</published>
-    <updated>2020-07-26T10:27:47.180Z</updated>
-    
-    <content type="html"><![CDATA[<p><strong>Problem Description</strong></p><p><em>Alice</em> 和 <em>Bob</em> 在玩游戏。</p><p>桌面上有两堆金币，少的那堆有 x 个金币，多的那堆有 2x 个金币。</p><p>假设金币可以被无限细分。<em>Alice</em> 和 <em>Bob</em> 事先都不知道 x是几，但是他们都知道 x是一个 (0, 1]之间均匀分布的随机实数。</p><p><em>Alice</em> 会等概率的被分配到其中的一堆金币，<em>Bob</em> 会得到另一堆。x的值和两堆金币的分配是相互独立的。</p><p>拿到金币以后，<em>Alice</em> 会马上数清自己拿到多少金币。然后 <em>Alice</em> 可以选择是否和 <em>Bob</em> 那堆换。</p><p>给定 <em>Alice</em> 拿到的金币数目，请问 <em>Alice</em> 要不要交换，使得她期望能得到的金币数目更多？</p><p>如果交换期望得到的金币数目多于不交换期望得到的金币数目，输出交换，否则不交换。</p><p><strong>Input</strong></p><p>第一行一个正整数test (1≤test≤200000) 表示数据组数。</p><p>接下来每行一个小数p(0&lt;p≤2)，p最多保留五位小数，表示 <em>Alice</em> 拿到的金币数目。</p><p><strong>Output</strong></p><p>对于每组数据，输出 <em>Yes</em> 表示需要交换，输出 <em>No</em> 表示不要交换。</p><p><strong>Sample Input</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs undefined">1<br>1.00000<br></code></pre></td></tr></table></figure><p><strong>Sample Output</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined">Yes<br></code></pre></td></tr></table></figure><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;vector&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;algorithm&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;</span></span><br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;<br><br><span class="hljs-function"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">string</span>&gt; <span class="hljs-title">compute</span><span class="hljs-params">()</span><br></span>&#123;<br>    <span class="hljs-keyword">int</span> groupNum;<br>    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cin</span> &gt;&gt; groupNum;<br>    <span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">string</span>&gt; output;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; groupNum; i++)<br>    &#123;<br>        <span class="hljs-keyword">float</span> num;<br>        <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cin</span> &gt;&gt; num;<br>        <span class="hljs-comment">//float exception;</span><br>        <span class="hljs-keyword">if</span> (num &gt; <span class="hljs-number">1</span>)<br>        &#123;<br>            output.push_back(<span class="hljs-string">"No"</span>);<br>        &#125;<br>        <span class="hljs-keyword">else</span><br>        &#123;<br>            <span class="hljs-keyword">if</span> (<span class="hljs-number">2</span> * num * <span class="hljs-number">0.5</span> + num / <span class="hljs-number">2</span> * <span class="hljs-number">0.5</span> &gt; num)<br>            &#123;<br>                output.push_back(<span class="hljs-string">"Yes"</span>);<br>            &#125;<br>            <span class="hljs-keyword">else</span><br>            &#123;<br>                output.push_back(<span class="hljs-string">"No"</span>);<br>            &#125;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> output;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span><br></span>&#123;<br>    <span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">string</span>&gt; res = compute();<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; res.size(); i++)<br>    &#123;<br>        <span class="hljs-comment">//cout &lt;&lt; res[i];</span><br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%s\n"</span>, res[i].c_str());<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&lt;strong&gt;Problem Description&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;em&gt;Alice&lt;/em&gt; 和 &lt;em&gt;Bob&lt;/em&gt; 在玩游戏。&lt;/p&gt;
-&lt;p&gt;桌面上有两堆金币，少的那堆有 x 个金币，多的那堆有 2x 个金币。&lt;/p&gt;
-&lt;p&gt;假设金币可以被无
-      
-    
-    </summary>
-    
-    
-      <category term="Algorithm" scheme="https://chasencenge.github.io/categories/Algorithm/"/>
-    
-      <category term="C++" scheme="https://chasencenge.github.io/categories/Algorithm/C/"/>
-    
-    
-      <category term="C++" scheme="https://chasencenge.github.io/tags/C/"/>
-    
-      <category term="Algorithm" scheme="https://chasencenge.github.io/tags/Algorithm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>百度之星2020---1001.Discount</title>
-    <link href="https://chasencenge.github.io/2020/07/26/%E7%99%BE%E5%BA%A6%E4%B9%8B%E6%98%9F2020-1001-Discount/"/>
-    <id>https://chasencenge.github.io/2020/07/26/百度之星2020-1001-Discount/</id>
-    <published>2020-07-26T10:03:53.000Z</published>
-    <updated>2020-07-26T10:21:02.628Z</updated>
-    
-    <content type="html"><![CDATA[<p><strong>Problem Description</strong></p><p>学皇来到了一个餐馆吃饭。他觉得这家餐馆很好吃，于是就想办个会员。</p><p>一共有 n种会员充值卡套餐，假设学皇这餐饭的消费为 a元，选择第 i种套餐，需要充值 b[i] * a 的钱，这次吃饭可以打 c[i]×10 折，由充值的钱支付（即这次吃饭只需要从充值金额中扣除 a×<em>c</em>[i] 元）。以后用剩余的充值的钱吃饭不再打折。</p><p>请问学皇应该选择哪个套餐（必须选择恰好一个套餐），使得优惠的比例最大？</p><p>优惠比例的定义是把充的钱用完以后，(本来应该付的钱 - 实际付的钱) / 本来应该付的钱。在这个题目里，实际付的钱就是这次充值的花费。</p><p><strong>Input</strong></p><p>第一行一个整数 test(1≤test≤100) 表示数据组数。</p><p>对于每组数据，第一行一个正整数 n(1≤n≤100) 表示套餐的数目。</p><p>接下来 n行，每行一个正整数 b[i]和一个小数 c[i]。</p><p><strong>Output</strong></p><p>对于每组数据，输出一个五位小数表示最大的优惠比例。如果小数点后超过五位，四舍五入到五位。</p><p><strong>Sample Input</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs undefined">1<br>2<br>2 0.5<br>3 0.1<br></code></pre></td></tr></table></figure><p><strong>Sample Output</strong></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs undefined">0.23077<br><br>样例解释<br>对于第一种套餐，优惠比例为 0.5a / (2a + 0.5a） = 0.2；<br>对于第二种套餐，优惠比例为 0.9a / (3a + 0.9a） = 9 / 39；<br></code></pre></td></tr></table></figure><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;vector&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span><span class="hljs-meta-string">&lt;algorithm&gt;</span></span><br><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;<br><br><span class="hljs-function"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">float</span>&gt; <span class="hljs-title">compute</span><span class="hljs-params">()</span> <br></span>&#123;<br>    <span class="hljs-keyword">int</span> groupNum;<br>    <span class="hljs-built_in">cin</span> &gt;&gt; groupNum;<br>    <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">float</span>&gt; output;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; groupNum; i++)<br>    &#123;<br>        <span class="hljs-keyword">float</span> res = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">int</span> choiseNum;<br>        <span class="hljs-built_in">cin</span> &gt;&gt; choiseNum;<br>        <span class="hljs-comment">//cout &lt;&lt; "choiseNum:" &lt;&lt; choiseNum &lt;&lt; endl;</span><br>        <span class="hljs-keyword">int</span> b;<br>        <span class="hljs-keyword">float</span> c;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; choiseNum; j++)<br>        &#123;<br>            <span class="hljs-built_in">cin</span> &gt;&gt; b;<br>            <span class="hljs-comment">//cout &lt;&lt; "b:" &lt;&lt; b &lt;&lt; endl;</span><br>            <span class="hljs-built_in">cin</span> &gt;&gt; c;<br>            <span class="hljs-comment">//cout &lt;&lt; "c:" &lt;&lt; c &lt;&lt; endl;</span><br>            <span class="hljs-keyword">float</span> temp = (<span class="hljs-number">1</span> - c) / (b + <span class="hljs-number">1</span> - c);<br>            res = max(res, temp);<br>        &#125;<br>        output.push_back(res);<br>    &#125;<br>    <span class="hljs-keyword">return</span> output;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span><br></span>&#123;<br>    <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">float</span>&gt; res = compute();<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; res.size(); i++)<br>    &#123;<br>        <span class="hljs-comment">//cout &lt;&lt; res[i];</span><br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">"%.5f\n"</span>, res[i]);<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&lt;strong&gt;Problem Description&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;学皇来到了一个餐馆吃饭。他觉得这家餐馆很好吃，于是就想办个会员。&lt;/p&gt;
-&lt;p&gt;一共有 n种会员充值卡套餐，假设学皇这餐饭的消费为 a元，选择第 i种套餐，需要充值 b[i] * a 的
       
     
     </summary>

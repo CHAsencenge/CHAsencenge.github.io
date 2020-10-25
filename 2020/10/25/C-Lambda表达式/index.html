@@ -22,7 +22,7 @@
 
   
 
-  <title>Archives | 解字</title>
+  <title>C++ Lambda表达式 | 解字</title>
 
   
 
@@ -76,7 +76,16 @@
 
     
 <!-- header container -->
-<header class="header-container">
+<header class="header-container post">
+
+  
+  
+
+  
+  
+
+  
+  
 
   
   
@@ -84,21 +93,23 @@
   
   
     <div class="header-content">
-      <div class="post-image" style="background-image: url(https://chasencenge.github.io/links/Asset/cover44.jpg)"></div>
+      <div class="post-image" style="background-image: url(cover43.jpg)"></div>
       <div class="post-text">
-        <h1 class="title-wrap">归档</h1>
-        <h2 class="title-sub-wrap">共有46篇文章</h2>
+        <div class="type-wrap">
+          <a class="article-category-link" href="/categories/C/">C++</a>
+        </div>
+        <h1 class="title-wrap">C++ Lambda表达式</h1>
+        <h2 class="title-sub-wrap">
+          <strong>CHAsencenge</strong>
+          <span>发布于</span>
+          
+  <a href="javascript:;" class="article-date">
+    <time datetime="2020-10-25T09:01:24.000Z" itemprop="datePublished">2020-10-25</time>
+  </a>
+
+        </h2>
       </div>
     </div>
-  
-
-  
-  
-
-  
-  
-
-  
   
 
   
@@ -106,277 +117,74 @@
 
   </header>
 
-    <!-- 归档 -->
+    <!-- 文章 -->
 
-<!-- post list container -->
-<div class="body-container float">
-  <div class="content-container article-list">
-    <div class="card-container card-articles">
-      <div class="card-wrap">
+<!-- 文章内容 -->
+
+<div class="body-container">
+  <article class="content-container article-container">
+    <div class="article-content">
+      
+      
+
+      <section class="article-entry">
+        <h1 id="Lambda申明方式"><a href="#Lambda申明方式" class="headerlink" title="Lambda申明方式"></a>Lambda申明方式</h1><p>Lambda表达式允许在函数内部创建一个匿名函数</p>
+<h3 id="声明方式：-captrues-params-gt-ret-Statements"><a href="#声明方式：-captrues-params-gt-ret-Statements" class="headerlink" title="声明方式：[captrues(params) -&gt;ret {Statements};"></a>声明方式：[captrues(params) -&gt;ret {Statements};</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">auto</span> fadd = [](<span class="hljs-keyword">int</span> a, <span class="hljs-keyword">int</span> b)<br>&#123;<br>	<span class="hljs-keyword">return</span> a + b;<br>&#125;; <span class="hljs-comment">// 注意最后有分号</span><br></code></pre></td></tr></table></figure>
+
+<p>[]表示开始定定义Lambda表达式，()里面是函数的参数 ，{}里面是函数体</p>
+<h3 id="显示指明返回值："><a href="#显示指明返回值：" class="headerlink" title="显示指明返回值："></a>显示指明返回值：</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">auto</span> fadd = [](<span class="hljs-keyword">int</span> a, <span class="hljs-keyword">int</span> b) -&gt; ret<br>&#123;<br>	<span class="hljs-keyword">return</span> a + b;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h1 id="Lambda表达式的变量截取"><a href="#Lambda表达式的变量截取" class="headerlink" title="Lambda表达式的变量截取"></a>Lambda表达式的变量截取</h1><p>[] 不截取任何变量</p>
+<p>[&amp;] 截取外部作用域的所有变量，并作为引用在函数体中使用</p>
+<p>[=] 截取外部作用域中的所有变量，并拷贝一份在函数体中使用</p>
+<p>[=, &amp;foo] 截取外部作用域中所有变量并拷贝一份在函数体中使用，但对foo变量使用引用</p>
+<p>[bar] 截取bar变量并拷贝一份在函数体使用，不截取其他变量</p>
+<p>[this] 截取当前类中的指针</p>
+
+      </section>
+
+      <section class="article-footer">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/">#C++</a></li></ul>
+      </section>
+
+      <section class="article-navs">
         
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover20.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/08/24/剑指offer/" itemprop="url"></a>
-              
-              <h2 class="article-title">剑指offer</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/08/24/剑指offer/" class="article-date">
-    <time datetime="2020-08-24T06:51:21.000Z" itemprop="datePublished">2020-08-24</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/C/">C++</a><a class="article-category-link" href="/categories/C/Algorithm/">Algorithm</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover29.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/08/18/dp专题/" itemprop="url"></a>
-              
-              <h2 class="article-title">dp专题</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/08/18/dp专题/" class="article-date">
-    <time datetime="2020-08-18T07:54:15.000Z" itemprop="datePublished">2020-08-18</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Dynamic-Programming/">Dynamic Programming</a><a class="article-category-link" href="/categories/Dynamic-Programming/C/">C++</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover33.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/08/03/LeetCode每日刷题/" itemprop="url"></a>
-              
-              <h2 class="article-title">LeetCode每日刷题</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/08/03/LeetCode每日刷题/" class="article-date">
-    <time datetime="2020-08-03T15:29:34.000Z" itemprop="datePublished">2020-08-03</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/C/">C++</a><a class="article-category-link" href="/categories/C/Algorithm/">Algorithm</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover32.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/08/03/LeetCode-top刷题/" itemprop="url"></a>
-              
-              <h2 class="article-title">LeetCode top100刷题</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/08/03/LeetCode-top刷题/" class="article-date">
-    <time datetime="2020-08-03T15:15:27.000Z" itemprop="datePublished">2020-08-03</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/C/">C++</a><a class="article-category-link" href="/categories/C/Algorithm/">Algorithm</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover31.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/08/02/LeetCode周赛/" itemprop="url"></a>
-              
-              <h2 class="article-title">LeetCode200周赛</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/08/02/LeetCode周赛/" class="article-date">
-    <time datetime="2020-08-02T14:18:15.000Z" itemprop="datePublished">2020-08-02</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/C/">C++</a><a class="article-category-link" href="/categories/C/Algorithm/">Algorithm</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover32.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/08/01/LeetCode广度优先搜索/" itemprop="url"></a>
-              
-              <h2 class="article-title">LeetCode广度优先搜索</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/08/01/LeetCode广度优先搜索/" class="article-date">
-    <time datetime="2020-08-01T10:13:29.000Z" itemprop="datePublished">2020-08-01</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/C/">C++</a><a class="article-category-link" href="/categories/C/Algorithm/">Algorithm</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover34.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/08/01/字节夏令营20游戏程序笔试题/" itemprop="url"></a>
-              
-              <h2 class="article-title">字节夏令营20游戏程序笔试题</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/08/01/字节夏令营20游戏程序笔试题/" class="article-date">
-    <time datetime="2020-08-01T03:42:48.000Z" itemprop="datePublished">2020-08-01</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a><a class="article-category-link" href="/categories/Algorithm/C/">C++</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover6.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/31/网易20秋招Unity工程师笔试编程题/" itemprop="url"></a>
-              
-              <h2 class="article-title">网易20秋招Unity工程师笔试编程题</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/31/网易20秋招Unity工程师笔试编程题/" class="article-date">
-    <time datetime="2020-07-31T14:25:33.000Z" itemprop="datePublished">2020-07-31</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a><a class="article-category-link" href="/categories/Algorithm/C/">C++</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover30.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/27/Pyplot绘图/" itemprop="url"></a>
-              
-              <h2 class="article-title">Pyplot绘图</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/27/Pyplot绘图/" class="article-date">
-    <time datetime="2020-07-27T12:56:31.000Z" itemprop="datePublished">2020-07-27</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Python/">Python</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item large img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover15.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/26/百度之星2020-1003-Permutation/" itemprop="url"></a>
-              
-              <h2 class="article-title">百度之星2020---1003.Permutation</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/26/百度之星2020-1003-Permutation/" class="article-date">
-    <time datetime="2020-07-26T10:04:53.000Z" itemprop="datePublished">2020-07-26</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a><a class="article-category-link" href="/categories/Algorithm/C/">C++</a>
-              </div>
-            </article>
-          </div>
-        
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- page container -->
-
-  <nav class="page-container">
+<nav class="card-container card-article-nav">
+  <div class="card-wrap">
     
-    <a class="extend prev" rel="prev" href="/archives/2020/">ʚ</a><a class="page-number" href="/archives/2020/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2020/page/3/">3</a><a class="page-number" href="/archives/2020/page/4/">4</a><a class="extend next" rel="next" href="/archives/2020/page/3/">ɞ</a>
-  </nav>
+    
+      <div id="article-nav-older" class="card-item img">
+        <article>
+          
+            <div class="card-cover" style="background-image: url(cover56.jpg)"></div>
+          
+          <a class="card-link article-nav-link" href="/2020/10/16/双指针专题/"></a>
+          <strong class="article-nav-caption">Older</strong>
+          <p class="article-nav-title">
+            
+              双指针专题
+            
+          </p>
+        </article>
+      </div>
+    
+  </div>
+</nav>
+
+      </section>
+
+      
+
+  
+  
+
+  
+  
 
 
+    </div>
+  </article>
+</div>
 
     <!-- footer container -->
 <footer id="footer" class="footer">

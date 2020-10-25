@@ -128,7 +128,16 @@
       
 
       <section class="article-entry">
-        <h1 id="项目打包"><a href="#项目打包" class="headerlink" title="项目打包"></a>项目打包</h1><h2 id="项目打包注意事项"><a href="#项目打包注意事项" class="headerlink" title="项目打包注意事项"></a>项目打包注意事项</h2><h3 id="启动地图"><a href="#启动地图" class="headerlink" title="启动地图"></a>启动地图</h3><p>构建项目时会从游戏默认地图开始，需要点击Project Settings — Maps &amp; Modes 设置game default map</p>
+        <h1 id="UE4源码编译"><a href="#UE4源码编译" class="headerlink" title="UE4源码编译"></a>UE4源码编译</h1><p>git clone源码</p>
+<p>运行Setup.bat下载依赖文件</p>
+<p>运行GenerateProjectFiles.bat生成工程文件</p>
+<p>运行UE.sln</p>
+<p>在vs打开的工程中，最上方的解决方案配置设置为Development Editor，启动项目设置为UE4，平台WIN64，右键UE4 – Build进行编译</p>
+<p>编译完成后按F5在vs中启动</p>
+<p><strong>注意</strong></p>
+<p>生成工程文件前可能会报错，根据报错信息可判断是否缺少相应的.NET Framework，如果缺少在vs installer中选中相应版本的vs – 修改 – 添加相应的.NET工具</p>
+<p>Epic Game Launcher中不能识别非公版的引擎，向编译版的引擎创建的工程中添加保管库中的素材时，点击添加到工程–显示所有工程–为相应工程手动选择对应的版本号即可添加素材（因为又编译版引擎创建的工程在Launcher中显示的版本标识为“其他”，不选择相应的版本号则素材或插件都会显示不兼容）</p>
+<h1 id="项目打包"><a href="#项目打包" class="headerlink" title="项目打包"></a>项目打包</h1><h2 id="项目打包注意事项"><a href="#项目打包注意事项" class="headerlink" title="项目打包注意事项"></a>项目打包注意事项</h2><h3 id="启动地图"><a href="#启动地图" class="headerlink" title="启动地图"></a>启动地图</h3><p>构建项目时会从游戏默认地图开始，需要点击Project Settings — Maps &amp; Modes 设置game default map</p>
 <p><img src="/2020/10/12/UE学习文档/map.png" alt="设置启动地图"></p>
 <h3 id="选择目标平台"><a href="#选择目标平台" class="headerlink" title="选择目标平台"></a>选择目标平台</h3><p><img src="/2020/10/12/UE学习文档/platform.png" alt="设置平台"></p>
 <p>还要记得选择目标硬件(Target Hardware)</p>
@@ -143,6 +152,8 @@
 <p>解锁设备时要开启开发者模式，开启usb调试</p>
 <p>在设置主页找到“已连接设备”选择启用文件传输</p>
 <p>在电脑上cmd输入adb devices，如果列出了自己的手机设备名，则准备就绪</p>
+<p><strong>注意：</strong></p>
+<p>手机开发者选项中不但需开启USB调试，还打开USB安装，允许通过USB安装应用</p>
 <h3 id="打包方式"><a href="#打包方式" class="headerlink" title="打包方式"></a>打包方式</h3><p>为了更准确的测试，使用Play – Mobile Preview</p>
 <p><img src="/2020/10/12/UE学习文档/MobilePreview.png" alt="模拟移动端测试"></p>
 <p><strong>退出游戏方式：</strong> “~”打开控制台，输入quit game</p>
@@ -158,6 +169,18 @@
 <p>测试并部署到自己的设备很方便，如果需要部署到其他设备，需打包</p>
 <p><img src="/2020/10/12/UE学习文档/package.png" alt="打包"></p>
 <p>双击生成的.bat项目可以将其安装到自己的Android设备上</p>
+<p><strong>注意</strong></p>
+<p>记得在项目设置 – Android勾选将游戏数据打包至.apk中</p>
+<h1 id="UE4游戏框架"><a href="#UE4游戏框架" class="headerlink" title="UE4游戏框架"></a>UE4游戏框架</h1><p> 游戏架构的基类是GameMode，设置游戏规则，也分则处理生成玩家</p>
+<h3 id="Pawn"><a href="#Pawn" class="headerlink" title="Pawn"></a>Pawn</h3><p>作为世界中的一个“代理”Actor，可由控制器处理 ，可接收输入并且可执行各种各样类似于玩家的动作（但不假定Pawn就是类人的）</p>
+<h3 id="Character"><a href="#Character" class="headerlink" title="Character"></a>Character</h3><p>类人的Pawn，本身默认具有用于碰撞的CapsuleComponent（胶囊体组件）和CharacterMovementComponent（角色运动组件）；可进行基本的拟人运动、平滑地在网格上复制运动，并具有一些动画相关的功能</p>
+<h3 id="控制Pawn"><a href="#控制Pawn" class="headerlink" title="控制Pawn"></a>控制Pawn</h3><p>Controller负责管理Pawn的Actor，一般分为PlayerController和AIController，控制器可以“具有”一个Pawn并控制它</p>
+<h3 id="HUD"><a href="#HUD" class="headerlink" title="HUD"></a>HUD</h3><p>平视显示信息</p>
+<h3 id="GameMode"><a href="#GameMode" class="headerlink" title="GameMode"></a>GameMode</h3><p>游戏的定义，包括像游戏规则和获胜条件这样的内容；仅存在于服务器上，一般在游戏过程中不会有太多数据改变，并且一定不会具有客户端需要的临时数据</p>
+<h3 id="GameState"><a href="#GameState" class="headerlink" title="GameState"></a>GameState</h3><p>包含游戏状态，包括像关联玩家的列表、分数、象棋游戏中的棋子位置或在开放世界中已经完成的任务列表</p>
+<p>存在于服务器和所有客户端上，可以自由地进行复制来保持同步</p>
+<h3 id="PlayerState"><a href="#PlayerState" class="headerlink" title="PlayerState"></a>PlayerState</h3><p>表示游戏中一个参与者的状态（AI没有PlayerState），适合包含的实例数据有：玩家姓名，分数，多人在线竞技场比赛中的级别，夺旗模式游戏中玩家当前是否占领旗帜</p>
+<p>所有玩家的PlayerStates在所有的机器上都存在，并且可以自由复制包持同步</p>
 
       </section>
 
@@ -169,6 +192,21 @@
         
 <nav class="card-container card-article-nav">
   <div class="card-wrap">
+    
+      <div id="article-nav-newer" class="card-item img">
+        <article>
+          
+            <div class="card-cover" style="background-image: url(cover56.jpg)"></div>
+          
+          <a class="card-link article-nav-link" href="/2020/10/16/双指针专题/"></a>
+          <strong class="article-nav-caption">Newer</strong>
+          <p class="article-nav-title">
+            
+              双指针专题
+            
+          </p>
+        </article>
+      </div>
     
     
       <div id="article-nav-older" class="card-item img">

@@ -22,7 +22,7 @@
 
   
 
-  <title>Archives | 解字</title>
+  <title>双指针专题 | 解字</title>
 
   
 
@@ -76,7 +76,16 @@
 
     
 <!-- header container -->
-<header class="header-container">
+<header class="header-container post">
+
+  
+  
+
+  
+  
+
+  
+  
 
   
   
@@ -84,21 +93,23 @@
   
   
     <div class="header-content">
-      <div class="post-image" style="background-image: url(https://chasencenge.github.io/links/Asset/cover44.jpg)"></div>
+      <div class="post-image" style="background-image: url(cover56.jpg)"></div>
       <div class="post-text">
-        <h1 class="title-wrap">归档</h1>
-        <h2 class="title-sub-wrap">共有46篇文章</h2>
+        <div class="type-wrap">
+          <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
+        </div>
+        <h1 class="title-wrap">双指针专题</h1>
+        <h2 class="title-sub-wrap">
+          <strong>CHAsencenge</strong>
+          <span>发布于</span>
+          
+  <a href="javascript:;" class="article-date">
+    <time datetime="2020-10-15T16:08:03.000Z" itemprop="datePublished">2020-10-16</time>
+  </a>
+
+        </h2>
       </div>
     </div>
-  
-
-  
-  
-
-  
-  
-
-  
   
 
   
@@ -106,277 +117,84 @@
 
   </header>
 
-    <!-- 归档 -->
+    <!-- 文章 -->
 
-<!-- post list container -->
-<div class="body-container float">
-  <div class="content-container article-list">
-    <div class="card-container card-articles">
-      <div class="card-wrap">
+<!-- 文章内容 -->
+
+<div class="body-container">
+  <article class="content-container article-container">
+    <div class="article-content">
+      
+      
+
+      <section class="article-entry">
+        <h4 id="16-最接近的三数之和"><a href="#16-最接近的三数之和" class="headerlink" title="16. 最接近的三数之和"></a>16. 最接近的三数之和</h4><p>相对于暴力解法，双指针能够通过首尾指针和合理移动，减少不合理情况的遍历，即a+b+c &lt; target，则c向左移动，a+b+c &gt; target，b向右移动</p>
+<p>进一步可以总结出：<strong>若想要使两数之和逼近某一个目标值</strong>，可使用双指针对已排序数组进行查找</p>
+<p><strong>对已排序数组的遍历时跳过重复值</strong>的通用优化：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">int</span> p0 = p + <span class="hljs-number">1</span>;<br><span class="hljs-keyword">while</span>(nums[p0] == nums[p] &amp;&amp; p0 &lt; q)<br>    p0++;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">threeSumClosest</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&amp; nums, <span class="hljs-keyword">int</span> target)</span> </span>&#123;<br>    <span class="hljs-keyword">int</span> ans = <span class="hljs-number">1e7</span>;<br>    <span class="hljs-keyword">int</span> n = nums.size();<br>    sort(nums.begin(), nums.end());<br>    <span class="hljs-keyword">int</span> sum;<br>    <span class="hljs-keyword">auto</span> update = [&amp;](<span class="hljs-keyword">int</span> cur)<br>    &#123;<br>        <span class="hljs-keyword">if</span>(<span class="hljs-built_in">abs</span>(cur - target) &lt; <span class="hljs-built_in">abs</span>(ans - target))<br>        &#123;<br>            ans = cur;<br>        &#125;<br>    &#125;;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n - <span class="hljs-number">2</span>; i++)<br>    &#123;<br>        <span class="hljs-keyword">if</span>(i &gt; <span class="hljs-number">0</span> &amp;&amp; nums[i] == nums[i<span class="hljs-number">-1</span>])<br>            <span class="hljs-keyword">continue</span>;<br>        <span class="hljs-keyword">int</span> p = i + <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">int</span> q = n - <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">while</span>(p &lt; q)<br>        &#123;<br>            sum = nums[i] + nums[p] + nums[q];<br>            <span class="hljs-keyword">if</span>(sum == target)<br>            &#123;<br>                <span class="hljs-keyword">return</span> target;<br>            &#125;<br>            update(sum);<br>            <span class="hljs-keyword">if</span>(sum &lt; target)<br>            &#123;<br>                <span class="hljs-keyword">int</span> p0 = p + <span class="hljs-number">1</span>;<br>                <span class="hljs-keyword">while</span>(nums[p0] == nums[p] &amp;&amp; p0 &lt; q)<br>                    p0++;<br>                p = p0;<br>            &#125;<br>            <span class="hljs-keyword">if</span>(sum &gt; target)<br>            &#123;<br>                <span class="hljs-keyword">int</span> q0 = q - <span class="hljs-number">1</span>;<br>                <span class="hljs-keyword">while</span>(q0 &gt; p &amp;&amp; nums[q0] == nums[q])<br>                &#123;<br>                    q0--;<br>                &#125;<br>                q = q0;<br>            &#125;<br><br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> ans;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+      </section>
+
+      <section class="article-footer">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/">#Algorithm</a></li></ul>
+      </section>
+
+      <section class="article-navs">
         
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover20.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/08/24/剑指offer/" itemprop="url"></a>
-              
-              <h2 class="article-title">剑指offer</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/08/24/剑指offer/" class="article-date">
-    <time datetime="2020-08-24T06:51:21.000Z" itemprop="datePublished">2020-08-24</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/C/">C++</a><a class="article-category-link" href="/categories/C/Algorithm/">Algorithm</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover29.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/08/18/dp专题/" itemprop="url"></a>
-              
-              <h2 class="article-title">dp专题</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/08/18/dp专题/" class="article-date">
-    <time datetime="2020-08-18T07:54:15.000Z" itemprop="datePublished">2020-08-18</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Dynamic-Programming/">Dynamic Programming</a><a class="article-category-link" href="/categories/Dynamic-Programming/C/">C++</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover33.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/08/03/LeetCode每日刷题/" itemprop="url"></a>
-              
-              <h2 class="article-title">LeetCode每日刷题</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/08/03/LeetCode每日刷题/" class="article-date">
-    <time datetime="2020-08-03T15:29:34.000Z" itemprop="datePublished">2020-08-03</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/C/">C++</a><a class="article-category-link" href="/categories/C/Algorithm/">Algorithm</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover32.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/08/03/LeetCode-top刷题/" itemprop="url"></a>
-              
-              <h2 class="article-title">LeetCode top100刷题</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/08/03/LeetCode-top刷题/" class="article-date">
-    <time datetime="2020-08-03T15:15:27.000Z" itemprop="datePublished">2020-08-03</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/C/">C++</a><a class="article-category-link" href="/categories/C/Algorithm/">Algorithm</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover31.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/08/02/LeetCode周赛/" itemprop="url"></a>
-              
-              <h2 class="article-title">LeetCode200周赛</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/08/02/LeetCode周赛/" class="article-date">
-    <time datetime="2020-08-02T14:18:15.000Z" itemprop="datePublished">2020-08-02</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/C/">C++</a><a class="article-category-link" href="/categories/C/Algorithm/">Algorithm</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover32.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/08/01/LeetCode广度优先搜索/" itemprop="url"></a>
-              
-              <h2 class="article-title">LeetCode广度优先搜索</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/08/01/LeetCode广度优先搜索/" class="article-date">
-    <time datetime="2020-08-01T10:13:29.000Z" itemprop="datePublished">2020-08-01</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/C/">C++</a><a class="article-category-link" href="/categories/C/Algorithm/">Algorithm</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover34.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/08/01/字节夏令营20游戏程序笔试题/" itemprop="url"></a>
-              
-              <h2 class="article-title">字节夏令营20游戏程序笔试题</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/08/01/字节夏令营20游戏程序笔试题/" class="article-date">
-    <time datetime="2020-08-01T03:42:48.000Z" itemprop="datePublished">2020-08-01</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a><a class="article-category-link" href="/categories/Algorithm/C/">C++</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover6.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/31/网易20秋招Unity工程师笔试编程题/" itemprop="url"></a>
-              
-              <h2 class="article-title">网易20秋招Unity工程师笔试编程题</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/31/网易20秋招Unity工程师笔试编程题/" class="article-date">
-    <time datetime="2020-07-31T14:25:33.000Z" itemprop="datePublished">2020-07-31</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a><a class="article-category-link" href="/categories/Algorithm/C/">C++</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover30.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/27/Pyplot绘图/" itemprop="url"></a>
-              
-              <h2 class="article-title">Pyplot绘图</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/27/Pyplot绘图/" class="article-date">
-    <time datetime="2020-07-27T12:56:31.000Z" itemprop="datePublished">2020-07-27</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Python/">Python</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item large img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover15.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/26/百度之星2020-1003-Permutation/" itemprop="url"></a>
-              
-              <h2 class="article-title">百度之星2020---1003.Permutation</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/26/百度之星2020-1003-Permutation/" class="article-date">
-    <time datetime="2020-07-26T10:04:53.000Z" itemprop="datePublished">2020-07-26</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a><a class="article-category-link" href="/categories/Algorithm/C/">C++</a>
-              </div>
-            </article>
-          </div>
-        
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- page container -->
-
-  <nav class="page-container">
+<nav class="card-container card-article-nav">
+  <div class="card-wrap">
     
-    <a class="extend prev" rel="prev" href="/archives/2020/">ʚ</a><a class="page-number" href="/archives/2020/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2020/page/3/">3</a><a class="page-number" href="/archives/2020/page/4/">4</a><a class="extend next" rel="next" href="/archives/2020/page/3/">ɞ</a>
-  </nav>
+      <div id="article-nav-newer" class="card-item img">
+        <article>
+          
+            <div class="card-cover" style="background-image: url(cover43.jpg)"></div>
+          
+          <a class="card-link article-nav-link" href="/2020/10/25/C-Lambda表达式/"></a>
+          <strong class="article-nav-caption">Newer</strong>
+          <p class="article-nav-title">
+            
+              C++ Lambda表达式
+            
+          </p>
+        </article>
+      </div>
+    
+    
+      <div id="article-nav-older" class="card-item img">
+        <article>
+          
+            <div class="card-cover" style="background-image: url(cover49.jpg)"></div>
+          
+          <a class="card-link article-nav-link" href="/2020/10/12/UE学习文档/"></a>
+          <strong class="article-nav-caption">Older</strong>
+          <p class="article-nav-title">
+            
+              UE学习文档
+            
+          </p>
+        </article>
+      </div>
+    
+  </div>
+</nav>
+
+      </section>
+
+      
+
+  
+  
+
+  
+  
 
 
+    </div>
+  </article>
+</div>
 
     <!-- footer container -->
 <footer id="footer" class="footer">
