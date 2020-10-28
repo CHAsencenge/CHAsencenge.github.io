@@ -142,6 +142,20 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c++">ListNode* hair = <span class="hljs-keyword">new</span> ListNode(<span class="hljs-number">0</span>, head); <span class="hljs-comment">// (val, next)</span><br></code></pre></td></tr></table></figure>
 
 <p>最后返回hair-&gt;next</p>
+<h4 id="18-四数之和"><a href="#18-四数之和" class="headerlink" title="18. 四数之和"></a>18. 四数之和</h4><p>先将数组用sort()进行排序</p>
+<p>双重循环遍历前两个数，后两个数分配双指针一前一后</p>
+<p>外面双重循环：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n<span class="hljs-number">-3</span>; i++)<br>&#123;<br>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = i+<span class="hljs-number">1</span>; j &lt; n<span class="hljs-number">-2</span>; j++)<br>	&#123;<br>		......<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>双指针起始位置：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">int</span> p = j + <span class="hljs-number">1</span>;<br><span class="hljs-keyword">int</span> q = n - <span class="hljs-number">1</span>;<br></code></pre></td></tr></table></figure>
+
+<p>剪枝操作：</p>
+<p>在外层的两重循环中分别做如下几种情况的剪枝：</p>
+<p>当前值nums[i]与上一个值nums[i-1]相同时，continue</p>
+<p>当前值nums[i]加上后面连续三个数nums[i+1], nums[i+2], nums[i+3]的和大于target，则之后不论如何取值都一定大于target，直接跳出循环break</p>
+<p>当前值nums[i]加上倒数三个最大的值nums[n-1], nums[n-2], nums[n-3]的和小于target，说明以nums[i]起始的任意四个数的和均小于target，跳出本次循环continue</p>
+<p>对于第二层循环做类似的三种情况的剪枝处理</p>
 
       </section>
 

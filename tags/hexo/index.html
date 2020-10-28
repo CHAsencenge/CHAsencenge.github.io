@@ -22,7 +22,7 @@
 
   
 
-  <title>Tag: Hexo | 解字</title>
+  <title>Tag: hexo | 解字</title>
 
   
 
@@ -93,8 +93,8 @@
     <div class="header-content">
       <div class="post-image" style="background-image: url(https://chasencenge.github.io/links/Asset/cover44.jpg)"></div>
       <div class="post-text">
-        <h1 class="title-wrap">Hexo</h1>
-        <h2 class="title-sub-wrap">当前标签下共有2篇文章</h2>
+        <h1 class="title-wrap">hexo</h1>
+        <h2 class="title-sub-wrap">当前标签下共有1篇文章</h2>
       </div>
     </div>
   
@@ -119,48 +119,23 @@
           <div class="card-item img">
             <article>
               
-                <div class="card-cover" style="background-image: url(cover35.jpg)"></div>
+                <div class="card-cover" style="background-image: url(cover10.jpg)"></div>
               
               
-                <a class="article-link card-link" href="/2020/07/17/hexo更换flex-block主题/" itemprop="url"></a>
+                <a class="article-link card-link" href="/2019/09/14/Hexo发布/" itemprop="url"></a>
               
-              <h2 class="article-title">hexo更换flex-block主题</h2>
+              <h2 class="article-title">Hexo发布</h2>
               <div class="article-meta">
                 <strong>CHAsencenge</strong>
                 <span>发布于</span>
                 
-  <a href="/2020/07/17/hexo更换flex-block主题/" class="article-date">
-    <time datetime="2020-07-17T03:00:22.000Z" itemprop="datePublished">2020-07-17</time>
+  <a href="/2019/09/14/Hexo发布/" class="article-date">
+    <time datetime="2019-09-14T15:52:50.000Z" itemprop="datePublished">2019-09-14</time>
   </a>
 
               </div>
               <div class="article-category">
-                <a class="article-category-link" href="/categories/Hexo/">Hexo</a>
-              </div>
-            </article>
-          </div>
-        
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover8.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2019/07/03/为Hexo的Next主题添加计数功能/" itemprop="url"></a>
-              
-              <h2 class="article-title">为Hexo的Next主题添加计数功能</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
                 
-  <a href="/2019/07/03/为Hexo的Next主题添加计数功能/" class="article-date">
-    <time datetime="2019-07-03T10:22:33.000Z" itemprop="datePublished">2019-07-03</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Hexo/">Hexo</a>
               </div>
             </article>
           </div>
@@ -271,6 +246,67 @@
         options.subtitle = {
           url: el.dataset.subtitle,
         }
+      }
+      new DPlayer(options);
+    });
+  }
+</script>
+<!-- dplayer 视频 end -->
+
+
+<!-- waterfall 瀑布流 start -->
+<script src="/lib/waterfall.min.js"></script>
+<script type="text/javascript">
+
+const waterfalls = document.querySelectorAll(".waterfall-container");
+
+if (waterfalls && waterfalls.length > 0) {
+  waterfalls.forEach((waterfall, index) => {
+    let cls = "waterfall-container-" + index;
+    waterfall.classList.add(cls);
+    initWaterfall(cls, waterfall);
+  });
+}
+
+function initWaterfall(selector, el) {
+  const options = {};
+  if (Object.keys(el.dataset).length > 0) {
+    for (let k in el.dataset) {
+      options[k] = el.dataset[k];
+    }
+  }
+  waterfall(`.${selector}`, options);
+}
+</script>
+<!-- waterfall 瀑布流 end -->
+
+
+  <!-- zoom start -->
+  <script src="/lib/zoom.min.js"></script>
+  <script type="text/javascript">
+    document.querySelector(".article-content") && zoom(".article-content");
+  </script>
+  <!-- zoom end -->
+  
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+<script src="/js/script.js"></script>
+  
+  <!-- 尾部用户自定义相关内容 -->
+
+</body>
+</html>       }
       }
       new DPlayer(options);
     });
