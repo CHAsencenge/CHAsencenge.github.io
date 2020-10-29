@@ -142,6 +142,15 @@
 <p>用<code>ret.size() == 2 * n</code>判断是否将ret添加到结果rets</p>
 <p>用<code>open &lt; n</code>判断是否继续添加左括号</p>
 <p>用<code>close &lt; open</code>判断当前是否能添加右括号</p>
+<h4 id="46-全排列"><a href="#46-全排列" class="headerlink" title="46. 全排列"></a>46. 全排列</h4><p>什么情况适合使用回溯法：</p>
+<p>通过探索所有可能的候选解来找出所有解</p>
+<p>终止条件为：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c++">cur == len<br></code></pre></td></tr></table></figure>
+
+<p>回溯体结构为：</p>
+<p>从已构造长度开始往后，逐个与当前位置进行数据交换</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = cur; i &lt; len; i++)<br>&#123;<br>	swap(output[cur], output[i]);<br>    backtrack(ret, output, cur+<span class="hljs-number">1</span>, len);<br>    swap(output[cur], output[i]); <span class="hljs-comment">//回溯里一定要记得的撤销操作</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
 
       </section>
 
