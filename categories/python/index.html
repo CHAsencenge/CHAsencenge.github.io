@@ -1,385 +1,332 @@
 <!DOCTYPE html>
 <html lang="en">
 <head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="theme-color" content="#3367D6">
-  <link rel="apple-touch-icon" href="/icons-192.png">
-  <link rel="manifest" href="/manifest.json">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
 
-  
+
+
+
+    <meta name="keywords" content>
+
+
+
     <meta name="description" content="解字无果">
-  
 
-  
 
-  
-    <meta name="author" content="CHAsencenge">
-  
+<meta name="Robots" content="all">
 
-  
 
-  
+    <title>解字</title>
 
-  <title>Category: Python | 解字</title>
 
-  
-
-  
-    <link rel="icon" href="/favicon.ico">
-  
-
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-    <link href="https://cdn.bootcss.com/highlight.js/9.15.6/styles/monokai-sublime.min.css" rel="stylesheet">
-  
-
-  <link rel="stylesheet" href="/css/style.css">
+<link rel="icon" href="/images/favicon.ico">
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/atom-one-dark.css">
+<link rel="stylesheet" href="/css/style.css">
+<script src="/js/highlight.min.js"></script>
 </head>
 <body>
-  <div class="root-container">
-    <!-- navbar -->
-<nav class="navbar">
-  <div class="navbar-content">
-    <!-- logo -->
-    <div class="navbar-logo">
-      <a href="/">
-        
-          解字
-        
-      </a>
+    <div class="main-container">
+        <header class="header">
+    <div class="global-width">
+        <nav class="nav-box">
+            
+                <a class="nav-item" href="/">Home</a>
+            
+                <a class="nav-item" href="/resume">Resume</a>
+            
+                <a class="nav-item" href="/mood" target="_blank">Mood</a>
+            
+                <a class="nav-item" href="/amusement/tetris" target="_blank">Amusement</a>
+            
+                <a class="nav-item" href="/about">About</a>
+            
+        </nav>
     </div>
-    <!-- link -->
-    <div class="navbar-link">
-      <div class="navbar-btn">
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-      <ul class="navbar-list">
-        
-          <li class="navbar-list-item"><a href="/">主页</a></li>
-        
-          <li class="navbar-list-item"><a href="/about">关于</a></li>
-        
-          <li class="navbar-list-item"><a href="/links">友链</a></li>
-        
-          <li class="navbar-list-item"><a href="/tags">标签</a></li>
-        
-          <li class="navbar-list-item"><a href="/categories">分类</a></li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
+</header>
+
+        <section class="content global-width">
+            <div class="main">
+                
+    
+        <article class="box post post-item">
+            <div class="post-title"><a href="/2020/07/27/Pyplot绘图/">Pyplot绘图</a></div>
+            <div class="post-meta">
+                
+                <i class="fa fa-calendar"></i> <time>2020-07-27</time>
+                <span class="dotted">|</span>
+                <i class="fa fa-user"></i> 
+            </div>
+
+            <div class="post-excerpt">
+                <a href="/2020/07/27/Pyplot绘图/">
+                    <p>
+                        
+                            标识散点：plt.scatter(x, y)可选项s修改散点大小，color修改颜色
+1plt.scatter(thisNodeLoc[0], thisNodeLoc[1], s=10, color='b')
+
+连线：plt.plot([x1, y1], [x2, y2])1plt.plot([thisNodeLoc[0], sendToNodeLoc[0]], [thisNodeLoc[1], sendToNodeLoc[1]])
+
+注释文字：plt.annotate(txt, xy=(), xytext=())xy处填注释点坐标，xytext处填文本位置，可加偏移offset
+1plt.annotate(thisNodeLoc, xy=(thisNodeLoc[0], thisNodeLoc[1]), xytext=(thisNodeLoc[0]+1, thisNodeLoc[1]+1))
+
+限制坐标区间：12plt.xlim(-2200,2200)plt.ylim(-2200,2200)
+
+12345678910for n in range(0, nodeNum):    thisNodeLoc = [nodes[n].locX, nodes[n].locY]    sendToNodeLoc = [nodes[n].sendTo.locX, nodes[n].sendTo.locY]    plt.scatter(thisNodeLoc[0], thisNodeLoc[1], s=10, color='b')    plt.plot([thisNodeLoc[0], sendToNodeLoc[0]], [thisNodeLoc[1], sendToNodeLoc[1]])    plt.annotate(thisNodeLoc, xy=(thisNodeLoc[0], thisNodeLoc[1]), xytext=(thisNodeLoc[0]+1, thisNodeLoc[1]+1))plt.xlim(-2200,2200)plt.ylim(-2200,2200)plt.show()
+
+最后记得用plt.show()将其显示出来
+
+                        
+                    </p>
+                </a>
+            </div>
+
+            
+                <div class="post-footer">
+                    
+                        <i class="fa fa-folder-open-o"></i>
+                        <a class="category-link" href="/categories/Python/">Python</a>
+
+                        
+                            <span class="dotted">|</span>
+                        
+
+                    
+                    
+                        <i class="fa fa-tags"></i>
+                        <a class="tag-link" href="/tags/Python/">Python</a>
+                    
+                </div>
+            
+        </article>
+    
 
     
-<!-- header container -->
-<header class="header-container">
+        <article class="box post post-item">
+            <div class="post-title"><a href="/2020/07/20/Python实现Lora节点拓扑自动规划/">Python实现Lora节点拓扑自动规划</a></div>
+            <div class="post-meta">
+                
+                <i class="fa fa-calendar"></i> <time>2020-07-20</time>
+                <span class="dotted">|</span>
+                <i class="fa fa-user"></i> 
+            </div>
 
-  
-  
+            <div class="post-excerpt">
+                <a href="/2020/07/20/Python实现Lora节点拓扑自动规划/">
+                    <p>
+                        
+                            NodeClass.py:123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142143144145146147148149150151152153154155156157158159160161162163164165166167168169170171172173174175176177178179180181182183184185186187188189190191192193194195196197198199200201202203204205206207208209210211212213214215216217218219220221222223224225226227228229230231232233234235236237238239240241242243244245246247248249250251252# 小记：# 先不考虑中继节点在classB模式下发Beacon的能耗# 能量效率的计算公式是否有问题？只考虑发包的能耗和时间# energyConsumption需统一成自己在lifetime中的能量消耗推导，不再用论文中笼统的折线图值# 注意区分self.sendTo.index和一些函数中的node.index的区别，前者使用的场景在确定节点拓扑之后，后者使用在确定节点拓扑之前的一些遍历情况import mathimport numpy as np# python中的public、private和protected是通过变量名前的下划线标识的，保护类型一个下划线，私有类型两个下划线class Node:	def __init__(self, name, locX, locY, nodeNum, _payload, _bandW, _c, _pi, _beta, _whiteNoise, _dutyCycle, _batteryE, _dataGen, _cycleT,				 _transRadioE, _recvRadioE, _spareRadioE, _offRadioE, _onMcuE, _offMcuE, isGateway=0, whichSet=0, index=0): # 默认缺省值isGateway=0		self.name = name		self.payload = _payload		self.bandW = _bandW		self.c = _c		self.pi = _pi		self.beta = _beta		self.whiteNoise = _whiteNoise		self.dutyCycle = _dutyCycle		self.batteryE = _batteryE		# 每确定要多为另一个节点进行中继，dataGen需要更新添加帮忙转发的数据量		self.dataGen = _dataGen		self.cycleT = _cycleT		self.transRadioE = _transRadioE		self.recvRadioE = _recvRadioE		self.spareRadioE = _spareRadioE		self.offRadioE = _offRadioE		self.onMcuE = _onMcuE		self.offMcuE = _offMcuE		# 注意和dataGen的区别，这个变量是节点发送给节点/网关的总数据量，带有中继数据		self.dataSend = _dataGen		self.lifeT = 0.0		self.cycleE = 0.0		self.symbleT = 0.0		self.pktT = 0.0		self.transT = 0.0		self.recvT = 0.0		self.spareT = 0.0		self.airtime = 0.0		self.goodput = 0.0		# 用于MST中判断节点在哪个集合中,初始集合为0，MST集合为1		self.whichSet = whichSet		# 标识一个“节点”是否是网关，输入中第一个“点”为网关，坐标[0, 0]		self.isGateway = isGateway		self.locX = locX		self.locY = locY		# 给节点一个索引标识		self.index = index		self.relayNum = 0		# 存放了此节点通往其他节点时使用的参数值		self.spreadFactor = [7 for i in range(nodeNum)]		self.transPower = [13 for i in range(nodeNum)]		self.channel = [1 for i in range(nodeNum)]		self.codingRate = [5 for i in range(nodeNum)]		self.pdr = 0.0		# 标识此节点的数据直接发送给哪个节点，为Node类型		self.sendTo = self		# 标识此节点帮助哪些节点进行数据转发		self.relayFrom = []		# 标识此节点工作在哪个class下，class会影响cycleE		self.workClass = 'A'	# self._prop = []	def distNode(self, node):		dist = math.pow((math.pow((self.locX - node.locX), 2) + math.pow((self.locY - node.locY), 2)), 0.5)		# print(self.locX)		# print(self.locY)		# print(node.locX)		# print(node.locY)		# print('Distance of ' + self.name + ' to ' + node.name + ' = ' + str(dist))		return dist	# 8个信道，从902.1开始每次加0.2	def freq(self, node):		frequency = 902.1 + 0.2 * self.channel[node.index]		frequency *= math.pow(10, 6)		# print('Frequency of channel ' + str(self.channel[node.index]) + ' = ' + str(frequency))		return frequency	# Rayleigh fading channel	def g(self):		reyleigh = np.random.exponential(1.0, size=None)		# print(self.name + ' return rayleigh fading channel g of: ' + str(reyleigh))		return reyleigh	# 此为论文中的折线图值观测值实现的能耗函数，现替换成计算式方式实现	# energy consumption, unit is mW	def enerConsump(self, node):		energyPacket = [[40, 50], [50, 67], [65, 85], [95, 105], [100, 125], [110, 135]]		clsP = 0		if self.transPower[node.index] &lt;= 15:			cls_p = 0		else:			cls_p = 1		clsS = self.spreadFactor[node.index] - 7		# rst = energy_packet[cls_s][cls_p] * 0.001		rst = energyPacket[clsS][clsP]		# print("ec(line 70, unit is mW):", rst)		name = self.name		sf = str(self.spreadFactor[node.index])		tp = str(self.transPower[node.index])  # 只是为了下一行不超长...		# print('Energy Consumption of ' + name + ' with sf=' + sf + ', tp=' + tp + ' is: ' + str(rst))		return rst	# 公式计算方式求energy consumption	# def enerConsump(self):	def th(self, si):		if si == 7:			return -6		elif si == 8:			return -9		elif si == 9:			return -12		elif si == 10:			return -15		elif si == 11:			return -17.5		elif si == 12:			return -20	def ss(self, si):		if si == 7:			return -123		elif si == 8:			return -126		elif si == 9:			return -129		elif si == 10:			return -132		elif si == 11:			return -134.5		elif si == 12:			return -137	def tomWatt(self, dBm):		mWatt = math.pow(10, (dBm / 10))		# print(self.name + ' dBm to mWatt is: ' + str(mWatt))		return mWatt	# 如果有relay，EE计算为payload * pdr1 * pdr2 / (energyInTime1 + energyInTime2)	def energyEffi(self, node):		tempVar = (8 * self.payload - 4 * self.spreadFactor[node.index] + 28 + 16) / (4 * self.spreadFactor[node.index])		time = (20.25 + max(math.ceil(tempVar) * self.channel[node.index], 0)) * 2 ** self.spreadFactor[node.index] / self.bandW		energyInTime = time * self.enerConsump(node)		energyEfficiency = self.payload * self.selfToNodePdr(node) / energyInTime		# print('EnergyEfficiency of ' + self.name + ' is: ' + str(energyEfficiency))		return energyEfficiency	def energyIntime(self, node):		tempVar = (8 * self.payload - 4 * self.spreadFactor[node.index] + 28 + 16) / (4 * self.spreadFactor[node.index])		time = (20.25 + max(math.ceil(tempVar) * self.channel[node.index], 0)) * 2 ** self.spreadFactor[			node.index] / self.bandW		energyInTime = time * self.enerConsump(node)		return energyInTime	def energyEffiRelay(self, node1, node2):		tempVar1 = (8 * self.payload - 4 * self.spreadFactor[node1.index] + 28 + 16) / (4 * self.spreadFactor[node1.index])		time1 = (20.25 + max(math.ceil(tempVar1) * self.channel[node1.index], 0)) * 2 ** self.spreadFactor[node1.index] / self.bandW		energyInTime1 = time1 * self.enerConsump(node1)		tempVar2 = (8 * node1.payload - 4 * node1.spreadFactor[node2.index] + 28 + 16) / (					4 * node1.spreadFactor[node2.index])		time2 = (20.25 + max(math.ceil(tempVar2) * node1.channel[node2.index], 0)) * 2 ** node1.spreadFactor[			node2.index] / node1.bandW		energyInTime2 = time2 * node1.enerConsump(node2)		energyEfficiency = self.payload * self.selfToNodePdr(node1) * node1.selfToNodePdr(node2) / (energyInTime1 + energyInTime2)		return energyEfficiency	def relayPdr(self):		if(self.isGateway == 1):			return 1		else:			temp = self.sendTo.relayPdr() * self.selfToNodePdr(self.sendTo)		return temp	def relayEnergyInTime(self):		if(self.isGateway == 1):			return 0		else:			temp = self.sendTo.relayEnergyInTime() + self.energyIntime(self.sendTo)		return temp	# 将设备重叠数考虑进来，重叠、channel会降低pdr	def selfToNodePdr(self, node):		# tempVal1是路径损失函数		tempVar1 = (self.c / (4 * self.pi * self.freq(node) * self.distNode(node))) ** self.beta		# print('tempVar1:', tempVar1)		# whiteNoise对pdr的影响大		tempVar2 = (self.tomWatt(self.th(self.spreadFactor[node.index])) * self.whiteNoise + self.tomWatt(			self.ss(self.spreadFactor[node.index])))		# print('tempVar2:', tempVar2)		# 这地方还是有问题！！！！为什么是/1000/1000，对比注释行		# pdr = math.exp(-math.pow(tempVar2 / (self.tomWatt(self.transPower) * tempVar1), 0.5))		pdr = math.exp(-math.pow(tempVar2 / (self.transPower[node.index] * tempVar1), 0.5) / 1000 / 1000)		# print('Pdr of ' + self.name + ' to ' + node.name + ' is: ' + str(pdr))		return pdr	# 主文件里先确定sendTo谁，再更新transT值	def updateTransT(self):		self.symbleT = math.pow(2, self.spreadFactor[self.sendTo.index]) / self.bandW		tempVal1 = 8 * self.payload - 4 * self.spreadFactor[self.sendTo.index] + 28 + 16		tempVal2 = 20.25 + max(math.ceil(tempVal1 / (4 * self.spreadFactor[self.sendTo.index])) * self.codingRate[self.sendTo.index], 0)		self.pktT = self.symbleT * tempVal2		# 计算transT		# 此节点将数据（包括自己的和中转的）发给其将要发至的节点时的pdr		pdr = self.selfToNodePdr(self.sendTo)		if pdr != 0:			if self.relayFrom:				for child in self.relayFrom:					# 根据中继了哪些节点来更新dataSend的数据量，dataSend是此节点总共发送的数据量					# 若此节点非中继节点，则dataSend == dataGen					self.dataSend += child.dataGen			self.transT = self.pktT * self.cycleT / self.dataSend / pdr		else:			self.transT = 10000		return self.transT	# 确定在self.relayFrom中添加完所有的远端节点后再进行更新	def updateRecvT(self):		# 计算recvT，此时间包括自身发送时的class A模式的部分和中继时class B模式的recv time		# 没考虑作为发送端时的recvT，因为发送时工作在classA，只在发送数据的时候顺便开一个窗口接收数据，暂时不知道窗口总时长		if self.relayFrom:		if self.relayFrom:			for child in self.relayFrom:				self.recvT += child.transT		print('Update transT of ' + self.name + ' to: ' + str(self.recvT))		return self.recvT	def lifetime(self):		# 设置transRadioE级别（87和120）		if self.transPower[self.sendTo.index] &lt; 15:			self.transRadioE = 3.3 * 87e-3		self.spareT = self.dutyCycle * self.cycleT - self.transT - self.recvT		radioOnE = self.transT * self.transRadioE + self.recvT * self.recvRadioE + self.spareT * self.spareRadioE		radioOffE = (1 - self.dutyCycle) * self.cycleT * self.offRadioE		mcuE = self.cycleT * self.dutyCycle * self.onMcuE + self.cycleT * (1 - self.dutyCycle) * self.offMcuE		self.cycleE = radioOnE + radioOffE + mcuE		self.lifeT = self.cycleT * self.batteryE / self.cycleE / 3600 / 24		print('Lifetime of ' + self.name + ' is: ' + str(self.lifeT))		return self.lifeT	def goodput(self):		# 注意：goodput中计算的数据量用的是dataGen，而不是dataSend		goodput = self.cycleT / self.dataGen * self.payload / self.transT		print('Goodput of ' + self.name + ' is: ' + goodput)		return goodput
 
-  
-  
+TopoWithMST.py:123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142143144145146147148149150151152153154155156157158159160161162163164165166167168169170171172173174175176177178179180181182183184185186187188189190191192193194195196197198199200201202203204205206207208209210211212213214215216217218219220221222223224225226227228229230231232233234235236237238239240241242243244245246247248249250251252253254255256257258259260261262263264265266267268269270271272273274275276277278279280281282283284285286287288289290291292293294295296297298299300301302303304305306307308309310from MST.Node.NodeClass import Nodeimport randomimport matplotlib.pyplot as pltimport numpy as npimport mathimport scipy as syfrom scipy import statsimport xlsxwriter# 添加node要修改三个地方，node初始化，nodes列表添加该node，nodeNum值#  常量，全局变量均以“_”开头命名# _nodeNum = 6  # device number_payload = 4  # payload size of a packet, need to be modified_bandW = 125000_c = 3 * 10 ** 8_pi = 3.1415926_beta = 3  # path loss exponent, maybe a list, need to be init_whiteNoise = random.random()   # gauss white noise_dutyCycle = 0.02_batteryE = 3.7 * 2 * 3600_dataGen = 2000# Radio耗电常量_cycleT = 3600 * 12_transRadioE = 3.3 * 120e-3  # 29, 87, 120_recvRadioE = 3.3 * 11.5e-3_spareRadioE = 3.3 * 1.6e-3_offRadioE = 3.3 * 1.5e-6# Known and Unknown... P10  MCU耗电情况_onMcuE = 23.48e-4_offMcuE = 174.65e-7sfRange = [7,8,9,10,11,12]tpRange = [13,14,15,16,17,18,19,20]chRange = [1,2,3,4,5,6,7,8]crRange = [5,6,7,8]nodeNum = 18# _node0是网关，所以isGateway=1, whichSet=1_node0 = Node('_node0', 0, 0, nodeNum, _payload,  _bandW, _c, _pi, _beta, _whiteNoise, _dutyCycle, _batteryE, _dataGen,              _cycleT, _transRadioE, _recvRadioE, _spareRadioE, _offRadioE, _onMcuE, _offMcuE, isGateway=1, whichSet=1)_node1 = Node('_node1', -2800, -500, nodeNum, _payload,  _bandW, _c, _pi, _beta, _whiteNoise, _dutyCycle, _batteryE,              _dataGen, _cycleT, _transRadioE, _recvRadioE, _spareRadioE, _offRadioE, _onMcuE, _offMcuE, index=1)_node2 = Node('_node2', 2500, 2700, nodeNum, _payload,  _bandW, _c, _pi, _beta, _whiteNoise, _dutyCycle, _batteryE,              _dataGen, _cycleT, _transRadioE, _recvRadioE, _spareRadioE, _offRadioE, _onMcuE, _offMcuE, index=2)_node3 = Node('_node3', 1000, 800, nodeNum, _payload,  _bandW, _c, _pi, _beta, _whiteNoise, _dutyCycle, _batteryE,              _dataGen, _cycleT, _transRadioE, _recvRadioE, _spareRadioE, _offRadioE, _onMcuE, _offMcuE, index=3)_node4 = Node('_node4', 2500, 0, nodeNum, _payload,  _bandW, _c, _pi, _beta, _whiteNoise, _dutyCycle, _batteryE,              _dataGen, _cycleT, _transRadioE, _recvRadioE, _spareRadioE, _offRadioE, _onMcuE, _offMcuE, index=4)_node5 = Node('_node5', 1000, 0, nodeNum, _payload,  _bandW, _c, _pi, _beta, _whiteNoise, _dutyCycle, _batteryE,              _dataGen, _cycleT, _transRadioE, _recvRadioE, _spareRadioE, _offRadioE, _onMcuE, _offMcuE, index=5)_node6 = Node('_node6', 1500, 2000, nodeNum, _payload,  _bandW, _c, _pi, _beta, _whiteNoise, _dutyCycle, _batteryE,              _dataGen, _cycleT, _transRadioE, _recvRadioE, _spareRadioE, _offRadioE, _onMcuE, _offMcuE, index=6)_node7 = Node('_node7', -800, 700, nodeNum, _payload,  _bandW, _c, _pi, _beta, _whiteNoise, _dutyCycle, _batteryE,              _dataGen, _cycleT, _transRadioE, _recvRadioE, _spareRadioE, _offRadioE, _onMcuE, _offMcuE, index=7)_node8 = Node('_node8', -600, -400, nodeNum, _payload,  _bandW, _c, _pi, _beta, _whiteNoise, _dutyCycle, _batteryE,              _dataGen, _cycleT, _transRadioE, _recvRadioE, _spareRadioE, _offRadioE, _onMcuE, _offMcuE, index=8)_node9 = Node('_node9', -1000, -1200, nodeNum, _payload,  _bandW, _c, _pi, _beta, _whiteNoise, _dutyCycle, _batteryE,              _dataGen, _cycleT, _transRadioE, _recvRadioE, _spareRadioE, _offRadioE, _onMcuE, _offMcuE, index=9)_node10 = Node('_node10', -1800, -2000, nodeNum, _payload,  _bandW, _c, _pi, _beta, _whiteNoise, _dutyCycle, _batteryE,               _dataGen, _cycleT, _transRadioE, _recvRadioE, _spareRadioE, _offRadioE, _onMcuE, _offMcuE, index=10)_node11 = Node('_node11', -2000, 1800, nodeNum, _payload,  _bandW, _c, _pi, _beta, _whiteNoise, _dutyCycle, _batteryE,               _dataGen, _cycleT, _transRadioE, _recvRadioE, _spareRadioE, _offRadioE, _onMcuE, _offMcuE, index=11)_node12 = Node('_node12', 1500, -2000, nodeNum, _payload,  _bandW, _c, _pi, _beta, _whiteNoise, _dutyCycle, _batteryE,               _dataGen, _cycleT, _transRadioE, _recvRadioE, _spareRadioE, _offRadioE, _onMcuE, _offMcuE, index=12)_node13 = Node('_node13', 500, -500, nodeNum, _payload,  _bandW, _c, _pi, _beta, _whiteNoise, _dutyCycle, _batteryE,               _dataGen, _cycleT, _transRadioE, _recvRadioE, _spareRadioE, _offRadioE, _onMcuE, _offMcuE, index=13)_node14 = Node('_node14', 1200, -1200, nodeNum, _payload,  _bandW, _c, _pi, _beta, _whiteNoise, _dutyCycle, _batteryE,               _dataGen, _cycleT, _transRadioE, _recvRadioE, _spareRadioE, _offRadioE, _onMcuE, _offMcuE, index=14)_node15 = Node('_node15', 2000, -2500, nodeNum, _payload,  _bandW, _c, _pi, _beta, _whiteNoise, _dutyCycle, _batteryE,               _dataGen, _cycleT, _transRadioE, _recvRadioE, _spareRadioE, _offRadioE, _onMcuE, _offMcuE, index=15)_node16 = Node('_node16', -2500, -2000, nodeNum, _payload,  _bandW, _c, _pi, _beta, _whiteNoise, _dutyCycle, _batteryE,               _dataGen, _cycleT, _transRadioE, _recvRadioE, _spareRadioE, _offRadioE, _onMcuE, _offMcuE, index=16)_node17 = Node('_node17', 2500, 1000, nodeNum, _payload,  _bandW, _c, _pi, _beta, _whiteNoise, _dutyCycle, _batteryE,               _dataGen, _cycleT, _transRadioE, _recvRadioE, _spareRadioE, _offRadioE, _onMcuE, _offMcuE, index=17)# 先求所有的边权（取所有sf，tp，cr选择中代价最小的）存储，再用MST连线（每次连线需根据isGateway确定代价是否叠加）划分集合，直到原本集合为空indexes= [i for i in range(nodeNum)]# print(indexes)nodes = [_node0, _node1, _node2, _node3, _node4, _node5, _node6, _node7, _node8, _node9, _node10, _node11, _node12,         _node13, _node14, _node15, _node16, _node17]# 初始化代价矩阵costMatrix = [[0.0 for i in range(nodeNum)] for j in range(nodeNum)]# 注意python中不可用 energyEffiMatrix = costMatrix形式给矩阵赋值# 否则energyEffiMatrix的值会随costMatrix的变化而变化energyEffiMatrix = [[0.0 for i in range(nodeNum)] for p in range(nodeNum)]# 计算每条边的代价，存入代价矩阵（不过记得后面MST时代价会根据是否relay确定是否进行叠加）# 求每条边的代价实际上是先做预处理求最小代价，即遍历了可选的sf、tp、cr、# 需要考虑sf和ch相同导致的重叠,暂未添加# zip的使用for rowIndex, node in zip(indexes, nodes):    for colIndex, coloum in zip(indexes, nodes):        if node is not coloum:            # 针对某一条边求cheapest代价            maxEE = 0            setSpreadFactor = 7            setTransPower = 13            setChannel = 1            setCodingRate =5            for sf in sfRange:                for tp in tpRange:                    for ch in chRange:                        for cr in crRange:                            node.spreadFactor[coloum.index] = sf                            node.transPower[coloum.index] = tp                            node.channel[coloum.index] = ch                            node.codingRate[coloum.index] = cr                            tempEE = node.energyEffi(coloum)                            if(maxEE &lt; tempEE):                                maxEE = tempEE                                setSpreadFactor = sf                                setTransPower = tp                                setChannel = ch                                setCodingRate = cr            node.spreadFactor[coloum.index] = setSpreadFactor            node.transPower[coloum.index] = setTransPower            node.channel[coloum.index] = setChannel            node.codingRate[coloum.index] = setCodingRate            costMatrix[rowIndex][colIndex] = maxEE        else:            costMatrix[rowIndex][colIndex] = 0.1for row in range(nodeNum):    for col in range(nodeNum):        energyEffiMatrix[row][col] = costMatrix[row][col]for n in range(0, nodeNum):    print(costMatrix[n])# 代价是能量效率的倒数for row in range(nodeNum):    for col in range(nodeNum):        costMatrix[row][col] = 1 / costMatrix[row][col]print('cost statistic:')for n in range(0, nodeNum):    print(costMatrix[n])# print(_node1.spreadFactor)# print(_node1.transPower)# print(_node1.channel)# print(_node1.codingRate)# 此部分仍有问题，需核对pdr和代价（能量效率EE）计算中各个参数对energy efficiency的影响toWhichIndexes= [i for i in range(nodeNum)]# u集合中的节点数uNodeNum = 1while(uNodeNum != nodeNum):    minCost = 9999    addRelay = nodes[0]    ifRelay = False    nodeToUSet = nodes[0]    backTrack = nodes[0]    for nodeIndex in range(0, nodeNum):        # minCost = 9999        # toWhichIndex为当前查看的v集合中的节点的index，可通过nodes列表反索引到相应的node        # thisLineCost为单条边的cost，我们需要的是实际的cost（即带relay）        # relay是在MST的过程中产生的        # 网关初始应在u集合，对应的whichSet=1        # addRelay = nodes[0]        # ifRelay = False        # nodeToUSet = nodes[0]        for toWhichIndex, thisLineCost in zip(toWhichIndexes, costMatrix[nodeIndex]):            # 一个节点属于u集合，一个节点属于v集合，才进行处理，否则不符合MST要求，进行下轮循环            # addRelay = nodes[0]            # ifRelay = False            # nodeToUSet = nodes[0]            if (nodes[nodeIndex].whichSet == 1 and nodes[toWhichIndex].whichSet == 0):            # if ((nodes[nodeIndex].whichSet == 1 and nodes[toWhichIndex].whichSet == 0) or            #         (nodes[nodeIndex].whichSet == 0 and nodes[toWhichIndex].whichSet == 1)):                # 其中有一个是网关的话，说明与网关直接相连，thisLineCost即为realCost                if (nodes[nodeIndex].isGateway == 1 or nodes[toWhichIndex].isGateway == 1):                    realCost = thisLineCost                    if realCost &lt; minCost:                        print('node:', nodes[nodeIndex].name, ' nodeTo:', nodes[toWhichIndex].name)                        backTrack = nodes[nodeIndex]                        ifRelay = False                        minCost = realCost                        nodeToUSet = nodes[toWhichIndex]                # 所检索的边不是与网关直接相连，需要中继                else:                    # print(nodes[nodeIndex].name, nodes[toWhichIndex].name, thisLineCost, costMatrix[toWhichIndex][0], minCost)                    # 需要中继的，先把代价求倒数转换成EE，两段EE相加之后再求倒数得到整段的代价                    # [0]代表中继节点到网关的代价，因为网关为矩阵的第一列                    # cost计算方式1                    # realCost = thisLineCost + costMatrix[nodeIndex][0]                    # cost计算方式2，见NodeClass中EE计算函数注释                    # 这里energyEffiiRelay的实现实际应该是有递归，比如如果有两次relay，则                    # payload * pdr1 * pdr2 * pdr3 / (energyInTime1 + energyInTime2 + energyInTime3)，怎么实现?                    # 分别实现一个pdr的递归和一个energyInTime的递归                    energyEffiRelay = nodes[toWhichIndex].payload * nodes[toWhichIndex].selfToNodePdr(nodes[nodeIndex]) * nodes[nodeIndex].relayPdr() / (nodes[toWhichIndex].energyIntime(nodes[nodeIndex]) + nodes[nodeIndex].relayEnergyInTime())                    realCost = 1 / energyEffiRelay                    if realCost &lt; minCost:                        # 如果12-0代价大于12-14-0，修改cost矩阵，将costMatrix[12][0]修改为12-14-0（经14中继）的代价                        costMatrix[toWhichIndex][0] = realCost                        # print(minCost)                        print('node:', nodes[nodeIndex].name, ' nodeTo:', nodes[toWhichIndex].name)                        print(1 / thisLineCost)                        print(1 / costMatrix[nodeIndex][0])                        print(realCost)                        backTrack = nodes[nodeIndex]                        addRelay = nodes[toWhichIndex]  # node类型                        ifRelay = True                        minCost = realCost                        nodeToUSet = nodes[toWhichIndex]        # 如果有中继的拓扑选择，为中继点修改relayNum, relayFrom信息    if (ifRelay == True and addRelay):        # addRelay.relayNum += 1        # addRelay.relayFrom.append(backTrack.name)        backTrack.relayNum += 1        backTrack.relayFrom.append(addRelay.name)                # 把新选择的节点添加到U集合    nodeToUSet.whichSet = 1                # 注意生成树的方向                # 到最后应该_node0(网关)的sendTo没什么用    nodeToUSet.sendTo = backTrack    uNodeNum += 1    print('one loop.')for n in range(0, nodeNum):    print(energyEffiMatrix[n])    print(costMatrix[n])# 测试结果for n in range(0, nodeNum):    print(costMatrix[n])# 检查拓扑print('Topo statistic:')for n in range(0, nodeNum):    print(nodes[n].name + ' send to ' + nodes[n].sendTo.name)print('nodes belong to which set:')# 检查集合setList = []for n in range(0, nodeNum):    # print(nodes[n].whichSet)    setList.append(nodes[n].whichSet)print(setList)# 检查每个节点的relayNum# relayNum技术规则还有问题print(' relay number statistic: ')for n in range(0, nodeNum):    print(nodes[n].name + ' relay number: ' + str(nodes[n].relayNum))print('params choise:')for n in range(0, nodeNum):    # 现有结果表明优先增大tp，增到最大才开始增加sf，即增大sf带来的代价远超增大tp    print(nodes[n].name + ' sf: ' + str(nodes[n].spreadFactor) + ' tp:' + str(nodes[n].transPower) + ' cr:' + str(nodes[n].codingRate))print('relay:')for n in range(0, nodeNum):    print(nodes[n].name , 'relay:', nodes[n].relayFrom)# 检查EEprint('EE origin:')for n in range(1, nodeNum):    print(nodes[n].name, ' EE origin:', energyEffiMatrix[n][0])print('EE final:')for n in range(1, nodeNum):    print(nodes[n].name, ' EE final:', 1 / costMatrix[n][0])# 绘图plt.subplot(121)for n in range(0, nodeNum):    thisNodeLoc = [nodes[n].locX, nodes[n].locY]    sendToNodeLoc = [nodes[n].sendTo.locX, nodes[n].sendTo.locY]    plt.scatter(thisNodeLoc[0], thisNodeLoc[1], s=10, color='b')    plt.plot([thisNodeLoc[0], sendToNodeLoc[0]], [thisNodeLoc[1], sendToNodeLoc[1]])    plt.annotate(thisNodeLoc, xy=(thisNodeLoc[0], thisNodeLoc[1]), xytext=(thisNodeLoc[0]+1, thisNodeLoc[1]+1))plt.xlim(-2800,2800)plt.ylim(-2800,2800)# 绘EE柱状图# subplot绘制子图plt.subplot(122)nodeNameList = []nodeEEOriginList = []nodeEEFinalList = []for n in range(0, nodeNum):    nodeNameList.append(str(n))    nodeEEOriginList.append(energyEffiMatrix[n][0])    nodeEEFinalList.append(1 / costMatrix[n][0])total_width, n = 0.8, 2width = total_width / nplt.bar(indexes, nodeEEOriginList, width=width, label='1', fc='b')for i in range(len(indexes)):    indexes[i] += widthplt.bar(indexes, nodeEEFinalList, width=width, label='2', tick_label=nodeNameList, fc='g')plt.legend()plt.show()
 
-  
-  
+
+
+                        
+                    </p>
+                </a>
+            </div>
+
+            
+                <div class="post-footer">
+                    
+                        <i class="fa fa-folder-open-o"></i>
+                        <a class="category-link" href="/categories/Python/">Python</a>
+
+                        
+                            <span class="dotted">|</span>
+                        
+
+                    
+                    
+                        <i class="fa fa-tags"></i>
+                        <a class="tag-link" href="/tags/Python/">Python</a>
+                    
+                </div>
+            
+        </article>
     
-    <div class="header-content">
-      <div class="post-image" style="background-image: url(https://chasencenge.github.io/links/Asset/cover44.jpg)"></div>
-      <div class="post-text">
-        <h1 class="title-wrap">Python</h1>
-        <h2 class="title-sub-wrap">当前分类下共有4篇文章</h2>
-      </div>
+
+    
+        <article class="box post post-item">
+            <div class="post-title"><a href="/2019/09/23/ParticalFilter(粒子滤波算法)/">ParticalFilter(粒子滤波算法)</a></div>
+            <div class="post-meta">
+                
+                <i class="fa fa-calendar"></i> <time>2019-09-23</time>
+                <span class="dotted">|</span>
+                <i class="fa fa-user"></i> 
+            </div>
+
+            <div class="post-excerpt">
+                <a href="/2019/09/23/ParticalFilter(粒子滤波算法)/">
+                    <p>
+                        
+                            粒子滤波算法
+                        
+                    </p>
+                </a>
+            </div>
+
+            
+                <div class="post-footer">
+                    
+                        <i class="fa fa-folder-open-o"></i>
+                        <a class="category-link" href="/categories/Python/">Python</a>
+
+                        
+                            <span class="dotted">|</span>
+                        
+
+                    
+                    
+                        <i class="fa fa-tags"></i>
+                        <a class="tag-link" href="/tags/Python/">Python</a>
+                    
+                </div>
+            
+        </article>
+    
+
+    
+        <article class="box post post-item">
+            <div class="post-title"><a href="/2019/07/25/Python的yield关键字/">Python---yield关键字</a></div>
+            <div class="post-meta">
+                
+                <i class="fa fa-calendar"></i> <time>2019-07-25</time>
+                <span class="dotted">|</span>
+                <i class="fa fa-user"></i> 
+            </div>
+
+            <div class="post-excerpt">
+                <a href="/2019/07/25/Python的yield关键字/">
+                    <p>
+                        
+                            python中yield关键字的用法
+
+                        
+                    </p>
+                </a>
+            </div>
+
+            
+                <div class="post-footer">
+                    
+                        <i class="fa fa-folder-open-o"></i>
+                        <a class="category-link" href="/categories/Python/">Python</a>
+
+                        
+                            <span class="dotted">|</span>
+                        
+
+                    
+                    
+                        <i class="fa fa-tags"></i>
+                        <a class="tag-link" href="/tags/Python/">Python</a>
+                    
+                </div>
+            
+        </article>
+    
+
+
+
+            </div>
+            <div class="aside">
+    
+        <div class="box widget">
+    <div class="introduction">
+        <p><img src="/images/avatar.jpg" alt="head-sculpture"></p>
+        <p class="name">
+            CHAsencenge
+        </p>
+        <p class="slogan">解字</p>
     </div>
-  
-
-  
-  
-
-  
-  
-
-  
-  
-
-  </header>
-
-    <!-- 分类归档 -->
-
-<!-- post list container -->
-<div class="body-container float">
-  <div class="content-container article-list">
-    <div class="card-container card-articles">
-      <div class="card-wrap">
+</div>
+    
         
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover30.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/27/Pyplot绘图/" itemprop="url"></a>
-              
-              <h2 class="article-title">Pyplot绘图</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/27/Pyplot绘图/" class="article-date">
-    <time datetime="2020-07-27T12:56:31.000Z" itemprop="datePublished">2020-07-27</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Python/">Python</a>
-              </div>
-            </article>
-          </div>
+<div class="box widget">
+    <div class="title">Recent</div>
+    <ul class="item-box">
         
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover23.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/20/Python实现Lora节点拓扑自动规划/" itemprop="url"></a>
-              
-              <h2 class="article-title">Python实现Lora节点拓扑自动规划</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/20/Python实现Lora节点拓扑自动规划/" class="article-date">
-    <time datetime="2020-07-20T02:57:58.000Z" itemprop="datePublished">2020-07-20</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Python/">Python</a>
-              </div>
-            </article>
-          </div>
+            
+                <li><a href="/2020/11/30/手撸算法终版/">手撸算法终版</a></li>
+            
         
-          
-          <div class="card-item large img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover12.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2019/09/23/ParticalFilter(粒子滤波算法)/" itemprop="url"></a>
-              
-              <h2 class="article-title">ParticalFilter(粒子滤波算法)</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2019/09/23/ParticalFilter(粒子滤波算法)/" class="article-date">
-    <time datetime="2019-09-23T05:36:58.000Z" itemprop="datePublished">2019-09-23</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Python/">Python</a>
-              </div>
-            </article>
-          </div>
+            
+                <li><a href="/2020/10/29/哈希专题/">哈希专题</a></li>
+            
         
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover23.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2019/07/25/Python的yield关键字/" itemprop="url"></a>
-              
-              <h2 class="article-title">Python---yield关键字</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2019/07/25/Python的yield关键字/" class="article-date">
-    <time datetime="2019-07-25T06:59:22.000Z" itemprop="datePublished">2019-07-25</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Python/">Python</a>
-              </div>
-            </article>
-          </div>
+            
+                <li><a href="/2020/10/29/特殊技巧专题/">特殊技巧专题</a></li>
+            
         
-      </div>
-    </div>
-  </div>
+            
+                <li><a href="/2020/10/29/栈和队列专题/">栈和队列专题</a></li>
+            
+        
+            
+                <li><a href="/2020/10/28/树图专题/">树专题</a></li>
+            
+        
+            
+                <li><a href="/2020/10/28/空间换时间专题/">空间换时间专题</a></li>
+            
+        
+            
+                <li><a href="/2020/10/25/C-Lambda表达式/">C++ Lambda表达式</a></li>
+            
+        
+            
+                <li><a href="/2020/10/16/双指针专题/">双指针专题</a></li>
+            
+        
+    </ul>
 </div>
 
-<!-- page container -->
-
-
-
-    <!-- footer container -->
-<footer id="footer" class="footer">
-  <div class="footer-container">
     
-    <div class="social-icons social-icons-footer">
-      <a href="mailto:958198376@qq.com" target="_blank" rel="noopener noreferrer">
-  <svg class="icon icon-email" viewbox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
-    <path d="M490.338462 592.738462c11.815385 11.815385 29.538462 11.815385 41.353846 0l445.046154-413.538462c7.876923-15.753846 5.907692-41.353846-25.6-41.353846l-880.246154 1.969231c-23.630769 0-43.323077 21.661538-25.6 41.353846l445.046154 411.569231zM984.615385 340.676923c0-19.692308-23.630769-31.507692-39.384616-17.723077L596.676923 643.938462c-23.630769 21.661538-53.169231 33.476923-84.676923 33.476923s-61.046154-11.815385-84.676923-31.507693L80.738462 322.953846c-15.753846-13.784615-39.384615-3.938462-39.384616 17.723077C39.384615 334.769231 39.384615 787.692308 39.384615 787.692308c0 43.323077 35.446154 78.769231 78.769231 78.76923h787.692308c43.323077 0 78.769231-35.446154 78.769231-78.76923V340.676923z"/>
-  </svg>
-</a><a href="https://github.com/CHAsencenge" target="_blank" rel="noopener noreferrer">
-  <svg class="icon icon-github" viewbox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
-    <path d="M64.6 512c0 195.6 125.4 361.9 300.1 422.9 23.5 5.9 19.9-10.8 19.9-22.2v-77.6c-135.8 15.9-141.3-74-150.5-89-18.5-31.5-61.9-39.5-49-54.5 31-15.9 62.5 4 98.9 58 26.4 39.1 77.9 32.5 104.1 26 5.7-23.5 17.9-44.5 34.7-60.9-140.7-25.2-199.4-111.1-199.4-213.3 0-49.5 16.4-95.1 48.4-131.8-20.4-60.6 1.9-112.4 4.9-120.1 58.2-5.2 118.5 41.6 123.3 45.3 33.1-8.9 70.8-13.7 112.9-13.7 42.4 0 80.3 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.4-43.9 2.9 7.7 24.7 58.3 5.5 118.1 32.5 36.8 49 82.8 49 132.4 0 102.3-59 188.3-200.2 213.2 23.5 23.3 38.1 55.5 38.1 91.1v112.7c0.8 9 0 17.9 15.1 17.9C832.7 877 960.4 709.4 960.4 512.1c0-247.5-200.6-447.9-447.9-447.9C265 64.1 64.6 264.5 64.6 512z"/>
-  </svg>
-</a><a href="https://weibo.com/u/5701921017" target="_blank" rel="noopener noreferrer">
-  <svg class="icon icon-weibo" viewbox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
-    <path d="M385.682429 733.696q11.995429-19.456 6.290286-39.424t-25.746286-28.598857q-19.456-7.972571-41.691429-0.585143t-34.304 26.258286q-12.580571 19.456-7.460571 39.131429t24.576 28.891429 42.569143 1.462857 35.693714-27.136zM439.442429 664.576q4.534857-7.460571 1.974857-15.140571t-10.020571-10.605714q-7.972571-2.852571-16.310857 0.292571t-12.288 10.605714q-9.728 17.700571 7.460571 25.746286 7.972571 2.852571 16.603429-0.292571t12.580571-10.605714zM538.843572 725.723429q-25.746286 58.294857-90.258286 85.723429t-128 6.875429q-61.147429-19.456-84.260571-72.265143t3.730286-107.154286q26.843429-53.174857 86.601143-79.433143t120.32-10.825143q63.414857 16.603429 90.550857 68.315429t1.462857 108.836571zM717.165858 634.294857q-5.12-54.857143-50.834286-97.133714t-119.149714-62.317714-156.891429-11.995429q-127.414857 13.165714-211.163429 80.822857t-75.702857 151.113143q5.12 54.857143 50.834286 97.133714t119.149714 62.317714 156.891429 11.995429q127.414857-13.165714 211.163429-80.822857t75.702857-151.113143zM893.147572 636.562286q0 38.838857-21.138286 79.725714t-62.317714 78.262857-96.256 67.145143-129.170286 47.396571-154.550857 17.700571-157.110857-19.163429-137.435429-53.174857-98.011429-86.308571-37.156571-114.029714q0-65.682286 39.716571-139.995429t112.859429-147.456q96.548571-96.548571 195.145143-134.875429t140.873143 4.022857q37.156571 36.571429 11.410286 119.442286-2.267429 7.972571-0.585143 11.410286t5.705143 4.022857 8.265143-0.292571 7.68-1.974857l3.437714-1.170286q79.433143-33.718857 140.580571-33.718857t87.405714 34.889143q25.746286 35.986286 0 101.741714-1.170286 7.460571-2.56 11.410286t2.56 7.168 6.875429 4.315429 9.728 3.437714q32.548571 10.313143 58.88 26.843429t45.714286 46.592 19.456 66.56zM850.871001 279.990857q23.990857 26.843429 31.158857 62.025143t-3.730286 67.145143q-4.534857 13.165714-16.822857 19.456t-25.453714 2.267429q-13.165714-4.534857-19.456-16.822857t-2.267429-25.453714q11.410286-35.986286-13.677714-63.414857t-61.147429-19.968q-13.677714 2.852571-25.746286-4.534857t-14.262857-21.138286q-2.852571-13.677714 4.534857-25.453714t21.138286-14.555429q34.304-7.460571 68.022857 3.145143t57.709714 37.449143zM954.295001 186.88q49.737143 54.857143 64.292571 127.122286t-7.68 138.020571q-5.12 15.433143-19.456 22.820571t-29.696 2.267429-22.820571-19.456-2.852571-29.696q16.018286-46.884571 5.705143-98.304t-45.714286-90.258286q-35.401143-39.424-84.553143-54.564571t-98.889143-4.827429q-16.018286 3.437714-29.696-5.412571t-17.115429-24.868571 5.412571-29.403429 24.868571-16.822857q70.290286-14.848 139.410286 6.582857t118.857143 76.873143z"/>
-  </svg>
-</a><a href="https://music.163.com/#/user/home?id=92407481" target="_blank" rel="noopener noreferrer">
-  <svg class="icon icon-cloudmusic" viewbox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
-    <path d="M952.17867 503.263237a341.054956 341.054956 0 0 0-56.853199-113.706399 408.604266 408.604266 0 0 0-109.723463-98.352823 304.662484 304.662484 0 0 0-143.257215-42.077792L621.305897 170.238394a40.343287 40.343287 0 0 1 10.792472-36.392472 56.88532 56.88532 0 0 1 36.392472-18.758344 102.785445 102.785445 0 0 1 56.853199 18.758344c6.263488 3.404768 10.792472 9.090088 17.05596 13.073024a57.335006 57.335006 0 0 0 82.999247-70.632873 66.521455 66.521455 0 0 0-22.74128-27.848432 237.691343 237.691343 0 0 0-89.262735-43.202007A170.559598 170.559598 0 0 0 625.288833 6.42409a167.026349 167.026349 0 0 0-60.836135 37.516688 164.328231 164.328231 0 0 0-40.921456 51.713927 156.908407 156.908407 0 0 0-8.54404 113.706399l13.651192 52.870264a284.298118 284.298118 0 0 0-158.064743 109.209535 256.963614 256.963614 0 0 0-43.202007 156.908407 248.419573 248.419573 0 0 0 13.651192 74.487327 205.281807 205.281807 0 0 0 80.718695 104.616312 185.945295 185.945295 0 0 0 136.447679 25.696361 193.879046 193.879046 0 0 0 156.330238-196.705646L708.802008 503.263237c-11.948808-46.060728-24.443664-91.543287-35.814304-137.025847a182.283563 182.283563 0 0 1 47.763112 18.180176 316.611292 316.611292 0 0 1 47.763111 34.690088A239.907654 239.907654 0 0 1 840.752823 529.987453a284.169636 284.169636 0 0 1 0 158.064743 252.241907 252.241907 0 0 1-21.584943 51.167879 308.741782 308.741782 0 0 1-168.279047 144.542033 387.918695 387.918695 0 0 1-130.184191 23.319448 332.607277 332.607277 0 0 1-155.206022-37.516688A367.233124 367.233124 0 0 1 194.87478 672.666499a373.014806 373.014806 0 0 1-20.460727-180.806022A366.173149 366.173149 0 0 1 406.869762 198.536512a57.399247 57.399247 0 0 0 13.073023-100.055207 76.189711 76.189711 0 0 0-63.662735-3.404768A479.815307 479.815307 0 0 0 68.705646 436.163614a488.905395 488.905395 0 0 0 129.027855 450.84266 454.857716 454.857716 0 0 0 248.997741 131.886574 470.885822 470.885822 0 0 0 138.117942 0A454.889837 454.889837 0 0 0 773.042911 952.949561a427.523212 427.523212 0 0 0 170.559598-209.232622 417.276788 417.276788 0 0 0 22.74128-109.209536 378.089837 378.089837 0 0 0-14.165119-131.244166z m-412.747804 118.845671a72.174655 72.174655 0 0 1-56.8532-10.792471 98.352823 98.352823 0 0 1-37.516687-61.382184 170.68808 170.68808 0 0 1 0-65.943287 133.042911 133.042911 0 0 1 33.533751-63.662735 181.35207 181.35207 0 0 1 80.718695-46.606776l39.219072 148.364367a204.189711 204.189711 0 0 1 5.107152 26.146048 79.594479 79.594479 0 0 1-64.208783 73.844918z"/>
-  </svg>
-</a>    </div>
-     
-    <p>&copy; 2020 <a href="/" target="_blank">CHAsencenge</a></p>
+        
+    <div class="box widget">
+        <div class="title">Categories</div>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/GameDev/">GameDev</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Laya/">Laya</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Light-Frequency-Authenticate/">Light Frequency Authenticate</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/LoRa/">LoRa</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Unity/">Unity</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Unity/Unreal/">Unreal</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Writing/">Writing</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cpp/">cpp</a><span class="category-list-count">3</span></li></ul>
+    </div>
 
     
-      <p id="hitokoto"></p>
-      <script src="https://v1.hitokoto.cn/?c=a&amp;encode=js&select=%23hitokoto" defer></script>
-    
-
-    
-
-    <p>Powered by <a href="https://hexo.io" target="_blank" rel="noopener noreferrer">Hexo</a> Theme - <a href="https://github.com/miiiku/flex-block" target="_blank" rel="noopener noreferrer author">flex-block</a></p>
+        
+  <div class="box widget">
+    <div class="title">Archives</div>
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">2020-11</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">2020-10</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">2020-09</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">2020-08</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">2020-07</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">2019-11</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">2019-09</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">2019-07</a><span class="archive-list-count">6</span></li></ul>
   </div>
+
+    
+        
+    <div class="box widget">
+        <div class="title">Tags</div>
+        <div class="item-box cloud-label">
+            <a href="/tags/Algorithm/" style="font-size: 20px;">Algorithm</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/GameDev/" style="font-size: 14px;">GameDev</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/Hexo/" style="font-size: 12px;">Hexo</a> <a href="/tags/Laya/" style="font-size: 16px;">Laya</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Python/" style="font-size: 16px;">Python</a> <a href="/tags/Unity/" style="font-size: 18px;">Unity</a> <a href="/tags/Unreal/" style="font-size: 10px;">Unreal</a> <a href="/tags/Writing/" style="font-size: 12px;">Writing</a> <a href="/tags/cpp/" style="font-size: 14px;">cpp</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/lightFre/" style="font-size: 10px;">lightFre</a> <a href="/tags/writing/" style="font-size: 10px;">writing</a> <a href="/tags/远程登录/" style="font-size: 10px;">远程登录</a>
+        </div>
+    </div>
+
+    
+</div>
+        </section>
+        <footer class="footer">
+    <div class="global-width footer-box">
+        <div class="copyright">
+            <span>Copyright &copy; 2019</span>
+            <span class="dotted">|</span>
+            <span>Powered by <a href="https://hexo.io/">Hexo</a></span>
+            <span class="dotted">|</span>
+            <span>Theme by <a href="javascript:">Loren</a></span>
+            <span class="dotted">|</span>
+            <span><a href="http://www.beian.miit.gov.cn">浙ICP备18016660号-1</a></span>
+        </div>
+    </div>
 </footer>
-  </div>
+    </div>
 
-  <div class="back-to-top-fixed">
-    <svg class="icon icon-back-to-top" viewbox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
-  <path d="M725.333333 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8l-213.333333-213.333333c-17.066667-17.066667-17.066667-42.666667 0-59.733333s42.666667-17.066667 59.733333 0l213.333333 213.333333c17.066667 17.066667 17.066667 42.666667 0 59.733333C746.666667 422.4 738.133333 426.666667 725.333333 426.666667z"/>
-  <path d="M298.666667 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8-17.066667-17.066667-17.066667-42.666667 0-59.733333l213.333333-213.333333c17.066667-17.066667 42.666667-17.066667 59.733333 0s17.066667 42.666667 0 59.733333l-213.333333 213.333333C320 422.4 311.466667 426.666667 298.666667 426.666667z"/>
-  <path d="M512 896c-25.6 0-42.666667-17.066667-42.666667-42.666667L469.333333 170.666667c0-25.6 17.066667-42.666667 42.666667-42.666667s42.666667 17.066667 42.666667 42.666667l0 682.666667C554.666667 878.933333 537.6 896 512 896z"/>
-</svg> 
-  </div>
-
-  
-  
-
-
-  <!-- aplayer 音频 start -->
-  <link rel="stylesheet" href="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.css">
-  <script type="text/javascript" src="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.js"></script>
-  <script type="text/javascript">
-    const aplayer = document.querySelectorAll(".aplayer");
-    aplayer && initaplayer(aplayer);
-    function initaplayer(els) {
-      let elsArr = Array.from(els);
-      elsArr.forEach(el => {
-        new APlayer({
-          container: el,
-          audio: { ...el.dataset },
-          theme: "#b7daff",
-          lrcType: 3,
-          autoplay: false,
-          loop: false,
-          mutex: true,
-        });
-      });
-    }
-  </script>
-  <!-- aplayer 音频 end -->
-  
-
-<!-- dplayer 视频 start -->
-<script type="text/javascript" src="https://unpkg.com/dplayer@1.25.1/dist/DPlayer.min.js"></script>
-<script type="text/javascript">
-  const dplayer = document.querySelectorAll(".dplayer");
-  dplayer && initDPlayer(dplayer);
-  function initDPlayer(els) {
-    let elsArr = Array.from(els);
-    elsArr.forEach(el => {
-      let url = el.dataset.url;
-      let cover = el.dataset.cover;
-      let subtitle = el.dataset.subtitle;
-
-      let options = {
-        container: el,
-        video: { url: url, pic: cover },
-        theme: "#b7daff",
-        autoplay: false,
-        loop: false,
-        mutex: true,
-      }
-
-      if (subtitle) {
-        options.subtitle = {
-          url: el.dataset.subtitle,
-        }
-      }
-      new DPlayer(options);
-    });
-  }
+<script>
+    hljs.initHighlightingOnLoad();
 </script>
-<!-- dplayer 视频 end -->
-
-
-<!-- waterfall 瀑布流 start -->
-<script src="/lib/waterfall.min.js"></script>
-<script type="text/javascript">
-
-const waterfalls = document.querySelectorAll(".waterfall-container");
-
-if (waterfalls && waterfalls.length > 0) {
-  waterfalls.forEach((waterfall, index) => {
-    let cls = "waterfall-container-" + index;
-    waterfall.classList.add(cls);
-    initWaterfall(cls, waterfall);
-  });
-}
-
-function initWaterfall(selector, el) {
-  const options = {};
-  if (Object.keys(el.dataset).length > 0) {
-    for (let k in el.dataset) {
-      options[k] = el.dataset[k];
-    }
-  }
-  waterfall(`.${selector}`, options);
-}
-</script>
-<!-- waterfall 瀑布流 end -->
-
-
-  <!-- zoom start -->
-  <script src="/lib/zoom.min.js"></script>
-  <script type="text/javascript">
-    document.querySelector(".article-content") && zoom(".article-content");
-  </script>
-  <!-- zoom end -->
-  
-
-
-
-  
-
-
-  
-
-
-  
-
-
-
-<script src="/js/script.js"></script>
-  
-  <!-- 尾部用户自定义相关内容 -->
-
 </body>
 </html>

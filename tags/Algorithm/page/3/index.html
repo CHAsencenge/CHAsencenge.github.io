@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+
+
+
+
+    <meta name="keywords" content>
+
+
+
+    <meta name="description" content="解字无果">
+
+
+<meta name="Robots" content="all">
+
+
+    <title>解字</title>
+
+
+<link rel="icon" href="/images/favicon.ico">
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/atom-one-dark.css">
+<link rel="stylesheet" href="/css/style.css">
+<script src="/js/highlight.min.js"></script>
+</head>
+<body>
+    <div class="main-container">
+        <header class="header">
+    <div class="global-width">
+        <nav class="nav-box">
+            
+                <a class="nav-item" href="/">Home</a>
+            
+                <a class="nav-item" href="/resume">Resume</a>
+            
+                <a class="nav-item" href="/mood" target="_blank">Mood</a>
+            
+                <a class="nav-item" href="/amusement/tetris" target="_blank">Amusement</a>
+            
+                <a class="nav-item" href="/about">About</a>
+            
+        </nav>
+    </div>
+</header>
+
+        <section class="content global-width">
+            <div class="main">
+                
+    
+        <article class="box post post-item">
+            <div class="post-title"><a href="/2020/07/26/百度之星2020-1001-Discount/">百度之星2020---1001.Discount</a></div>
+            <div class="post-meta">
+                
+                <i class="fa fa-calendar"></i> <time>2020-07-26</time>
+                <span class="dotted">|</span>
+                <i class="fa fa-user"></i> 
+            </div>
+
+            <div class="post-excerpt">
+                <a href="/2020/07/26/百度之星2020-1001-Discount/">
+                    <p>
+                        
+                            Problem Description
+学皇来到了一个餐馆吃饭。他觉得这家餐馆很好吃，于是就想办个会员。
+一共有 n种会员充值卡套餐，假设学皇这餐饭的消费为 a元，选择第 i种套餐，需要充值 b[i] * a 的钱，这次吃饭可以打 c[i]×10 折，由充值的钱支付（即这次吃饭只需要从充值金额中扣除 a×c[i] 元）。以后用剩余的充值的钱吃饭不再打折。
+请问学皇应该选择哪个套餐（必须选择恰好一个套餐），使得优惠的比例最大？
+优惠比例的定义是把充的钱用完以后，(本来应该付的钱 - 实际付的钱) / 本来应该付的钱。在这个题目里，实际付的钱就是这次充值的花费。
+Input
+第一行一个整数 test(1≤test≤100) 表示数据组数。
+对于每组数据，第一行一个正整数 n(1≤n≤100) 表示套餐的数目。
+接下来 n行，每行一个正整数 b[i]和一个小数 c[i]。
+Output
+对于每组数据，输出一个五位小数表示最大的优惠比例。如果小数点后超过五位，四舍五入到五位。
+Sample Input
+1234122 0.53 0.1
+
+Sample Output
+123450.23077样例解释对于第一种套餐，优惠比例为 0.5a / (2a + 0.5a） = 0.2；对于第二种套餐，优惠比例为 0.9a / (3a + 0.9a） = 9 / 39；
+
+12345678910111213141516171819202122232425262728293031323334353637383940414243#include &lt;iostream&gt;#include&lt;vector&gt;#include&lt;algorithm&gt;using namespace std;vector&lt;float&gt; compute() &#123;    int groupNum;    cin &gt;&gt; groupNum;    vector&lt;float&gt; output;    for (int i = 0; i &lt; groupNum; i++)    &#123;        float res = 0;        int choiseNum;        cin &gt;&gt; choiseNum;        //cout &lt;&lt; "choiseNum:" &lt;&lt; choiseNum &lt;&lt; endl;        int b;        float c;        for (int j = 0; j &lt; choiseNum; j++)        &#123;            cin &gt;&gt; b;            //cout &lt;&lt; "b:" &lt;&lt; b &lt;&lt; endl;            cin &gt;&gt; c;            //cout &lt;&lt; "c:" &lt;&lt; c &lt;&lt; endl;            float temp = (1 - c) / (b + 1 - c);            res = max(res, temp);        &#125;        output.push_back(res);    &#125;    return output;&#125;int main()&#123;    vector&lt;float&gt; res = compute();    for (int i = 0; i &lt; res.size(); i++)    &#123;        //cout &lt;&lt; res[i];        printf("%.5f\n", res[i]);    &#125;    return 0;&#125;
+
+
+                        
+                    </p>
+                </a>
+            </div>
+
+            
+                <div class="post-footer">
+                    
+                        <i class="fa fa-folder-open-o"></i>
+                        <a class="category-link" href="/categories/Algorithm/">Algorithm</a>
+
+                        
+                            <span class="dotted">|</span>
+                        
+
+                    
+                    
+                        <i class="fa fa-tags"></i>
+                        <a class="tag-link" href="/tags/Algorithm/">Algorithm</a>
+                    
+                </div>
+            
+        </article>
+    
+
+
+
+    <nav class="page-nav">
+        <a class="extend prev" rel="prev" href="/tags/Algorithm/page/2/">Prev</a><a class="page-number" href="/tags/Algorithm/">1</a><a class="page-number" href="/tags/Algorithm/page/2/">2</a><span class="page-number current">3</span>
+    </nav>
+
+            </div>
+            <div class="aside">
+    
+        <div class="box widget">
+    <div class="introduction">
+        <p><img src="/images/avatar.jpg" alt="head-sculpture"></p>
+        <p class="name">
+            CHAsencenge
+        </p>
+        <p class="slogan">解字</p>
+    </div>
+</div>
+    
+        
+<div class="box widget">
+    <div class="title">Recent</div>
+    <ul class="item-box">
+        
+            
+                <li><a href="/2020/11/30/手撸算法终版/">手撸算法终版</a></li>
+            
+        
+            
+                <li><a href="/2020/10/29/哈希专题/">哈希专题</a></li>
+            
+        
+            
+                <li><a href="/2020/10/29/特殊技巧专题/">特殊技巧专题</a></li>
+            
+        
+            
+                <li><a href="/2020/10/29/栈和队列专题/">栈和队列专题</a></li>
+            
+        
+            
+                <li><a href="/2020/10/28/树图专题/">树专题</a></li>
+            
+        
+            
+                <li><a href="/2020/10/28/空间换时间专题/">空间换时间专题</a></li>
+            
+        
+            
+                <li><a href="/2020/10/25/C-Lambda表达式/">C++ Lambda表达式</a></li>
+            
+        
+            
+                <li><a href="/2020/10/16/双指针专题/">双指针专题</a></li>
+            
+        
+    </ul>
+</div>
+
+    
+        
+    <div class="box widget">
+        <div class="title">Categories</div>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/GameDev/">GameDev</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Laya/">Laya</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Light-Frequency-Authenticate/">Light Frequency Authenticate</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/LoRa/">LoRa</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Unity/">Unity</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Unity/Unreal/">Unreal</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Writing/">Writing</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cpp/">cpp</a><span class="category-list-count">3</span></li></ul>
+    </div>
+
+    
+        
+  <div class="box widget">
+    <div class="title">Archives</div>
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">2020-11</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">2020-10</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">2020-09</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">2020-08</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">2020-07</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">2019-11</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">2019-09</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">2019-07</a><span class="archive-list-count">6</span></li></ul>
+  </div>
+
+    
+        
+    <div class="box widget">
+        <div class="title">Tags</div>
+        <div class="item-box cloud-label">
+            <a href="/tags/Algorithm/" style="font-size: 20px;">Algorithm</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/GameDev/" style="font-size: 14px;">GameDev</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/Hexo/" style="font-size: 12px;">Hexo</a> <a href="/tags/Laya/" style="font-size: 16px;">Laya</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Python/" style="font-size: 16px;">Python</a> <a href="/tags/Unity/" style="font-size: 18px;">Unity</a> <a href="/tags/Unreal/" style="font-size: 10px;">Unreal</a> <a href="/tags/Writing/" style="font-size: 12px;">Writing</a> <a href="/tags/cpp/" style="font-size: 14px;">cpp</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/lightFre/" style="font-size: 10px;">lightFre</a> <a href="/tags/writing/" style="font-size: 10px;">writing</a> <a href="/tags/远程登录/" style="font-size: 10px;">远程登录</a>
+        </div>
+    </div>
+
+    
+</div>
+        </section>
+        <footer class="footer">
+    <div class="global-width footer-box">
+        <div class="copyright">
+            <span>Copyright &copy; 2019</span>
+            <span class="dotted">|</span>
+            <span>Powered by <a href="https://hexo.io/">Hexo</a></span>
+            <span class="dotted">|</span>
+            <span>Theme by <a href="javascript:">Loren</a></span>
+            <span class="dotted">|</span>
+            <span><a href="http://www.beian.miit.gov.cn">浙ICP备18016660号-1</a></span>
+        </div>
+    </div>
+</footer>
+    </div>
+
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+</body>
+</html>

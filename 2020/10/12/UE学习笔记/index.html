@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+
+
+
+
+    <meta name="keywords" content="GameDev,">
+
+
+
+    <meta name="description" content="UE4源码编译git clone源码
+运行Setup.bat下载依赖文件
+运行GenerateProjectFiles.bat生成工程文件
+运行UE.sln
+在vs打开的工程中，最上方的解决方案配置设置为Development Editor，启动项目设置为UE4，平台WIN64，右键UE4 –...">
+
+
+<meta name="Robots" content="all">
+
+
+    <title>解字 | UE学习文档</title>
+
+
+<link rel="icon" href="/images/favicon.ico">
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/atom-one-dark.css">
+<link rel="stylesheet" href="/css/style.css">
+<script src="/js/highlight.min.js"></script>
+</head>
+<body>
+    <div class="main-container">
+        <header class="header">
+    <div class="global-width">
+        <nav class="nav-box">
+            
+                <a class="nav-item" href="/">Home</a>
+            
+                <a class="nav-item" href="/resume">Resume</a>
+            
+                <a class="nav-item" href="/mood" target="_blank">Mood</a>
+            
+                <a class="nav-item" href="/amusement/tetris" target="_blank">Amusement</a>
+            
+                <a class="nav-item" href="/about">About</a>
+            
+        </nav>
+    </div>
+</header>
+
+        <section class="content global-width">
+            <div class="main">
+                <article class="box post">
+    <div class="post-title align-center detail-title">UE学习文档</div>
+    <div class="post-meta align-center">
+        
+        <i class="fa fa-calendar"></i> <time>2020-10-12</time>
+        <span class="dotted">|</span>
+        <i class="fa fa-user"></i> 
+        
+            
+                <span class="dotted">|</span>
+                <i class="fa fa-folder-open-o"></i>
+                <a class="category-link" href="/categories/GameDev/">GameDev</a>
+
+                
+                    <span class="dotted">|</span>
+                
+
+            
+            
+                <i class="fa fa-tags"></i>
+                <a class="tag-link" href="/tags/GameDev/">GameDev</a>
+            
+        
+    </div>
+
+    <div class="post-content">
+        <h1 id="UE4源码编译"><a href="#UE4源码编译" class="headerlink" title="UE4源码编译"></a>UE4源码编译</h1><p>git clone源码</p>
+<p>运行Setup.bat下载依赖文件</p>
+<p>运行GenerateProjectFiles.bat生成工程文件</p>
+<p>运行UE.sln</p>
+<p>在vs打开的工程中，最上方的解决方案配置设置为Development Editor，启动项目设置为UE4，平台WIN64，右键UE4 – Build进行编译</p>
+<p>编译完成后按F5在vs中启动</p>
+<p><strong>注意</strong></p>
+<p>生成工程文件前可能会报错，根据报错信息可判断是否缺少相应的.NET Framework，如果缺少在vs installer中选中相应版本的vs – 修改 – 添加相应的.NET工具</p>
+<p>Epic Game Launcher中不能识别非公版的引擎，向编译版的引擎创建的工程中添加保管库中的素材时，点击添加到工程–显示所有工程–为相应工程手动选择对应的版本号即可添加素材（因为又编译版引擎创建的工程在Launcher中显示的版本标识为“其他”，不选择相应的版本号则素材或插件都会显示不兼容）</p>
+<h1 id="项目打包"><a href="#项目打包" class="headerlink" title="项目打包"></a>项目打包</h1><h2 id="项目打包注意事项"><a href="#项目打包注意事项" class="headerlink" title="项目打包注意事项"></a>项目打包注意事项</h2><h3 id="启动地图"><a href="#启动地图" class="headerlink" title="启动地图"></a>启动地图</h3><p>构建项目时会从游戏默认地图开始，需要点击Project Settings — Maps &amp; Modes 设置game default map</p>
+<p><img src="/2020/10/12/UE学习笔记/map.png" alt="设置启动地图"></p>
+<h3 id="选择目标平台"><a href="#选择目标平台" class="headerlink" title="选择目标平台"></a>选择目标平台</h3><p><img src="/2020/10/12/UE学习笔记/platform.png" alt="设置平台"></p>
+<p>还要记得选择目标硬件(Target Hardware)</p>
+<h3 id="编辑器查看方式"><a href="#编辑器查看方式" class="headerlink" title="编辑器查看方式"></a>编辑器查看方式</h3><p><img src="/2020/10/12/UE学习笔记/editorview.png" alt="选择编辑器视口"></p>
+<h3 id="细化平台性能控制"><a href="#细化平台性能控制" class="headerlink" title="细化平台性能控制"></a>细化平台性能控制</h3><p><img src="/2020/10/12/UE学习笔记/deviceprofile.png" alt="查看和修改设备描述"></p>
+<p>打开Device Profiles以后点击想要修改的设备型号后面的扳手即可对其值进行修改</p>
+<p><img src="/2020/10/12/UE学习笔记/everydevice.png" alt="对其修改"></p>
+<h2 id="Android设置和打包方式"><a href="#Android设置和打包方式" class="headerlink" title="Android设置和打包方式"></a>Android设置和打包方式</h2><h3 id="设置方式"><a href="#设置方式" class="headerlink" title="设置方式"></a>设置方式</h3><p>寻找UE4 Android Works文件夹，一般默认为C:/Program Files/Epic Games/UE_4_版本/Engine/Extras/Android Works/Win64</p>
+<p>安装后可看到CodeWorks Manager窗口</p>
+<p>在手机端，有时需找到usb driver才能使用，一般连数据线即可</p>
+<p><a href="http://developer.android.com/tools/extras/oem-usb.html" target="_blank" rel="noopener">http://developer.android.com/tools/extras/oem-usb.html</a></p>
+<p>解锁设备时要开启开发者模式，开启usb调试</p>
+<p>在设置主页找到“已连接设备”选择启用文件传输</p>
+<p>在电脑上cmd输入adb devices，如果列出了自己的手机设备名，则准备就绪</p>
+<p><strong>注意：</strong></p>
+<p>手机开发者选项中不但需开启USB调试，还打开USB安装，允许通过USB安装应用</p>
+<h3 id="打包方式"><a href="#打包方式" class="headerlink" title="打包方式"></a>打包方式</h3><p>为了更准确的测试，使用Play – Mobile Preview</p>
+<p><img src="/2020/10/12/UE学习笔记/MobilePreview.png" alt="模拟移动端测试"></p>
+<p><strong>退出游戏方式：</strong> “~”打开控制台，输入quit game</p>
+<p><strong>确保项目做好准备：</strong></p>
+<p>Settings – Project Settings – Platforms – Android </p>
+<p>页面顶部会有警告称项目尚未对Android完成配置，点击configure now</p>
+<p>设置文件包名称，格式为：com.MyGameCompany.MyCoolGame</p>
+<p>并完成项目命名</p>
+<p>如果要计划使用Google Play服务，向下滚动到Google Play Services并点击Configure Now，以将平台构建到游戏中</p>
+<p><img src="/2020/10/12/UE学习笔记/GooglePlayServices.png" alt="计划使用Google Play服务"></p>
+<p><strong>构建到设备：</strong></p>
+<p><img src="/2020/10/12/UE学习笔记/toDivice.png" alt="构建到设备"></p>
+<p>测试并部署到自己的设备很方便，如果需要部署到其他设备，需打包</p>
+<p><img src="/2020/10/12/UE学习笔记/package.png" alt="打包"></p>
+<p>双击生成的.bat项目可以将其安装到自己的Android设备上</p>
+<p><strong>注意</strong></p>
+<p>记得在项目设置 – Android勾选将游戏数据打包至.apk中</p>
+<h1 id="UE4游戏框架"><a href="#UE4游戏框架" class="headerlink" title="UE4游戏框架"></a>UE4游戏框架</h1><p> 游戏架构的基类是GameMode，设置游戏规则，也分则处理生成玩家</p>
+<h3 id="Pawn"><a href="#Pawn" class="headerlink" title="Pawn"></a>Pawn</h3><p>作为世界中的一个“代理”Actor，可由控制器处理 ，可接收输入并且可执行各种各样类似于玩家的动作（但不假定Pawn就是类人的）</p>
+<h3 id="Character"><a href="#Character" class="headerlink" title="Character"></a>Character</h3><p>类人的Pawn，本身默认具有用于碰撞的CapsuleComponent（胶囊体组件）和CharacterMovementComponent（角色运动组件）；可进行基本的拟人运动、平滑地在网格上复制运动，并具有一些动画相关的功能</p>
+<h3 id="控制Pawn"><a href="#控制Pawn" class="headerlink" title="控制Pawn"></a>控制Pawn</h3><p>Controller负责管理Pawn的Actor，一般分为PlayerController和AIController，控制器可以“具有”一个Pawn并控制它</p>
+<h3 id="HUD"><a href="#HUD" class="headerlink" title="HUD"></a>HUD</h3><p>平视显示信息</p>
+<h3 id="GameMode"><a href="#GameMode" class="headerlink" title="GameMode"></a>GameMode</h3><p>游戏的定义，包括像游戏规则和获胜条件这样的内容；仅存在于服务器上，一般在游戏过程中不会有太多数据改变，并且一定不会具有客户端需要的临时数据</p>
+<h3 id="GameState"><a href="#GameState" class="headerlink" title="GameState"></a>GameState</h3><p>包含游戏状态，包括像关联玩家的列表、分数、象棋游戏中的棋子位置或在开放世界中已经完成的任务列表</p>
+<p>存在于服务器和所有客户端上，可以自由地进行复制来保持同步</p>
+<h3 id="PlayerState"><a href="#PlayerState" class="headerlink" title="PlayerState"></a>PlayerState</h3><p>表示游戏中一个参与者的状态（AI没有PlayerState），适合包含的实例数据有：玩家姓名，分数，多人在线竞技场比赛中的级别，夺旗模式游戏中玩家当前是否占领旗帜</p>
+<p>所有玩家的PlayerStates在所有的机器上都存在，并且可以自由复制包持同步</p>
+<h1 id="UE-C"><a href="#UE-C" class="headerlink" title="UE C++"></a>UE C++</h1><h2 id="命名规则"><a href="#命名规则" class="headerlink" title="命名规则"></a>命名规则</h2><p>派生自<code>Actor</code>的类前缀为A</p>
+<p>派生自<code>Object</code>的类前缀为U</p>
+<p>派生自<code>Swidget</code>（Slate UI）的类前缀为S</p>
+<p><code>Enums</code>的类前缀为E</p>
+<p><code>Interface</code>类的前缀通常为I</p>
+<p><code>Template</code>类的前缀为T</p>
+<p>其余类的前缀均为F</p>
+<p>布尔值用b前缀</p>
+<p>全局元素用G前缀</p>
+<p>输入参数用In前缀</p>
+<p>输出参数用Out前缀</p>
+<h2 id="在API文档寻找类或函数"><a href="#在API文档寻找类或函数" class="headerlink" title="在API文档寻找类或函数"></a>在API文档寻找类或函数</h2><p>进入UE4文档 –&gt; Unreal Engine API Reference –&gt; Contents</p>
+<p>Contents下面点击All classes或者All Functions查看所有的类和函数</p>
+<h2 id="防止头文件被编译多次的两种方法"><a href="#防止头文件被编译多次的两种方法" class="headerlink" title="防止头文件被编译多次的两种方法"></a>防止头文件被编译多次的两种方法</h2><p>（1）</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta"># <span class="hljs-meta-keyword">ifndef</span> _SOMEFILE_H_</span><br><span class="hljs-meta"># <span class="hljs-meta-keyword">define</span> _SOMEFILE_H_</span><br>......<br><span class="hljs-meta"># <span class="hljs-meta-keyword">endif</span></span><br></code></pre></td></tr></table></figure>
+
+<p>（2）</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta"># <span class="hljs-meta-keyword">pragma</span> once</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="UCLASS"><a href="#UCLASS" class="headerlink" title="UCLASS()"></a>UCLASS()</h2><p>UCLASS 宏（在头文件）可用于标记从 <code>UObject</code> 派生的类，使 UObject 处理系统识别到它们</p>
+<p>GENERATED_BODY 宏不获取参数，但会对类进行设置，以支持引擎要求的基础结构。所有 UCLASS 均有此要求</p>
+<h2 id="UPROPERTY"><a href="#UPROPERTY" class="headerlink" title="UPROPERTY()"></a>UPROPERTY()</h2><p>为将变量公开到虚幻引擎，需使其成为 <strong>UPROPERTY</strong>。利用此操作，可在启动游戏或加载保存的关卡时保留变量的值。带有空括号的 <code>UPROPERTY</code> 标记，将被添加到受其它影响的变量正上方</p>
+<p><code>UPROPERTY</code> 支持改变虚幻引擎使用变量方式的参数。将变量设为可编辑，可添加 <code>EditAnywhere</code> 参数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c++">UPROPERTY(EditAnywhere)<br>int32 CountdownTime;<br></code></pre></td></tr></table></figure>
+
+<p>然后该变量的修改便可在Details（细节面板）中进行</p>
+<h2 id="UFUNCTION"><a href="#UFUNCTION" class="headerlink" title="UFUNCTION()"></a>UFUNCTION()</h2><p>UFUNCTION()宏把C++函数对反射系统公开，BlueprintCallable选项将对其蓝图虚拟机公开</p>
+<p><strong>BlueprintCallable</strong>：该函数可以在蓝图或关卡蓝图图表中执行</p>
+<p><strong>BlueprintImplementableEvent</strong>：此函数可以在蓝图或关卡蓝图图表内进行重载</p>
+<p><strong>BlueprintNativeEvent</strong>：此函数将由蓝图进行重载，但同时也包含native类的执行。提供一个名称为[FunctionName]_Implementation的函数本体而非[FunctionName];自动生成的代码将包含转换程序,此程序在需要时会调用实施方式</p>
+<h2 id="游戏客户端公开课学习文档"><a href="#游戏客户端公开课学习文档" class="headerlink" title="游戏客户端公开课学习文档"></a>游戏客户端公开课学习文档</h2>
+    </div>
+</article>
+            </div>
+            <div class="aside">
+    
+        <div class="box widget">
+    <div class="introduction">
+        <p><img src="/images/avatar.jpg" alt="head-sculpture"></p>
+        <p class="name">
+            CHAsencenge
+        </p>
+        <p class="slogan">解字</p>
+    </div>
+</div>
+    
+        
+<div class="box widget">
+    <div class="title">Recent</div>
+    <ul class="item-box">
+        
+            
+                <li><a href="/2020/11/30/手撸算法终版/">手撸算法终版</a></li>
+            
+        
+            
+                <li><a href="/2020/10/29/哈希专题/">哈希专题</a></li>
+            
+        
+            
+                <li><a href="/2020/10/29/特殊技巧专题/">特殊技巧专题</a></li>
+            
+        
+            
+                <li><a href="/2020/10/29/栈和队列专题/">栈和队列专题</a></li>
+            
+        
+            
+                <li><a href="/2020/10/28/树图专题/">树专题</a></li>
+            
+        
+            
+                <li><a href="/2020/10/28/空间换时间专题/">空间换时间专题</a></li>
+            
+        
+            
+                <li><a href="/2020/10/25/C-Lambda表达式/">C++ Lambda表达式</a></li>
+            
+        
+            
+                <li><a href="/2020/10/16/双指针专题/">双指针专题</a></li>
+            
+        
+    </ul>
+</div>
+
+    
+        
+    <div class="box widget">
+        <div class="title">Categories</div>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/GameDev/">GameDev</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Laya/">Laya</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Light-Frequency-Authenticate/">Light Frequency Authenticate</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/LoRa/">LoRa</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Unity/">Unity</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Unity/Unreal/">Unreal</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Writing/">Writing</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cpp/">cpp</a><span class="category-list-count">3</span></li></ul>
+    </div>
+
+    
+        
+  <div class="box widget">
+    <div class="title">Archives</div>
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">2020-11</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">2020-10</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">2020-09</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">2020-08</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">2020-07</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">2019-11</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">2019-09</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">2019-07</a><span class="archive-list-count">6</span></li></ul>
+  </div>
+
+    
+        
+    <div class="box widget">
+        <div class="title">Tags</div>
+        <div class="item-box cloud-label">
+            <a href="/tags/Algorithm/" style="font-size: 20px;">Algorithm</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/GameDev/" style="font-size: 14px;">GameDev</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/Hexo/" style="font-size: 12px;">Hexo</a> <a href="/tags/Laya/" style="font-size: 16px;">Laya</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Python/" style="font-size: 16px;">Python</a> <a href="/tags/Unity/" style="font-size: 18px;">Unity</a> <a href="/tags/Unreal/" style="font-size: 10px;">Unreal</a> <a href="/tags/Writing/" style="font-size: 12px;">Writing</a> <a href="/tags/cpp/" style="font-size: 14px;">cpp</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/lightFre/" style="font-size: 10px;">lightFre</a> <a href="/tags/writing/" style="font-size: 10px;">writing</a> <a href="/tags/远程登录/" style="font-size: 10px;">远程登录</a>
+        </div>
+    </div>
+
+    
+</div>
+        </section>
+        <footer class="footer">
+    <div class="global-width footer-box">
+        <div class="copyright">
+            <span>Copyright &copy; 2019</span>
+            <span class="dotted">|</span>
+            <span>Powered by <a href="https://hexo.io/">Hexo</a></span>
+            <span class="dotted">|</span>
+            <span>Theme by <a href="javascript:">Loren</a></span>
+            <span class="dotted">|</span>
+            <span><a href="http://www.beian.miit.gov.cn">浙ICP备18016660号-1</a></span>
+        </div>
+    </div>
+</footer>
+    </div>
+
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+</body>
+</html>

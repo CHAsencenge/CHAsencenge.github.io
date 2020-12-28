@@ -1,539 +1,1221 @@
 <!DOCTYPE html>
 <html lang="en">
 <head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="theme-color" content="#3367D6">
-  <link rel="apple-touch-icon" href="/icons-192.png">
-  <link rel="manifest" href="/manifest.json">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
 
-  
+
+
+
+    <meta name="keywords" content>
+
+
+
     <meta name="description" content="解字无果">
-  
 
-  
 
-  
-    <meta name="author" content="CHAsencenge">
-  
+<meta name="Robots" content="all">
 
-  
 
-  
+    <title>解字</title>
 
-  <title>Archives | 解字</title>
 
-  
-
-  
-    <link rel="icon" href="/favicon.ico">
-  
-
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-    <link href="https://cdn.bootcss.com/highlight.js/9.15.6/styles/monokai-sublime.min.css" rel="stylesheet">
-  
-
-  <link rel="stylesheet" href="/css/style.css">
+<link rel="icon" href="/images/favicon.ico">
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/atom-one-dark.css">
+<link rel="stylesheet" href="/css/style.css">
+<script src="/js/highlight.min.js"></script>
 </head>
 <body>
-  <div class="root-container">
-    <!-- navbar -->
-<nav class="navbar">
-  <div class="navbar-content">
-    <!-- logo -->
-    <div class="navbar-logo">
-      <a href="/">
-        
-          解字
-        
-      </a>
+    <div class="main-container">
+        <header class="header">
+    <div class="global-width">
+        <nav class="nav-box">
+            
+                <a class="nav-item" href="/">Home</a>
+            
+                <a class="nav-item" href="/resume">Resume</a>
+            
+                <a class="nav-item" href="/mood" target="_blank">Mood</a>
+            
+                <a class="nav-item" href="/amusement/tetris" target="_blank">Amusement</a>
+            
+                <a class="nav-item" href="/about">About</a>
+            
+        </nav>
     </div>
-    <!-- link -->
-    <div class="navbar-link">
-      <div class="navbar-btn">
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-      <ul class="navbar-list">
-        
-          <li class="navbar-list-item"><a href="/">主页</a></li>
-        
-          <li class="navbar-list-item"><a href="/about">关于</a></li>
-        
-          <li class="navbar-list-item"><a href="/links">友链</a></li>
-        
-          <li class="navbar-list-item"><a href="/tags">标签</a></li>
-        
-          <li class="navbar-list-item"><a href="/categories">分类</a></li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
+</header>
+
+        <section class="content global-width">
+            <div class="main">
+                
+    
+        <article class="box post post-item">
+            <div class="post-title"><a href="/2020/08/01/bfs专题/">LeetCode广度优先搜索</a></div>
+            <div class="post-meta">
+                
+                <i class="fa fa-calendar"></i> <time>2020-08-01</time>
+                <span class="dotted">|</span>
+                <i class="fa fa-user"></i> 
+            </div>
+
+            <div class="post-excerpt">
+                <a href="/2020/08/01/bfs专题/">
+                    <p>
+                        
+                            107. 二叉树的层次遍历给定一个二叉树，返回其节点值自底向上的层次遍历。 （即按从叶子节点所在层到根节点所在的层，逐层从左向右遍历）
+STL queue：原理：队尾（rear）插入，队首（front）删除
+头文件： 
+1#include&lt;queue&gt;
+
+方法：
+123456push(): 推一个元素进队列front(): 返回队首元素(栈对应的是top())back(): 返回队尾元素pop(): 移除队首元素empty()size()
+
+创建：
+1queue&lt;string&gt; q;
+
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647/** * Definition for a binary tree node. * struct TreeNode &#123; *     int val; *     TreeNode *left; *     TreeNode *right; *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;public:    vector&lt;vector&lt;int&gt;&gt; levelOrderBottom(TreeNode* root) &#123;        vector&lt;vector&lt;int&gt;&gt; resV;        vector&lt;int&gt; levelNumV;        TreeNode* cur = root;        //层次遍历借助队列实现        queue&lt;TreeNode*&gt; q;        q.push(cur);        //跳出遍历的条件为队列为空        while(!q.empty())        &#123;            int size = q.size();            while(size-- &gt; 0)            &#123;                cur = q.front();                //砍头操作                q.pop();                if(cur)                &#123;                levelNumV.push_back(cur-&gt;val);                //爆菊操作                q.push(cur-&gt;left);                q.push(cur-&gt;right);                &#125;            &#125;            if(!levelNumV.empty())            &#123;            //输出格式不是规则的二维数组可选用vector&lt;vector&gt;，它的push_back内容为vector（不限制子vector长度）            resV.push_back(levelNumV);            levelNumV.clear();            &#125;        &#125;        //vector中reverse的使用        reverse(resV.begin(), resV.end());        return resV;    &#125;&#125;;
+
+207. 课程表你这个学期必须选修 numCourse 门课程，记为 0 到 numCourse-1 。
+在选修某些课程之前需要一些先修课程。 例如，想要学习课程 0 ，你需要先完成课程 1 ，我们用一个匹配来表示他们：[0,1]
+给定课程总量以及它们的先决条件，请你判断是否可能完成所有课程的学习？
+1234567输入: 2, [[1,0]] 输出: true解释: 总共有2门课程。学习课程1之前，你需要完成课程0。所以这是可能的输入: 2, [[1,0],[0,1]]输出: false解释: 总共有2门课程。学习课程1之前，你需要先完成课程0；并且学习课程0之前，你还应先完成课程1。这是不可能的
+
+我们就可以将本题建模成一个求拓扑排序的问题了：
+我们将每一门课看成一个节点
+如果想要学习课程 A之前必须完成课程 B，那么我们从B到A连接一条有向边。这样以来，在拓扑排序中，B一定出现在 A的前面
+思路：
+考虑拓扑排序中最前面的节点，该节点一定不会有任何入边，也就是它没有任何的先修课程要求。当我们将一个节点加入答案中后，我们就可以移除它的所有出边，代表着它的相邻节点少了一门先修课程的要求。如果某个相邻节点变成了「没有任何入边的节点」，那么就代表着这门课可以开始学习了。按照这样的流程，我们不断地将没有入边的节点加入答案，直到答案中包含所有的节点（得到了一种拓扑排序）或者不存在没有入边的节点（图中包含环）
+算法：
+使用一个队列来进行广度优先搜索。初始时，所有入度为 00 的节点都被放入队列中，它们就是可以作为拓扑排序最前面的节点，并且它们之间的相对顺序是无关紧要的。
+在广度优先搜索的每一步中，我们取出队首的节点u：
+我们将u放入答案中
+我们移除 u的所有出边，也就是将u的所有相邻节点的入度减少1。如果某个相邻节点v的入度变为0，那么我们就将v放入队列中
+在广度优先搜索的过程结束后。如果答案中包含了这n个节点，那么我们就找到了一种拓扑排序，否则说明图中存在环，也就不存在拓扑排序了
+1234567891011121314151617181920212223242526272829303132333435363738394041bool canFinish(int numCourses, vector&lt;vector&lt;int&gt;&gt;&amp; prerequisites) &#123;    //入度 in degree    vector&lt;int&gt; indeg;    vector&lt;vector&lt;int&gt;&gt; edges;    //resize内的默认初始化值为0    indeg.resize(numCourses);    edges.resize(numCourses);    for (const auto&amp; info : prerequisites)    &#123;        //以info[1]为起始的边，指向info[0]        edges[info[1]].push_back(info[0]);        //info[0]的入度加一，指向它的是info[1]        ++indeg[info[0]];    &#125;    queue&lt;int&gt; q;    for (int i = 0; i &lt; numCourses; i++)    &#123;        //把最开始入度为0的点push进去        if (indeg[i] == 0)        &#123;            q.push(i);        &#125;    &#125;    int visited = 0;    while (!q.empty())    &#123;        visited++;        int u = q.front();        q.pop();        for (int v : edges[u])        &#123;            --indeg[v];            //如果去掉指向它的u之后，v点的入度变为0，那么push进队列            if (indeg[v] == 0)            &#123;                q.push(v);            &#125;        &#125;    &#125;    return visited == numCourses;&#125;
+
+
+                        
+                    </p>
+                </a>
+            </div>
+
+            
+                <div class="post-footer">
+                    
+                        <i class="fa fa-folder-open-o"></i>
+                        <a class="category-link" href="/categories/Algorithm/">Algorithm</a>
+
+                        
+                            <span class="dotted">|</span>
+                        
+
+                    
+                    
+                        <i class="fa fa-tags"></i>
+                        <a class="tag-link" href="/tags/Algorithm/">Algorithm</a>
+                    
+                </div>
+            
+        </article>
+    
 
     
-<!-- header container -->
-<header class="header-container">
+        <article class="box post post-item">
+            <div class="post-title"><a href="/2020/08/01/字节夏令营20游戏程序笔试题/">字节夏令营20游戏程序笔试题</a></div>
+            <div class="post-meta">
+                
+                <i class="fa fa-calendar"></i> <time>2020-08-01</time>
+                <span class="dotted">|</span>
+                <i class="fa fa-user"></i> 
+            </div>
 
-  
-  
+            <div class="post-excerpt">
+                <a href="/2020/08/01/字节夏令营20游戏程序笔试题/">
+                    <p>
+                        
+                            给素材分类，若作品1中有素材1和素材2，则认为素材1和素材2为一类，若作品2中有素材2和素材3，那么此后认为素材1、2、3为一类
+输入：第一行为作品数n，此后n行中每行第一位为该作品中的素材总数m，此后m个数字为素材名（int型）
+输出：素材的分类，并且每一类素材，类内顺序由小到大，类外顺序按照类内最小值由小到大排序输出
+示例：
+1234567891011输入：42 1 33 0 5 63 2 3 41 7输出：0 5 61 2 3 47
 
-  
-  
-    <div class="header-content">
-      <div class="post-image" style="background-image: url(https://chasencenge.github.io/links/Asset/cover44.jpg)"></div>
-      <div class="post-text">
-        <h1 class="title-wrap">归档</h1>
-        <h2 class="title-sub-wrap">共有51篇文章</h2>
-      </div>
+12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970#include &lt;iostream&gt;#include&lt;vector&gt;#include&lt;string&gt;using namespace std;int main()&#123;    vector&lt;vector&lt;int&gt;&gt; resV;    int num;    cin &gt;&gt; num;    for (int i = 0; i &lt; num; i++)    &#123;        int cat;        cin &gt;&gt; cat;        //存放该作品内所有素材的vector        vector&lt;int&gt; tempV;        for (int j = 0; j &lt; cat; j++)        &#123;            int mem;            cin &gt;&gt; mem;            tempV.push_back(mem);            //cout &lt;&lt; tempV[j];        &#125;        //能否找到已存在的类，能找到就将tempV添加进去        int label = 0;        for (int k = 0; k &lt; tempV.size(); k++)        &#123;            for (int out = 0; out &lt; resV.size(); out++)            &#123;                int flag = 0;                for (int in = 0; in &lt; resV[out].size(); in++)                &#123;                                        if (tempV[k] == resV[out][in])                    &#123;                        label = 1;                        flag = 1;                        for (int copy = 0; copy &lt; tempV.size(); copy++)                        &#123;                            //检查重复素材，重复的素材不添加，只在已有的分类中添加还未加入的素材                            if (find(resV[out].begin(), resV[out].end(), tempV[copy]) == resV[out].end())                                resV[out].push_back(tempV[copy]);                        &#125;                        break;                    &#125;                   &#125;                //不用再继续遍历后面的子vector了，添加进一个分类中就一定不会添加进另外一个分类                if (flag == 1)                    break;            &#125;        &#125;        //是新的素材分类        if (label == 0)        &#123;            resV.push_back(tempV);        &#125;    &#125;    //子vector按最小元素排序    sort(resV.begin(), resV.end());    for (int i = 0; i &lt; resV.size(); i++)    &#123;        //子vector内部排序        sort(resV[i].begin(), resV[i].end());        for (int j = 0; j &lt; resV[i].size(); j++)            cout &lt;&lt; resV[i][j] &lt;&lt; " ";        cout &lt;&lt; endl;    &#125;    return 0;&#125;
+
+计算给出时间和格林尼治时间之间的秒数，格式：YYYY/MM/DD hh:mm:ss
+需要考虑平年和闰年
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495#include &lt;iostream&gt;#include&lt;vector&gt;#include&lt;string&gt;using namespace std;int main()&#123;    string date, time;    cin &gt;&gt; date &gt;&gt; time;    long long int year, month, day;    //切分成子字符串之后再转整型，赋给年月日时分秒    //atoi()的参数是 const char* ,因此对于一个字符串str我们必须调用c_str()的方法把这个string转换成const char*类型的    //substr(pos, num)两个参数是从起始位置和pos开始取的字符个数，而不是起始位置和末尾位置    year = atoi(date.substr(0, 4).c_str());    month = atoi(date.substr(5, 2).c_str());    day = atoi(date.substr(8, 2).c_str());    long long int hour, minute, second;    hour = atoi(time.substr(0, 2).c_str());    minute = atoi(time.substr(3, 2).c_str());    second = atoi(time.substr(6, 2).c_str());    long long int time1 = 0;    //cout &lt;&lt; hour &lt;&lt; " " &lt;&lt; minute &lt;&lt; " " &lt;&lt; second;    cout &lt;&lt; year &lt;&lt; " " &lt;&lt; month &lt;&lt; " " &lt;&lt; day &lt;&lt; endl;    //cout &lt;&lt; second &lt;&lt; to_string(minute * 60) &lt;&lt; to_string(hour * 3600) &lt;&lt; second + minute * 60 + hour * 3600;    //给出的一天内的时间计算    time1 = second + minute * 60 + hour * 3600;    long long int time2 = 0;    long long int run = 0;    for (int i = 1970; i &lt; year; i++)    &#123;        if ((i % 4 == 0 &amp;&amp; i % 100 != 0) || i % 400 == 0)            run++;    &#125;    cout &lt;&lt; run &lt;&lt; endl;    //给出的年月日的时间计算    time2 += run * 366 * 3600 * 24 + (year - 1970 - run) * 365 * 3600 * 24;    cout &lt;&lt; time2 &lt;&lt; endl;    long long int temp = 0;    //最后一年单独计算，因为最后一年未满整一年    //最后一年是闰年还是平年    if ((year % 4 == 0 &amp;&amp; year % 100 != 0) || year % 400 == 0)        temp = 29;    else        temp = 28;    //最后一年除掉最后一个月的时间，因为最后一个月未满整一个月    switch (month)    &#123;    case 01:        time2 += 0;        break;    case 02:        time2 += 31 * 3600 * 24;        break;    case 03:        time2 += (31 + temp) * 3600 * 24;        break;    case 04:        time2 += (62 + temp) * 3600 * 24;        break;    case 05:        time2 += (92 + temp) * 3600 * 24;        break;    case 06:        time2 += (123 + temp) * 3600 * 24;        break;    case 07:        time2 += (153 + temp) * 3600 * 24;        break;    //8和9特殊，编译器在识别08和09时不会自动转换成8和9，而是提示错误的八进制数    case 8:        time2 += (184 + temp) * 3600 * 24;        break;    case 9:        time2 += (215 + temp) * 3600 * 24;        break;    case 10:        time2 += (245 + temp) * 3600 * 24;        break;    case 11:        time2 += (276 + temp) * 3600 * 24;        break;    case 12:        time2 += (306 + temp) * 3600 * 24;        break;    &#125;    //cout &lt;&lt; time2 &lt;&lt; endl;    time2 += (day - 1) * 24 * 3600;    //整的年月日的时间计算加上最后一日内的时分秒时间计算    long long int res = time1 + time2;    cout &lt;&lt; res &lt;&lt; endl;    return 0;    //1970/02/01 00:00:00    //2716/02/02 00:00:00&#125;
+
+
+                        
+                    </p>
+                </a>
+            </div>
+
+            
+                <div class="post-footer">
+                    
+                        <i class="fa fa-folder-open-o"></i>
+                        <a class="category-link" href="/categories/Algorithm/">Algorithm</a>
+
+                        
+                            <span class="dotted">|</span>
+                        
+
+                    
+                    
+                        <i class="fa fa-tags"></i>
+                        <a class="tag-link" href="/tags/Algorithm/">Algorithm</a>
+                    
+                </div>
+            
+        </article>
+    
+
+    
+        <article class="box post post-item">
+            <div class="post-title"><a href="/2020/07/31/网易20秋招Unity工程师笔试编程题/">网易20秋招Unity工程师笔试编程题</a></div>
+            <div class="post-meta">
+                
+                <i class="fa fa-calendar"></i> <time>2020-07-31</time>
+                <span class="dotted">|</span>
+                <i class="fa fa-user"></i> 
+            </div>
+
+            <div class="post-excerpt">
+                <a href="/2020/07/31/网易20秋招Unity工程师笔试编程题/">
+                    <p>
+                        
+                            定义S(n)，表示n在十进制下的各位数字和。
+现在给定一个x,请你求出最小正整数n，满足x&lt;=S(n)。
+123456789101112131415161718192021222324252627282930313233343536#include &lt;iostream&gt;#include&lt;vector&gt;#include&lt;algorithm&gt;#include&lt;string&gt;int main()&#123;    int num;    cin &gt;&gt; num;    vector&lt;string&gt; resV;    string a = "9";    for (int n = 0; n &lt; num; n++)    &#123;        int x;        cin &gt;&gt; x;        //long long int multi = 1;        string res;        while (x &gt; 9)        &#123;            x -= 9;            res = a + res;            //multi *= 10;        &#125;        if (x != 0)        &#123;            //res += multi * x;            res = to_string(x) + res;        &#125;        resV.push_back(res);    &#125;    for (int n = 0; n &lt; num; n++)    &#123;        cout &lt;&lt; resV[n] &lt;&lt; endl;    &#125;    return 0;&#125;
+
+小易给定你数字A, B (A &lt; B)和系数p, q。每次操作你可以将A变成A + p或者将p变成p * q。问至少几次操作使得B &lt;= A。
+12345678910111213141516171819202122232425262728293031323334353637383940414243#include &lt;iostream&gt;#include&lt;vector&gt;#include&lt;algorithm&gt;#include&lt;string&gt;int main()&#123;    int num;    cin &gt;&gt; num;    vector&lt;long long int&gt; resV;        for (int n = 0; n &lt; num; n++)    &#123;        long long int a;        long long int b;        long long int p;        long long int q;        cin &gt;&gt; a &gt;&gt; b &gt;&gt; p &gt;&gt; q;        long long int res = 0;        if (b - a &gt; p)        &#123;            long long int temp = b - a;            long long int multiNum = p;            while (temp &gt; multiNum)            &#123;                multiNum *= q;                res++;            &#125;            res++;        &#125;        else        &#123;            res++;        &#125;        resV.push_back(res);    &#125;    for (int n = 0; n &lt; num; n++)    &#123;        cout &lt;&lt; resV[n] &lt;&lt; endl;    &#125;    return 0;&#125;
+
+小易定义一个数字序列是完美的，当且仅当对于任意2 &lt;= i &lt;= n，都满足，即每个数字都要大于等于前面所有数字的和。现在给定数字序列Ai，小易想请你从中找出最长的一段连续子序列，满足它是完美的。
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647#include &lt;iostream&gt;#include&lt;vector&gt;#include&lt;algorithm&gt;#include&lt;string&gt;int main()&#123;    vector&lt;int&gt; resV;    int num;    cin &gt;&gt; num;    for (int i = 0; i &lt; num; i++)    &#123;        int tempLength = 1;        int maxLength = 0;        vector&lt;int&gt; n;        int serialNum;        cin &gt;&gt; serialNum;        for (int j = 0; j &lt; serialNum; j++)        &#123;            int data;            cin &gt;&gt; data;            n.push_back(data);        &#125;        int compute = n[0];        for (int k = 1; k &lt; serialNum; k++)        &#123;            if (n[k] &gt;= compute)            &#123;                compute += n[k];                tempLength++;            &#125;            else            &#123;                maxLength = max(maxLength, tempLength);                tempLength = 1;                compute = n[k];            &#125;        &#125;        resV.push_back(maxLength);    &#125;    for (int i = 0; i &lt; num; i++)    &#123;        cout &lt;&lt; resV[i] &lt;&lt; endl;    &#125;    return 0;&#125;
+
+小易的公司一共有n名员工, 第i个人每个月的薪酬是xi万元。现在小易的老板向小易提了m次询问, 每次询问老板都会给出一个整数k, 小易要快速回答老板工资等于k的员工的数量。
+1234567891011121314151617181920212223242526272829303132333435363738394041424344#include &lt;iostream&gt;#include&lt;vector&gt;#include&lt;algorithm&gt;#include&lt;string&gt;#include&lt;unordered_map&gt;using namespace std;int main()&#123;    int people, question;    cin &gt;&gt; people &gt;&gt; question;    vector&lt;int&gt; resV(question, 0);    vector&lt;int&gt; salaryV;    vector&lt;int&gt; questionV;    unordered_map&lt;string, size_t&gt; questionMap;    for (int i = 0; i &lt; people; i++)    &#123;        int salary;        cin &gt;&gt; salary;        salaryV.push_back(salary);    &#125;    for (int i = 0; i &lt; question; i++)    &#123;        int data;        cin &gt;&gt; data;        questionV.push_back(data);        questionMap[to_string(data)];    &#125;    for (int i = 0; i &lt; people; i++)    &#123;        if (questionMap.find(to_string(salaryV[i])) != questionMap.end())        &#123;            ++questionMap[to_string(salaryV[i])];        &#125;    &#125;       for (int i = 0; i &lt; question; i++)    &#123;        cout &lt;&lt; questionMap.find(to_string(questionV[i]))-&gt;second &lt;&lt; endl;    &#125;    return 0;&#125;
+
+
+                        
+                    </p>
+                </a>
+            </div>
+
+            
+                <div class="post-footer">
+                    
+                        <i class="fa fa-folder-open-o"></i>
+                        <a class="category-link" href="/categories/Algorithm/">Algorithm</a>
+
+                        
+                            <span class="dotted">|</span>
+                        
+
+                    
+                    
+                        <i class="fa fa-tags"></i>
+                        <a class="tag-link" href="/tags/Algorithm/">Algorithm</a>
+                    
+                </div>
+            
+        </article>
+    
+
+    
+        <article class="box post post-item">
+            <div class="post-title"><a href="/2020/07/27/Pyplot绘图/">Pyplot绘图</a></div>
+            <div class="post-meta">
+                
+                <i class="fa fa-calendar"></i> <time>2020-07-27</time>
+                <span class="dotted">|</span>
+                <i class="fa fa-user"></i> 
+            </div>
+
+            <div class="post-excerpt">
+                <a href="/2020/07/27/Pyplot绘图/">
+                    <p>
+                        
+                            标识散点：plt.scatter(x, y)可选项s修改散点大小，color修改颜色
+1plt.scatter(thisNodeLoc[0], thisNodeLoc[1], s=10, color='b')
+
+连线：plt.plot([x1, y1], [x2, y2])1plt.plot([thisNodeLoc[0], sendToNodeLoc[0]], [thisNodeLoc[1], sendToNodeLoc[1]])
+
+注释文字：plt.annotate(txt, xy=(), xytext=())xy处填注释点坐标，xytext处填文本位置，可加偏移offset
+1plt.annotate(thisNodeLoc, xy=(thisNodeLoc[0], thisNodeLoc[1]), xytext=(thisNodeLoc[0]+1, thisNodeLoc[1]+1))
+
+限制坐标区间：12plt.xlim(-2200,2200)plt.ylim(-2200,2200)
+
+12345678910for n in range(0, nodeNum):    thisNodeLoc = [nodes[n].locX, nodes[n].locY]    sendToNodeLoc = [nodes[n].sendTo.locX, nodes[n].sendTo.locY]    plt.scatter(thisNodeLoc[0], thisNodeLoc[1], s=10, color='b')    plt.plot([thisNodeLoc[0], sendToNodeLoc[0]], [thisNodeLoc[1], sendToNodeLoc[1]])    plt.annotate(thisNodeLoc, xy=(thisNodeLoc[0], thisNodeLoc[1]), xytext=(thisNodeLoc[0]+1, thisNodeLoc[1]+1))plt.xlim(-2200,2200)plt.ylim(-2200,2200)plt.show()
+
+最后记得用plt.show()将其显示出来
+
+                        
+                    </p>
+                </a>
+            </div>
+
+            
+                <div class="post-footer">
+                    
+                        <i class="fa fa-folder-open-o"></i>
+                        <a class="category-link" href="/categories/Python/">Python</a>
+
+                        
+                            <span class="dotted">|</span>
+                        
+
+                    
+                    
+                        <i class="fa fa-tags"></i>
+                        <a class="tag-link" href="/tags/Python/">Python</a>
+                    
+                </div>
+            
+        </article>
+    
+
+    
+        <article class="box post post-item">
+            <div class="post-title"><a href="/2020/07/26/百度之星2020-1003-Permutation/">百度之星2020---1003.Permutation</a></div>
+            <div class="post-meta">
+                
+                <i class="fa fa-calendar"></i> <time>2020-07-26</time>
+                <span class="dotted">|</span>
+                <i class="fa fa-user"></i> 
+            </div>
+
+            <div class="post-excerpt">
+                <a href="/2020/07/26/百度之星2020-1003-Permutation/">
+                    <p>
+                        
+                            Problem Description
+一开始有 n个数，他们按 1…n的顺序排列，要求交换最多 m对数字（同一个数字可以参与多次交换），使得逆序对数目最大。
+对于一个序列 A，如果存在正整数 i, j使得1≤i&lt;j≤n 而且 A[i] &gt; A[j]，则 &lt;A[i],A[j]&gt; 这个有序对称为 A的一个逆序对。
+Input
+第一行一个正整数test (1≤test≤100000) 表示数据组数。
+对于每组数据，一行两个整数 n，m (1≤n≤1000000,0≤m≤1000000) 表示数字个数和最多可以交换的数字对数。
+Output
+对于每组数据，一行一个整数表示答案。
+Sample Input
+123456761 12 02 13 14 14 2
+
+Sample Output
+123456001356
+
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071#include &lt;iostream&gt;#include&lt;vector&gt;#include&lt;algorithm&gt;using namespace std;// 对每个（n, 1）结果都为：2 * n - 3int com(int n)&#123;    int com = 2 * n - 3;    return com;&#125;// 把（n, m）转换为（n, 1）, (n -2, 1)...(n - 2m + 2, 1)之和的形式并利用com()计算结果int arr(int n, int m)&#123;    int res = 0;    for (int i = 0; i &lt; m; i++)    &#123;        res += com(n - 2 * i);        //cout &lt;&lt; i &lt;&lt;" "&lt;&lt; res&lt;&lt;endl;    &#125;    return res;&#125;vector&lt;int&gt; compute() &#123;        int groupNum;    cin &gt;&gt; groupNum;    vector&lt;int&gt; output;    for (int i = 0; i &lt; groupNum; i++)    &#123;        int n;        int m;        //cout &lt;&lt; "choiseNum:" &lt;&lt; choiseNum &lt;&lt; endl;        cin &gt;&gt; n;            //cout &lt;&lt; "b:" &lt;&lt; b &lt;&lt; endl;        cin &gt;&gt; m;            //cout &lt;&lt; "c:" &lt;&lt; c &lt;&lt; endl;        if (n == 1 || m == 0)        &#123;            output.push_back(0);        &#125;        else &#123;            if (2 * m &lt; n)            &#123;                int res = arr(n, m);                output.push_back(res);            &#125;            else             &#123;                m = n / 2;                int res = arr(n, m);                output.push_back(res);            &#125;        &#125;        &#125;    return output;    &#125;int main()&#123;    vector&lt;int&gt; res = compute();    for (int i = 0; i &lt; res.size(); i++)    &#123;        //cout &lt;&lt; res[i];        printf("%d\n", res[i]);    &#125;    return 0;&#125;
+
+
+                        
+                    </p>
+                </a>
+            </div>
+
+            
+                <div class="post-footer">
+                    
+                        <i class="fa fa-folder-open-o"></i>
+                        <a class="category-link" href="/categories/Algorithm/">Algorithm</a>
+
+                        
+                            <span class="dotted">|</span>
+                        
+
+                    
+                    
+                        <i class="fa fa-tags"></i>
+                        <a class="tag-link" href="/tags/Algorithm/">Algorithm</a>
+                    
+                </div>
+            
+        </article>
+    
+
+    
+        <article class="box post post-item">
+            <div class="post-title"><a href="/2020/07/26/百度之星2020-1002-Game/">百度之星2020---1002.Game</a></div>
+            <div class="post-meta">
+                
+                <i class="fa fa-calendar"></i> <time>2020-07-26</time>
+                <span class="dotted">|</span>
+                <i class="fa fa-user"></i> 
+            </div>
+
+            <div class="post-excerpt">
+                <a href="/2020/07/26/百度之星2020-1002-Game/">
+                    <p>
+                        
+                            Problem Description
+Alice 和 Bob 在玩游戏。
+桌面上有两堆金币，少的那堆有 x 个金币，多的那堆有 2x 个金币。
+假设金币可以被无限细分。Alice 和 Bob 事先都不知道 x是几，但是他们都知道 x是一个 (0, 1]之间均匀分布的随机实数。
+Alice 会等概率的被分配到其中的一堆金币，Bob 会得到另一堆。x的值和两堆金币的分配是相互独立的。
+拿到金币以后，Alice 会马上数清自己拿到多少金币。然后 Alice 可以选择是否和 Bob 那堆换。
+给定 Alice 拿到的金币数目，请问 Alice 要不要交换，使得她期望能得到的金币数目更多？
+如果交换期望得到的金币数目多于不交换期望得到的金币数目，输出交换，否则不交换。
+Input
+第一行一个正整数test (1≤test≤200000) 表示数据组数。
+接下来每行一个小数p(0&lt;p≤2)，p最多保留五位小数，表示 Alice 拿到的金币数目。
+Output
+对于每组数据，输出 Yes 表示需要交换，输出 No 表示不要交换。
+Sample Input
+1211.00000
+
+Sample Output
+1Yes
+
+12345678910111213141516171819202122232425262728293031323334353637383940414243444546#include &lt;iostream&gt;#include&lt;vector&gt;#include&lt;algorithm&gt;#include &lt;string&gt;using namespace std;vector&lt;string&gt; compute()&#123;    int groupNum;    std::cin &gt;&gt; groupNum;    vector&lt;string&gt; output;    for (int i = 0; i &lt; groupNum; i++)    &#123;        float num;        std::cin &gt;&gt; num;        //float exception;        if (num &gt; 1)        &#123;            output.push_back("No");        &#125;        else        &#123;            if (2 * num * 0.5 + num / 2 * 0.5 &gt; num)            &#123;                output.push_back("Yes");            &#125;            else            &#123;                output.push_back("No");            &#125;        &#125;    &#125;    return output;&#125;int main()&#123;    vector&lt;string&gt; res = compute();    for (int i = 0; i &lt; res.size(); i++)    &#123;        //cout &lt;&lt; res[i];        printf("%s\n", res[i].c_str());    &#125;    return 0;&#125;
+
+
+                        
+                    </p>
+                </a>
+            </div>
+
+            
+                <div class="post-footer">
+                    
+                        <i class="fa fa-folder-open-o"></i>
+                        <a class="category-link" href="/categories/Algorithm/">Algorithm</a>
+
+                        
+                            <span class="dotted">|</span>
+                        
+
+                    
+                    
+                        <i class="fa fa-tags"></i>
+                        <a class="tag-link" href="/tags/Algorithm/">Algorithm</a>
+                    
+                </div>
+            
+        </article>
+    
+
+    
+        <article class="box post post-item">
+            <div class="post-title"><a href="/2020/07/26/百度之星2020-1001-Discount/">百度之星2020---1001.Discount</a></div>
+            <div class="post-meta">
+                
+                <i class="fa fa-calendar"></i> <time>2020-07-26</time>
+                <span class="dotted">|</span>
+                <i class="fa fa-user"></i> 
+            </div>
+
+            <div class="post-excerpt">
+                <a href="/2020/07/26/百度之星2020-1001-Discount/">
+                    <p>
+                        
+                            Problem Description
+学皇来到了一个餐馆吃饭。他觉得这家餐馆很好吃，于是就想办个会员。
+一共有 n种会员充值卡套餐，假设学皇这餐饭的消费为 a元，选择第 i种套餐，需要充值 b[i] * a 的钱，这次吃饭可以打 c[i]×10 折，由充值的钱支付（即这次吃饭只需要从充值金额中扣除 a×c[i] 元）。以后用剩余的充值的钱吃饭不再打折。
+请问学皇应该选择哪个套餐（必须选择恰好一个套餐），使得优惠的比例最大？
+优惠比例的定义是把充的钱用完以后，(本来应该付的钱 - 实际付的钱) / 本来应该付的钱。在这个题目里，实际付的钱就是这次充值的花费。
+Input
+第一行一个整数 test(1≤test≤100) 表示数据组数。
+对于每组数据，第一行一个正整数 n(1≤n≤100) 表示套餐的数目。
+接下来 n行，每行一个正整数 b[i]和一个小数 c[i]。
+Output
+对于每组数据，输出一个五位小数表示最大的优惠比例。如果小数点后超过五位，四舍五入到五位。
+Sample Input
+1234122 0.53 0.1
+
+Sample Output
+123450.23077样例解释对于第一种套餐，优惠比例为 0.5a / (2a + 0.5a） = 0.2；对于第二种套餐，优惠比例为 0.9a / (3a + 0.9a） = 9 / 39；
+
+12345678910111213141516171819202122232425262728293031323334353637383940414243#include &lt;iostream&gt;#include&lt;vector&gt;#include&lt;algorithm&gt;using namespace std;vector&lt;float&gt; compute() &#123;    int groupNum;    cin &gt;&gt; groupNum;    vector&lt;float&gt; output;    for (int i = 0; i &lt; groupNum; i++)    &#123;        float res = 0;        int choiseNum;        cin &gt;&gt; choiseNum;        //cout &lt;&lt; "choiseNum:" &lt;&lt; choiseNum &lt;&lt; endl;        int b;        float c;        for (int j = 0; j &lt; choiseNum; j++)        &#123;            cin &gt;&gt; b;            //cout &lt;&lt; "b:" &lt;&lt; b &lt;&lt; endl;            cin &gt;&gt; c;            //cout &lt;&lt; "c:" &lt;&lt; c &lt;&lt; endl;            float temp = (1 - c) / (b + 1 - c);            res = max(res, temp);        &#125;        output.push_back(res);    &#125;    return output;&#125;int main()&#123;    vector&lt;float&gt; res = compute();    for (int i = 0; i &lt; res.size(); i++)    &#123;        //cout &lt;&lt; res[i];        printf("%.5f\n", res[i]);    &#125;    return 0;&#125;
+
+
+                        
+                    </p>
+                </a>
+            </div>
+
+            
+                <div class="post-footer">
+                    
+                        <i class="fa fa-folder-open-o"></i>
+                        <a class="category-link" href="/categories/Algorithm/">Algorithm</a>
+
+                        
+                            <span class="dotted">|</span>
+                        
+
+                    
+                    
+                        <i class="fa fa-tags"></i>
+                        <a class="tag-link" href="/tags/Algorithm/">Algorithm</a>
+                    
+                </div>
+            
+        </article>
+    
+
+    
+        <article class="box post post-item">
+            <div class="post-title"><a href="/2020/07/24/游戏客户端面经知识点/">游戏客户端面经知识点</a></div>
+            <div class="post-meta">
+                
+                <i class="fa fa-calendar"></i> <time>2020-07-24</time>
+                <span class="dotted">|</span>
+                <i class="fa fa-user"></i> 
+            </div>
+
+            <div class="post-excerpt">
+                <a href="/2020/07/24/游戏客户端面经知识点/">
+                    <p>
+                        
+                            
+                        
+                    </p>
+                </a>
+            </div>
+
+            
+                <div class="post-footer">
+                    
+                        <i class="fa fa-folder-open-o"></i>
+                        <a class="category-link" href="/categories/Unity/">Unity</a>, <a class="category-link" href="/categories/Unity/Unreal/">Unreal</a>
+
+                        
+                            <span class="dotted">|</span>
+                        
+
+                    
+                    
+                        <i class="fa fa-tags"></i>
+                        <a class="tag-link" href="/tags/Unity/">Unity</a>, <a class="tag-link" href="/tags/Unreal/">Unreal</a>
+                    
+                </div>
+            
+        </article>
+    
+
+    
+        <article class="box post post-item">
+            <div class="post-title"><a href="/2020/07/24/C-面经知识点/">C++面经知识点</a></div>
+            <div class="post-meta">
+                
+                <i class="fa fa-calendar"></i> <time>2020-07-24</time>
+                <span class="dotted">|</span>
+                <i class="fa fa-user"></i> 
+            </div>
+
+            <div class="post-excerpt">
+                <a href="/2020/07/24/C-面经知识点/">
+                    <p>
+                        
+                            
+                        
+                    </p>
+                </a>
+            </div>
+
+            
+                <div class="post-footer">
+                    
+                        <i class="fa fa-folder-open-o"></i>
+                        <a class="category-link" href="/categories/cpp/">cpp</a>
+
+                        
+                            <span class="dotted">|</span>
+                        
+
+                    
+                    
+                        <i class="fa fa-tags"></i>
+                        <a class="tag-link" href="/tags/cpp/">cpp</a>
+                    
+                </div>
+            
+        </article>
+    
+
+    
+        <article class="box post post-item">
+            <div class="post-title"><a href="/2020/07/21/Unity项目对接到Laya/">Unity项目对接到Laya</a></div>
+            <div class="post-meta">
+                
+                <i class="fa fa-calendar"></i> <time>2020-07-21</time>
+                <span class="dotted">|</span>
+                <i class="fa fa-user"></i> 
+            </div>
+
+            <div class="post-excerpt">
+                <a href="/2020/07/21/Unity项目对接到Laya/">
+                    <p>
+                        
+                            Unity APIGameObject.FindWithTag通过Tag名找到游戏对象
+1ring = GameObject.FindWithTag(&quot;ring&quot;)
+
+
+
+
+FindWithTag
+返回一个标记为 tag 的活动 GameObject。如果未找到 GameObject，则返回 null。
+
+
+
+Find
+按 name 查找 GameObject，然后返回它。
+
+
+
+
+
+
+RigidbodyRigidbody是刚体，可以为游戏对象赋予物理属性，向对象添加 Rigidbody 组件后，其运动将受到 Unity 物理引擎的控制。即使不添加任何代码，Rigidbody 对象也受到向下的重力，并在与其他对象碰撞时作出反应（需有适当的collider）
+
+
+
+position
+刚体的位置
+
+
+
+rotation
+刚体的旋转
+
+
+useGravity
+控制重力是否影响该刚体
+
+
+angularVelocity
+刚体的角速度矢量（以弧度/秒为单位）
+
+
+velocity
+刚体的速度矢量
+
+
+
+
+
+AddForce
+向 Rigidbody 添加力
+
+
+
+Sleep
+强制刚体进入睡眠状态至少一帧
+
+
+AddTorque
+向刚体添加扭矩
+
+
+Quaternion在API中的UnityEngine-&gt;classes，四元数
+12Vector3 dir = hoopPoint.position - ballPoint.position;Quaternion wantedRotation = Quaternion.LookRotation(dir);
+
+Quaternion.LookRotation(dir)使用指定的 forward 和 upwards 方向创建旋转
+
+
+
+AngleAxis
+创建一个围绕 axis 旋转 angle 度的旋转
+
+
+
+LookRotation
+使用指定的 forward 和 upwards 方向创建旋转
+
+
+
+
+
+
+GameObject.GetComponentGameObject.GetComponent() 在UnityEngine-&gt;classes-&gt;GameObject
+返回 GameObject 中类型为 type 的所有组件
+示例：
+12345678void Start()&#123;    Component[] hingeJoints;    hingeJoints = GetComponents(typeof(HingeJoint));    foreach (HingeJoint joint in hingeJoints)        joint.useSpring = false;&#125;
+
+ForceMode位于UnityEngine-&gt;Enumerations
+使用 ForceMode 指定如何使用 Rigidbody.AddForce 来施加力。
+AddForce 函数可定义自己的力矢量，以及选择如何将此力施加于 GameObject（此 GameObject 必须附加有 Rigidbody 组件），从而影响您的 GameObject 的移动方式。
+
+
+
+Force
+向此刚体添加连续力，使用其质量
+
+
+
+Acceleration
+向此刚体添加连续加速度，忽略其质量
+
+
+Impulse
+向此刚体添加瞬时力冲击，考虑其质量
+
+
+VelocityChange
+向此刚体添加瞬时速度变化，忽略其质量
+
+
+transform对象的位置、旋转和缩放
+每个变换都可以有一个父级，使得能够分层应用位置、旋转和缩放
+
+
+
+parent
+变换的父级
+
+
+
+position
+世界空间中的变换位置
+
+
+rotation
+一个四元数，用于存储变换在世界空间中的旋转
+
+
+localEulerAngles
+以欧拉角表示的相对于父变换旋转的旋转（以度为单位）
+
+
+localPosition
+相对于父变换的变换位置
+
+
+localRotation
+相对于父级变换旋转的变换旋转
+
+
+localScale
+相对于父对象的变换缩放
+
+
+childCount
+父变换具有的子项数
+
+
+Camera.ScreenPointToRay1Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+Physics.Raycast参数：
+
+
+
+origin
+射线在世界坐标系中的起点
+
+
+
+direction
+射线的方向
+
+
+maxDistance
+射线应检查碰撞的最大距离
+
+
+layerMask
+层遮罩，用于在投射射线时有选择地忽略碰撞体
+
+
+queryTriggerInteraction
+指定该查询是否应该命中触发器
+
+
+bool 如果射线与任何碰撞体相交，返回 true，否则为 false。
+RaycastHit用于从射线投射获取信息的结构
+
+
+
+barycentricCoordinate
+命中的三角形的重心坐标
+
+
+
+collider
+命中的 Collider
+
+
+distance
+从射线原点到撞击点的距离
+
+
+lightmapCoord
+撞击点处的 UV 光照贴图坐标
+
+
+normal
+射线命中的表面的法线
+
+
+point
+世界空间中射线命中碰撞体的撞击点
+
+
+rigidbody
+命中的碰撞体的 Rigidbody。如果该碰撞体未附加到刚体，则值为 /null/
+
+
+textureCoord
+碰撞位置处的 UV 纹理坐标
+
+
+textureCoord2
+撞击点处的辅助 UV 纹理坐标
+
+
+transform
+命中的刚体或碰撞体的 Transform
+
+
+triangleIndex
+命中的三角形的索引
+
+
+Collider所有碰撞体的基类
+BoxCollider、SphereCollider、CapsuleCollider、MeshCollider、PhysicMaterial、Rigidbody
+如果在游戏过程中需要移动具有 Collider 的对象，还应将 Rigidbody 组件附加到该对象。如果不想使该对象与其他对象进行物理交互，可将 Rigidbody 设置为运动刚体
+变量：
+
+
+
+attachedRigidbody
+碰撞体附加到的刚体
+
+
+
+bounds
+碰撞体的世界空间包围体积（只读）
+
+
+contactOffset
+该碰撞体的接触偏移值
+
+
+enabled
+启用的 Collider 将与其他 Collider 碰撞，禁用的 Collider 不会这样
+
+
+isTrigger
+碰撞体是不是触发器
+
+
+material
+碰撞体使用的材质
+
+
+sharedMaterial
+该碰撞体的共享物理材质
+
+
+消息：
+
+
+
+OnCollisionEnter
+当该碰撞体/刚体已开始接触另一个刚体/碰撞体时，调用 OnCollisionEnter
+
+
+
+OnCollisionExit
+当该碰撞体/刚体已停止接触另一个刚体/碰撞体时，调用 OnCollisionExit
+
+
+OnCollisionStay
+对应正在接触刚体/碰撞体的每一个碰撞体/刚体，每帧调用一次 OnCollisionStay
+
+
+OnTriggerEnter
+当 Collider other 事件进入该触发器时调用 OnTriggerEnter
+
+
+OnTriggerExit
+当 Collider other 已停止接触该触发器时调用 OnTriggerExit
+
+
+OnTriggerStay
+对于正在接触该触发器的每个其他 Collider，“几乎”所有帧都调用 OnTriggerStay。此函数位于物理计时器上，因此它不必运行每个帧
+
+
+继承的成员变量：
+
+
+
+gameObject
+此组件附加到的游戏对象。始终将组件附加到游戏对象
+
+
+
+tag
+此游戏对象的标签
+
+
+transform
+附加到此 GameObject 的 Transform
+
+
+hideFlags
+该对象应该隐藏、随场景一起保存还是由用户修改
+
+
+name
+对象的名称
+
+
+公共函数：
+
+
+
+BroadcastMessage
+调用此游戏对象或其任何子项中的每个 MonoBehaviour 上名为 methodName 的方法
+
+
+
+CompareTag
+此游戏对象是否使用 tag 进行了标记
+
+
+GetComponent
+如果游戏对象附加了类型为 type 的组件，则将其返回，否则返回 null
+
+
+GetComponentInChildren
+使用深度首次搜索返回 GameObject 或其任何子项中类型为 type 的组件
+
+
+GetComponentInParent
+返回 GameObject 或其任何父项中类型为 type 的组件
+
+
+GetComponents
+返回 GameObject 中类型为 type 的所有组件
+
+
+GetComponentsInChildren
+返回 GameObject 或其任何子项中类型为 type 的所有组件
+
+
+GetComponentsInParent
+返回 GameObject 或其任何父项中类型为 type 的所有组件
+
+
+SendMessage
+调用此游戏对象中的每个 MonoBehaviour 上名为 methodName 的方法
+
+
+SendMessageUpwards
+调用此游戏对象中的每个 MonoBehaviour 上或此行为的每个父级上名为 methodName 的方法
+
+
+GetInstanceID
+返回对象的实例 ID
+
+
+ToString
+返回 GameObject 的名称
+
+
+静态函数：
+
+
+
+Destroy
+删除 GameObject、组件或资源
+
+
+
+DestroyImmediate
+立即销毁对象 /obj/。强烈建议您改用 Destroy
+
+
+DontDestroyOnLoad
+在加载新的 Scene 时，请勿销毁 Object
+
+
+FindObjectOfType
+返回第一个类型为 type 的已加载的激活对象
+
+
+FindObjectsOfType
+返回所有类型为 type 的已加载的激活对象的列表
+
+
+Instantiate
+克隆 original 对象并返回克隆对象
+
+
+C#outout同ref一样，都是有一级地址传递的，也就是，带有这两个修饰符的参数，如果被修改了原来的值，将以新的值作为他的值（在函数执行完毕后，该参数的值将返回给函数调用中使用的变量，有点像C++ &amp;）
+在函数中使用out参数时，必须将其看成尚未赋值。也就是说调用代码可以把已赋值的变量用作out参数，但在函数执行时该变量的值会丢失，所以就算在函数外已经初始化，在函数内也要重新初始化
+示例：
+// 第一行hit不用初始化，参数中hit前加out，尽管Physics.Raycast返回bool，hit已在其中赋值，所以下一个if语句中hit可以调用其对象的属性方法
+123456789101112131415RaycastHit hit;if (Physics.Raycast(ray, out hit, 1000, 1 &lt;&lt; 8))   &#123;		if (hit.collider.gameObject.tag == &quot;Basketball&quot; &amp;&amp; !hit.collider.gameObject.GetComponent&lt;BSKBall&gt;().IsShooting())		&#123;			currentBall = hit.collider.gameObject;			Rigidbody r = currentBall.GetComponent&lt;Rigidbody&gt;();			r.isKinematic = true;			Vector3 touchPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, depth));			touchPoint.x = Mathf.Clamp(touchPoint.x, leftEdge.transform.position.x + 0.29f, rightEdge.transform.position.x - 0.29f);			touchPoint.y = selectBallPosY;			currentBall.transform.position = touchPoint;		&#125;	&#125;
+
+Unity坐标四种坐标：世界坐标(World Space)：游戏物体在创造的世界中的坐标
+transfrom.position获得的是物体相对于世界坐标的位置
+transfrom.localPosition获得的是物体相对于父物体坐标的位置
+
+
+屏幕坐标(Screen Space)：以像素记
+视口坐标(Viewport Space)：将屏幕坐标单位化
+坐标转换：物体B相对于物体A的局部坐标：A.transform.InverseTransformPoint(B)
+屏幕坐标转世界坐标：Camera.main.ScreenToWorldPoint
+12Vector3 mousePos = Input.mousePosition;Vector3 screenToWorld = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, -Camera.main.transform.position.z));
+
+世界坐标转屏幕坐标：Camera.main.WorldToScreenPoint
+1Vector3 worldToScreen = Camera.main.WorldToScreenPoint(transform.position);
+
+Mathf.Clamp在给定的最小浮点值和最大浮点值之间钳制给定值。如果在最小和最大范围内，则返回给定值
+如果给定的浮点值小于最小值，则返回最小值。如果给定值大于最大值，则返回最大值。使用 Clamp 可将某个值限制为最小值和最大值定义的某个范围内
+变量
+
+
+gameObject
+此组件附加到的游戏对象。始终将组件附加到游戏对象。
+
+
+
+tag
+此游戏对象的标签。
+
+
+transform
+附加到此 GameObject 的 Transform。
+
+
+公共函数
+
+
+BroadcastMessage
+调用此游戏对象或其任何子项中的每个 MonoBehaviour 上名为 methodName 的方法。
+
+
+
+CompareTag
+此游戏对象是否使用 tag 进行了标记？
+
+
+GetComponent
+如果游戏对象附加了类型为 type 的组件，则将其返回，否则返回 null。
+
+
+GetComponentInChildren
+使用深度首次搜索返回 GameObject 或其任何子项中类型为 type 的组件。
+
+
+GetComponentInParent
+返回 GameObject 或其任何父项中类型为 type 的组件。
+
+
+GetComponents
+返回 GameObject 中类型为 type 的所有组件。
+
+
+GetComponentsInChildren
+返回 GameObject 或其任何子项中类型为 type 的所有组件。
+
+
+GetComponentsInParent
+返回 GameObject 或其任何父项中类型为 type 的所有组件。
+
+
+SendMessage
+调用此游戏对象中的每个 MonoBehaviour 上名为 methodName 的方法。
+
+
+SendMessageUpwards
+调用此游戏对象中的每个 MonoBehaviour 上或此行为的每个父级上名为 methodName 的方法。
+
+
+继承的成员变量
+
+
+hideFlags
+该对象应该隐藏、随场景一起保存还是由用户修改？
+
+
+
+name
+对象的名称。
+
+
+公共函数
+
+
+GetInstanceID
+返回对象的实例 ID。
+
+
+
+ToString
+返回 GameObject 的名称。
+
+
+Component附加到 GameObject 的所有内容的基本类
+注：代码不会直接创建 Component，而是编写脚本代码，然后将该脚本附加到GameObject
+ResourcesResources 类允许您查找和访问资源等对象
+在编辑器中，Resources.FindObjectsOfTypeAll 可用于定位资源和场景对象
+通过 Resources.Load 函数，可访问 Assets 文件夹中处于任意位置的名为“Resources”的文件夹中的所有资源。 可以存在多个“Resources”文件夹，加载对象时，将对每个文件夹进行检查
+注意：Assets 中的 Resources 文件夹需要在使用前创建。创建新项目时，不会创建该文件夹
+静态函数：（函数调用的结果不会访问或者修改任何对象（非static）数据成员，这样的成员声明为静态成员函数比较好）
+
+
+
+FindObjectsOfTypeAll
+返回所有类型为 type 的对象的列表。
+
+
+
+Load
+加载存储在 Resources 文件夹中的 path 处的资源。
+
+
+LoadAll
+加载位于 Resources 文件夹中的 path 处的文件夹中的所有资源，或加载位于该处的文件。
+
+
+LoadAsync
+异步加载存储在 Resources 文件夹中的 path 处的资源。
+
+
+UnloadAsset
+从内存中卸载 /assetToUnload/。
+
+
+UnloadUnusedAssets
+卸载未使用的资源。
+
+
+Laya APIRigidbody3D对应于Unity中Rigidbody.AddForce，Rigidbody.AddTorque， Laya提供的类为Rigidbody3D，对应的方法为Rigidbody3D.applyForce，Rigidbody3D.applyTorque
+12345applyForce(force: Vector3, localOffset?: Vector3): voidapplyImpulse(impulse: Vector3, localOffset?: Vector3): voidapplyTorque(torque: Vector3): void
+
+
+                        
+                    </p>
+                </a>
+            </div>
+
+            
+                <div class="post-footer">
+                    
+                        <i class="fa fa-folder-open-o"></i>
+                        <a class="category-link" href="/categories/Laya/">Laya</a>
+
+                        
+                            <span class="dotted">|</span>
+                        
+
+                    
+                    
+                        <i class="fa fa-tags"></i>
+                        <a class="tag-link" href="/tags/Laya/">Laya</a>
+                    
+                </div>
+            
+        </article>
+    
+
+
+
+    <nav class="page-nav">
+        <a class="extend prev" rel="prev" href="/archives/2020/page/2/">Prev</a><a class="page-number" href="/archives/2020/">1</a><a class="page-number" href="/archives/2020/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/2020/page/4/">4</a><a class="page-number" href="/archives/2020/page/5/">5</a><a class="extend next" rel="next" href="/archives/2020/page/4/">Next</a>
+    </nav>
+
+            </div>
+            <div class="aside">
+    
+        <div class="box widget">
+    <div class="introduction">
+        <p><img src="/images/avatar.jpg" alt="head-sculpture"></p>
+        <p class="name">
+            CHAsencenge
+        </p>
+        <p class="slogan">解字</p>
     </div>
-  
-
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
-
-  </header>
-
-    <!-- 归档 -->
-
-<!-- post list container -->
-<div class="body-container float">
-  <div class="content-container article-list">
-    <div class="card-container card-articles">
-      <div class="card-wrap">
+</div>
+    
         
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover34.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/08/01/字节夏令营20游戏程序笔试题/" itemprop="url"></a>
-              
-              <h2 class="article-title">字节夏令营20游戏程序笔试题</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/08/01/字节夏令营20游戏程序笔试题/" class="article-date">
-    <time datetime="2020-08-01T03:42:48.000Z" itemprop="datePublished">2020-08-01</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-              </div>
-            </article>
-          </div>
+<div class="box widget">
+    <div class="title">Recent</div>
+    <ul class="item-box">
         
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover6.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/31/网易20秋招Unity工程师笔试编程题/" itemprop="url"></a>
-              
-              <h2 class="article-title">网易20秋招Unity工程师笔试编程题</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/31/网易20秋招Unity工程师笔试编程题/" class="article-date">
-    <time datetime="2020-07-31T14:25:33.000Z" itemprop="datePublished">2020-07-31</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-              </div>
-            </article>
-          </div>
+            
+                <li><a href="/2020/11/30/手撸算法终版/">手撸算法终版</a></li>
+            
         
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover30.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/27/Pyplot绘图/" itemprop="url"></a>
-              
-              <h2 class="article-title">Pyplot绘图</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/27/Pyplot绘图/" class="article-date">
-    <time datetime="2020-07-27T12:56:31.000Z" itemprop="datePublished">2020-07-27</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Python/">Python</a>
-              </div>
-            </article>
-          </div>
+            
+                <li><a href="/2020/10/29/哈希专题/">哈希专题</a></li>
+            
         
-          
-          <div class="card-item large img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover15.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/26/百度之星2020-1003-Permutation/" itemprop="url"></a>
-              
-              <h2 class="article-title">百度之星2020---1003.Permutation</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/26/百度之星2020-1003-Permutation/" class="article-date">
-    <time datetime="2020-07-26T10:04:53.000Z" itemprop="datePublished">2020-07-26</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-              </div>
-            </article>
-          </div>
+            
+                <li><a href="/2020/10/29/特殊技巧专题/">特殊技巧专题</a></li>
+            
         
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover14.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/26/百度之星2020-1002-Game/" itemprop="url"></a>
-              
-              <h2 class="article-title">百度之星2020---1002.Game</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/26/百度之星2020-1002-Game/" class="article-date">
-    <time datetime="2020-07-26T10:04:18.000Z" itemprop="datePublished">2020-07-26</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-              </div>
-            </article>
-          </div>
+            
+                <li><a href="/2020/10/29/栈和队列专题/">栈和队列专题</a></li>
+            
         
-          
-          <div class="card-item large img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover18.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/26/百度之星2020-1001-Discount/" itemprop="url"></a>
-              
-              <h2 class="article-title">百度之星2020---1001.Discount</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/26/百度之星2020-1001-Discount/" class="article-date">
-    <time datetime="2020-07-26T10:03:53.000Z" itemprop="datePublished">2020-07-26</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-              </div>
-            </article>
-          </div>
+            
+                <li><a href="/2020/10/28/树图专题/">树专题</a></li>
+            
         
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover17.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/24/游戏客户端面经知识点/" itemprop="url"></a>
-              
-              <h2 class="article-title">游戏客户端面经知识点</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/24/游戏客户端面经知识点/" class="article-date">
-    <time datetime="2020-07-24T05:40:54.000Z" itemprop="datePublished">2020-07-24</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Unity/">Unity</a><a class="article-category-link" href="/categories/Unity/Unreal/">Unreal</a>
-              </div>
-            </article>
-          </div>
+            
+                <li><a href="/2020/10/28/空间换时间专题/">空间换时间专题</a></li>
+            
         
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover6.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/24/C-面经知识点/" itemprop="url"></a>
-              
-              <h2 class="article-title">C++面经知识点</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/24/C-面经知识点/" class="article-date">
-    <time datetime="2020-07-24T05:40:35.000Z" itemprop="datePublished">2020-07-24</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/cpp/">cpp</a>
-              </div>
-            </article>
-          </div>
+            
+                <li><a href="/2020/10/25/C-Lambda表达式/">C++ Lambda表达式</a></li>
+            
         
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover13.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/21/Unity项目对接到Laya/" itemprop="url"></a>
-              
-              <h2 class="article-title">Unity项目对接到Laya</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/21/Unity项目对接到Laya/" class="article-date">
-    <time datetime="2020-07-21T09:29:24.000Z" itemprop="datePublished">2020-07-21</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Laya/">Laya</a>
-              </div>
-            </article>
-          </div>
+            
+                <li><a href="/2020/10/16/双指针专题/">双指针专题</a></li>
+            
         
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover23.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/20/Python实现Lora节点拓扑自动规划/" itemprop="url"></a>
-              
-              <h2 class="article-title">Python实现Lora节点拓扑自动规划</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/20/Python实现Lora节点拓扑自动规划/" class="article-date">
-    <time datetime="2020-07-20T02:57:58.000Z" itemprop="datePublished">2020-07-20</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Python/">Python</a>
-              </div>
-            </article>
-          </div>
-        
-      </div>
-    </div>
-  </div>
+    </ul>
 </div>
 
-<!-- page container -->
-
-  <nav class="page-container">
     
-    <a class="extend prev" rel="prev" href="/archives/2020/page/2/">ʚ</a><a class="page-number" href="/archives/2020/">1</a><a class="page-number" href="/archives/2020/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/2020/page/4/">4</a><a class="page-number" href="/archives/2020/page/5/">5</a><a class="extend next" rel="next" href="/archives/2020/page/4/">ɞ</a>
-  </nav>
-
-
-
-    <!-- footer container -->
-<footer id="footer" class="footer">
-  <div class="footer-container">
-    
-    <div class="social-icons social-icons-footer">
-      <a href="mailto:958198376@qq.com" target="_blank" rel="noopener noreferrer">
-  <svg class="icon icon-email" viewbox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
-    <path d="M490.338462 592.738462c11.815385 11.815385 29.538462 11.815385 41.353846 0l445.046154-413.538462c7.876923-15.753846 5.907692-41.353846-25.6-41.353846l-880.246154 1.969231c-23.630769 0-43.323077 21.661538-25.6 41.353846l445.046154 411.569231zM984.615385 340.676923c0-19.692308-23.630769-31.507692-39.384616-17.723077L596.676923 643.938462c-23.630769 21.661538-53.169231 33.476923-84.676923 33.476923s-61.046154-11.815385-84.676923-31.507693L80.738462 322.953846c-15.753846-13.784615-39.384615-3.938462-39.384616 17.723077C39.384615 334.769231 39.384615 787.692308 39.384615 787.692308c0 43.323077 35.446154 78.769231 78.769231 78.76923h787.692308c43.323077 0 78.769231-35.446154 78.769231-78.76923V340.676923z"/>
-  </svg>
-</a><a href="https://github.com/CHAsencenge" target="_blank" rel="noopener noreferrer">
-  <svg class="icon icon-github" viewbox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
-    <path d="M64.6 512c0 195.6 125.4 361.9 300.1 422.9 23.5 5.9 19.9-10.8 19.9-22.2v-77.6c-135.8 15.9-141.3-74-150.5-89-18.5-31.5-61.9-39.5-49-54.5 31-15.9 62.5 4 98.9 58 26.4 39.1 77.9 32.5 104.1 26 5.7-23.5 17.9-44.5 34.7-60.9-140.7-25.2-199.4-111.1-199.4-213.3 0-49.5 16.4-95.1 48.4-131.8-20.4-60.6 1.9-112.4 4.9-120.1 58.2-5.2 118.5 41.6 123.3 45.3 33.1-8.9 70.8-13.7 112.9-13.7 42.4 0 80.3 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.4-43.9 2.9 7.7 24.7 58.3 5.5 118.1 32.5 36.8 49 82.8 49 132.4 0 102.3-59 188.3-200.2 213.2 23.5 23.3 38.1 55.5 38.1 91.1v112.7c0.8 9 0 17.9 15.1 17.9C832.7 877 960.4 709.4 960.4 512.1c0-247.5-200.6-447.9-447.9-447.9C265 64.1 64.6 264.5 64.6 512z"/>
-  </svg>
-</a><a href="https://weibo.com/u/5701921017" target="_blank" rel="noopener noreferrer">
-  <svg class="icon icon-weibo" viewbox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
-    <path d="M385.682429 733.696q11.995429-19.456 6.290286-39.424t-25.746286-28.598857q-19.456-7.972571-41.691429-0.585143t-34.304 26.258286q-12.580571 19.456-7.460571 39.131429t24.576 28.891429 42.569143 1.462857 35.693714-27.136zM439.442429 664.576q4.534857-7.460571 1.974857-15.140571t-10.020571-10.605714q-7.972571-2.852571-16.310857 0.292571t-12.288 10.605714q-9.728 17.700571 7.460571 25.746286 7.972571 2.852571 16.603429-0.292571t12.580571-10.605714zM538.843572 725.723429q-25.746286 58.294857-90.258286 85.723429t-128 6.875429q-61.147429-19.456-84.260571-72.265143t3.730286-107.154286q26.843429-53.174857 86.601143-79.433143t120.32-10.825143q63.414857 16.603429 90.550857 68.315429t1.462857 108.836571zM717.165858 634.294857q-5.12-54.857143-50.834286-97.133714t-119.149714-62.317714-156.891429-11.995429q-127.414857 13.165714-211.163429 80.822857t-75.702857 151.113143q5.12 54.857143 50.834286 97.133714t119.149714 62.317714 156.891429 11.995429q127.414857-13.165714 211.163429-80.822857t75.702857-151.113143zM893.147572 636.562286q0 38.838857-21.138286 79.725714t-62.317714 78.262857-96.256 67.145143-129.170286 47.396571-154.550857 17.700571-157.110857-19.163429-137.435429-53.174857-98.011429-86.308571-37.156571-114.029714q0-65.682286 39.716571-139.995429t112.859429-147.456q96.548571-96.548571 195.145143-134.875429t140.873143 4.022857q37.156571 36.571429 11.410286 119.442286-2.267429 7.972571-0.585143 11.410286t5.705143 4.022857 8.265143-0.292571 7.68-1.974857l3.437714-1.170286q79.433143-33.718857 140.580571-33.718857t87.405714 34.889143q25.746286 35.986286 0 101.741714-1.170286 7.460571-2.56 11.410286t2.56 7.168 6.875429 4.315429 9.728 3.437714q32.548571 10.313143 58.88 26.843429t45.714286 46.592 19.456 66.56zM850.871001 279.990857q23.990857 26.843429 31.158857 62.025143t-3.730286 67.145143q-4.534857 13.165714-16.822857 19.456t-25.453714 2.267429q-13.165714-4.534857-19.456-16.822857t-2.267429-25.453714q11.410286-35.986286-13.677714-63.414857t-61.147429-19.968q-13.677714 2.852571-25.746286-4.534857t-14.262857-21.138286q-2.852571-13.677714 4.534857-25.453714t21.138286-14.555429q34.304-7.460571 68.022857 3.145143t57.709714 37.449143zM954.295001 186.88q49.737143 54.857143 64.292571 127.122286t-7.68 138.020571q-5.12 15.433143-19.456 22.820571t-29.696 2.267429-22.820571-19.456-2.852571-29.696q16.018286-46.884571 5.705143-98.304t-45.714286-90.258286q-35.401143-39.424-84.553143-54.564571t-98.889143-4.827429q-16.018286 3.437714-29.696-5.412571t-17.115429-24.868571 5.412571-29.403429 24.868571-16.822857q70.290286-14.848 139.410286 6.582857t118.857143 76.873143z"/>
-  </svg>
-</a><a href="https://music.163.com/#/user/home?id=92407481" target="_blank" rel="noopener noreferrer">
-  <svg class="icon icon-cloudmusic" viewbox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
-    <path d="M952.17867 503.263237a341.054956 341.054956 0 0 0-56.853199-113.706399 408.604266 408.604266 0 0 0-109.723463-98.352823 304.662484 304.662484 0 0 0-143.257215-42.077792L621.305897 170.238394a40.343287 40.343287 0 0 1 10.792472-36.392472 56.88532 56.88532 0 0 1 36.392472-18.758344 102.785445 102.785445 0 0 1 56.853199 18.758344c6.263488 3.404768 10.792472 9.090088 17.05596 13.073024a57.335006 57.335006 0 0 0 82.999247-70.632873 66.521455 66.521455 0 0 0-22.74128-27.848432 237.691343 237.691343 0 0 0-89.262735-43.202007A170.559598 170.559598 0 0 0 625.288833 6.42409a167.026349 167.026349 0 0 0-60.836135 37.516688 164.328231 164.328231 0 0 0-40.921456 51.713927 156.908407 156.908407 0 0 0-8.54404 113.706399l13.651192 52.870264a284.298118 284.298118 0 0 0-158.064743 109.209535 256.963614 256.963614 0 0 0-43.202007 156.908407 248.419573 248.419573 0 0 0 13.651192 74.487327 205.281807 205.281807 0 0 0 80.718695 104.616312 185.945295 185.945295 0 0 0 136.447679 25.696361 193.879046 193.879046 0 0 0 156.330238-196.705646L708.802008 503.263237c-11.948808-46.060728-24.443664-91.543287-35.814304-137.025847a182.283563 182.283563 0 0 1 47.763112 18.180176 316.611292 316.611292 0 0 1 47.763111 34.690088A239.907654 239.907654 0 0 1 840.752823 529.987453a284.169636 284.169636 0 0 1 0 158.064743 252.241907 252.241907 0 0 1-21.584943 51.167879 308.741782 308.741782 0 0 1-168.279047 144.542033 387.918695 387.918695 0 0 1-130.184191 23.319448 332.607277 332.607277 0 0 1-155.206022-37.516688A367.233124 367.233124 0 0 1 194.87478 672.666499a373.014806 373.014806 0 0 1-20.460727-180.806022A366.173149 366.173149 0 0 1 406.869762 198.536512a57.399247 57.399247 0 0 0 13.073023-100.055207 76.189711 76.189711 0 0 0-63.662735-3.404768A479.815307 479.815307 0 0 0 68.705646 436.163614a488.905395 488.905395 0 0 0 129.027855 450.84266 454.857716 454.857716 0 0 0 248.997741 131.886574 470.885822 470.885822 0 0 0 138.117942 0A454.889837 454.889837 0 0 0 773.042911 952.949561a427.523212 427.523212 0 0 0 170.559598-209.232622 417.276788 417.276788 0 0 0 22.74128-109.209536 378.089837 378.089837 0 0 0-14.165119-131.244166z m-412.747804 118.845671a72.174655 72.174655 0 0 1-56.8532-10.792471 98.352823 98.352823 0 0 1-37.516687-61.382184 170.68808 170.68808 0 0 1 0-65.943287 133.042911 133.042911 0 0 1 33.533751-63.662735 181.35207 181.35207 0 0 1 80.718695-46.606776l39.219072 148.364367a204.189711 204.189711 0 0 1 5.107152 26.146048 79.594479 79.594479 0 0 1-64.208783 73.844918z"/>
-  </svg>
-</a>    </div>
-     
-    <p>&copy; 2020 <a href="/" target="_blank">CHAsencenge</a></p>
+        
+    <div class="box widget">
+        <div class="title">Categories</div>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/GameDev/">GameDev</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Laya/">Laya</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Light-Frequency-Authenticate/">Light Frequency Authenticate</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/LoRa/">LoRa</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Unity/">Unity</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Unity/Unreal/">Unreal</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Writing/">Writing</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cpp/">cpp</a><span class="category-list-count">3</span></li></ul>
+    </div>
 
     
-      <p id="hitokoto"></p>
-      <script src="https://v1.hitokoto.cn/?c=a&amp;encode=js&select=%23hitokoto" defer></script>
-    
-
-    
-
-    <p>Powered by <a href="https://hexo.io" target="_blank" rel="noopener noreferrer">Hexo</a> Theme - <a href="https://github.com/miiiku/flex-block" target="_blank" rel="noopener noreferrer author">flex-block</a></p>
+        
+  <div class="box widget">
+    <div class="title">Archives</div>
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">2020-11</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">2020-10</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">2020-09</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">2020-08</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">2020-07</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">2019-11</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">2019-09</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">2019-07</a><span class="archive-list-count">6</span></li></ul>
   </div>
+
+    
+        
+    <div class="box widget">
+        <div class="title">Tags</div>
+        <div class="item-box cloud-label">
+            <a href="/tags/Algorithm/" style="font-size: 20px;">Algorithm</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/GameDev/" style="font-size: 14px;">GameDev</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/Hexo/" style="font-size: 12px;">Hexo</a> <a href="/tags/Laya/" style="font-size: 16px;">Laya</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Python/" style="font-size: 16px;">Python</a> <a href="/tags/Unity/" style="font-size: 18px;">Unity</a> <a href="/tags/Unreal/" style="font-size: 10px;">Unreal</a> <a href="/tags/Writing/" style="font-size: 12px;">Writing</a> <a href="/tags/cpp/" style="font-size: 14px;">cpp</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/lightFre/" style="font-size: 10px;">lightFre</a> <a href="/tags/writing/" style="font-size: 10px;">writing</a> <a href="/tags/远程登录/" style="font-size: 10px;">远程登录</a>
+        </div>
+    </div>
+
+    
+</div>
+        </section>
+        <footer class="footer">
+    <div class="global-width footer-box">
+        <div class="copyright">
+            <span>Copyright &copy; 2019</span>
+            <span class="dotted">|</span>
+            <span>Powered by <a href="https://hexo.io/">Hexo</a></span>
+            <span class="dotted">|</span>
+            <span>Theme by <a href="javascript:">Loren</a></span>
+            <span class="dotted">|</span>
+            <span><a href="http://www.beian.miit.gov.cn">浙ICP备18016660号-1</a></span>
+        </div>
+    </div>
 </footer>
-  </div>
+    </div>
 
-  <div class="back-to-top-fixed">
-    <svg class="icon icon-back-to-top" viewbox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
-  <path d="M725.333333 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8l-213.333333-213.333333c-17.066667-17.066667-17.066667-42.666667 0-59.733333s42.666667-17.066667 59.733333 0l213.333333 213.333333c17.066667 17.066667 17.066667 42.666667 0 59.733333C746.666667 422.4 738.133333 426.666667 725.333333 426.666667z"/>
-  <path d="M298.666667 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8-17.066667-17.066667-17.066667-42.666667 0-59.733333l213.333333-213.333333c17.066667-17.066667 42.666667-17.066667 59.733333 0s17.066667 42.666667 0 59.733333l-213.333333 213.333333C320 422.4 311.466667 426.666667 298.666667 426.666667z"/>
-  <path d="M512 896c-25.6 0-42.666667-17.066667-42.666667-42.666667L469.333333 170.666667c0-25.6 17.066667-42.666667 42.666667-42.666667s42.666667 17.066667 42.666667 42.666667l0 682.666667C554.666667 878.933333 537.6 896 512 896z"/>
-</svg> 
-  </div>
-
-  
-  
-
-
-  <!-- aplayer 音频 start -->
-  <link rel="stylesheet" href="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.css">
-  <script type="text/javascript" src="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.js"></script>
-  <script type="text/javascript">
-    const aplayer = document.querySelectorAll(".aplayer");
-    aplayer && initaplayer(aplayer);
-    function initaplayer(els) {
-      let elsArr = Array.from(els);
-      elsArr.forEach(el => {
-        new APlayer({
-          container: el,
-          audio: { ...el.dataset },
-          theme: "#b7daff",
-          lrcType: 3,
-          autoplay: false,
-          loop: false,
-          mutex: true,
-        });
-      });
-    }
-  </script>
-  <!-- aplayer 音频 end -->
-  
-
-<!-- dplayer 视频 start -->
-<script type="text/javascript" src="https://unpkg.com/dplayer@1.25.1/dist/DPlayer.min.js"></script>
-<script type="text/javascript">
-  const dplayer = document.querySelectorAll(".dplayer");
-  dplayer && initDPlayer(dplayer);
-  function initDPlayer(els) {
-    let elsArr = Array.from(els);
-    elsArr.forEach(el => {
-      let url = el.dataset.url;
-      let cover = el.dataset.cover;
-      let subtitle = el.dataset.subtitle;
-
-      let options = {
-        container: el,
-        video: { url: url, pic: cover },
-        theme: "#b7daff",
-        autoplay: false,
-        loop: false,
-        mutex: true,
-      }
-
-      if (subtitle) {
-        options.subtitle = {
-          url: el.dataset.subtitle,
-        }
-      }
-      new DPlayer(options);
-    });
-  }
+<script>
+    hljs.initHighlightingOnLoad();
 </script>
-<!-- dplayer 视频 end -->
-
-
-<!-- waterfall 瀑布流 start -->
-<script src="/lib/waterfall.min.js"></script>
-<script type="text/javascript">
-
-const waterfalls = document.querySelectorAll(".waterfall-container");
-
-if (waterfalls && waterfalls.length > 0) {
-  waterfalls.forEach((waterfall, index) => {
-    let cls = "waterfall-container-" + index;
-    waterfall.classList.add(cls);
-    initWaterfall(cls, waterfall);
-  });
-}
-
-function initWaterfall(selector, el) {
-  const options = {};
-  if (Object.keys(el.dataset).length > 0) {
-    for (let k in el.dataset) {
-      options[k] = el.dataset[k];
-    }
-  }
-  waterfall(`.${selector}`, options);
-}
-</script>
-<!-- waterfall 瀑布流 end -->
-
-
-  <!-- zoom start -->
-  <script src="/lib/zoom.min.js"></script>
-  <script type="text/javascript">
-    document.querySelector(".article-content") && zoom(".article-content");
-  </script>
-  <!-- zoom end -->
-  
-
-
-
-  
-
-
-  
-
-
-  
-
-
-
-<script src="/js/script.js"></script>
-  
-  <!-- 尾部用户自定义相关内容 -->
-
 </body>
 </html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+
+
+
+
+    <meta name="keywords" content>
+
+
+
+    <meta name="description" content="解字无果">
+
+
+<meta name="Robots" content="all">
+
+
+    <title>解字</title>
+
+
+<link rel="icon" href="/images/favicon.ico">
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/atom-one-dark.css">
+<link rel="stylesheet" href="/css/style.css">
+<script src="/js/highlight.min.js"></script>
+</head>
+<body>
+    <div class="main-container">
+        <header class="header">
+    <div class="global-width">
+        <nav class="nav-box">
+            
+                <a class="nav-item" href="/">Home</a>
+            
+                <a class="nav-item" href="/resume">Resume</a>
+            
+                <a class="nav-item" href="/mood" target="_blank">Mood</a>
+            
+                <a class="nav-item" href="/amusement/tetris" target="_blank">Amusement</a>
+            
+                <a class="nav-item" href="/about">About</a>
+            
+        </nav>
+    </div>
+</header>
+
+        <section class="content global-width">
+            <div class="main">
+                
+    
+        <article class="box post post-item">
+            <div class="post-title"><a href="/2020/11/30/手撸算法终版/">手撸算法终版</a></div>
+            <div class="post-meta">
+                
+                <i class="fa fa-calendar"></i> <time>2020-11-30</time>
+                <span class="dotted">|</span>
+                <i class="fa fa-user"></i> 
+            </div>
+
+            <div class="post-excerpt">
+                <a href="/2020/11/30/手撸算法终版/">
+                    <p>
+                        
+                            1. 两数之和（为目标值）   3min123456789101112vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target)&#123;    umordered_map&lt;int, int&gt; hashtable;    for(int i = 0; i &lt; nums.size(); i++)    &#123;        auto it = hashtable.find(target - nums[i]);        if(it != hashtable.end())            return &#123;it-&gt;second, i&#125;;        hashtable[nums[i]] = i;    &#125;    return &#123;&#125;;&#125;
+
+2. 两数相加（链表形式给出，返回同样格式的链表）  4min12345678910111213141516171819202122232425262728293031ListNode* addTwoNumbers(ListNode* l1, ListNode* l2)&#123;	ListNode* head = nullptr;    ListNode* tail = nullptr;    int carry = 0;    while(l1 || l2)    &#123;        int n1 = l1 ? l1-&gt;val : 0;        int n2 = l2 ? l2-&gt;val : 0;        int sum = n1 + n2 + carry;        if(!head)        &#123;            head = tail = new ListNode(sum % 10);        &#125;        else        &#123;            tail-&gt;next = new ListNode(sum % 10);            tail = tail-&gt;next;        &#125;        carry = sum / 10;        if(l1)            l1 = l1-&gt;next;        if(l2)            l2 = l2-&gt;next;    &#125;    if(carry)    &#123;        tail-&gt;next = new ListNode(carry);    &#125;    return head;&#125;
+
+3. 无重复字符的最长字串     2min1234567891011121314151617181920int lengthOfLongestSubstring(string s)&#123;	unordered_set&lt;char&gt; st;    int n = s.size();    int right = 0, ret = 0;    for(int left = 0; left &lt; n; left++)    &#123;        if(left != 0)        &#123;            st.erase(s[left - 1]);        &#125;        while(right &lt; n &amp;&amp; !st.count(s[right]))        &#123;            st.insert(s[right]);            right++;        &#125;        ret = max(ret, right - left);    &#125;    return ret;&#125;
+
+15. 三数之和（等于0）  9min1234567891011121314151617181920212223242526272829vector&lt;vector&lt;int&gt;&gt; threeSum(vector&lt;int&gt;&amp; nums)&#123;    sort(nums.begin(), nums.end());    vector&lt;vector&lt;int&gt;&gt; ret;    int n = nums.size();    if(n &gt;= 3 &amp;&amp; nums[n - 1] + nums[n - 2] + nums[n - 3] &lt; 0)        return ret;    for(int first = 0; first &lt; n - 2; first++)    &#123;        if(nums[first] + nums[first + 1] + nums[first + 2] &gt; 0)            break;        if(first &gt; 0 &amp;&amp; nums[first] == nums[first - 1])            continue;        int target = -nums[first];        int third = n - 1;        for(int second = first + 1; second &lt; n - 1; second++)        &#123;            if(second &gt; first + 1 &amp;&amp; nums[second] == nums[second - 1])                continue;            while(second &lt; third &amp;&amp; nums[second] + nums[third] &gt; target)                --third;            if(second == third)                break;            if(nums[second] + nums[third] == target)                ret.push_back(&#123;nums[first], nums[second], nums[third]&#125;);        &#125;    &#125;    return ret;&#125;
+
+84. 柱状图中的最大矩形    8min12345678910111213141516171819202122int largestRectangleArea(vector&lt;int&gt;&amp; heights)&#123;    int ret = 0;    int n = heights.size();    vector&lt;int&gt; left(n), right(n, n);    stack&lt;int&gt; monoStack;    for(int i = 0; i &lt; n; i++)    &#123;        while(!monoStack.empty() &amp;&amp; heights[monoStack.top()] &gt;= heights[i])        &#123;            right[monoStack.top()] = i;            monoStack.pop();        &#125;        left[i] = monoStack.empty() ? -1 : monoStack.top();        monoStack.push(i);    &#125;    for(int i = 0; i &lt; n; i++)    &#123;        ret = max(ret, (right[i] - left[i] - 1) * heights[i]);    &#125;    return ret;&#125;
+
+85. 最大矩形     15min12345678910111213141516171819202122232425262728293031323334353637383940int lagestRectangleArea(vector&lt;int&gt;&amp; heights)&#123;    int ret = 0;    int n = heights.size();    vector&lt;int&gt; left(n), right(n, n);    stack&lt;int&gt; monoStack;    for(int i = 0; i &lt; n; i++)    &#123;        while(!monoStack.empty() &amp;&amp; heights[monoStack.top()] &gt;= heights[i])        &#123;            right[monoStack.top()] = i;            monoStack.pop();        &#125;        left[i] = monoStack.empty() ? -1 : monoStack.top();        monoStack.push(i);    &#125;    for(int i = 0; i &lt; n; i++)    &#123;        ret = max(ret, (right[i] - left[i] - ) * heights[i]);    &#125;    return ret;&#125;int maximalRectangle(vector&lt;vector&lt;char&gt;&gt;&amp; matrix)&#123; 	int ret = 0;    int m = matrix.size();    if(m == 0)        return 0;    int n = matrix[0].size();    vector&lt;int&gt; dp (n, 0);    for(int i = 0; i &lt; m; i++)    &#123;        for(int j = 0; j &lt; n; j++)        &#123;            dp[j] = matrix[i][j] == '0' ? 0 : dp[j] + 1;        &#125;        ret = max(ret, largestRectangleArea(dp));    &#125;    return ret;&#125;
+
+94. 二叉树的中序遍历递归1234567891011121314void inorder(TreeNode* root, vector&lt;int&gt;&amp; ret)&#123;    if(!root)        return;    inorder(root-&gt;left, ret);    ret.push_back(root-&gt;val);    inorder(root-&gt;right, ret);&#125;vector&lt;int&gt; inorderTraversal(TreeNode* root)&#123;    vector&lt;int&gt; ret;    inorder(root, ret);    return ret;&#125;
+
+非递归(栈)123456789101112131415161718vector&lt;int&gt; inorderTraversal(TreeNode* root)&#123;    vector&lt;int&gt; ret;    stack&lt;TreeNode*&gt; stk;    while(root || !stk.empty())    &#123;        while(root)        &#123;            stk.push(root);            root = root-&gt;left;        &#125;        root = stk.top();        stk.pop();        ret.push_back(root-&gt;val);        root = root-&gt;right;    &#125;    return ret;&#125;
+
+Morris123456789101112131415161718192021222324252627282930313233vector&lt;int&gt; inorderTraversal(TreeNode* root)&#123;    vector&lt;int&gt; ret;    TreeNode* predecessor = nullptr;    while(root)    &#123;        if(root-&gt;left != nullptr)        &#123;            predecessor = root-&gt;left;            while(predecessor-&gt;right != nullptr &amp;&amp; predecessor-&gt;right != root)            &#123;                predecessor = predecessor-&gt;right;            &#125;            if(predecessor-&gt;right == nullptr)            &#123;                predecessor-&gt;right = root;                root = root-&gt;left;            &#125;            else            &#123;                ret.push_back(root-&gt;val);                predecessor-&gt;right = nullptr;                root = root-&gt;right;            &#125;        &#125;        else        &#123;            ret.push_back(root-&gt;val);            root = root-&gt;right;        &#125;    &#125;    return res;&#125;
+
+96. （n个点能组成的）不同的二叉搜索树     1min1234567891011121314int numTrees(int n)&#123;    vector&lt;int&gt; dp(n + 1, 0);    dp[0] = 1;    dp[1] = 1;    for(int m = 2; m &lt;= n; m++)    &#123;        for(int i = 1; i &lt;= m; i++)        &#123;            dp[m] += dp[i - 1] * dp[m - i];        &#125;    &#125;    return dp[n];&#125;
+
+98. 验证（一棵树是否为）二叉搜索树     3min12345678910111213141516171819202122bool isValidBST(TreeNode* root)&#123;    long long inorder = (long long)INT_MIN - 1;    stack&lt;TreeNode*&gt; stk;    while(root || !stk.empty())    &#123;        while(root)        &#123;            stk.push(root);            root = root-&gt;left;        &#125;        root = stk.top();        stk.pop();        if(root-&gt;val &lt;= inorder)        &#123;            return false;        &#125;        inorder = root-&gt;val;        root = root-&gt;right;    &#125;    return true;&#125;
+
+102. 二叉树的层序遍历(按层次打印到二维数组中） 6min123456789101112131415161718192021222324252627vector&lt;vector&lt;int&gt;&gt; levelOrder(TreeNode* root)&#123;    vector&lt;vector&lt;int&gt;&gt; ret;    if(!root)    &#123;        return ret;    &#125;    queue&lt;TreeNode*&gt; que;    que.push(root);    while(!que.empty())    &#123;        int n = que.size();        vector&lt;int&gt; temp;        for(int i = 0; i &lt; n; i++)        &#123;            auto node = que.front();            que.pop();            temp.push_back(node-&gt;val);            if(node-&gt;left)                que.push(node-&gt;left);            if(node-&gt;right)                que.push(node-&gt;right);        &#125;        ret.push_back(temp);    &#125;    return ret;&#125;
+
+114. 二叉树（原地）展开为链表（顺着右子节点连）  3min123456789101112131415161718void flatten(TreeNode* root)&#123;    TreeNode* cur = root;    while(cur)    &#123;        if(cur-&gt;left)        &#123;            auto next = cur-&gt;left;            auto predecessor = next;            while(predecessor-&gt;right)                predecessor = predecessor-&gt;right;            predecessor-&gt;right = cur-&gt;right;            cur-&gt;left = nullptr;            cur-&gt;right = next;		&#125;        cur = cur-&gt;right;    &#125;&#125;
+
+121. 买卖股票的最佳时机     1min12345678910int maxProfit(vector&lt;int&gt;&amp; prices)&#123;    int minprice = 1e9, maxprofit = 0;    for(int price : prices)    &#123;        minprice = min(price, minprice);        maxprofit = max(maxprofit, price - minprice);    &#125;    return maxprofit;&#125;
+
+124. （从任意点起的）二叉树中的最大路径和12345678910111213141516int maxGain(TreeNode* root, int&amp; maxSum)&#123;    if(root)    	return 0;    int left = max(maxGain(root-&gt;left), 0);    int right = max(maxGain(root-&gt;right), 0);    int curMaxSum = root-&gt;val + left + right;    maxSum = max(maxSum, curMaxSum);    return root-&gt;val + max(left, right);&#125;int maxPathSum(TreeNode* root)&#123;    int maxSum = INT_MIN;    maxGain(root, maxSum);    return maxSum;&#125;
+
+128. （无序数组中能找出的）最长连续序列（需要O(n)时间复杂度）12345678910111213141516171819202122int longestConsecutive(vector&lt;int&gt;&amp; nums)&#123;    unordered_set&lt;int&gt; st;    int longestSeq = 0;    for(int num : nums)        st.insert(num);    for(int s : st)    &#123;        if(!st.count(s - 1))        &#123;            int curSeq = 1;            int curNum = s;            while(st.count(curNum + 1))            &#123;                curSeq++;                curNum++;            &#125;            longestSeq = max(longestSeq, curSeq);        &#125;	&#125;    return longestSeq;&#125;
+
+136. （在其余数字都出现两次的数组中找）只出现一次的数字（要求线性时间，不使用额外空间）1234567int singleNum(vector&lt;int&gt;&amp; nums)&#123;    int ret = 0;    for(int num : nums)        ret ^= num;    return ret;&#125;
+
+139. 单词（是否可以）拆分（成字符串数组中的元素）  4min123456789101112131415161718bool wordBreak(string s, vector&lt;string&gt;&amp; wordDict)&#123;    unordered_set&lt;string&gt; st;    for(string word : wordDict)        st.insert(word);    vector&lt;bool&gt; dp(s.size() + 1);    dp[0] = true;    for(int i = 1; i &lt;= s.size();i++)    &#123;        for(int j = 0; j &lt; i; j++)            if(dp[j] &amp;&amp; st.find(s.substr(j, i - j)) != st.end())            &#123;                dp[i] = true;                break;            &#125;    &#125;    return dp[s.size()];&#125;
+
+146. LRU缓存机制123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081struct DLinkedNode&#123;    int key, value;    DLinkedNode* prev;    DLinkedNode* next;    DLinkedNode() : key(0), value(0), prev(nullptr), next(nullptr)&#123;&#125;;    DLinkedNode(int _key, int _value) : key(_key), value(_value), prev(nullptr), next(nullptr)&#123;&#125;;&#125;;class LRUCache&#123;private:    unordered_map&lt;int, DLinkedNode*&gt; cache;    int size, capacity;    DLinkedNode* head;    DLinkedNode* tail;public:    LRUCache(int _capacity) : size(0), capacity(_capacity)    &#123;        head = new DLinkedNode();        tail = new DLinkedNode();        head-&gt;next = tail;        tail-&gt;prev = head; 	&#125;    int get(int key)    &#123;        if(!cache.count(key))        &#123;            return -1;        &#125;        DLinkedNode* node = cache[key];        moveToHead(node);        return node-&gt;value;    &#125;    void put(int key, int value)    &#123;        if(!cache.count(key))        &#123;            DLinkedNode* node = new DLinkedNode(key, value);            cache[key] = node;            addToHead(node);            size++;            if(size &gt; capacity)            &#123;                DLinkedNode* remove = tail-&gt;prev;                cache.erase(remove-&gt;key);                removeTail();                size--;                delete remove;            &#125;        &#125;        else        &#123;            DLinkedNode* node = cache[key];            node-&gt;value = value;            moveToHead(node);        &#125;    &#125;    void addToHead(DLinkedNode* node)    &#123;        node-&gt;prev = head;        node-&gt;next = head-&gt;next;        head-&gt;next-&gt;prev = node;        head-&gt;next = node;    &#125;    void removeNode(DLinkedNode* node)    &#123;        node-&gt;next-&gt;prev = node-&gt;prev;        node-&gt;prev-&gt;next = node-&gt;next;    &#125;    void moveToHead(DLinkedNode* node)    &#123;        removeNode(node);        addToHead(node);    &#125;    DLinkedNode* removeTail()    &#123;        DLinkedNode* node = tail-&gt;prev;        removeNode(node);        return node;    &#125;&#125;;
+
+148. 排序链表（要求时间复杂度O(nlogn)，空间复杂度O(1)）1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980ListNode* sortList(ListNode* head)&#123;    if(head == nullptr)    &#123;        return head;    &#125;    ListNode* node = head;    int length = 0;    while(node != nullptr)    &#123;        length++;        node = node-&gt;next;    &#125;    ListNode* dummyHead = new ListNode(0, head);    for(int subLength = 1; subLength &lt; length; subLength &lt;&lt;= 1)    &#123;        ListNode* prev = dummyHead;        ListNode* curr = dummyHead-&gt;next;        while(curr != nullptr)        &#123;            ListNode* head1 = curr;            for(int i = 1; i &lt; subLength &amp;&amp; curr-&gt;next != nullptr; i++)            &#123;                curr = curr-&gt;next;            &#125;            ListNode* head2 = curr-&gt;next;            curr-&gt;next = nullptr;            curr = head2;            for(int i = 1; i &lt; subLength &amp;&amp; curr != nullptr &amp;&amp; curr-&gt;next != nullptr; i++)            &#123;                curr = curr-&gt;next;            &#125;            ListNode* next = nullptr;            if(curr != nullptr)            &#123;                next = curr-&gt;next;                curr-&gt;next = nullptr;            &#125;            //curr = next;            ListNode* merged = merge(head1, head2);            prev-&gt;next = merged;            while(prev-&gt;next != nullptr)            &#123;                prev = prev-&gt;next;            &#125;            curr = next;        &#125;    &#125;    return dummyHead-&gt;next;&#125;ListNode* merge(ListNode* head1, ListNode* head2)&#123;    ListNode* dummyHead = new ListNode(0);    ListNode* temp = dummyHead;    ListNode* temp1 = head1;    ListNode* temp2 = head2;    while(temp1 != nullptr &amp;&amp; temp2 != nullptr)    &#123;        if(temp1-&gt;val &lt;= temp2-&gt;val)        &#123;            temp-&gt;next = temp1;            temp1 = temp1-&gt;next;        &#125;        else        &#123;            temp-&gt;next = temp2;            temp2 = temp2-&gt;next;        &#125;        temp = temp-&gt;next;    &#125;    if(temp1 != nullptr)    &#123;        temp-&gt;next = temp1;    &#125;    else if(temp2 != nullptr)    &#123;        temp-&gt;next = temp2;    &#125;    return dummyHead-&gt;next;&#125;
+
+152. 乘积最大子数组12345678910111213int maxProduct(vector&lt;int&gt;&amp; nums)&#123;    int maxF = nums[0], minF = nums[0];    int ans = nums[0];    for(int i = 1; i &lt; nums.size(); i++)    &#123;        int mx = maxF, mn = minF;        maxF = max(mx * nums[i], max(mn * nums[i], nums[i]));        minF = min(mx * nums[i], min(mn * nums[i], nums[i]));        ans = max(maxF, ans);    &#125;    return ans;&#125;
+
+155. 最小栈（保证能常数时间内返回最小值）12345678910111213141516171819202122232425262728class MinStack&#123;public:    stack&lt;int&gt; xStack;    stack&lt;int&gt; mStack;    MinStack()    &#123;        mStack.push(INT_MIN);    &#125;    void push(int x)    &#123;        xStack.push(x);        mStack.push(min(x, mStack.pop()));    &#125;    void pop()    &#123;        xStack.pop();        mStack.pop();    &#125;    int top()    &#123;        return xStack.top();    &#125;    int getMin()    &#123;        return mStack.top();    &#125;&#125;;
+
+198. 打家劫舍12345678910111213141516int rob(vector&lt;int&gt;&amp; nums)&#123;    if(nums.empty())        return 0;    int n = nums.size();    if(n == 1)        return nums[0];    vector&lt;int&gt; dp(n, 0);    dp[0] = nums[0];    dp[1] = max(nums[0], nums[1]);    for(int i = 2; i &lt; n; i++)    &#123;        dp[i] = max(dp[i - 1], dp[i - 2] + nums[i]);    &#125;    return dp[n - 1];&#125;
+
+200. 岛屿数量12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182class UnionFind&#123;private:    vector&lt;int&gt; parent;    vector&lt;int&gt; rank;    int count = 0;public:    UnionFind(vector&lt;vector&lt;char&gt;&gt;&amp; grid)    &#123;		int m = grid.size();        int n = grid[0].size();        for(int r = 0; r &lt; m; r++)        &#123;            for(int c = 0; c &lt; n; c++)            &#123;                if(grid[r][c] == '1')                &#123;                    parent.push_back(r * n + c);                    count++;				&#125;                else                &#123;                    parent.push_back(-1);                &#125;                rank.push_back(0);            &#125;        &#125;    &#125;    int find(int i)    &#123;        if(parent[i] != i)            parent[i] = find(parent[i]);        return parent[i];    &#125;    void unite(int x, int y)    &#123;        int rootx = find(x);        int rooty = find(y);        if(rootx != rooty)        &#123;            if(rank[rootx] &lt; rank[rooty])            &#123;                swap(rootx, rooty);            &#125;            if(rank[rootx] == rank[rooty])            &#123;                rank[rootx] += 1;            &#125;			parent[rooty] = rootx;            count--;        &#125;    &#125;    int getCount()    &#123;        return count;    &#125;&#125;;class Solution&#123;public:    int numIslands(vector&lt;vector&lt;char&gt;&gt;&amp; grid)    &#123;        int nr = grid.size();        int nc = grid[0].size();        UnionFind uf(grid);        for(int r = 0; r &lt; nr; r++)        &#123;            for(int c = 0; c &lt; nc; c++)            &#123;                if(grid[r][c] == '1')                &#123;                    grid[r][c] = '0';                    if(r - 1 &gt;= 0 &amp;&amp; grid[r - 1][c] == '1') uf.unite(r * nc + c, (r - 1) * nc + c);                    if(r + 1 &lt; nr &amp;&amp; grid[r + 1][c] == '1') uf.unite(r * nc + c, (r + 1) * nc + c);                    if(c - 1 &gt;= 0 &amp;&amp; grid[r][c - 1] == '1') uf.unite(r * nc + c, r * nc + c - 1);                    if(c + 1 &lt; nc &amp;&amp; grid[r][c + 1] == '1') uf.unite(r * nc + c, r * nc + c + 1);                &#125;            &#125;        &#125;        return uf.getCount();    &#125;&#125;;
+
+206. 翻转链表1234567891011121314151617181920212223242526// 递归ListNode* reverseList(ListNode* head)&#123;    if(head == nullptr || head-&gt;next == nullptr)    &#123;        return head;    &#125;    ListNode* ret = reverseList(head-&gt;next);    head-&gt;next-&gt;next = head;    head-&gt;next = nullptr;    return ret;&#125;// 双指针迭代ListNode* reverseList(ListNode* head)&#123;    ListNode* pre = head;    ListNode* cur = nullptr;    while(pre != nullptr)    &#123;        ListNode* p = pre-&gt;next;        pre-&gt;next = cur;        cur = pre;        pre = p;    &#125;    return cur;&#125;
+
+208. 实现Trie(前缀树)123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051class Trie&#123;private:    bool isEnd;    Trie* next[26];public:    Trie()    &#123;        isEnd = false;        memset(next, 0, sizeof(next));    &#125;    void insert(string word)    &#123;        Trie* node = this;        for(char c : word)        &#123;            if(node-&gt;next[c - 'a'] == nullptr)            &#123;                node-&gt;next[c - 'a'] = new Trie();            &#125;            node = node-&gt;next[c - 'a'];        &#125;        node-&gt;isEnd = true;    &#125;    bool search(string word)    &#123;        Trie* node = this;        for(char c : word)        &#123;            if(node-&gt;next[c - 'a'] == nullptr)            &#123;                return false;            &#125;            node = node-&gt;next[c - 'a'];        &#125;        return node-&gt;isEnd;    &#125;    bool startsWith(string prefix)    &#123;        Trie* node = this;        for(char c : prefix)        &#123;            if(node-&gt;next[c - 'a'] == nullptr)            &#123;                return false;            &#125;            node = node-&gt;next[c - 'a'];        &#125;        return true;    &#125;&#125;;
+
+739. 每日温度（每天找下一个比今天更高的温度）1234567891011121314151617vector&lt;int&gt; dailyTemperature(vector&lt;int&gt;&amp; T)&#123;    int n = T.size();    vector&lt;int&gt; ret(n);    stack&lt;int&gt; stk;    for(int i = 0; i &lt; n; i++)    &#123;        while(!stk.empty() &amp;&amp; T[i] &gt; T[stk.top()])        &#123;            int prevIndex = stk.top();            ret[prevIndex] = i - prevIndex;            stk.pop();        &#125;        stk.push(i);    &#125;	return ret;&#125;
+
+
+                        
+                    </p>
+                </a>
+            </div>
+
+            
+                <div class="post-footer">
+                    
+                        <i class="fa fa-folder-open-o"></i>
+                        <a class="category-link" href="/categories/Algorithm/">Algorithm</a>
+
+                        
+                            <span class="dotted">|</span>
+                        
+
+                    
+                    
+                        <i class="fa fa-tags"></i>
+                        <a class="tag-link" href="/tags/Algorithm/">Algorithm</a>
+                    
+                </div>
+            
+        </article>
+    
+
+
+
+            </div>
+            <div class="aside">
+    
+        <div class="box widget">
+    <div class="introduction">
+        <p><img src="/images/avatar.jpg" alt="head-sculpture"></p>
+        <p class="name">
+            CHAsencenge
+        </p>
+        <p class="slogan">解字</p>
+    </div>
+</div>
+    
+        
+<div class="box widget">
+    <div class="title">Recent</div>
+    <ul class="item-box">
+        
+            
+                <li><a href="/2020/11/30/手撸算法终版/">手撸算法终版</a></li>
+            
+        
+            
+                <li><a href="/2020/10/29/哈希专题/">哈希专题</a></li>
+            
+        
+            
+                <li><a href="/2020/10/29/特殊技巧专题/">特殊技巧专题</a></li>
+            
+        
+            
+                <li><a href="/2020/10/29/栈和队列专题/">栈和队列专题</a></li>
+            
+        
+            
+                <li><a href="/2020/10/28/树图专题/">树专题</a></li>
+            
+        
+            
+                <li><a href="/2020/10/28/空间换时间专题/">空间换时间专题</a></li>
+            
+        
+            
+                <li><a href="/2020/10/25/C-Lambda表达式/">C++ Lambda表达式</a></li>
+            
+        
+            
+                <li><a href="/2020/10/16/双指针专题/">双指针专题</a></li>
+            
+        
+    </ul>
+</div>
+
+    
+        
+    <div class="box widget">
+        <div class="title">Categories</div>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/GameDev/">GameDev</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Laya/">Laya</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Light-Frequency-Authenticate/">Light Frequency Authenticate</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/LoRa/">LoRa</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Unity/">Unity</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Unity/Unreal/">Unreal</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Writing/">Writing</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cpp/">cpp</a><span class="category-list-count">3</span></li></ul>
+    </div>
+
+    
+        
+  <div class="box widget">
+    <div class="title">Archives</div>
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">2020-11</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">2020-10</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">2020-09</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">2020-08</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">2020-07</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">2019-11</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">2019-09</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">2019-07</a><span class="archive-list-count">6</span></li></ul>
+  </div>
+
+    
+        
+    <div class="box widget">
+        <div class="title">Tags</div>
+        <div class="item-box cloud-label">
+            <a href="/tags/Algorithm/" style="font-size: 20px;">Algorithm</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/GameDev/" style="font-size: 14px;">GameDev</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/Hexo/" style="font-size: 12px;">Hexo</a> <a href="/tags/Laya/" style="font-size: 16px;">Laya</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Python/" style="font-size: 16px;">Python</a> <a href="/tags/Unity/" style="font-size: 18px;">Unity</a> <a href="/tags/Unreal/" style="font-size: 10px;">Unreal</a> <a href="/tags/Writing/" style="font-size: 12px;">Writing</a> <a href="/tags/cpp/" style="font-size: 14px;">cpp</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/lightFre/" style="font-size: 10px;">lightFre</a> <a href="/tags/writing/" style="font-size: 10px;">writing</a> <a href="/tags/远程登录/" style="font-size: 10px;">远程登录</a>
+        </div>
+    </div>
+
+    
+</div>
+        </section>
+        <footer class="footer">
+    <div class="global-width footer-box">
+        <div class="copyright">
+            <span>Copyright &copy; 2019</span>
+            <span class="dotted">|</span>
+            <span>Powered by <a href="https://hexo.io/">Hexo</a></span>
+            <span class="dotted">|</span>
+            <span>Theme by <a href="javascript:">Loren</a></span>
+            <span class="dotted">|</span>
+            <span><a href="http://www.beian.miit.gov.cn">浙ICP备18016660号-1</a></span>
+        </div>
+    </div>
+</footer>
+    </div>
+
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+</body>
+</html>

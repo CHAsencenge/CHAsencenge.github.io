@@ -1,539 +1,1241 @@
 <!DOCTYPE html>
 <html lang="en">
 <head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="theme-color" content="#3367D6">
-  <link rel="apple-touch-icon" href="/icons-192.png">
-  <link rel="manifest" href="/manifest.json">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
 
-  
+
+
+
+    <meta name="keywords" content>
+
+
+
     <meta name="description" content="解字无果">
-  
 
-  
 
-  
-    <meta name="author" content="CHAsencenge">
-  
+<meta name="Robots" content="all">
 
-  
 
-  
+    <title>解字</title>
 
-  <title>Archives | 解字</title>
 
-  
-
-  
-    <link rel="icon" href="/favicon.ico">
-  
-
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-    <link href="https://cdn.bootcss.com/highlight.js/9.15.6/styles/monokai-sublime.min.css" rel="stylesheet">
-  
-
-  <link rel="stylesheet" href="/css/style.css">
+<link rel="icon" href="/images/favicon.ico">
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/atom-one-dark.css">
+<link rel="stylesheet" href="/css/style.css">
+<script src="/js/highlight.min.js"></script>
 </head>
 <body>
-  <div class="root-container">
-    <!-- navbar -->
-<nav class="navbar">
-  <div class="navbar-content">
-    <!-- logo -->
-    <div class="navbar-logo">
-      <a href="/">
-        
-          解字
-        
-      </a>
+    <div class="main-container">
+        <header class="header">
+    <div class="global-width">
+        <nav class="nav-box">
+            
+                <a class="nav-item" href="/">Home</a>
+            
+                <a class="nav-item" href="/resume">Resume</a>
+            
+                <a class="nav-item" href="/mood" target="_blank">Mood</a>
+            
+                <a class="nav-item" href="/amusement/tetris" target="_blank">Amusement</a>
+            
+                <a class="nav-item" href="/about">About</a>
+            
+        </nav>
     </div>
-    <!-- link -->
-    <div class="navbar-link">
-      <div class="navbar-btn">
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-      <ul class="navbar-list">
-        
-          <li class="navbar-list-item"><a href="/">主页</a></li>
-        
-          <li class="navbar-list-item"><a href="/about">关于</a></li>
-        
-          <li class="navbar-list-item"><a href="/links">友链</a></li>
-        
-          <li class="navbar-list-item"><a href="/tags">标签</a></li>
-        
-          <li class="navbar-list-item"><a href="/categories">分类</a></li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
+</header>
+
+        <section class="content global-width">
+            <div class="main">
+                
+    
+        <article class="box post post-item">
+            <div class="post-title"><a href="/2020/07/31/网易20秋招Unity工程师笔试编程题/">网易20秋招Unity工程师笔试编程题</a></div>
+            <div class="post-meta">
+                
+                <i class="fa fa-calendar"></i> <time>2020-07-31</time>
+                <span class="dotted">|</span>
+                <i class="fa fa-user"></i> 
+            </div>
+
+            <div class="post-excerpt">
+                <a href="/2020/07/31/网易20秋招Unity工程师笔试编程题/">
+                    <p>
+                        
+                            定义S(n)，表示n在十进制下的各位数字和。
+现在给定一个x,请你求出最小正整数n，满足x&lt;=S(n)。
+123456789101112131415161718192021222324252627282930313233343536#include &lt;iostream&gt;#include&lt;vector&gt;#include&lt;algorithm&gt;#include&lt;string&gt;int main()&#123;    int num;    cin &gt;&gt; num;    vector&lt;string&gt; resV;    string a = "9";    for (int n = 0; n &lt; num; n++)    &#123;        int x;        cin &gt;&gt; x;        //long long int multi = 1;        string res;        while (x &gt; 9)        &#123;            x -= 9;            res = a + res;            //multi *= 10;        &#125;        if (x != 0)        &#123;            //res += multi * x;            res = to_string(x) + res;        &#125;        resV.push_back(res);    &#125;    for (int n = 0; n &lt; num; n++)    &#123;        cout &lt;&lt; resV[n] &lt;&lt; endl;    &#125;    return 0;&#125;
+
+小易给定你数字A, B (A &lt; B)和系数p, q。每次操作你可以将A变成A + p或者将p变成p * q。问至少几次操作使得B &lt;= A。
+12345678910111213141516171819202122232425262728293031323334353637383940414243#include &lt;iostream&gt;#include&lt;vector&gt;#include&lt;algorithm&gt;#include&lt;string&gt;int main()&#123;    int num;    cin &gt;&gt; num;    vector&lt;long long int&gt; resV;        for (int n = 0; n &lt; num; n++)    &#123;        long long int a;        long long int b;        long long int p;        long long int q;        cin &gt;&gt; a &gt;&gt; b &gt;&gt; p &gt;&gt; q;        long long int res = 0;        if (b - a &gt; p)        &#123;            long long int temp = b - a;            long long int multiNum = p;            while (temp &gt; multiNum)            &#123;                multiNum *= q;                res++;            &#125;            res++;        &#125;        else        &#123;            res++;        &#125;        resV.push_back(res);    &#125;    for (int n = 0; n &lt; num; n++)    &#123;        cout &lt;&lt; resV[n] &lt;&lt; endl;    &#125;    return 0;&#125;
+
+小易定义一个数字序列是完美的，当且仅当对于任意2 &lt;= i &lt;= n，都满足，即每个数字都要大于等于前面所有数字的和。现在给定数字序列Ai，小易想请你从中找出最长的一段连续子序列，满足它是完美的。
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647#include &lt;iostream&gt;#include&lt;vector&gt;#include&lt;algorithm&gt;#include&lt;string&gt;int main()&#123;    vector&lt;int&gt; resV;    int num;    cin &gt;&gt; num;    for (int i = 0; i &lt; num; i++)    &#123;        int tempLength = 1;        int maxLength = 0;        vector&lt;int&gt; n;        int serialNum;        cin &gt;&gt; serialNum;        for (int j = 0; j &lt; serialNum; j++)        &#123;            int data;            cin &gt;&gt; data;            n.push_back(data);        &#125;        int compute = n[0];        for (int k = 1; k &lt; serialNum; k++)        &#123;            if (n[k] &gt;= compute)            &#123;                compute += n[k];                tempLength++;            &#125;            else            &#123;                maxLength = max(maxLength, tempLength);                tempLength = 1;                compute = n[k];            &#125;        &#125;        resV.push_back(maxLength);    &#125;    for (int i = 0; i &lt; num; i++)    &#123;        cout &lt;&lt; resV[i] &lt;&lt; endl;    &#125;    return 0;&#125;
+
+小易的公司一共有n名员工, 第i个人每个月的薪酬是xi万元。现在小易的老板向小易提了m次询问, 每次询问老板都会给出一个整数k, 小易要快速回答老板工资等于k的员工的数量。
+1234567891011121314151617181920212223242526272829303132333435363738394041424344#include &lt;iostream&gt;#include&lt;vector&gt;#include&lt;algorithm&gt;#include&lt;string&gt;#include&lt;unordered_map&gt;using namespace std;int main()&#123;    int people, question;    cin &gt;&gt; people &gt;&gt; question;    vector&lt;int&gt; resV(question, 0);    vector&lt;int&gt; salaryV;    vector&lt;int&gt; questionV;    unordered_map&lt;string, size_t&gt; questionMap;    for (int i = 0; i &lt; people; i++)    &#123;        int salary;        cin &gt;&gt; salary;        salaryV.push_back(salary);    &#125;    for (int i = 0; i &lt; question; i++)    &#123;        int data;        cin &gt;&gt; data;        questionV.push_back(data);        questionMap[to_string(data)];    &#125;    for (int i = 0; i &lt; people; i++)    &#123;        if (questionMap.find(to_string(salaryV[i])) != questionMap.end())        &#123;            ++questionMap[to_string(salaryV[i])];        &#125;    &#125;       for (int i = 0; i &lt; question; i++)    &#123;        cout &lt;&lt; questionMap.find(to_string(questionV[i]))-&gt;second &lt;&lt; endl;    &#125;    return 0;&#125;
+
+
+                        
+                    </p>
+                </a>
+            </div>
+
+            
+                <div class="post-footer">
+                    
+                        <i class="fa fa-folder-open-o"></i>
+                        <a class="category-link" href="/categories/Algorithm/">Algorithm</a>
+
+                        
+                            <span class="dotted">|</span>
+                        
+
+                    
+                    
+                        <i class="fa fa-tags"></i>
+                        <a class="tag-link" href="/tags/Algorithm/">Algorithm</a>
+                    
+                </div>
+            
+        </article>
+    
 
     
-<!-- header container -->
-<header class="header-container">
+        <article class="box post post-item">
+            <div class="post-title"><a href="/2020/07/27/Pyplot绘图/">Pyplot绘图</a></div>
+            <div class="post-meta">
+                
+                <i class="fa fa-calendar"></i> <time>2020-07-27</time>
+                <span class="dotted">|</span>
+                <i class="fa fa-user"></i> 
+            </div>
 
-  
-  
+            <div class="post-excerpt">
+                <a href="/2020/07/27/Pyplot绘图/">
+                    <p>
+                        
+                            标识散点：plt.scatter(x, y)可选项s修改散点大小，color修改颜色
+1plt.scatter(thisNodeLoc[0], thisNodeLoc[1], s=10, color='b')
 
-  
-  
-    <div class="header-content">
-      <div class="post-image" style="background-image: url(https://chasencenge.github.io/links/Asset/cover44.jpg)"></div>
-      <div class="post-text">
-        <h1 class="title-wrap">归档</h1>
-        <h2 class="title-sub-wrap">共有51篇文章</h2>
-      </div>
+连线：plt.plot([x1, y1], [x2, y2])1plt.plot([thisNodeLoc[0], sendToNodeLoc[0]], [thisNodeLoc[1], sendToNodeLoc[1]])
+
+注释文字：plt.annotate(txt, xy=(), xytext=())xy处填注释点坐标，xytext处填文本位置，可加偏移offset
+1plt.annotate(thisNodeLoc, xy=(thisNodeLoc[0], thisNodeLoc[1]), xytext=(thisNodeLoc[0]+1, thisNodeLoc[1]+1))
+
+限制坐标区间：12plt.xlim(-2200,2200)plt.ylim(-2200,2200)
+
+12345678910for n in range(0, nodeNum):    thisNodeLoc = [nodes[n].locX, nodes[n].locY]    sendToNodeLoc = [nodes[n].sendTo.locX, nodes[n].sendTo.locY]    plt.scatter(thisNodeLoc[0], thisNodeLoc[1], s=10, color='b')    plt.plot([thisNodeLoc[0], sendToNodeLoc[0]], [thisNodeLoc[1], sendToNodeLoc[1]])    plt.annotate(thisNodeLoc, xy=(thisNodeLoc[0], thisNodeLoc[1]), xytext=(thisNodeLoc[0]+1, thisNodeLoc[1]+1))plt.xlim(-2200,2200)plt.ylim(-2200,2200)plt.show()
+
+最后记得用plt.show()将其显示出来
+
+                        
+                    </p>
+                </a>
+            </div>
+
+            
+                <div class="post-footer">
+                    
+                        <i class="fa fa-folder-open-o"></i>
+                        <a class="category-link" href="/categories/Python/">Python</a>
+
+                        
+                            <span class="dotted">|</span>
+                        
+
+                    
+                    
+                        <i class="fa fa-tags"></i>
+                        <a class="tag-link" href="/tags/Python/">Python</a>
+                    
+                </div>
+            
+        </article>
+    
+
+    
+        <article class="box post post-item">
+            <div class="post-title"><a href="/2020/07/26/百度之星2020-1003-Permutation/">百度之星2020---1003.Permutation</a></div>
+            <div class="post-meta">
+                
+                <i class="fa fa-calendar"></i> <time>2020-07-26</time>
+                <span class="dotted">|</span>
+                <i class="fa fa-user"></i> 
+            </div>
+
+            <div class="post-excerpt">
+                <a href="/2020/07/26/百度之星2020-1003-Permutation/">
+                    <p>
+                        
+                            Problem Description
+一开始有 n个数，他们按 1…n的顺序排列，要求交换最多 m对数字（同一个数字可以参与多次交换），使得逆序对数目最大。
+对于一个序列 A，如果存在正整数 i, j使得1≤i&lt;j≤n 而且 A[i] &gt; A[j]，则 &lt;A[i],A[j]&gt; 这个有序对称为 A的一个逆序对。
+Input
+第一行一个正整数test (1≤test≤100000) 表示数据组数。
+对于每组数据，一行两个整数 n，m (1≤n≤1000000,0≤m≤1000000) 表示数字个数和最多可以交换的数字对数。
+Output
+对于每组数据，一行一个整数表示答案。
+Sample Input
+123456761 12 02 13 14 14 2
+
+Sample Output
+123456001356
+
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071#include &lt;iostream&gt;#include&lt;vector&gt;#include&lt;algorithm&gt;using namespace std;// 对每个（n, 1）结果都为：2 * n - 3int com(int n)&#123;    int com = 2 * n - 3;    return com;&#125;// 把（n, m）转换为（n, 1）, (n -2, 1)...(n - 2m + 2, 1)之和的形式并利用com()计算结果int arr(int n, int m)&#123;    int res = 0;    for (int i = 0; i &lt; m; i++)    &#123;        res += com(n - 2 * i);        //cout &lt;&lt; i &lt;&lt;" "&lt;&lt; res&lt;&lt;endl;    &#125;    return res;&#125;vector&lt;int&gt; compute() &#123;        int groupNum;    cin &gt;&gt; groupNum;    vector&lt;int&gt; output;    for (int i = 0; i &lt; groupNum; i++)    &#123;        int n;        int m;        //cout &lt;&lt; "choiseNum:" &lt;&lt; choiseNum &lt;&lt; endl;        cin &gt;&gt; n;            //cout &lt;&lt; "b:" &lt;&lt; b &lt;&lt; endl;        cin &gt;&gt; m;            //cout &lt;&lt; "c:" &lt;&lt; c &lt;&lt; endl;        if (n == 1 || m == 0)        &#123;            output.push_back(0);        &#125;        else &#123;            if (2 * m &lt; n)            &#123;                int res = arr(n, m);                output.push_back(res);            &#125;            else             &#123;                m = n / 2;                int res = arr(n, m);                output.push_back(res);            &#125;        &#125;        &#125;    return output;    &#125;int main()&#123;    vector&lt;int&gt; res = compute();    for (int i = 0; i &lt; res.size(); i++)    &#123;        //cout &lt;&lt; res[i];        printf("%d\n", res[i]);    &#125;    return 0;&#125;
+
+
+                        
+                    </p>
+                </a>
+            </div>
+
+            
+                <div class="post-footer">
+                    
+                        <i class="fa fa-folder-open-o"></i>
+                        <a class="category-link" href="/categories/Algorithm/">Algorithm</a>
+
+                        
+                            <span class="dotted">|</span>
+                        
+
+                    
+                    
+                        <i class="fa fa-tags"></i>
+                        <a class="tag-link" href="/tags/Algorithm/">Algorithm</a>
+                    
+                </div>
+            
+        </article>
+    
+
+    
+        <article class="box post post-item">
+            <div class="post-title"><a href="/2020/07/26/百度之星2020-1002-Game/">百度之星2020---1002.Game</a></div>
+            <div class="post-meta">
+                
+                <i class="fa fa-calendar"></i> <time>2020-07-26</time>
+                <span class="dotted">|</span>
+                <i class="fa fa-user"></i> 
+            </div>
+
+            <div class="post-excerpt">
+                <a href="/2020/07/26/百度之星2020-1002-Game/">
+                    <p>
+                        
+                            Problem Description
+Alice 和 Bob 在玩游戏。
+桌面上有两堆金币，少的那堆有 x 个金币，多的那堆有 2x 个金币。
+假设金币可以被无限细分。Alice 和 Bob 事先都不知道 x是几，但是他们都知道 x是一个 (0, 1]之间均匀分布的随机实数。
+Alice 会等概率的被分配到其中的一堆金币，Bob 会得到另一堆。x的值和两堆金币的分配是相互独立的。
+拿到金币以后，Alice 会马上数清自己拿到多少金币。然后 Alice 可以选择是否和 Bob 那堆换。
+给定 Alice 拿到的金币数目，请问 Alice 要不要交换，使得她期望能得到的金币数目更多？
+如果交换期望得到的金币数目多于不交换期望得到的金币数目，输出交换，否则不交换。
+Input
+第一行一个正整数test (1≤test≤200000) 表示数据组数。
+接下来每行一个小数p(0&lt;p≤2)，p最多保留五位小数，表示 Alice 拿到的金币数目。
+Output
+对于每组数据，输出 Yes 表示需要交换，输出 No 表示不要交换。
+Sample Input
+1211.00000
+
+Sample Output
+1Yes
+
+12345678910111213141516171819202122232425262728293031323334353637383940414243444546#include &lt;iostream&gt;#include&lt;vector&gt;#include&lt;algorithm&gt;#include &lt;string&gt;using namespace std;vector&lt;string&gt; compute()&#123;    int groupNum;    std::cin &gt;&gt; groupNum;    vector&lt;string&gt; output;    for (int i = 0; i &lt; groupNum; i++)    &#123;        float num;        std::cin &gt;&gt; num;        //float exception;        if (num &gt; 1)        &#123;            output.push_back("No");        &#125;        else        &#123;            if (2 * num * 0.5 + num / 2 * 0.5 &gt; num)            &#123;                output.push_back("Yes");            &#125;            else            &#123;                output.push_back("No");            &#125;        &#125;    &#125;    return output;&#125;int main()&#123;    vector&lt;string&gt; res = compute();    for (int i = 0; i &lt; res.size(); i++)    &#123;        //cout &lt;&lt; res[i];        printf("%s\n", res[i].c_str());    &#125;    return 0;&#125;
+
+
+                        
+                    </p>
+                </a>
+            </div>
+
+            
+                <div class="post-footer">
+                    
+                        <i class="fa fa-folder-open-o"></i>
+                        <a class="category-link" href="/categories/Algorithm/">Algorithm</a>
+
+                        
+                            <span class="dotted">|</span>
+                        
+
+                    
+                    
+                        <i class="fa fa-tags"></i>
+                        <a class="tag-link" href="/tags/Algorithm/">Algorithm</a>
+                    
+                </div>
+            
+        </article>
+    
+
+    
+        <article class="box post post-item">
+            <div class="post-title"><a href="/2020/07/26/百度之星2020-1001-Discount/">百度之星2020---1001.Discount</a></div>
+            <div class="post-meta">
+                
+                <i class="fa fa-calendar"></i> <time>2020-07-26</time>
+                <span class="dotted">|</span>
+                <i class="fa fa-user"></i> 
+            </div>
+
+            <div class="post-excerpt">
+                <a href="/2020/07/26/百度之星2020-1001-Discount/">
+                    <p>
+                        
+                            Problem Description
+学皇来到了一个餐馆吃饭。他觉得这家餐馆很好吃，于是就想办个会员。
+一共有 n种会员充值卡套餐，假设学皇这餐饭的消费为 a元，选择第 i种套餐，需要充值 b[i] * a 的钱，这次吃饭可以打 c[i]×10 折，由充值的钱支付（即这次吃饭只需要从充值金额中扣除 a×c[i] 元）。以后用剩余的充值的钱吃饭不再打折。
+请问学皇应该选择哪个套餐（必须选择恰好一个套餐），使得优惠的比例最大？
+优惠比例的定义是把充的钱用完以后，(本来应该付的钱 - 实际付的钱) / 本来应该付的钱。在这个题目里，实际付的钱就是这次充值的花费。
+Input
+第一行一个整数 test(1≤test≤100) 表示数据组数。
+对于每组数据，第一行一个正整数 n(1≤n≤100) 表示套餐的数目。
+接下来 n行，每行一个正整数 b[i]和一个小数 c[i]。
+Output
+对于每组数据，输出一个五位小数表示最大的优惠比例。如果小数点后超过五位，四舍五入到五位。
+Sample Input
+1234122 0.53 0.1
+
+Sample Output
+123450.23077样例解释对于第一种套餐，优惠比例为 0.5a / (2a + 0.5a） = 0.2；对于第二种套餐，优惠比例为 0.9a / (3a + 0.9a） = 9 / 39；
+
+12345678910111213141516171819202122232425262728293031323334353637383940414243#include &lt;iostream&gt;#include&lt;vector&gt;#include&lt;algorithm&gt;using namespace std;vector&lt;float&gt; compute() &#123;    int groupNum;    cin &gt;&gt; groupNum;    vector&lt;float&gt; output;    for (int i = 0; i &lt; groupNum; i++)    &#123;        float res = 0;        int choiseNum;        cin &gt;&gt; choiseNum;        //cout &lt;&lt; "choiseNum:" &lt;&lt; choiseNum &lt;&lt; endl;        int b;        float c;        for (int j = 0; j &lt; choiseNum; j++)        &#123;            cin &gt;&gt; b;            //cout &lt;&lt; "b:" &lt;&lt; b &lt;&lt; endl;            cin &gt;&gt; c;            //cout &lt;&lt; "c:" &lt;&lt; c &lt;&lt; endl;            float temp = (1 - c) / (b + 1 - c);            res = max(res, temp);        &#125;        output.push_back(res);    &#125;    return output;&#125;int main()&#123;    vector&lt;float&gt; res = compute();    for (int i = 0; i &lt; res.size(); i++)    &#123;        //cout &lt;&lt; res[i];        printf("%.5f\n", res[i]);    &#125;    return 0;&#125;
+
+
+                        
+                    </p>
+                </a>
+            </div>
+
+            
+                <div class="post-footer">
+                    
+                        <i class="fa fa-folder-open-o"></i>
+                        <a class="category-link" href="/categories/Algorithm/">Algorithm</a>
+
+                        
+                            <span class="dotted">|</span>
+                        
+
+                    
+                    
+                        <i class="fa fa-tags"></i>
+                        <a class="tag-link" href="/tags/Algorithm/">Algorithm</a>
+                    
+                </div>
+            
+        </article>
+    
+
+    
+        <article class="box post post-item">
+            <div class="post-title"><a href="/2020/07/24/游戏客户端面经知识点/">游戏客户端面经知识点</a></div>
+            <div class="post-meta">
+                
+                <i class="fa fa-calendar"></i> <time>2020-07-24</time>
+                <span class="dotted">|</span>
+                <i class="fa fa-user"></i> 
+            </div>
+
+            <div class="post-excerpt">
+                <a href="/2020/07/24/游戏客户端面经知识点/">
+                    <p>
+                        
+                            
+                        
+                    </p>
+                </a>
+            </div>
+
+            
+                <div class="post-footer">
+                    
+                        <i class="fa fa-folder-open-o"></i>
+                        <a class="category-link" href="/categories/Unity/">Unity</a>, <a class="category-link" href="/categories/Unity/Unreal/">Unreal</a>
+
+                        
+                            <span class="dotted">|</span>
+                        
+
+                    
+                    
+                        <i class="fa fa-tags"></i>
+                        <a class="tag-link" href="/tags/Unity/">Unity</a>, <a class="tag-link" href="/tags/Unreal/">Unreal</a>
+                    
+                </div>
+            
+        </article>
+    
+
+    
+        <article class="box post post-item">
+            <div class="post-title"><a href="/2020/07/24/C-面经知识点/">C++面经知识点</a></div>
+            <div class="post-meta">
+                
+                <i class="fa fa-calendar"></i> <time>2020-07-24</time>
+                <span class="dotted">|</span>
+                <i class="fa fa-user"></i> 
+            </div>
+
+            <div class="post-excerpt">
+                <a href="/2020/07/24/C-面经知识点/">
+                    <p>
+                        
+                            
+                        
+                    </p>
+                </a>
+            </div>
+
+            
+                <div class="post-footer">
+                    
+                        <i class="fa fa-folder-open-o"></i>
+                        <a class="category-link" href="/categories/cpp/">cpp</a>
+
+                        
+                            <span class="dotted">|</span>
+                        
+
+                    
+                    
+                        <i class="fa fa-tags"></i>
+                        <a class="tag-link" href="/tags/cpp/">cpp</a>
+                    
+                </div>
+            
+        </article>
+    
+
+    
+        <article class="box post post-item">
+            <div class="post-title"><a href="/2020/07/21/Unity项目对接到Laya/">Unity项目对接到Laya</a></div>
+            <div class="post-meta">
+                
+                <i class="fa fa-calendar"></i> <time>2020-07-21</time>
+                <span class="dotted">|</span>
+                <i class="fa fa-user"></i> 
+            </div>
+
+            <div class="post-excerpt">
+                <a href="/2020/07/21/Unity项目对接到Laya/">
+                    <p>
+                        
+                            Unity APIGameObject.FindWithTag通过Tag名找到游戏对象
+1ring = GameObject.FindWithTag(&quot;ring&quot;)
+
+
+
+
+FindWithTag
+返回一个标记为 tag 的活动 GameObject。如果未找到 GameObject，则返回 null。
+
+
+
+Find
+按 name 查找 GameObject，然后返回它。
+
+
+
+
+
+
+RigidbodyRigidbody是刚体，可以为游戏对象赋予物理属性，向对象添加 Rigidbody 组件后，其运动将受到 Unity 物理引擎的控制。即使不添加任何代码，Rigidbody 对象也受到向下的重力，并在与其他对象碰撞时作出反应（需有适当的collider）
+
+
+
+position
+刚体的位置
+
+
+
+rotation
+刚体的旋转
+
+
+useGravity
+控制重力是否影响该刚体
+
+
+angularVelocity
+刚体的角速度矢量（以弧度/秒为单位）
+
+
+velocity
+刚体的速度矢量
+
+
+
+
+
+AddForce
+向 Rigidbody 添加力
+
+
+
+Sleep
+强制刚体进入睡眠状态至少一帧
+
+
+AddTorque
+向刚体添加扭矩
+
+
+Quaternion在API中的UnityEngine-&gt;classes，四元数
+12Vector3 dir = hoopPoint.position - ballPoint.position;Quaternion wantedRotation = Quaternion.LookRotation(dir);
+
+Quaternion.LookRotation(dir)使用指定的 forward 和 upwards 方向创建旋转
+
+
+
+AngleAxis
+创建一个围绕 axis 旋转 angle 度的旋转
+
+
+
+LookRotation
+使用指定的 forward 和 upwards 方向创建旋转
+
+
+
+
+
+
+GameObject.GetComponentGameObject.GetComponent() 在UnityEngine-&gt;classes-&gt;GameObject
+返回 GameObject 中类型为 type 的所有组件
+示例：
+12345678void Start()&#123;    Component[] hingeJoints;    hingeJoints = GetComponents(typeof(HingeJoint));    foreach (HingeJoint joint in hingeJoints)        joint.useSpring = false;&#125;
+
+ForceMode位于UnityEngine-&gt;Enumerations
+使用 ForceMode 指定如何使用 Rigidbody.AddForce 来施加力。
+AddForce 函数可定义自己的力矢量，以及选择如何将此力施加于 GameObject（此 GameObject 必须附加有 Rigidbody 组件），从而影响您的 GameObject 的移动方式。
+
+
+
+Force
+向此刚体添加连续力，使用其质量
+
+
+
+Acceleration
+向此刚体添加连续加速度，忽略其质量
+
+
+Impulse
+向此刚体添加瞬时力冲击，考虑其质量
+
+
+VelocityChange
+向此刚体添加瞬时速度变化，忽略其质量
+
+
+transform对象的位置、旋转和缩放
+每个变换都可以有一个父级，使得能够分层应用位置、旋转和缩放
+
+
+
+parent
+变换的父级
+
+
+
+position
+世界空间中的变换位置
+
+
+rotation
+一个四元数，用于存储变换在世界空间中的旋转
+
+
+localEulerAngles
+以欧拉角表示的相对于父变换旋转的旋转（以度为单位）
+
+
+localPosition
+相对于父变换的变换位置
+
+
+localRotation
+相对于父级变换旋转的变换旋转
+
+
+localScale
+相对于父对象的变换缩放
+
+
+childCount
+父变换具有的子项数
+
+
+Camera.ScreenPointToRay1Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+Physics.Raycast参数：
+
+
+
+origin
+射线在世界坐标系中的起点
+
+
+
+direction
+射线的方向
+
+
+maxDistance
+射线应检查碰撞的最大距离
+
+
+layerMask
+层遮罩，用于在投射射线时有选择地忽略碰撞体
+
+
+queryTriggerInteraction
+指定该查询是否应该命中触发器
+
+
+bool 如果射线与任何碰撞体相交，返回 true，否则为 false。
+RaycastHit用于从射线投射获取信息的结构
+
+
+
+barycentricCoordinate
+命中的三角形的重心坐标
+
+
+
+collider
+命中的 Collider
+
+
+distance
+从射线原点到撞击点的距离
+
+
+lightmapCoord
+撞击点处的 UV 光照贴图坐标
+
+
+normal
+射线命中的表面的法线
+
+
+point
+世界空间中射线命中碰撞体的撞击点
+
+
+rigidbody
+命中的碰撞体的 Rigidbody。如果该碰撞体未附加到刚体，则值为 /null/
+
+
+textureCoord
+碰撞位置处的 UV 纹理坐标
+
+
+textureCoord2
+撞击点处的辅助 UV 纹理坐标
+
+
+transform
+命中的刚体或碰撞体的 Transform
+
+
+triangleIndex
+命中的三角形的索引
+
+
+Collider所有碰撞体的基类
+BoxCollider、SphereCollider、CapsuleCollider、MeshCollider、PhysicMaterial、Rigidbody
+如果在游戏过程中需要移动具有 Collider 的对象，还应将 Rigidbody 组件附加到该对象。如果不想使该对象与其他对象进行物理交互，可将 Rigidbody 设置为运动刚体
+变量：
+
+
+
+attachedRigidbody
+碰撞体附加到的刚体
+
+
+
+bounds
+碰撞体的世界空间包围体积（只读）
+
+
+contactOffset
+该碰撞体的接触偏移值
+
+
+enabled
+启用的 Collider 将与其他 Collider 碰撞，禁用的 Collider 不会这样
+
+
+isTrigger
+碰撞体是不是触发器
+
+
+material
+碰撞体使用的材质
+
+
+sharedMaterial
+该碰撞体的共享物理材质
+
+
+消息：
+
+
+
+OnCollisionEnter
+当该碰撞体/刚体已开始接触另一个刚体/碰撞体时，调用 OnCollisionEnter
+
+
+
+OnCollisionExit
+当该碰撞体/刚体已停止接触另一个刚体/碰撞体时，调用 OnCollisionExit
+
+
+OnCollisionStay
+对应正在接触刚体/碰撞体的每一个碰撞体/刚体，每帧调用一次 OnCollisionStay
+
+
+OnTriggerEnter
+当 Collider other 事件进入该触发器时调用 OnTriggerEnter
+
+
+OnTriggerExit
+当 Collider other 已停止接触该触发器时调用 OnTriggerExit
+
+
+OnTriggerStay
+对于正在接触该触发器的每个其他 Collider，“几乎”所有帧都调用 OnTriggerStay。此函数位于物理计时器上，因此它不必运行每个帧
+
+
+继承的成员变量：
+
+
+
+gameObject
+此组件附加到的游戏对象。始终将组件附加到游戏对象
+
+
+
+tag
+此游戏对象的标签
+
+
+transform
+附加到此 GameObject 的 Transform
+
+
+hideFlags
+该对象应该隐藏、随场景一起保存还是由用户修改
+
+
+name
+对象的名称
+
+
+公共函数：
+
+
+
+BroadcastMessage
+调用此游戏对象或其任何子项中的每个 MonoBehaviour 上名为 methodName 的方法
+
+
+
+CompareTag
+此游戏对象是否使用 tag 进行了标记
+
+
+GetComponent
+如果游戏对象附加了类型为 type 的组件，则将其返回，否则返回 null
+
+
+GetComponentInChildren
+使用深度首次搜索返回 GameObject 或其任何子项中类型为 type 的组件
+
+
+GetComponentInParent
+返回 GameObject 或其任何父项中类型为 type 的组件
+
+
+GetComponents
+返回 GameObject 中类型为 type 的所有组件
+
+
+GetComponentsInChildren
+返回 GameObject 或其任何子项中类型为 type 的所有组件
+
+
+GetComponentsInParent
+返回 GameObject 或其任何父项中类型为 type 的所有组件
+
+
+SendMessage
+调用此游戏对象中的每个 MonoBehaviour 上名为 methodName 的方法
+
+
+SendMessageUpwards
+调用此游戏对象中的每个 MonoBehaviour 上或此行为的每个父级上名为 methodName 的方法
+
+
+GetInstanceID
+返回对象的实例 ID
+
+
+ToString
+返回 GameObject 的名称
+
+
+静态函数：
+
+
+
+Destroy
+删除 GameObject、组件或资源
+
+
+
+DestroyImmediate
+立即销毁对象 /obj/。强烈建议您改用 Destroy
+
+
+DontDestroyOnLoad
+在加载新的 Scene 时，请勿销毁 Object
+
+
+FindObjectOfType
+返回第一个类型为 type 的已加载的激活对象
+
+
+FindObjectsOfType
+返回所有类型为 type 的已加载的激活对象的列表
+
+
+Instantiate
+克隆 original 对象并返回克隆对象
+
+
+C#outout同ref一样，都是有一级地址传递的，也就是，带有这两个修饰符的参数，如果被修改了原来的值，将以新的值作为他的值（在函数执行完毕后，该参数的值将返回给函数调用中使用的变量，有点像C++ &amp;）
+在函数中使用out参数时，必须将其看成尚未赋值。也就是说调用代码可以把已赋值的变量用作out参数，但在函数执行时该变量的值会丢失，所以就算在函数外已经初始化，在函数内也要重新初始化
+示例：
+// 第一行hit不用初始化，参数中hit前加out，尽管Physics.Raycast返回bool，hit已在其中赋值，所以下一个if语句中hit可以调用其对象的属性方法
+123456789101112131415RaycastHit hit;if (Physics.Raycast(ray, out hit, 1000, 1 &lt;&lt; 8))   &#123;		if (hit.collider.gameObject.tag == &quot;Basketball&quot; &amp;&amp; !hit.collider.gameObject.GetComponent&lt;BSKBall&gt;().IsShooting())		&#123;			currentBall = hit.collider.gameObject;			Rigidbody r = currentBall.GetComponent&lt;Rigidbody&gt;();			r.isKinematic = true;			Vector3 touchPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, depth));			touchPoint.x = Mathf.Clamp(touchPoint.x, leftEdge.transform.position.x + 0.29f, rightEdge.transform.position.x - 0.29f);			touchPoint.y = selectBallPosY;			currentBall.transform.position = touchPoint;		&#125;	&#125;
+
+Unity坐标四种坐标：世界坐标(World Space)：游戏物体在创造的世界中的坐标
+transfrom.position获得的是物体相对于世界坐标的位置
+transfrom.localPosition获得的是物体相对于父物体坐标的位置
+
+
+屏幕坐标(Screen Space)：以像素记
+视口坐标(Viewport Space)：将屏幕坐标单位化
+坐标转换：物体B相对于物体A的局部坐标：A.transform.InverseTransformPoint(B)
+屏幕坐标转世界坐标：Camera.main.ScreenToWorldPoint
+12Vector3 mousePos = Input.mousePosition;Vector3 screenToWorld = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, -Camera.main.transform.position.z));
+
+世界坐标转屏幕坐标：Camera.main.WorldToScreenPoint
+1Vector3 worldToScreen = Camera.main.WorldToScreenPoint(transform.position);
+
+Mathf.Clamp在给定的最小浮点值和最大浮点值之间钳制给定值。如果在最小和最大范围内，则返回给定值
+如果给定的浮点值小于最小值，则返回最小值。如果给定值大于最大值，则返回最大值。使用 Clamp 可将某个值限制为最小值和最大值定义的某个范围内
+变量
+
+
+gameObject
+此组件附加到的游戏对象。始终将组件附加到游戏对象。
+
+
+
+tag
+此游戏对象的标签。
+
+
+transform
+附加到此 GameObject 的 Transform。
+
+
+公共函数
+
+
+BroadcastMessage
+调用此游戏对象或其任何子项中的每个 MonoBehaviour 上名为 methodName 的方法。
+
+
+
+CompareTag
+此游戏对象是否使用 tag 进行了标记？
+
+
+GetComponent
+如果游戏对象附加了类型为 type 的组件，则将其返回，否则返回 null。
+
+
+GetComponentInChildren
+使用深度首次搜索返回 GameObject 或其任何子项中类型为 type 的组件。
+
+
+GetComponentInParent
+返回 GameObject 或其任何父项中类型为 type 的组件。
+
+
+GetComponents
+返回 GameObject 中类型为 type 的所有组件。
+
+
+GetComponentsInChildren
+返回 GameObject 或其任何子项中类型为 type 的所有组件。
+
+
+GetComponentsInParent
+返回 GameObject 或其任何父项中类型为 type 的所有组件。
+
+
+SendMessage
+调用此游戏对象中的每个 MonoBehaviour 上名为 methodName 的方法。
+
+
+SendMessageUpwards
+调用此游戏对象中的每个 MonoBehaviour 上或此行为的每个父级上名为 methodName 的方法。
+
+
+继承的成员变量
+
+
+hideFlags
+该对象应该隐藏、随场景一起保存还是由用户修改？
+
+
+
+name
+对象的名称。
+
+
+公共函数
+
+
+GetInstanceID
+返回对象的实例 ID。
+
+
+
+ToString
+返回 GameObject 的名称。
+
+
+Component附加到 GameObject 的所有内容的基本类
+注：代码不会直接创建 Component，而是编写脚本代码，然后将该脚本附加到GameObject
+ResourcesResources 类允许您查找和访问资源等对象
+在编辑器中，Resources.FindObjectsOfTypeAll 可用于定位资源和场景对象
+通过 Resources.Load 函数，可访问 Assets 文件夹中处于任意位置的名为“Resources”的文件夹中的所有资源。 可以存在多个“Resources”文件夹，加载对象时，将对每个文件夹进行检查
+注意：Assets 中的 Resources 文件夹需要在使用前创建。创建新项目时，不会创建该文件夹
+静态函数：（函数调用的结果不会访问或者修改任何对象（非static）数据成员，这样的成员声明为静态成员函数比较好）
+
+
+
+FindObjectsOfTypeAll
+返回所有类型为 type 的对象的列表。
+
+
+
+Load
+加载存储在 Resources 文件夹中的 path 处的资源。
+
+
+LoadAll
+加载位于 Resources 文件夹中的 path 处的文件夹中的所有资源，或加载位于该处的文件。
+
+
+LoadAsync
+异步加载存储在 Resources 文件夹中的 path 处的资源。
+
+
+UnloadAsset
+从内存中卸载 /assetToUnload/。
+
+
+UnloadUnusedAssets
+卸载未使用的资源。
+
+
+Laya APIRigidbody3D对应于Unity中Rigidbody.AddForce，Rigidbody.AddTorque， Laya提供的类为Rigidbody3D，对应的方法为Rigidbody3D.applyForce，Rigidbody3D.applyTorque
+12345applyForce(force: Vector3, localOffset?: Vector3): voidapplyImpulse(impulse: Vector3, localOffset?: Vector3): voidapplyTorque(torque: Vector3): void
+
+
+                        
+                    </p>
+                </a>
+            </div>
+
+            
+                <div class="post-footer">
+                    
+                        <i class="fa fa-folder-open-o"></i>
+                        <a class="category-link" href="/categories/Laya/">Laya</a>
+
+                        
+                            <span class="dotted">|</span>
+                        
+
+                    
+                    
+                        <i class="fa fa-tags"></i>
+                        <a class="tag-link" href="/tags/Laya/">Laya</a>
+                    
+                </div>
+            
+        </article>
+    
+
+    
+        <article class="box post post-item">
+            <div class="post-title"><a href="/2020/07/20/Python实现Lora节点拓扑自动规划/">Python实现Lora节点拓扑自动规划</a></div>
+            <div class="post-meta">
+                
+                <i class="fa fa-calendar"></i> <time>2020-07-20</time>
+                <span class="dotted">|</span>
+                <i class="fa fa-user"></i> 
+            </div>
+
+            <div class="post-excerpt">
+                <a href="/2020/07/20/Python实现Lora节点拓扑自动规划/">
+                    <p>
+                        
+                            NodeClass.py:123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142143144145146147148149150151152153154155156157158159160161162163164165166167168169170171172173174175176177178179180181182183184185186187188189190191192193194195196197198199200201202203204205206207208209210211212213214215216217218219220221222223224225226227228229230231232233234235236237238239240241242243244245246247248249250251252# 小记：# 先不考虑中继节点在classB模式下发Beacon的能耗# 能量效率的计算公式是否有问题？只考虑发包的能耗和时间# energyConsumption需统一成自己在lifetime中的能量消耗推导，不再用论文中笼统的折线图值# 注意区分self.sendTo.index和一些函数中的node.index的区别，前者使用的场景在确定节点拓扑之后，后者使用在确定节点拓扑之前的一些遍历情况import mathimport numpy as np# python中的public、private和protected是通过变量名前的下划线标识的，保护类型一个下划线，私有类型两个下划线class Node:	def __init__(self, name, locX, locY, nodeNum, _payload, _bandW, _c, _pi, _beta, _whiteNoise, _dutyCycle, _batteryE, _dataGen, _cycleT,				 _transRadioE, _recvRadioE, _spareRadioE, _offRadioE, _onMcuE, _offMcuE, isGateway=0, whichSet=0, index=0): # 默认缺省值isGateway=0		self.name = name		self.payload = _payload		self.bandW = _bandW		self.c = _c		self.pi = _pi		self.beta = _beta		self.whiteNoise = _whiteNoise		self.dutyCycle = _dutyCycle		self.batteryE = _batteryE		# 每确定要多为另一个节点进行中继，dataGen需要更新添加帮忙转发的数据量		self.dataGen = _dataGen		self.cycleT = _cycleT		self.transRadioE = _transRadioE		self.recvRadioE = _recvRadioE		self.spareRadioE = _spareRadioE		self.offRadioE = _offRadioE		self.onMcuE = _onMcuE		self.offMcuE = _offMcuE		# 注意和dataGen的区别，这个变量是节点发送给节点/网关的总数据量，带有中继数据		self.dataSend = _dataGen		self.lifeT = 0.0		self.cycleE = 0.0		self.symbleT = 0.0		self.pktT = 0.0		self.transT = 0.0		self.recvT = 0.0		self.spareT = 0.0		self.airtime = 0.0		self.goodput = 0.0		# 用于MST中判断节点在哪个集合中,初始集合为0，MST集合为1		self.whichSet = whichSet		# 标识一个“节点”是否是网关，输入中第一个“点”为网关，坐标[0, 0]		self.isGateway = isGateway		self.locX = locX		self.locY = locY		# 给节点一个索引标识		self.index = index		self.relayNum = 0		# 存放了此节点通往其他节点时使用的参数值		self.spreadFactor = [7 for i in range(nodeNum)]		self.transPower = [13 for i in range(nodeNum)]		self.channel = [1 for i in range(nodeNum)]		self.codingRate = [5 for i in range(nodeNum)]		self.pdr = 0.0		# 标识此节点的数据直接发送给哪个节点，为Node类型		self.sendTo = self		# 标识此节点帮助哪些节点进行数据转发		self.relayFrom = []		# 标识此节点工作在哪个class下，class会影响cycleE		self.workClass = 'A'	# self._prop = []	def distNode(self, node):		dist = math.pow((math.pow((self.locX - node.locX), 2) + math.pow((self.locY - node.locY), 2)), 0.5)		# print(self.locX)		# print(self.locY)		# print(node.locX)		# print(node.locY)		# print('Distance of ' + self.name + ' to ' + node.name + ' = ' + str(dist))		return dist	# 8个信道，从902.1开始每次加0.2	def freq(self, node):		frequency = 902.1 + 0.2 * self.channel[node.index]		frequency *= math.pow(10, 6)		# print('Frequency of channel ' + str(self.channel[node.index]) + ' = ' + str(frequency))		return frequency	# Rayleigh fading channel	def g(self):		reyleigh = np.random.exponential(1.0, size=None)		# print(self.name + ' return rayleigh fading channel g of: ' + str(reyleigh))		return reyleigh	# 此为论文中的折线图值观测值实现的能耗函数，现替换成计算式方式实现	# energy consumption, unit is mW	def enerConsump(self, node):		energyPacket = [[40, 50], [50, 67], [65, 85], [95, 105], [100, 125], [110, 135]]		clsP = 0		if self.transPower[node.index] &lt;= 15:			cls_p = 0		else:			cls_p = 1		clsS = self.spreadFactor[node.index] - 7		# rst = energy_packet[cls_s][cls_p] * 0.001		rst = energyPacket[clsS][clsP]		# print("ec(line 70, unit is mW):", rst)		name = self.name		sf = str(self.spreadFactor[node.index])		tp = str(self.transPower[node.index])  # 只是为了下一行不超长...		# print('Energy Consumption of ' + name + ' with sf=' + sf + ', tp=' + tp + ' is: ' + str(rst))		return rst	# 公式计算方式求energy consumption	# def enerConsump(self):	def th(self, si):		if si == 7:			return -6		elif si == 8:			return -9		elif si == 9:			return -12		elif si == 10:			return -15		elif si == 11:			return -17.5		elif si == 12:			return -20	def ss(self, si):		if si == 7:			return -123		elif si == 8:			return -126		elif si == 9:			return -129		elif si == 10:			return -132		elif si == 11:			return -134.5		elif si == 12:			return -137	def tomWatt(self, dBm):		mWatt = math.pow(10, (dBm / 10))		# print(self.name + ' dBm to mWatt is: ' + str(mWatt))		return mWatt	# 如果有relay，EE计算为payload * pdr1 * pdr2 / (energyInTime1 + energyInTime2)	def energyEffi(self, node):		tempVar = (8 * self.payload - 4 * self.spreadFactor[node.index] + 28 + 16) / (4 * self.spreadFactor[node.index])		time = (20.25 + max(math.ceil(tempVar) * self.channel[node.index], 0)) * 2 ** self.spreadFactor[node.index] / self.bandW		energyInTime = time * self.enerConsump(node)		energyEfficiency = self.payload * self.selfToNodePdr(node) / energyInTime		# print('EnergyEfficiency of ' + self.name + ' is: ' + str(energyEfficiency))		return energyEfficiency	def energyIntime(self, node):		tempVar = (8 * self.payload - 4 * self.spreadFactor[node.index] + 28 + 16) / (4 * self.spreadFactor[node.index])		time = (20.25 + max(math.ceil(tempVar) * self.channel[node.index], 0)) * 2 ** self.spreadFactor[			node.index] / self.bandW		energyInTime = time * self.enerConsump(node)		return energyInTime	def energyEffiRelay(self, node1, node2):		tempVar1 = (8 * self.payload - 4 * self.spreadFactor[node1.index] + 28 + 16) / (4 * self.spreadFactor[node1.index])		time1 = (20.25 + max(math.ceil(tempVar1) * self.channel[node1.index], 0)) * 2 ** self.spreadFactor[node1.index] / self.bandW		energyInTime1 = time1 * self.enerConsump(node1)		tempVar2 = (8 * node1.payload - 4 * node1.spreadFactor[node2.index] + 28 + 16) / (					4 * node1.spreadFactor[node2.index])		time2 = (20.25 + max(math.ceil(tempVar2) * node1.channel[node2.index], 0)) * 2 ** node1.spreadFactor[			node2.index] / node1.bandW		energyInTime2 = time2 * node1.enerConsump(node2)		energyEfficiency = self.payload * self.selfToNodePdr(node1) * node1.selfToNodePdr(node2) / (energyInTime1 + energyInTime2)		return energyEfficiency	def relayPdr(self):		if(self.isGateway == 1):			return 1		else:			temp = self.sendTo.relayPdr() * self.selfToNodePdr(self.sendTo)		return temp	def relayEnergyInTime(self):		if(self.isGateway == 1):			return 0		else:			temp = self.sendTo.relayEnergyInTime() + self.energyIntime(self.sendTo)		return temp	# 将设备重叠数考虑进来，重叠、channel会降低pdr	def selfToNodePdr(self, node):		# tempVal1是路径损失函数		tempVar1 = (self.c / (4 * self.pi * self.freq(node) * self.distNode(node))) ** self.beta		# print('tempVar1:', tempVar1)		# whiteNoise对pdr的影响大		tempVar2 = (self.tomWatt(self.th(self.spreadFactor[node.index])) * self.whiteNoise + self.tomWatt(			self.ss(self.spreadFactor[node.index])))		# print('tempVar2:', tempVar2)		# 这地方还是有问题！！！！为什么是/1000/1000，对比注释行		# pdr = math.exp(-math.pow(tempVar2 / (self.tomWatt(self.transPower) * tempVar1), 0.5))		pdr = math.exp(-math.pow(tempVar2 / (self.transPower[node.index] * tempVar1), 0.5) / 1000 / 1000)		# print('Pdr of ' + self.name + ' to ' + node.name + ' is: ' + str(pdr))		return pdr	# 主文件里先确定sendTo谁，再更新transT值	def updateTransT(self):		self.symbleT = math.pow(2, self.spreadFactor[self.sendTo.index]) / self.bandW		tempVal1 = 8 * self.payload - 4 * self.spreadFactor[self.sendTo.index] + 28 + 16		tempVal2 = 20.25 + max(math.ceil(tempVal1 / (4 * self.spreadFactor[self.sendTo.index])) * self.codingRate[self.sendTo.index], 0)		self.pktT = self.symbleT * tempVal2		# 计算transT		# 此节点将数据（包括自己的和中转的）发给其将要发至的节点时的pdr		pdr = self.selfToNodePdr(self.sendTo)		if pdr != 0:			if self.relayFrom:				for child in self.relayFrom:					# 根据中继了哪些节点来更新dataSend的数据量，dataSend是此节点总共发送的数据量					# 若此节点非中继节点，则dataSend == dataGen					self.dataSend += child.dataGen			self.transT = self.pktT * self.cycleT / self.dataSend / pdr		else:			self.transT = 10000		return self.transT	# 确定在self.relayFrom中添加完所有的远端节点后再进行更新	def updateRecvT(self):		# 计算recvT，此时间包括自身发送时的class A模式的部分和中继时class B模式的recv time		# 没考虑作为发送端时的recvT，因为发送时工作在classA，只在发送数据的时候顺便开一个窗口接收数据，暂时不知道窗口总时长		if self.relayFrom:		if self.relayFrom:			for child in self.relayFrom:				self.recvT += child.transT		print('Update transT of ' + self.name + ' to: ' + str(self.recvT))		return self.recvT	def lifetime(self):		# 设置transRadioE级别（87和120）		if self.transPower[self.sendTo.index] &lt; 15:			self.transRadioE = 3.3 * 87e-3		self.spareT = self.dutyCycle * self.cycleT - self.transT - self.recvT		radioOnE = self.transT * self.transRadioE + self.recvT * self.recvRadioE + self.spareT * self.spareRadioE		radioOffE = (1 - self.dutyCycle) * self.cycleT * self.offRadioE		mcuE = self.cycleT * self.dutyCycle * self.onMcuE + self.cycleT * (1 - self.dutyCycle) * self.offMcuE		self.cycleE = radioOnE + radioOffE + mcuE		self.lifeT = self.cycleT * self.batteryE / self.cycleE / 3600 / 24		print('Lifetime of ' + self.name + ' is: ' + str(self.lifeT))		return self.lifeT	def goodput(self):		# 注意：goodput中计算的数据量用的是dataGen，而不是dataSend		goodput = self.cycleT / self.dataGen * self.payload / self.transT		print('Goodput of ' + self.name + ' is: ' + goodput)		return goodput
+
+TopoWithMST.py:123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142143144145146147148149150151152153154155156157158159160161162163164165166167168169170171172173174175176177178179180181182183184185186187188189190191192193194195196197198199200201202203204205206207208209210211212213214215216217218219220221222223224225226227228229230231232233234235236237238239240241242243244245246247248249250251252253254255256257258259260261262263264265266267268269270271272273274275276277278279280281282283284285286287288289290291292293294295296297298299300301302303304305306307308309310from MST.Node.NodeClass import Nodeimport randomimport matplotlib.pyplot as pltimport numpy as npimport mathimport scipy as syfrom scipy import statsimport xlsxwriter# 添加node要修改三个地方，node初始化，nodes列表添加该node，nodeNum值#  常量，全局变量均以“_”开头命名# _nodeNum = 6  # device number_payload = 4  # payload size of a packet, need to be modified_bandW = 125000_c = 3 * 10 ** 8_pi = 3.1415926_beta = 3  # path loss exponent, maybe a list, need to be init_whiteNoise = random.random()   # gauss white noise_dutyCycle = 0.02_batteryE = 3.7 * 2 * 3600_dataGen = 2000# Radio耗电常量_cycleT = 3600 * 12_transRadioE = 3.3 * 120e-3  # 29, 87, 120_recvRadioE = 3.3 * 11.5e-3_spareRadioE = 3.3 * 1.6e-3_offRadioE = 3.3 * 1.5e-6# Known and Unknown... P10  MCU耗电情况_onMcuE = 23.48e-4_offMcuE = 174.65e-7sfRange = [7,8,9,10,11,12]tpRange = [13,14,15,16,17,18,19,20]chRange = [1,2,3,4,5,6,7,8]crRange = [5,6,7,8]nodeNum = 18# _node0是网关，所以isGateway=1, whichSet=1_node0 = Node('_node0', 0, 0, nodeNum, _payload,  _bandW, _c, _pi, _beta, _whiteNoise, _dutyCycle, _batteryE, _dataGen,              _cycleT, _transRadioE, _recvRadioE, _spareRadioE, _offRadioE, _onMcuE, _offMcuE, isGateway=1, whichSet=1)_node1 = Node('_node1', -2800, -500, nodeNum, _payload,  _bandW, _c, _pi, _beta, _whiteNoise, _dutyCycle, _batteryE,              _dataGen, _cycleT, _transRadioE, _recvRadioE, _spareRadioE, _offRadioE, _onMcuE, _offMcuE, index=1)_node2 = Node('_node2', 2500, 2700, nodeNum, _payload,  _bandW, _c, _pi, _beta, _whiteNoise, _dutyCycle, _batteryE,              _dataGen, _cycleT, _transRadioE, _recvRadioE, _spareRadioE, _offRadioE, _onMcuE, _offMcuE, index=2)_node3 = Node('_node3', 1000, 800, nodeNum, _payload,  _bandW, _c, _pi, _beta, _whiteNoise, _dutyCycle, _batteryE,              _dataGen, _cycleT, _transRadioE, _recvRadioE, _spareRadioE, _offRadioE, _onMcuE, _offMcuE, index=3)_node4 = Node('_node4', 2500, 0, nodeNum, _payload,  _bandW, _c, _pi, _beta, _whiteNoise, _dutyCycle, _batteryE,              _dataGen, _cycleT, _transRadioE, _recvRadioE, _spareRadioE, _offRadioE, _onMcuE, _offMcuE, index=4)_node5 = Node('_node5', 1000, 0, nodeNum, _payload,  _bandW, _c, _pi, _beta, _whiteNoise, _dutyCycle, _batteryE,              _dataGen, _cycleT, _transRadioE, _recvRadioE, _spareRadioE, _offRadioE, _onMcuE, _offMcuE, index=5)_node6 = Node('_node6', 1500, 2000, nodeNum, _payload,  _bandW, _c, _pi, _beta, _whiteNoise, _dutyCycle, _batteryE,              _dataGen, _cycleT, _transRadioE, _recvRadioE, _spareRadioE, _offRadioE, _onMcuE, _offMcuE, index=6)_node7 = Node('_node7', -800, 700, nodeNum, _payload,  _bandW, _c, _pi, _beta, _whiteNoise, _dutyCycle, _batteryE,              _dataGen, _cycleT, _transRadioE, _recvRadioE, _spareRadioE, _offRadioE, _onMcuE, _offMcuE, index=7)_node8 = Node('_node8', -600, -400, nodeNum, _payload,  _bandW, _c, _pi, _beta, _whiteNoise, _dutyCycle, _batteryE,              _dataGen, _cycleT, _transRadioE, _recvRadioE, _spareRadioE, _offRadioE, _onMcuE, _offMcuE, index=8)_node9 = Node('_node9', -1000, -1200, nodeNum, _payload,  _bandW, _c, _pi, _beta, _whiteNoise, _dutyCycle, _batteryE,              _dataGen, _cycleT, _transRadioE, _recvRadioE, _spareRadioE, _offRadioE, _onMcuE, _offMcuE, index=9)_node10 = Node('_node10', -1800, -2000, nodeNum, _payload,  _bandW, _c, _pi, _beta, _whiteNoise, _dutyCycle, _batteryE,               _dataGen, _cycleT, _transRadioE, _recvRadioE, _spareRadioE, _offRadioE, _onMcuE, _offMcuE, index=10)_node11 = Node('_node11', -2000, 1800, nodeNum, _payload,  _bandW, _c, _pi, _beta, _whiteNoise, _dutyCycle, _batteryE,               _dataGen, _cycleT, _transRadioE, _recvRadioE, _spareRadioE, _offRadioE, _onMcuE, _offMcuE, index=11)_node12 = Node('_node12', 1500, -2000, nodeNum, _payload,  _bandW, _c, _pi, _beta, _whiteNoise, _dutyCycle, _batteryE,               _dataGen, _cycleT, _transRadioE, _recvRadioE, _spareRadioE, _offRadioE, _onMcuE, _offMcuE, index=12)_node13 = Node('_node13', 500, -500, nodeNum, _payload,  _bandW, _c, _pi, _beta, _whiteNoise, _dutyCycle, _batteryE,               _dataGen, _cycleT, _transRadioE, _recvRadioE, _spareRadioE, _offRadioE, _onMcuE, _offMcuE, index=13)_node14 = Node('_node14', 1200, -1200, nodeNum, _payload,  _bandW, _c, _pi, _beta, _whiteNoise, _dutyCycle, _batteryE,               _dataGen, _cycleT, _transRadioE, _recvRadioE, _spareRadioE, _offRadioE, _onMcuE, _offMcuE, index=14)_node15 = Node('_node15', 2000, -2500, nodeNum, _payload,  _bandW, _c, _pi, _beta, _whiteNoise, _dutyCycle, _batteryE,               _dataGen, _cycleT, _transRadioE, _recvRadioE, _spareRadioE, _offRadioE, _onMcuE, _offMcuE, index=15)_node16 = Node('_node16', -2500, -2000, nodeNum, _payload,  _bandW, _c, _pi, _beta, _whiteNoise, _dutyCycle, _batteryE,               _dataGen, _cycleT, _transRadioE, _recvRadioE, _spareRadioE, _offRadioE, _onMcuE, _offMcuE, index=16)_node17 = Node('_node17', 2500, 1000, nodeNum, _payload,  _bandW, _c, _pi, _beta, _whiteNoise, _dutyCycle, _batteryE,               _dataGen, _cycleT, _transRadioE, _recvRadioE, _spareRadioE, _offRadioE, _onMcuE, _offMcuE, index=17)# 先求所有的边权（取所有sf，tp，cr选择中代价最小的）存储，再用MST连线（每次连线需根据isGateway确定代价是否叠加）划分集合，直到原本集合为空indexes= [i for i in range(nodeNum)]# print(indexes)nodes = [_node0, _node1, _node2, _node3, _node4, _node5, _node6, _node7, _node8, _node9, _node10, _node11, _node12,         _node13, _node14, _node15, _node16, _node17]# 初始化代价矩阵costMatrix = [[0.0 for i in range(nodeNum)] for j in range(nodeNum)]# 注意python中不可用 energyEffiMatrix = costMatrix形式给矩阵赋值# 否则energyEffiMatrix的值会随costMatrix的变化而变化energyEffiMatrix = [[0.0 for i in range(nodeNum)] for p in range(nodeNum)]# 计算每条边的代价，存入代价矩阵（不过记得后面MST时代价会根据是否relay确定是否进行叠加）# 求每条边的代价实际上是先做预处理求最小代价，即遍历了可选的sf、tp、cr、# 需要考虑sf和ch相同导致的重叠,暂未添加# zip的使用for rowIndex, node in zip(indexes, nodes):    for colIndex, coloum in zip(indexes, nodes):        if node is not coloum:            # 针对某一条边求cheapest代价            maxEE = 0            setSpreadFactor = 7            setTransPower = 13            setChannel = 1            setCodingRate =5            for sf in sfRange:                for tp in tpRange:                    for ch in chRange:                        for cr in crRange:                            node.spreadFactor[coloum.index] = sf                            node.transPower[coloum.index] = tp                            node.channel[coloum.index] = ch                            node.codingRate[coloum.index] = cr                            tempEE = node.energyEffi(coloum)                            if(maxEE &lt; tempEE):                                maxEE = tempEE                                setSpreadFactor = sf                                setTransPower = tp                                setChannel = ch                                setCodingRate = cr            node.spreadFactor[coloum.index] = setSpreadFactor            node.transPower[coloum.index] = setTransPower            node.channel[coloum.index] = setChannel            node.codingRate[coloum.index] = setCodingRate            costMatrix[rowIndex][colIndex] = maxEE        else:            costMatrix[rowIndex][colIndex] = 0.1for row in range(nodeNum):    for col in range(nodeNum):        energyEffiMatrix[row][col] = costMatrix[row][col]for n in range(0, nodeNum):    print(costMatrix[n])# 代价是能量效率的倒数for row in range(nodeNum):    for col in range(nodeNum):        costMatrix[row][col] = 1 / costMatrix[row][col]print('cost statistic:')for n in range(0, nodeNum):    print(costMatrix[n])# print(_node1.spreadFactor)# print(_node1.transPower)# print(_node1.channel)# print(_node1.codingRate)# 此部分仍有问题，需核对pdr和代价（能量效率EE）计算中各个参数对energy efficiency的影响toWhichIndexes= [i for i in range(nodeNum)]# u集合中的节点数uNodeNum = 1while(uNodeNum != nodeNum):    minCost = 9999    addRelay = nodes[0]    ifRelay = False    nodeToUSet = nodes[0]    backTrack = nodes[0]    for nodeIndex in range(0, nodeNum):        # minCost = 9999        # toWhichIndex为当前查看的v集合中的节点的index，可通过nodes列表反索引到相应的node        # thisLineCost为单条边的cost，我们需要的是实际的cost（即带relay）        # relay是在MST的过程中产生的        # 网关初始应在u集合，对应的whichSet=1        # addRelay = nodes[0]        # ifRelay = False        # nodeToUSet = nodes[0]        for toWhichIndex, thisLineCost in zip(toWhichIndexes, costMatrix[nodeIndex]):            # 一个节点属于u集合，一个节点属于v集合，才进行处理，否则不符合MST要求，进行下轮循环            # addRelay = nodes[0]            # ifRelay = False            # nodeToUSet = nodes[0]            if (nodes[nodeIndex].whichSet == 1 and nodes[toWhichIndex].whichSet == 0):            # if ((nodes[nodeIndex].whichSet == 1 and nodes[toWhichIndex].whichSet == 0) or            #         (nodes[nodeIndex].whichSet == 0 and nodes[toWhichIndex].whichSet == 1)):                # 其中有一个是网关的话，说明与网关直接相连，thisLineCost即为realCost                if (nodes[nodeIndex].isGateway == 1 or nodes[toWhichIndex].isGateway == 1):                    realCost = thisLineCost                    if realCost &lt; minCost:                        print('node:', nodes[nodeIndex].name, ' nodeTo:', nodes[toWhichIndex].name)                        backTrack = nodes[nodeIndex]                        ifRelay = False                        minCost = realCost                        nodeToUSet = nodes[toWhichIndex]                # 所检索的边不是与网关直接相连，需要中继                else:                    # print(nodes[nodeIndex].name, nodes[toWhichIndex].name, thisLineCost, costMatrix[toWhichIndex][0], minCost)                    # 需要中继的，先把代价求倒数转换成EE，两段EE相加之后再求倒数得到整段的代价                    # [0]代表中继节点到网关的代价，因为网关为矩阵的第一列                    # cost计算方式1                    # realCost = thisLineCost + costMatrix[nodeIndex][0]                    # cost计算方式2，见NodeClass中EE计算函数注释                    # 这里energyEffiiRelay的实现实际应该是有递归，比如如果有两次relay，则                    # payload * pdr1 * pdr2 * pdr3 / (energyInTime1 + energyInTime2 + energyInTime3)，怎么实现?                    # 分别实现一个pdr的递归和一个energyInTime的递归                    energyEffiRelay = nodes[toWhichIndex].payload * nodes[toWhichIndex].selfToNodePdr(nodes[nodeIndex]) * nodes[nodeIndex].relayPdr() / (nodes[toWhichIndex].energyIntime(nodes[nodeIndex]) + nodes[nodeIndex].relayEnergyInTime())                    realCost = 1 / energyEffiRelay                    if realCost &lt; minCost:                        # 如果12-0代价大于12-14-0，修改cost矩阵，将costMatrix[12][0]修改为12-14-0（经14中继）的代价                        costMatrix[toWhichIndex][0] = realCost                        # print(minCost)                        print('node:', nodes[nodeIndex].name, ' nodeTo:', nodes[toWhichIndex].name)                        print(1 / thisLineCost)                        print(1 / costMatrix[nodeIndex][0])                        print(realCost)                        backTrack = nodes[nodeIndex]                        addRelay = nodes[toWhichIndex]  # node类型                        ifRelay = True                        minCost = realCost                        nodeToUSet = nodes[toWhichIndex]        # 如果有中继的拓扑选择，为中继点修改relayNum, relayFrom信息    if (ifRelay == True and addRelay):        # addRelay.relayNum += 1        # addRelay.relayFrom.append(backTrack.name)        backTrack.relayNum += 1        backTrack.relayFrom.append(addRelay.name)                # 把新选择的节点添加到U集合    nodeToUSet.whichSet = 1                # 注意生成树的方向                # 到最后应该_node0(网关)的sendTo没什么用    nodeToUSet.sendTo = backTrack    uNodeNum += 1    print('one loop.')for n in range(0, nodeNum):    print(energyEffiMatrix[n])    print(costMatrix[n])# 测试结果for n in range(0, nodeNum):    print(costMatrix[n])# 检查拓扑print('Topo statistic:')for n in range(0, nodeNum):    print(nodes[n].name + ' send to ' + nodes[n].sendTo.name)print('nodes belong to which set:')# 检查集合setList = []for n in range(0, nodeNum):    # print(nodes[n].whichSet)    setList.append(nodes[n].whichSet)print(setList)# 检查每个节点的relayNum# relayNum技术规则还有问题print(' relay number statistic: ')for n in range(0, nodeNum):    print(nodes[n].name + ' relay number: ' + str(nodes[n].relayNum))print('params choise:')for n in range(0, nodeNum):    # 现有结果表明优先增大tp，增到最大才开始增加sf，即增大sf带来的代价远超增大tp    print(nodes[n].name + ' sf: ' + str(nodes[n].spreadFactor) + ' tp:' + str(nodes[n].transPower) + ' cr:' + str(nodes[n].codingRate))print('relay:')for n in range(0, nodeNum):    print(nodes[n].name , 'relay:', nodes[n].relayFrom)# 检查EEprint('EE origin:')for n in range(1, nodeNum):    print(nodes[n].name, ' EE origin:', energyEffiMatrix[n][0])print('EE final:')for n in range(1, nodeNum):    print(nodes[n].name, ' EE final:', 1 / costMatrix[n][0])# 绘图plt.subplot(121)for n in range(0, nodeNum):    thisNodeLoc = [nodes[n].locX, nodes[n].locY]    sendToNodeLoc = [nodes[n].sendTo.locX, nodes[n].sendTo.locY]    plt.scatter(thisNodeLoc[0], thisNodeLoc[1], s=10, color='b')    plt.plot([thisNodeLoc[0], sendToNodeLoc[0]], [thisNodeLoc[1], sendToNodeLoc[1]])    plt.annotate(thisNodeLoc, xy=(thisNodeLoc[0], thisNodeLoc[1]), xytext=(thisNodeLoc[0]+1, thisNodeLoc[1]+1))plt.xlim(-2800,2800)plt.ylim(-2800,2800)# 绘EE柱状图# subplot绘制子图plt.subplot(122)nodeNameList = []nodeEEOriginList = []nodeEEFinalList = []for n in range(0, nodeNum):    nodeNameList.append(str(n))    nodeEEOriginList.append(energyEffiMatrix[n][0])    nodeEEFinalList.append(1 / costMatrix[n][0])total_width, n = 0.8, 2width = total_width / nplt.bar(indexes, nodeEEOriginList, width=width, label='1', fc='b')for i in range(len(indexes)):    indexes[i] += widthplt.bar(indexes, nodeEEFinalList, width=width, label='2', tick_label=nodeNameList, fc='g')plt.legend()plt.show()
+
+
+
+                        
+                    </p>
+                </a>
+            </div>
+
+            
+                <div class="post-footer">
+                    
+                        <i class="fa fa-folder-open-o"></i>
+                        <a class="category-link" href="/categories/Python/">Python</a>
+
+                        
+                            <span class="dotted">|</span>
+                        
+
+                    
+                    
+                        <i class="fa fa-tags"></i>
+                        <a class="tag-link" href="/tags/Python/">Python</a>
+                    
+                </div>
+            
+        </article>
+    
+
+    
+        <article class="box post post-item">
+            <div class="post-title"><a href="/2020/07/17/hexo更换flex-block主题/">hexo更换flex-block主题</a></div>
+            <div class="post-meta">
+                
+                <i class="fa fa-calendar"></i> <time>2020-07-17</time>
+                <span class="dotted">|</span>
+                <i class="fa fa-user"></i> 
+            </div>
+
+            <div class="post-excerpt">
+                <a href="/2020/07/17/hexo更换flex-block主题/">
+                    <p>
+                        
+                            基础配置hexo/_config.yml文件中：
+1theme: flex-block
+
+为了能够正常显示图片，在hexo/_config.yml：
+12# Writingpost_asset_folder: true
+
+这样每次创建新文件时会生成一个asset文件夹，用到的图片素材均放在此同名文件夹中进行调用
+还需安装相应插件：
+1npm install https://github.com/CodeFalling/hexo-asset-image --save
+
+在相应的.md文件中调用图片资源时，切记！！！！💊💊💊
+调用图片资源的路径直接写图片文件名，默认路径已经切到相应同名文件夹下，不可使用绝对路径名！！！！
+修改新建文件时给出的默认Front-MatterFront-Matter说明
+修改hexo/scaffolds下的：
+draft.md, page.md, post.md
+修改方式见：https://github.com/miiiku/flex-block
+添加代码高亮https://highlightjs.org/
+下载依赖：
+1npm install highlight.js
+
+hexo/_config.yml:
+（theme格式：小写，空格以“-”替代，如monokai-sublime）
+12345678highlight:  enable: true  line_number: true  auto_detect: false  tab_replace:  hljs: true  # theme: railscasts  theme: pojoaque
+
+添加社交平台链接hexo/themes/flex-block/_config.yml:
+12345678910111213social_icon:  header_enable: true  footer_enable: true  icons:    - &#123; type: email,      value: 958198376@qq.com&#125;    - &#123; type: github,     value: https://github.com/CHAsencenge&#125;    - &#123; type: google+,    value: &#125;    - &#123; type: ins,        value: &#125;    - &#123; type: twitter,    value: &#125;    - &#123; type: youtube,    value: &#125;    - &#123; type: weibo,      value: https://weibo.com/u/5701921017&#125;    - &#123; type: cloudmusic, value: https://music.163.com/#/user/home?id=92407481&#125;    - &#123; type: zhihu,      value: &#125;
+
+修改主页标签显示（英文-&gt;中文）hexo/themes/flex-block/_config.yml:
+修改其中的menu:
+123456menu:  主页: /  关于: /about  友链: /links  标签: /tags  分类: /categories
+
+添加友链页面并顺手放些要用的图片资源添加友链页面：(顺口一提，hexo new page 会生成与_post同级的文件夹)
+1hexo new page links
+
+在links/index.md中修改Front-matter，添加：
+1type: links
+
+确认hexo/themes/flex-block/_config.yml中是否有(左侧为标签显示，不重要，重要的是是否写了右侧的/links目录)：
+1links: /links
+
+存放友链数据在source目录下(与_post同级) ， 创建:
+_data文件夹
+在source/_data下新建links.yml
+一行一条友链数据，格式如下(现在links文件夹下创建Asset文件夹，存放相应的图片资源，并push到仓库，因为cover参数需要url，不能是本地路径，所以将资源推到仓库同时从仓库的对应url取图片资源作为cover)：
+1234567891011121314151617181920- &#123; "name" : "tianzixiao", "describe" : "测试", "link" : "Asset/tianzixiao.png", "cover" : "https://chasencenge.github.io/links/Asset/tianzixiao.png" &#125;- &#123; "name" : "cover1", "describe" : "测试", "link" : "Asset/cover1.jpg", "cover" : "https://chasencenge.github.io/links/Asset/cover1.jpg" &#125;- &#123; "name" : "cover2", "describe" : "测试", "link" : "Asset/cover2.jpg", "cover" : "https://chasencenge.github.io/links/Asset/cover2.jpg" &#125;- &#123; "name" : "cover3", "describe" : "测试", "link" : "Asset/cover3.jpg", "cover" : "https://chasencenge.github.io/links/Asset/cover3.jpg" &#125;- &#123; "name" : "cover4", "describe" : "测试", "link" : "Asset/cover4.jpg", "cover" : "https://chasencenge.github.io/links/Asset/cover4.jpg" &#125;- &#123; "name" : "cover5", "describe" : "测试", "link" : "Asset/cover5.jpg", "cover" : "https://chasencenge.github.io/links/Asset/cover5.jpg" &#125;- &#123; "name" : "cover6", "describe" : "测试", "link" : "Asset/cover6.jpg", "cover" : "https://chasencenge.github.io/links/Asset/cover6.jpg" &#125;- &#123; "name" : "cover7", "describe" : "测试", "link" : "Asset/cover7.jpg", "cover" : "https://chasencenge.github.io/links/Asset/cover7.jpg" &#125;- &#123; "name" : "cover8", "describe" : "测试", "link" : "Asset/cover8.jpg", "cover" : "https://chasencenge.github.io/links/Asset/cover8.jpg" &#125;- &#123; "name" : "cover9", "describe" : "测试", "link" : "Asset/cover9.jpg", "cover" : "https://chasencenge.github.io/links/Asset/cover9.jpg" &#125;- &#123; "name" : "cover10", "describe" : "测试", "link" : "Asset/cover10.jpg", "cover" : "https://chasencenge.github.io/links/Asset/cover10.jpg" &#125;- &#123; "name" : "cover11", "describe" : "测试", "link" : "Asset/cover11.jpg", "cover" : "https://chasencenge.github.io/links/Asset/cover11.jpg" &#125;- &#123; "name" : "cover12", "describe" : "测试", "link" : "Asset/cover12.jpg", "cover" : "https://chasencenge.github.io/links/Asset/cover12.jpg" &#125;- &#123; "name" : "cover13", "describe" : "测试", "link" : "Asset/cover13.jpg", "cover" : "https://chasencenge.github.io/links/Asset/cover13.jpg" &#125;- &#123; "name" : "cover14", "describe" : "测试", "link" : "Asset/cover14.jpg", "cover" : "https://chasencenge.github.io/links/Asset/cover14.jpg" &#125;- &#123; "name" : "cover15", "describe" : "测试", "link" : "Asset/cover15.jpg", "cover" : "https://chasencenge.github.io/links/Asset/cover15.jpg" &#125;- &#123; "name" : "cover16", "describe" : "测试", "link" : "Asset/cover16.jpg", "cover" : "https://chasencenge.github.io/links/Asset/cover16.jpg" &#125;- &#123; "name" : "cover17", "describe" : "测试", "link" : "Asset/cover17.jpg", "cover" : "https://chasencenge.github.io/links/Asset/cover17.jpg" &#125;- &#123; "name" : "cover18", "describe" : "测试", "link" : "Asset/cover18.jpg", "cover" : "https://chasencenge.github.io/links/Asset/cover18.jpg" &#125;- &#123; "name" : "cover19", "describe" : "测试", "link" : "Asset/cover19.jpg", "cover" : "https://chasencenge.github.io/links/Asset/cover19.jpg" &#125;
+
+修改主页bannerhexo/themes/flex-block/_config.yml:
+1banner: https://chasencenge.github.io/links/Asset/cover19.jpg
+
+关于card无法显示cover图片的问题在主页按F12查看页面bug，发现无法找到cover.jpg，对比其他文章页面，无error，说明主页card的图片寻径和文章页的cover寻径不同
+在F12调试工具中-&gt;Application，对比主页和文章页查看，发现各自的image加载是在各自的index.html同级目录下，故将用到的所有文件资源复制到hexo/public目录下，但是此目录仅支持主页正常显示，翻页时会进入page2，page3等等，所以将所用到的card资源同样放置在hexo/public/page/2、hexo/public/page/3等目录下
+
+btw，为了保证主页card显示的图片不冲突，以上目录下的图片不可重名，又由于以上目录的图片名需与hexo/source/_post中的每一篇的cover同名，故每个文章的asset-folder中的cover命名不要重名，文章front-matter同理
+asset-folder的cover命名：
+front-matter的cover命名保证与asset-folder一致，并与hexo/public中的资源名称一致：1cover: cover22.jpg
+
+添加鼠标拖拽如果没有拖拽移动的功能，代码部分无法通过鼠标拖拽看到右侧超出框宽的部分，页面很长时也无法通过拖拽快速下拉，只能用滚轮，很不方便
+解决：打开flex-block文件夹，source/css/style.styl，将9-11行注释掉
+
+                        
+                    </p>
+                </a>
+            </div>
+
+            
+                <div class="post-footer">
+                    
+                        <i class="fa fa-folder-open-o"></i>
+                        <a class="category-link" href="/categories/Hexo/">Hexo</a>
+
+                        
+                            <span class="dotted">|</span>
+                        
+
+                    
+                    
+                        <i class="fa fa-tags"></i>
+                        <a class="tag-link" href="/tags/Hexo/">Hexo</a>
+                    
+                </div>
+            
+        </article>
+    
+
+
+
+    <nav class="page-nav">
+        <span class="page-number current">1</span><a class="page-number" href="/archives/2020/07/page/2/">2</a><a class="page-number" href="/archives/2020/07/page/3/">3</a><a class="extend next" rel="next" href="/archives/2020/07/page/2/">Next</a>
+    </nav>
+
+            </div>
+            <div class="aside">
+    
+        <div class="box widget">
+    <div class="introduction">
+        <p><img src="/images/avatar.jpg" alt="head-sculpture"></p>
+        <p class="name">
+            CHAsencenge
+        </p>
+        <p class="slogan">解字</p>
     </div>
-  
-
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
-
-  </header>
-
-    <!-- 归档 -->
-
-<!-- post list container -->
-<div class="body-container float">
-  <div class="content-container article-list">
-    <div class="card-container card-articles">
-      <div class="card-wrap">
+</div>
+    
         
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover6.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/31/网易20秋招Unity工程师笔试编程题/" itemprop="url"></a>
-              
-              <h2 class="article-title">网易20秋招Unity工程师笔试编程题</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/31/网易20秋招Unity工程师笔试编程题/" class="article-date">
-    <time datetime="2020-07-31T14:25:33.000Z" itemprop="datePublished">2020-07-31</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-              </div>
-            </article>
-          </div>
+<div class="box widget">
+    <div class="title">Recent</div>
+    <ul class="item-box">
         
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover30.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/27/Pyplot绘图/" itemprop="url"></a>
-              
-              <h2 class="article-title">Pyplot绘图</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/27/Pyplot绘图/" class="article-date">
-    <time datetime="2020-07-27T12:56:31.000Z" itemprop="datePublished">2020-07-27</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Python/">Python</a>
-              </div>
-            </article>
-          </div>
+            
+                <li><a href="/2020/11/30/手撸算法终版/">手撸算法终版</a></li>
+            
         
-          
-          <div class="card-item large img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover15.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/26/百度之星2020-1003-Permutation/" itemprop="url"></a>
-              
-              <h2 class="article-title">百度之星2020---1003.Permutation</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/26/百度之星2020-1003-Permutation/" class="article-date">
-    <time datetime="2020-07-26T10:04:53.000Z" itemprop="datePublished">2020-07-26</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-              </div>
-            </article>
-          </div>
+            
+                <li><a href="/2020/10/29/哈希专题/">哈希专题</a></li>
+            
         
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover14.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/26/百度之星2020-1002-Game/" itemprop="url"></a>
-              
-              <h2 class="article-title">百度之星2020---1002.Game</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/26/百度之星2020-1002-Game/" class="article-date">
-    <time datetime="2020-07-26T10:04:18.000Z" itemprop="datePublished">2020-07-26</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-              </div>
-            </article>
-          </div>
+            
+                <li><a href="/2020/10/29/特殊技巧专题/">特殊技巧专题</a></li>
+            
         
-          
-          <div class="card-item large img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover18.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/26/百度之星2020-1001-Discount/" itemprop="url"></a>
-              
-              <h2 class="article-title">百度之星2020---1001.Discount</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/26/百度之星2020-1001-Discount/" class="article-date">
-    <time datetime="2020-07-26T10:03:53.000Z" itemprop="datePublished">2020-07-26</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-              </div>
-            </article>
-          </div>
+            
+                <li><a href="/2020/10/29/栈和队列专题/">栈和队列专题</a></li>
+            
         
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover17.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/24/游戏客户端面经知识点/" itemprop="url"></a>
-              
-              <h2 class="article-title">游戏客户端面经知识点</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/24/游戏客户端面经知识点/" class="article-date">
-    <time datetime="2020-07-24T05:40:54.000Z" itemprop="datePublished">2020-07-24</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Unity/">Unity</a><a class="article-category-link" href="/categories/Unity/Unreal/">Unreal</a>
-              </div>
-            </article>
-          </div>
+            
+                <li><a href="/2020/10/28/树图专题/">树专题</a></li>
+            
         
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover6.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/24/C-面经知识点/" itemprop="url"></a>
-              
-              <h2 class="article-title">C++面经知识点</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/24/C-面经知识点/" class="article-date">
-    <time datetime="2020-07-24T05:40:35.000Z" itemprop="datePublished">2020-07-24</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/cpp/">cpp</a>
-              </div>
-            </article>
-          </div>
+            
+                <li><a href="/2020/10/28/空间换时间专题/">空间换时间专题</a></li>
+            
         
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover13.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/21/Unity项目对接到Laya/" itemprop="url"></a>
-              
-              <h2 class="article-title">Unity项目对接到Laya</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/21/Unity项目对接到Laya/" class="article-date">
-    <time datetime="2020-07-21T09:29:24.000Z" itemprop="datePublished">2020-07-21</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Laya/">Laya</a>
-              </div>
-            </article>
-          </div>
+            
+                <li><a href="/2020/10/25/C-Lambda表达式/">C++ Lambda表达式</a></li>
+            
         
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover23.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/20/Python实现Lora节点拓扑自动规划/" itemprop="url"></a>
-              
-              <h2 class="article-title">Python实现Lora节点拓扑自动规划</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/20/Python实现Lora节点拓扑自动规划/" class="article-date">
-    <time datetime="2020-07-20T02:57:58.000Z" itemprop="datePublished">2020-07-20</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Python/">Python</a>
-              </div>
-            </article>
-          </div>
+            
+                <li><a href="/2020/10/16/双指针专题/">双指针专题</a></li>
+            
         
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover35.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/17/hexo更换flex-block主题/" itemprop="url"></a>
-              
-              <h2 class="article-title">hexo更换flex-block主题</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/17/hexo更换flex-block主题/" class="article-date">
-    <time datetime="2020-07-17T03:00:22.000Z" itemprop="datePublished">2020-07-17</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Hexo/">Hexo</a>
-              </div>
-            </article>
-          </div>
-        
-      </div>
-    </div>
-  </div>
+    </ul>
 </div>
 
-<!-- page container -->
-
-  <nav class="page-container">
     
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2020/07/page/2/">2</a><a class="page-number" href="/archives/2020/07/page/3/">3</a><a class="extend next" rel="next" href="/archives/2020/07/page/2/">ɞ</a>
-  </nav>
-
-
-
-    <!-- footer container -->
-<footer id="footer" class="footer">
-  <div class="footer-container">
-    
-    <div class="social-icons social-icons-footer">
-      <a href="mailto:958198376@qq.com" target="_blank" rel="noopener noreferrer">
-  <svg class="icon icon-email" viewbox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
-    <path d="M490.338462 592.738462c11.815385 11.815385 29.538462 11.815385 41.353846 0l445.046154-413.538462c7.876923-15.753846 5.907692-41.353846-25.6-41.353846l-880.246154 1.969231c-23.630769 0-43.323077 21.661538-25.6 41.353846l445.046154 411.569231zM984.615385 340.676923c0-19.692308-23.630769-31.507692-39.384616-17.723077L596.676923 643.938462c-23.630769 21.661538-53.169231 33.476923-84.676923 33.476923s-61.046154-11.815385-84.676923-31.507693L80.738462 322.953846c-15.753846-13.784615-39.384615-3.938462-39.384616 17.723077C39.384615 334.769231 39.384615 787.692308 39.384615 787.692308c0 43.323077 35.446154 78.769231 78.769231 78.76923h787.692308c43.323077 0 78.769231-35.446154 78.769231-78.76923V340.676923z"/>
-  </svg>
-</a><a href="https://github.com/CHAsencenge" target="_blank" rel="noopener noreferrer">
-  <svg class="icon icon-github" viewbox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
-    <path d="M64.6 512c0 195.6 125.4 361.9 300.1 422.9 23.5 5.9 19.9-10.8 19.9-22.2v-77.6c-135.8 15.9-141.3-74-150.5-89-18.5-31.5-61.9-39.5-49-54.5 31-15.9 62.5 4 98.9 58 26.4 39.1 77.9 32.5 104.1 26 5.7-23.5 17.9-44.5 34.7-60.9-140.7-25.2-199.4-111.1-199.4-213.3 0-49.5 16.4-95.1 48.4-131.8-20.4-60.6 1.9-112.4 4.9-120.1 58.2-5.2 118.5 41.6 123.3 45.3 33.1-8.9 70.8-13.7 112.9-13.7 42.4 0 80.3 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.4-43.9 2.9 7.7 24.7 58.3 5.5 118.1 32.5 36.8 49 82.8 49 132.4 0 102.3-59 188.3-200.2 213.2 23.5 23.3 38.1 55.5 38.1 91.1v112.7c0.8 9 0 17.9 15.1 17.9C832.7 877 960.4 709.4 960.4 512.1c0-247.5-200.6-447.9-447.9-447.9C265 64.1 64.6 264.5 64.6 512z"/>
-  </svg>
-</a><a href="https://weibo.com/u/5701921017" target="_blank" rel="noopener noreferrer">
-  <svg class="icon icon-weibo" viewbox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
-    <path d="M385.682429 733.696q11.995429-19.456 6.290286-39.424t-25.746286-28.598857q-19.456-7.972571-41.691429-0.585143t-34.304 26.258286q-12.580571 19.456-7.460571 39.131429t24.576 28.891429 42.569143 1.462857 35.693714-27.136zM439.442429 664.576q4.534857-7.460571 1.974857-15.140571t-10.020571-10.605714q-7.972571-2.852571-16.310857 0.292571t-12.288 10.605714q-9.728 17.700571 7.460571 25.746286 7.972571 2.852571 16.603429-0.292571t12.580571-10.605714zM538.843572 725.723429q-25.746286 58.294857-90.258286 85.723429t-128 6.875429q-61.147429-19.456-84.260571-72.265143t3.730286-107.154286q26.843429-53.174857 86.601143-79.433143t120.32-10.825143q63.414857 16.603429 90.550857 68.315429t1.462857 108.836571zM717.165858 634.294857q-5.12-54.857143-50.834286-97.133714t-119.149714-62.317714-156.891429-11.995429q-127.414857 13.165714-211.163429 80.822857t-75.702857 151.113143q5.12 54.857143 50.834286 97.133714t119.149714 62.317714 156.891429 11.995429q127.414857-13.165714 211.163429-80.822857t75.702857-151.113143zM893.147572 636.562286q0 38.838857-21.138286 79.725714t-62.317714 78.262857-96.256 67.145143-129.170286 47.396571-154.550857 17.700571-157.110857-19.163429-137.435429-53.174857-98.011429-86.308571-37.156571-114.029714q0-65.682286 39.716571-139.995429t112.859429-147.456q96.548571-96.548571 195.145143-134.875429t140.873143 4.022857q37.156571 36.571429 11.410286 119.442286-2.267429 7.972571-0.585143 11.410286t5.705143 4.022857 8.265143-0.292571 7.68-1.974857l3.437714-1.170286q79.433143-33.718857 140.580571-33.718857t87.405714 34.889143q25.746286 35.986286 0 101.741714-1.170286 7.460571-2.56 11.410286t2.56 7.168 6.875429 4.315429 9.728 3.437714q32.548571 10.313143 58.88 26.843429t45.714286 46.592 19.456 66.56zM850.871001 279.990857q23.990857 26.843429 31.158857 62.025143t-3.730286 67.145143q-4.534857 13.165714-16.822857 19.456t-25.453714 2.267429q-13.165714-4.534857-19.456-16.822857t-2.267429-25.453714q11.410286-35.986286-13.677714-63.414857t-61.147429-19.968q-13.677714 2.852571-25.746286-4.534857t-14.262857-21.138286q-2.852571-13.677714 4.534857-25.453714t21.138286-14.555429q34.304-7.460571 68.022857 3.145143t57.709714 37.449143zM954.295001 186.88q49.737143 54.857143 64.292571 127.122286t-7.68 138.020571q-5.12 15.433143-19.456 22.820571t-29.696 2.267429-22.820571-19.456-2.852571-29.696q16.018286-46.884571 5.705143-98.304t-45.714286-90.258286q-35.401143-39.424-84.553143-54.564571t-98.889143-4.827429q-16.018286 3.437714-29.696-5.412571t-17.115429-24.868571 5.412571-29.403429 24.868571-16.822857q70.290286-14.848 139.410286 6.582857t118.857143 76.873143z"/>
-  </svg>
-</a><a href="https://music.163.com/#/user/home?id=92407481" target="_blank" rel="noopener noreferrer">
-  <svg class="icon icon-cloudmusic" viewbox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
-    <path d="M952.17867 503.263237a341.054956 341.054956 0 0 0-56.853199-113.706399 408.604266 408.604266 0 0 0-109.723463-98.352823 304.662484 304.662484 0 0 0-143.257215-42.077792L621.305897 170.238394a40.343287 40.343287 0 0 1 10.792472-36.392472 56.88532 56.88532 0 0 1 36.392472-18.758344 102.785445 102.785445 0 0 1 56.853199 18.758344c6.263488 3.404768 10.792472 9.090088 17.05596 13.073024a57.335006 57.335006 0 0 0 82.999247-70.632873 66.521455 66.521455 0 0 0-22.74128-27.848432 237.691343 237.691343 0 0 0-89.262735-43.202007A170.559598 170.559598 0 0 0 625.288833 6.42409a167.026349 167.026349 0 0 0-60.836135 37.516688 164.328231 164.328231 0 0 0-40.921456 51.713927 156.908407 156.908407 0 0 0-8.54404 113.706399l13.651192 52.870264a284.298118 284.298118 0 0 0-158.064743 109.209535 256.963614 256.963614 0 0 0-43.202007 156.908407 248.419573 248.419573 0 0 0 13.651192 74.487327 205.281807 205.281807 0 0 0 80.718695 104.616312 185.945295 185.945295 0 0 0 136.447679 25.696361 193.879046 193.879046 0 0 0 156.330238-196.705646L708.802008 503.263237c-11.948808-46.060728-24.443664-91.543287-35.814304-137.025847a182.283563 182.283563 0 0 1 47.763112 18.180176 316.611292 316.611292 0 0 1 47.763111 34.690088A239.907654 239.907654 0 0 1 840.752823 529.987453a284.169636 284.169636 0 0 1 0 158.064743 252.241907 252.241907 0 0 1-21.584943 51.167879 308.741782 308.741782 0 0 1-168.279047 144.542033 387.918695 387.918695 0 0 1-130.184191 23.319448 332.607277 332.607277 0 0 1-155.206022-37.516688A367.233124 367.233124 0 0 1 194.87478 672.666499a373.014806 373.014806 0 0 1-20.460727-180.806022A366.173149 366.173149 0 0 1 406.869762 198.536512a57.399247 57.399247 0 0 0 13.073023-100.055207 76.189711 76.189711 0 0 0-63.662735-3.404768A479.815307 479.815307 0 0 0 68.705646 436.163614a488.905395 488.905395 0 0 0 129.027855 450.84266 454.857716 454.857716 0 0 0 248.997741 131.886574 470.885822 470.885822 0 0 0 138.117942 0A454.889837 454.889837 0 0 0 773.042911 952.949561a427.523212 427.523212 0 0 0 170.559598-209.232622 417.276788 417.276788 0 0 0 22.74128-109.209536 378.089837 378.089837 0 0 0-14.165119-131.244166z m-412.747804 118.845671a72.174655 72.174655 0 0 1-56.8532-10.792471 98.352823 98.352823 0 0 1-37.516687-61.382184 170.68808 170.68808 0 0 1 0-65.943287 133.042911 133.042911 0 0 1 33.533751-63.662735 181.35207 181.35207 0 0 1 80.718695-46.606776l39.219072 148.364367a204.189711 204.189711 0 0 1 5.107152 26.146048 79.594479 79.594479 0 0 1-64.208783 73.844918z"/>
-  </svg>
-</a>    </div>
-     
-    <p>&copy; 2020 <a href="/" target="_blank">CHAsencenge</a></p>
+        
+    <div class="box widget">
+        <div class="title">Categories</div>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/GameDev/">GameDev</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Laya/">Laya</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Light-Frequency-Authenticate/">Light Frequency Authenticate</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/LoRa/">LoRa</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Unity/">Unity</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Unity/Unreal/">Unreal</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Writing/">Writing</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cpp/">cpp</a><span class="category-list-count">3</span></li></ul>
+    </div>
 
     
-      <p id="hitokoto"></p>
-      <script src="https://v1.hitokoto.cn/?c=a&amp;encode=js&select=%23hitokoto" defer></script>
-    
-
-    
-
-    <p>Powered by <a href="https://hexo.io" target="_blank" rel="noopener noreferrer">Hexo</a> Theme - <a href="https://github.com/miiiku/flex-block" target="_blank" rel="noopener noreferrer author">flex-block</a></p>
+        
+  <div class="box widget">
+    <div class="title">Archives</div>
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">2020-11</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">2020-10</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">2020-09</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">2020-08</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">2020-07</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">2019-11</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">2019-09</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">2019-07</a><span class="archive-list-count">6</span></li></ul>
   </div>
+
+    
+        
+    <div class="box widget">
+        <div class="title">Tags</div>
+        <div class="item-box cloud-label">
+            <a href="/tags/Algorithm/" style="font-size: 20px;">Algorithm</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/GameDev/" style="font-size: 14px;">GameDev</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/Hexo/" style="font-size: 12px;">Hexo</a> <a href="/tags/Laya/" style="font-size: 16px;">Laya</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Python/" style="font-size: 16px;">Python</a> <a href="/tags/Unity/" style="font-size: 18px;">Unity</a> <a href="/tags/Unreal/" style="font-size: 10px;">Unreal</a> <a href="/tags/Writing/" style="font-size: 12px;">Writing</a> <a href="/tags/cpp/" style="font-size: 14px;">cpp</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/lightFre/" style="font-size: 10px;">lightFre</a> <a href="/tags/writing/" style="font-size: 10px;">writing</a> <a href="/tags/远程登录/" style="font-size: 10px;">远程登录</a>
+        </div>
+    </div>
+
+    
+</div>
+        </section>
+        <footer class="footer">
+    <div class="global-width footer-box">
+        <div class="copyright">
+            <span>Copyright &copy; 2019</span>
+            <span class="dotted">|</span>
+            <span>Powered by <a href="https://hexo.io/">Hexo</a></span>
+            <span class="dotted">|</span>
+            <span>Theme by <a href="javascript:">Loren</a></span>
+            <span class="dotted">|</span>
+            <span><a href="http://www.beian.miit.gov.cn">浙ICP备18016660号-1</a></span>
+        </div>
+    </div>
 </footer>
-  </div>
+    </div>
 
-  <div class="back-to-top-fixed">
-    <svg class="icon icon-back-to-top" viewbox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
-  <path d="M725.333333 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8l-213.333333-213.333333c-17.066667-17.066667-17.066667-42.666667 0-59.733333s42.666667-17.066667 59.733333 0l213.333333 213.333333c17.066667 17.066667 17.066667 42.666667 0 59.733333C746.666667 422.4 738.133333 426.666667 725.333333 426.666667z"/>
-  <path d="M298.666667 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8-17.066667-17.066667-17.066667-42.666667 0-59.733333l213.333333-213.333333c17.066667-17.066667 42.666667-17.066667 59.733333 0s17.066667 42.666667 0 59.733333l-213.333333 213.333333C320 422.4 311.466667 426.666667 298.666667 426.666667z"/>
-  <path d="M512 896c-25.6 0-42.666667-17.066667-42.666667-42.666667L469.333333 170.666667c0-25.6 17.066667-42.666667 42.666667-42.666667s42.666667 17.066667 42.666667 42.666667l0 682.666667C554.666667 878.933333 537.6 896 512 896z"/>
-</svg> 
-  </div>
-
-  
-  
-
-
-  <!-- aplayer 音频 start -->
-  <link rel="stylesheet" href="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.css">
-  <script type="text/javascript" src="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.js"></script>
-  <script type="text/javascript">
-    const aplayer = document.querySelectorAll(".aplayer");
-    aplayer && initaplayer(aplayer);
-    function initaplayer(els) {
-      let elsArr = Array.from(els);
-      elsArr.forEach(el => {
-        new APlayer({
-          container: el,
-          audio: { ...el.dataset },
-          theme: "#b7daff",
-          lrcType: 3,
-          autoplay: false,
-          loop: false,
-          mutex: true,
-        });
-      });
-    }
-  </script>
-  <!-- aplayer 音频 end -->
-  
-
-<!-- dplayer 视频 start -->
-<script type="text/javascript" src="https://unpkg.com/dplayer@1.25.1/dist/DPlayer.min.js"></script>
-<script type="text/javascript">
-  const dplayer = document.querySelectorAll(".dplayer");
-  dplayer && initDPlayer(dplayer);
-  function initDPlayer(els) {
-    let elsArr = Array.from(els);
-    elsArr.forEach(el => {
-      let url = el.dataset.url;
-      let cover = el.dataset.cover;
-      let subtitle = el.dataset.subtitle;
-
-      let options = {
-        container: el,
-        video: { url: url, pic: cover },
-        theme: "#b7daff",
-        autoplay: false,
-        loop: false,
-        mutex: true,
-      }
-
-      if (subtitle) {
-        options.subtitle = {
-          url: el.dataset.subtitle,
-        }
-      }
-      new DPlayer(options);
-    });
-  }
+<script>
+    hljs.initHighlightingOnLoad();
 </script>
-<!-- dplayer 视频 end -->
-
-
-<!-- waterfall 瀑布流 start -->
-<script src="/lib/waterfall.min.js"></script>
-<script type="text/javascript">
-
-const waterfalls = document.querySelectorAll(".waterfall-container");
-
-if (waterfalls && waterfalls.length > 0) {
-  waterfalls.forEach((waterfall, index) => {
-    let cls = "waterfall-container-" + index;
-    waterfall.classList.add(cls);
-    initWaterfall(cls, waterfall);
-  });
-}
-
-function initWaterfall(selector, el) {
-  const options = {};
-  if (Object.keys(el.dataset).length > 0) {
-    for (let k in el.dataset) {
-      options[k] = el.dataset[k];
-    }
-  }
-  waterfall(`.${selector}`, options);
-}
-</script>
-<!-- waterfall 瀑布流 end -->
-
-
-  <!-- zoom start -->
-  <script src="/lib/zoom.min.js"></script>
-  <script type="text/javascript">
-    document.querySelector(".article-content") && zoom(".article-content");
-  </script>
-  <!-- zoom end -->
-  
-
-
-
-  
-
-
-  
-
-
-  
-
-
-
-<script src="/js/script.js"></script>
-  
-  <!-- 尾部用户自定义相关内容 -->
-
 </body>
 </html>

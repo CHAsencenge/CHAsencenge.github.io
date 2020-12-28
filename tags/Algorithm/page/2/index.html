@@ -1,539 +1,798 @@
 <!DOCTYPE html>
 <html lang="en">
 <head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="theme-color" content="#3367D6">
-  <link rel="apple-touch-icon" href="/icons-192.png">
-  <link rel="manifest" href="/manifest.json">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
 
-  
+
+
+
+    <meta name="keywords" content>
+
+
+
     <meta name="description" content="解字无果">
-  
 
-  
 
-  
-    <meta name="author" content="CHAsencenge">
-  
+<meta name="Robots" content="all">
 
-  
 
-  
+    <title>解字</title>
 
-  <title>Tag: Algorithm | 解字</title>
 
-  
-
-  
-    <link rel="icon" href="/favicon.ico">
-  
-
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-    <link href="https://cdn.bootcss.com/highlight.js/9.15.6/styles/monokai-sublime.min.css" rel="stylesheet">
-  
-
-  <link rel="stylesheet" href="/css/style.css">
+<link rel="icon" href="/images/favicon.ico">
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/atom-one-dark.css">
+<link rel="stylesheet" href="/css/style.css">
+<script src="/js/highlight.min.js"></script>
 </head>
 <body>
-  <div class="root-container">
-    <!-- navbar -->
-<nav class="navbar">
-  <div class="navbar-content">
-    <!-- logo -->
-    <div class="navbar-logo">
-      <a href="/">
-        
-          解字
-        
-      </a>
+    <div class="main-container">
+        <header class="header">
+    <div class="global-width">
+        <nav class="nav-box">
+            
+                <a class="nav-item" href="/">Home</a>
+            
+                <a class="nav-item" href="/resume">Resume</a>
+            
+                <a class="nav-item" href="/mood" target="_blank">Mood</a>
+            
+                <a class="nav-item" href="/amusement/tetris" target="_blank">Amusement</a>
+            
+                <a class="nav-item" href="/about">About</a>
+            
+        </nav>
     </div>
-    <!-- link -->
-    <div class="navbar-link">
-      <div class="navbar-btn">
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-      <ul class="navbar-list">
-        
-          <li class="navbar-list-item"><a href="/">主页</a></li>
-        
-          <li class="navbar-list-item"><a href="/about">关于</a></li>
-        
-          <li class="navbar-list-item"><a href="/links">友链</a></li>
-        
-          <li class="navbar-list-item"><a href="/tags">标签</a></li>
-        
-          <li class="navbar-list-item"><a href="/categories">分类</a></li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
+</header>
+
+        <section class="content global-width">
+            <div class="main">
+                
+    
+        <article class="box post post-item">
+            <div class="post-title"><a href="/2020/09/03/滑动窗口专题/">滑动窗口专题</a></div>
+            <div class="post-meta">
+                
+                <i class="fa fa-calendar"></i> <time>2020-09-03</time>
+                <span class="dotted">|</span>
+                <i class="fa fa-user"></i> 
+            </div>
+
+            <div class="post-excerpt">
+                <a href="/2020/09/03/滑动窗口专题/">
+                    <p>
+                        
+                            3.  无重复的最长字串1234567891011121314151617181920212223int lengthOfLongestSubstring(string s) &#123;    int res = 0;    //右指针    int rp = -1;    unordered_set&lt;char&gt; seri;    //i是左指针    for (int i = 0; i &lt; s.size(); i++)    &#123;        //每次循环开始的时候把上一次左指针指向的值删掉        if (i != 0)        &#123;            seri.erase(s[i - 1]);        &#125;        //例如abcdcefgh，到了第二个c会产生重复，rp会停在d这里，然后删掉a继续循环，发现仍不满足!seri.count(s[rp + 1])，因为c并没被删掉，所以跳过while继续循环，删掉b，知道删掉第一个c，while中才满足!seri.count(s[rp + 1])，这时才能进入while，rp继续向后走        while (rp + 1 &lt; s.size() &amp;&amp; !seri.count(s[rp + 1]))        &#123;            seri.insert(s[rp + 1]);            rp++;        &#125;        res = max(res, rp - i + 1);    &#125;    return res;&#125;
+
+76. 最小覆盖字串用两个map分别记录所需包含的字母及其个数(ori)，以及当前窗口内所含所需字母及其个数(cnt)
+每次检查时，检查ori中的每个key对应的value和cnt中对应的value，cnt中的值不能小于ori，不然意味着当前窗口未完全包含所需的所有字符
+1234567891011bool check(unordered_map&lt;char, int&gt;&amp; ori, unordered_map&lt;char, int&gt;&amp; cnt)&#123;    for(const auto&amp; p : ori)    &#123;    	if(cnt[p.first] &lt; p.second)        &#123;        	return false;        &#125;    &#125;    return true;&#125;
+
+当check满足条件，检查是否需要更新最小窗口长度len和结果起始点ansL，并且由于check满足条件需要将窗口左侧边界右移一位，所以此时如果最左侧的字母为ori中的一员，cnt对应的key的value减一
+12345678910111213while(check(ori, cnt) &amp;&amp; l &lt;= r)&#123;	if(r - l &lt; minLength)	&#123;		minLength = r - l;		ansL = l;	&#125;    if(ori.find(s[l]) != ori.end())    &#123;    	--cnt[s[l]];    &#125;	l++;&#125;
+
+
+                        
+                    </p>
+                </a>
+            </div>
+
+            
+                <div class="post-footer">
+                    
+                        <i class="fa fa-folder-open-o"></i>
+                        <a class="category-link" href="/categories/Algorithm/">Algorithm</a>
+
+                        
+                            <span class="dotted">|</span>
+                        
+
+                    
+                    
+                        <i class="fa fa-tags"></i>
+                        <a class="tag-link" href="/tags/Algorithm/">Algorithm</a>
+                    
+                </div>
+            
+        </article>
+    
 
     
-<!-- header container -->
-<header class="header-container">
+        <article class="box post post-item">
+            <div class="post-title"><a href="/2020/08/24/剑指offer/"></a></div>
+            <div class="post-meta">
+                
+                <i class="fa fa-calendar"></i> <time>2020-08-24</time>
+                <span class="dotted">|</span>
+                <i class="fa fa-user"></i> 
+            </div>
 
-  
-  
+            <div class="post-excerpt">
+                <a href="/2020/08/24/剑指offer/">
+                    <p>
+                        
+                            29. 顺时针打印矩阵123456处理移动四个移动方向用：vector&lt;vector&lt;int&gt;&gt; move&#123; &#123;0, 1&#125;, &#123;1, 0&#125;, &#123;0, -1&#125;, &#123;-1, 0&#125; &#125;;或者：static constexpr int directions[4][2] = &#123;&#123;0, 1&#125;, &#123;1, 0&#125;, &#123;0, -1&#125;, &#123;-1, 0&#125;&#125;;标记矩阵的已访问元素和未访问元素用一个相同大小的bool矩阵visit输入一个空matrix时，如果对其求matrix[0].size()会报错，因为没有matrix[0]
 
-  
-  
+12345678910111213141516171819202122232425262728293031vector&lt;int&gt; spiralOrder(vector&lt;vector&lt;int&gt;&gt;&amp; matrix) &#123;    vector&lt;int&gt; order;    if (matrix.size() == 0 || matrix[0].size() == 0) &#123;        return &#123;&#125;;    &#125;    int rowRange = matrix.size();    int colRange = matrix[0].size();    vector&lt;vector&lt;bool&gt;&gt; visit(rowRange, vector&lt;bool&gt;(colRange));    int total = rowRange * colRange;    vector&lt;vector&lt;int&gt;&gt; move&#123; &#123;0, 1&#125;, &#123;1, 0&#125;, &#123;0, -1&#125;, &#123;-1, 0&#125; &#125;;    int row = 0;    int col = 0;    int moveIndex = 0;    int nextRow, nextCol;    for (int i = 0; i &lt; total; i++)    &#123;        order.push_back(matrix[row][col]);        visit[row][col] = true;        nextRow = row + move[moveIndex][0];        nextCol = col + move[moveIndex][1];        if (nextRow &gt;= rowRange || nextRow &lt; 0 || nextCol &gt;= colRange || nextCol &lt; 0 || visit[nextRow][nextCol])        &#123;            moveIndex = (moveIndex + 1) % 4;        &#125;        row += move[moveIndex][0];        col += move[moveIndex][1];    &#125;    return order;&#125;
 
-  
-  
 
-  
-  
+                        
+                    </p>
+                </a>
+            </div>
+
+            
+                <div class="post-footer">
+                    
+                        <i class="fa fa-folder-open-o"></i>
+                        <a class="category-link" href="/categories/Algorithm/">Algorithm</a>
+
+                        
+                            <span class="dotted">|</span>
+                        
+
+                    
+                    
+                        <i class="fa fa-tags"></i>
+                        <a class="tag-link" href="/tags/Algorithm/">Algorithm</a>
+                    
+                </div>
+            
+        </article>
     
-    <div class="header-content">
-      <div class="post-image" style="background-image: url(https://chasencenge.github.io/links/Asset/cover44.jpg)"></div>
-      <div class="post-text">
-        <h1 class="title-wrap">Algorithm</h1>
-        <h2 class="title-sub-wrap">当前标签下共有20篇文章</h2>
-      </div>
+
+    
+        <article class="box post post-item">
+            <div class="post-title"><a href="/2020/08/18/dp专题/">dp专题</a></div>
+            <div class="post-meta">
+                
+                <i class="fa fa-calendar"></i> <time>2020-08-18</time>
+                <span class="dotted">|</span>
+                <i class="fa fa-user"></i> 
+            </div>
+
+            <div class="post-excerpt">
+                <a href="/2020/08/18/dp专题/">
+                    <p>
+                        
+                            5.最长回文子串单独处理长度为1和2的字符串
+状态转移：字串加上相同的首尾
+1dp[i][j] = (s[i] == s[j] &amp;&amp; dp[i+1][j-1]);
+
+12345678910111213141516171819202122232425262728293031323334string longestPalindrome(string s) &#123;    string ans;    int n = s.size();    //初始化二维vector，初始值为0    vector&lt;vector&lt;int&gt;&gt; dp(n, vector&lt;int&gt;(n));    //外层循环用的是字串的长度，dp矩阵对角线（i==j）代表字串长度为1，对角线两侧的斜线代表字串长度为2，依次往外扩展更新    for (int len = 0; len &lt; n; len++)    &#123;c        //对于dbabcad，首轮更新d, b, a, b, c, a, d对应的dp; 第二轮更新db, ba, ab, bc, ca, ad对应的dp; 然后是dba, bab, abc......（它根据首轮的更新的dp做s[i] == s[j] &amp;&amp; dp[i + 1][j - 1]判断）        for (int i = 0; i &lt; n - len; i++)        &#123;            int j = i + len;            if (len == 0)            &#123;                dp[i][j] = 1;            &#125;            else if (len == 1)            &#123;                dp[i][j] = s[i] == s[j];            &#125;            else            &#123;                dp[i][j] = (s[i] == s[j] &amp;&amp; dp[i + 1][j - 1]);            &#125;            //如果找到了更长的字串，更新新的字串            if (dp[i][j] &amp;&amp; len + 1 &gt; ans.size())            &#123;                //substr(i, j): 从下标i开始截取j位                ans = s.substr(i, len + 1);            &#125;        &#125;    &#125;    return ans;&#125;
+
+53. 最大子序和状态转移：nums[i]为当前遍历到的数，比较在已有数组上加上当前数值（数组里加当前数值）和当前数值的大小（开一个新数组）
+1max(f[i-1]+nums[i], nums[i])
+
+12345678910111213141516int maxSubArray(vector&lt;int&gt;&amp; nums) &#123;        vector&lt;int&gt; f;        if(nums.empty())        &#123;return 0;&#125;        f.push_back(nums[0]);        for(int i = 1; i &lt; nums.size(); i++)        &#123;            f.push_back(max(f[i-1]+nums[i], nums[i]));        &#125;        int compare = f[0];        for(auto x:f)        &#123;            compare = max(x, compare);        &#125;        return compare;    &#125;
+
+超级码力复赛 3.秋叶收藏集123456要将叶子调整为“红黄红”排列，r为红，y为黄，每次可将r调整为y，也可将y调整为r，求调整所需最小次数示例：输入：leaves = &quot;rrryyyrryyyrr&quot;输出：2解释：调整两次，将中间的两片红叶替换成黄叶，得到 &quot;rrryyyyyyyyrr&quot;
+
+12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970int minimumOperations(string leaves) &#123;    int n = leaves.size();    //cout &lt;&lt; "n" &lt;&lt;n &lt;&lt; endl;    int start = 0;    int end = leaves.size() - 1;    vector&lt;vector&lt;int&gt;&gt; dp(n - 2, vector&lt;int&gt;(n - 2, 100000));    int temp = 0;    if (leaves[0] == 'y')    &#123;        temp++;    &#125;    if (leaves[1] == 'r')    &#123;        temp++;    &#125;    for (int i = 2; i &lt; n; i++)    &#123;        if (leaves[i] == 'y')        &#123;            temp++;        &#125;    &#125;    dp[0][1] = temp;    int x = 0;    int y = 2;    while (x != n - 3)    &#123;        while (y != n - 2)        &#123;            if (leaves[y] == 'y')                dp[x][y] = dp[x][y - 1] - 1;            else                dp[x][y] = dp[x][y - 1] + 1;            y++;        &#125;        if (x + 2 == n - 2)            break;        //cout &lt;&lt; "test" &lt;&lt; endl;        if (leaves[x+1] == 'y')            dp[x + 1][x + 2] = dp[x][x + 2] + 1;        else            dp[x + 1][x + 2] = dp[x][x + 2] - 1;        //cout &lt;&lt; "test2" &lt;&lt; endl;        x++;        y = x + 2;        //cout &lt;&lt; "x y " &lt;&lt; x &lt;&lt; y &lt;&lt; endl;        /*for (int a = 0; a &lt; dp.size(); a++)        &#123;            for (int b = 0; b &lt; dp[0].size(); b++)            &#123;                cout &lt;&lt; dp[a][b] &lt;&lt; " ";            &#125;            cout &lt;&lt; endl;        &#125;*/    &#125;    int res = dp[0][0];    for (int a = 0; a &lt; dp.size(); a++)    &#123;        for (int b = 0; b &lt; dp[0].size(); b++)        &#123;            if (dp[a][b] &lt; res)            &#123;                res = dp[a][b];            &#125;        &#125;    &#125;    // cout &lt;&lt; res;    return res;&#125;
+
+32. 最长有效括号寻找转移方程：
+每个dp元素代表以该位置为结尾的最长有效括号数，也就是说当以’)’为结尾才可能不为0
+当发现s[i]位置以’)’结尾，检查s[i-1]
+如果s[i-1] == &#39;(&#39;，dp[i] = dp[i-2] + 2
+如果s[i-1] == &#39;)&#39;并且 s[i - dp[i-1] - 1] == &#39;(&#39; ，dp[i] = dp[i-1] + dp[i - dp[i-1] - 2] + 2 
+对第二种情况举例：( ) ( ( ) ( ) )，检测到最后一位为’)’并且倒数第二位也为’)’，这时dp[6] = 4, dp[7] = dp[6]（dp[i-1]） + dp[1]（dp[7 - dp[6] -2]） + 2 = 4 + 2 + 2，分别代表第四个到第七个括号组成的dp[i-1]、第一个和第二个括号组成的dp[i - dp[i-1] - 1]，（加上这个是因为除去dp[i-1]和第三个和第八个配对的括号以外，第一个和第二个括号也因为原本没有配对的第三个括号成功配对而连接起来）、第三个和第八个括号组成的新配对的括号组
+47. 礼物的最大价值构造“矩阵最优路径的寻径问题”的dp矩阵，dp矩阵每个元素的含义是到当前点的最大收益
+转移方程：
+1dp[i][j] = max(dp[i-1][j], dp[i][j-1]) + grid[i][j];
+
+这样的话就需要填充边界：使dp矩阵的维度加一，填充0
+本题的优化：可将dp矩阵维度降为一维，在每一个外层循环中覆盖更新dp
+62. 不同路径转移方程:
+1dp[i][j] = dp[i-1][j]+dp[i][j-1];
+
+动态规划中要下意识地思考是否能够降低空间复杂度
+本题中每一行的计算都只需要当前行和上一行的信息，所以将空间复杂度O(n^2^)降至O(2n):
+只构造两个一维数组pre和cur，分别保存上一行和当前行的值
+每次修改完当前行的值以后，将当前行cur复制给pre
+进一步优化空间复杂度至O(n):
+只构造一个一维数组cur，对应上面的转移方程：
+1cur[j] += cur[j-1];
+
+因为在更新cur[j]时，更新前的cur[j]即为上一行的j列值，只需在此之上加上cur[j-1]即可
+64. 最小路径和转移方程：
+12345678if(i == 1 || j == 1)&#123;	dp[i][j] = i == 1 ? dp[i][j-1] + grid[i-1][j-1] : dp[i-1][j] + grid[i-1][j-1];&#125;else&#123;	dp[i][j] = min(dp[i-1][j], dp[i][j-1]) + grid[i-1][j-1];&#125;
+
+为了防止下标左溢出，dp矩阵是(m+1) * (n+1)的，第一行和第一列填充0
+第一行和第一列做单独处理，因为当前点的值应为左侧和上侧的较小值加上当前点的值，而第一行的点的值只能为左侧的值加上当前点的值，第一列的点的值只能为上侧的点的值加上当前点的值
+70. 爬楼梯转移方程：
+123456dp[1] = 1;dp[2] = 2;for(int i = 3; i &lt;= n; i++)&#123;	dp[i] = dp[i-2] + dp[i-1];&#125;
+
+防止左溢出，提前设定dp[1]和dp[2]，并设置n=1和n=2时的返回值
+72. 编辑距离问题本质等同于有三种操作：
+在单词 A 中插入一个字符，如果horse到ro的编辑距离为a，那么到ros的编辑距离不会超过a+1
+在单词 B 中插入一个字符，如果hors到ros的编辑距离为b，那么horse到ros的编辑距离不会超过b+1
+修改单词 A 的一个字符，如果hors到ro的编辑距离为c，那么horse到ros的编辑距离不会超过c+1
+因此产生状态转移方程：
+12int label = word1[i-1] == word2[j-1] ? 0 : 1; //先判断A和B最后一个字母是否相同dp[i][j] = min(min(dp[i-1][j] + 1, dp[i][j-1] + 1), dp[i-1][j-1] + label);
+
+
+                        
+                    </p>
+                </a>
+            </div>
+
+            
+                <div class="post-footer">
+                    
+                        <i class="fa fa-folder-open-o"></i>
+                        <a class="category-link" href="/categories/Algorithm/">Algorithm</a>
+
+                        
+                            <span class="dotted">|</span>
+                        
+
+                    
+                    
+                        <i class="fa fa-tags"></i>
+                        <a class="tag-link" href="/tags/Algorithm/">Algorithm</a>
+                    
+                </div>
+            
+        </article>
+    
+
+    
+        <article class="box post post-item">
+            <div class="post-title"><a href="/2020/08/03/LeetCode-top&hot刷题/">LeetCode top100刷题</a></div>
+            <div class="post-meta">
+                
+                <i class="fa fa-calendar"></i> <time>2020-08-03</time>
+                <span class="dotted">|</span>
+                <i class="fa fa-user"></i> 
+            </div>
+
+            <div class="post-excerpt">
+                <a href="/2020/08/03/LeetCode-top&hot刷题/">
+                    <p>
+                        
+                            1. 两数之和12345678910111213vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target)&#123;    // map    umordered_map&lt;int, int&gt; hashtable;    for(int i = 0; i &lt; nums.size(); i++)    &#123;        auto it = hashtable.find(target - nums[i]);        if(it != hashtable.end())            return &#123;it-&gt;second, i&#125;;        hashtable[nums[i]] = i;    &#125;    return &#123;&#125;;&#125;
+
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253//先排序，再利用双指针遍历，初始i放首部，j放尾部，两数之和大于target的话j--，小于target的话i++，找到对应的i和jvector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target) &#123;    vector&lt;int&gt; resV&#123; 0, 0 &#125;;    vector&lt;int&gt; copyV = nums;    int find;    int hasFound = 0;    sort(nums.begin(), nums.end());    // for(int k = 0; k &lt; nums.size(); k++)    // &#123;cout &lt;&lt; nums[k] &lt;&lt; " ";&#125;    int i = 0;    int j = nums.size() - 1;    while (i != j &amp;&amp; hasFound == 0)    &#123;        if (target &gt; nums[i] + nums[j])        &#123;            i++;        &#125;        else if (target &lt; nums[i] + nums[j])        &#123;            j--;        &#125;        else        &#123;            //找到i和j还没结束，要根据nums[i], nums[j]找到排序前的数组中对应的原始下标            //found1防止数组中有相同的值k使得k + k = target导致只能（进入下面的if）更新resV[0]的值            //这样，如果在原数组中找到第一个k值时进入if，之后继续找到第二个k值的时候便不会再进入if重复更新resV[0]而导致resV[j]不被更新            int flag = 0, found1 = 0, label = 0;            while (label != 2)            &#123;                if (copyV[flag] == nums[i] &amp;&amp; found1 == 0)                &#123;                    label++;                    resV[0] = flag;                    found1 = 1;                    flag++;                &#125;                else if (copyV[flag] == nums[j])                &#123;                    label++;                    resV[1] = flag;                    flag++;                &#125;                else                &#123;                    flag++;                &#125;            &#125;            hasFound = 1;        &#125;    &#125;    return resV;&#125;
+
+2.两数相加123456789101112131415161718192021222324252627ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) &#123;    ListNode *head = nullptr, *tail = nullptr;    int carry = 0;    while (l1 || l2) &#123;        int n1 = l1 ? l1-&gt;val: 0;        int n2 = l2 ? l2-&gt;val: 0;        int sum = n1 + n2 + carry;        if (!head) &#123;            head = tail = new ListNode(sum % 10);        &#125; else &#123;            tail-&gt;next = new ListNode(sum % 10);            tail = tail-&gt;next;        &#125;        carry = sum / 10;        if (l1) &#123;            l1 = l1-&gt;next;        &#125;        if (l2) &#123;            l2 = l2-&gt;next;        &#125;    &#125;    if (carry &gt; 0) &#123;        tail-&gt;next = new ListNode(carry);    &#125;    return head;&#125;
+
+3. 无重复字符的最长字串1234567891011121314151617181920212223int lengthOfLongestSubstring(string s)&#123;    // 滑动窗口 + set	unordered_set&lt;char&gt; st;    int n = s.size();    int right = 0, ret = 0;    for(int left = 0; left &lt; n; left++)    &#123;        if(left != 0)        &#123;            // 每一轮循环首先舍弃窗口左端            st.erase(s[left - 1]);        &#125;        while(right &lt; n &amp;&amp; !st.count(s[right]))        &#123;            st.insert(s[right]);            right++;        &#125;        // 这里right - left 不用再加一，因为right从0而不是从-1开始，理解right的意义        ret = max(ret, right - left);    &#125;    return ret;&#125;
+
+15. 三数之和123456789101112131415161718192021222324252627282930// 排序然后双指针vector&lt;vector&lt;int&gt;&gt; threeSum(vector&lt;int&gt;&amp; nums)&#123;    sort(nums.begin(), nums.end());    vector&lt;vector&lt;int&gt;&gt; ret;    int n = nums.size();    if(n &gt;= 3 &amp;&amp; nums[n - 1] + nums[n - 2] + nums[n - 3] &lt; 0) // 剪枝        return ret;    for(int first = 0; first &lt; n - 2; first++)    &#123;        if(nums[first] + nums[first + 1] + nums[first + 2] &gt; 0) // 剪枝            break;        if(first &gt; 0 &amp;&amp; nums[first] == nums[first - 1])            continue;        int target = -nums[first];        int third = n - 1;        for(int second = first + 1; second &lt; n - 1; second++)        &#123;            if(second &gt; first + 1 &amp;&amp; nums[second] == nums[second - 1])                continue;            while(second &lt; third &amp;&amp; nums[second] + nums[third] &gt; target)                --third;            if(second == third)                break;            if(nums[second] + nums[third] == target)                ret.push_back(&#123;nums[first], nums[second], nums[third]&#125;);        &#125;    &#125;    return ret;&#125;
+
+84. 柱状图中的最大矩形12345678910111213141516171819202122int largestRectangleArea(vector&lt;int&gt;&amp; heights) &#123;    int ret = 0;    int n = heights.size();    vector&lt;int&gt; left(n), right(n, n);    stack&lt;int&gt; monoStack;    for(int i = 0; i &lt; n; i++)    &#123;        while(!monoStack.empty() &amp;&amp; heights[monoStack.top()] &gt;= heights[i])        &#123;            right[monoStack.top()] = i; // 终于遇到比stack中的top对应的柱低的柱了（之前可能是连续的比它高，所以无法确定矩形的宽，遇到比它低的时，就可以确定以它为高的矩形的右边界了）            monoStack.pop();        &#125;        left[i] = monoStack.empty() ? -1 : monoStack.top(); // 检索到某下标时就可以确定以它为高的矩形的左边界        monoStack.push(i);    &#125;    for(int i = 0; i &lt; n; i++)    &#123;        ret = max(ret, (right[i] - left[i] -1) * heights[i]);    &#125;    return ret;&#125;
+
+85. 最大矩形12345678910111213141516171819202122232425262728293031323334353637383940int largestRectangleArea(vector&lt;int&gt;&amp; heights)&#123;    int ret = 0;    int n = heights.size();    vector&lt;int&gt; left(n), right(n, n);    stack&lt;int&gt; monoStack;    for(int i = 0; i &lt; n; i++)    &#123;        while(!monoStack.empty() &amp;&amp; heights[monoStack.top()] &gt;= heights[i])        &#123;            right[monoStack.top()] = i;            monoStack.pop();        &#125;        left[i] = monoStack.empty() ? -1 : monoStack.top();        monoStack.push(i);    &#125;    for(int i = 0; i &lt; n; i++)    &#123;        ret = max(ret, (right[i] - left[i] - 1) * heights[i]);    &#125;    return ret;&#125;int maximalRectangle(vector&lt;vector&lt;char&gt;&gt;&amp; matrix) &#123;    int ret = 0;    int m = matrix.size();    if(m == 0) //要写在n的定义之前，因为matrix[0]不一定存在        return 0;    int n = matrix[0].size();    vector&lt;int&gt; dp (n, 0);    for(int i = 0; i &lt; m; i++)    &#123;        for(int j = 0; j &lt; n; j++)        &#123;            dp[j] = matrix[i][j] == '0' ? 0 : dp[j] + 1; // 这个叠加是根据上一行的dp进行的，比如上方是2，下一行如果为‘1’，相应的柱状图加1的长度变为3（即在原dp数组基础上进行修改）        &#125;        ret = max(ret, largestRectangleArea(dp));    &#125;    return ret;&#125;
+
+114. 二叉树（原地）展开为链表（顺着右子节点连）123456789101112131415161718192021// 还可以用前序遍历存到数组，再改节点结构；或者（只能用迭代法）同时存到数组并改节点结构，以上两种方法空间复杂度O(n)，下面是第三种方法不用前序遍历，直接改结构，空间复杂度为O(1)void flatten(TreeNode* root)&#123;    TreeNode* cur = root;    while(cur)    &#123;        if(cur-&gt;left)        &#123;            auto next = cur-&gt;left;            auto predecessor = next;            while(predecessor-&gt;right)                predecessor = predecessor-&gt;right;            // predecessor为当前节点的左子树的最右节点，连到当前节点cur的右子节点            predecessor-&gt;right = cur-&gt;right;            // 更新当前节点的左右子节点            cur-&gt;left = nullptr;            cur-&gt;right = next;		&#125;        cur = cur-&gt;right;    &#125;&#125;
+
+124. 二叉树中的最大路径和12345678910111213141516171819int maxGain(TreeNode* root, int&amp; maxSum)&#123;    if(root)        // 空节点的最大贡献值等于0    	return 0;    int left = max(maxGain(root-&gt;left), 0);    int right = max(maxGain(root-&gt;right), 0);    // 当前子树中的最大路径和为当前节点值加上两个子节点的最大贡献值    int curMaxSum = root-&gt;val + left + right;    maxSum = max(maxSum, curMaxSum);    // 非空节点的最大贡献值等于节点值与其子节点中的最大贡献值之和    return root-&gt;val + max(left, right);&#125;int maxPathSum(TreeNode* root)&#123;    int maxSum = INT_MIN;    maxGain(root, maxSum);    return maxSum;&#125;
+
+128. （无序数组中能找出的）最长连续序列（需要O(n)时间复杂度）123456789101112131415161718192021222324int longestConsecutive(vector&lt;int&gt;&amp; nums)&#123;    // 怎么也该想到用哈希表存来减少时间复杂度    unordered_set&lt;int&gt; st;    int longestSeq = 0;    for(int num : nums)        st.insert(num);    for(int s : st)    &#123;        // 灵魂的一步剪枝，怎么确定是否检查从某一个数字开始的序列？看set中是否存在num-1，如果存在，则跳过，以此避免查询序列中间的数字        if(!st.count(s - 1))        &#123;            int curSeq = 1;            int curNum = s;            while(st.count(curNum + 1))            &#123;                curSeq++;                curNum++;            &#125;            longestSeq = max(longestSeq, curSeq);        &#125;	&#125;    return longestSeq;&#125;
+
+139. 单词（是否可以）拆分（成字符串数组中的元素）  4min1234567891011121314151617181920bool wordBreak(string s, vector&lt;string&gt;&amp; wordDict)&#123;    unordered_set&lt;string&gt; st;    for(string word : wordDict)        st.insert(word);    vector&lt;bool&gt; dp(s.size() + 1);    dp[0] = true;    // 这里的i可以理解为字符串s的前i个字符    for(int i = 1; i &lt;= s.size();i++)    &#123;        for(int j = 0; j &lt; i; j++)            // 字符串的匹配使用的是s的子串和集合中存的string元素比较            if(dp[j] &amp;&amp; st.find(s.substr(j, i - j)) != st.end())            &#123;                dp[i] = true;                break;            &#125;    &#125;    return dp[s.size()];&#125;
+
+160. 相交链表1234567891011121314// 你走过我走的路，我走过你走的路，我们殊途同归ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) &#123;    if(!headA || !headB) return NULL;    ListNode *p, *q, *pp, *qq;    p = headA; q = headB;    while(p != q)    &#123;        pp = p; qq = q;        p = (!p -&gt; next &amp;&amp; qq -&gt; next) ? headB : p -&gt; next;        // 用pp的作用体现出来了，经过上面的步骤，p可能已经变为p-&gt;next        q = (!q -&gt; next &amp;&amp; pp -&gt; next) ? headA : q -&gt; next;    &#125;    return p;&#125;
+
+739. 每日温度（每天找下一个比今天更高的温度）123456789101112131415161718// 又是单调栈，相关题目还有84，85vector&lt;int&gt; dailyTemperature(vector&lt;int&gt;&amp; T)&#123;    int n = T.size();    vector&lt;int&gt; ret(n);    stack&lt;int&gt; stk;    for(int i = 0; i &lt; n; i++)    &#123;        while(!stk.empty() &amp;&amp; T[i] &gt; T[stk.top()])        &#123;            int prevIndex = stk.top();            ret[prevIndex] = i - prevIndex;            stk.pop();        &#125;        stk.push(i);    &#125;	return ret;&#125;
+
+
+                        
+                    </p>
+                </a>
+            </div>
+
+            
+                <div class="post-footer">
+                    
+                        <i class="fa fa-folder-open-o"></i>
+                        <a class="category-link" href="/categories/Algorithm/">Algorithm</a>
+
+                        
+                            <span class="dotted">|</span>
+                        
+
+                    
+                    
+                        <i class="fa fa-tags"></i>
+                        <a class="tag-link" href="/tags/Algorithm/">Algorithm</a>
+                    
+                </div>
+            
+        </article>
+    
+
+    
+        <article class="box post post-item">
+            <div class="post-title"><a href="/2020/08/02/LeetCode周赛/">LeetCode200周赛</a></div>
+            <div class="post-meta">
+                
+                <i class="fa fa-calendar"></i> <time>2020-08-02</time>
+                <span class="dotted">|</span>
+                <i class="fa fa-user"></i> 
+            </div>
+
+            <div class="post-excerpt">
+                <a href="/2020/08/02/LeetCode周赛/">
+                    <p>
+                        
+                            给你一个整数数组 arr ，以及 a、b 、c 三个整数。请你统计其中好三元组的数量
+如果三元组 (arr[i], arr[j], arr[k]) 满足下列全部条件，则认为它是一个 好三元组 
+0 &lt;= i &lt; j &lt; k &lt; arr.length
+|arr[i] - arr[j]| &lt;= a
+|arr[j] - arr[k]| &lt;= b
+|arr[i] - arr[k]| &lt;= c
+其中 |x| 表示 x 的绝对值
+返回 好三元组的数量 
+1234567输入：arr = [3,0,1,1,9,7], a = 7, b = 2, c = 3输出：4解释：一共有 4 个好三元组：[(3,0,1), (3,0,1), (3,1,1), (0,1,1)]输入：arr = [1,1,2,2,3], a = 0, b = 0, c = 1输出：0解释：不存在满足所有条件的三元组
+
+123456789101112131415161718int countGoodTriplets(vector&lt;int&gt;&amp; arr, int a, int b, int c) &#123;	int res = 0;	for (int i = 0; i &lt; arr.size() - 2; i++)	&#123;		for (int j = i + 1; j &lt; arr.size() - 1; j++)		&#123;			for (int k = j + 1; k &lt; arr.size(); k++)			&#123;                //使用abs()需引用cmath头文件				if (abs(arr[i] - arr[j]) &lt;= a &amp;&amp; abs(arr[j] - arr[k]) &lt;= b &amp;&amp; abs(arr[i] - arr[k]) &lt;= c)				&#123;					res++;				&#125;			&#125;		&#125;	&#125;	return res;&#125;
+
+给你一个由 不同 整数组成的整数数组 arr 和一个整数 k 
+每回合游戏都在数组的前两个元素（即 arr[0] 和 arr[1] ）之间进行。比较 arr[0] 与 arr[1] 的大小，较大的整数将会取得这一回合的胜利并保留在位置 0 ，较小的整数移至数组的末尾。当一个整数赢得 k 个连续回合时，游戏结束，该整数就是比赛的 赢家 
+返回赢得比赛的整数
+题目数据 保证 游戏存在赢家
+123456789输入：arr = [3,2,1], k = 10输出：3解释：3 将会在前 10 个回合中连续获胜    输入：arr = [1,9,8,2,3,7,6,4,5], k = 7输出：9    输入：arr = [1,11,22,33,44,55,66,77,88,99], k = 1000000000输出：99
+
+123456//vector操作a.erase(a.begin()+1,a.begin()+3); //包前不包后，删除第1、2个元素a.insert(a.begin()+1,5); //在a的第1个元素（从第0个算起）的位置插入数值5a.insert(a.begin()+1,3,5); //在a的第1个元素（从第0个算起）的位置插入3个数，其值都为5a.back(); //返回a的最后一个元素a.front(); //返回a的第一个元素
+
+123456789101112131415161718192021222324252627282930//按命题逻辑操作vector，遇到超长数组同时超大K值时会超时int getWinner(vector&lt;int&gt;&amp; arr, int k) &#123;	int num = 0;	int res = arr[0];	if (k &gt; arr.size())	&#123;		k = arr.size();	&#125;		while (num &lt; k)	&#123;		if (arr[0] &gt; arr[1])		&#123;			num++;			int temp = arr[1];			arr.erase(arr.begin() + 1, arr.begin() + 2);			arr.push_back(temp);		&#125;		else		&#123;			num = 1;			int temp = arr[0];			res = arr[1];			arr.erase(arr.begin(), arr.begin() + 1);			arr.push_back(temp);		&#125;	&#125;	return res;&#125;
+
+123456789101112131415161718192021222324252627282930//trick，不用按题述方式操作vector，从前向后遍历即可int getWinner(vector&lt;int&gt;&amp; arr, int k) &#123;        int num = 0;	    int res = arr[0];	    if (k &gt; arr.size())	    &#123;	    	k = arr.size();	    &#125;	    for(int i = 0; i &lt; arr.size(); i++)        &#123;            if(arr[i]&gt;arr[i+1])            &#123;                //直接修改arr[i+1]的值为arr[i]，这样继续和后面比较时仍是类似命题中的：上一组的较大者和新数值比较                arr[i+1] = arr[i];                num++;            &#125;            else            &#123;                //当遇到前者小于后者的情况，看此时的num值是否满足大于等于k的要求，符合即作为结果返回                if(num &gt;= k)                &#123;                    return arr[i];                &#125;                //不符合则设置num为1，不设置为0的原因是因为已经淘汰掉上一个值，已经赢了一回合                res = arr[i+1];                num = 1;             &#125;        &#125;	    return res;    &#125;
+
+给你一个 n x n 的二进制网格 grid，每一次操作中，你可以选择网格的 相邻两行 进行交换
+一个符合要求的网格需要满足主对角线以上的格子全部都是 0 
+请你返回使网格满足要求的最少操作次数，如果无法使网格符合要求，请你返回 -1 
+主对角线指的是从 (1, 1) 到 (n, n) 的这些格子
+123456789输入：grid = [[0,0,1],[1,1,0],[1,0,0]]输出：3输入：grid = [[0,1,1,0],[0,1,1,0],[0,1,1,0],[0,1,1,0]]输出：-1解释：所有行都是一样的，交换相邻行无法使网格符合要求输入：grid = [[1,0,0],[1,1,0],[1,1,1]]输出：0
+
+12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849//贪心//从第一行开始，如果该行的后缀0满足条件，那么直接跳过进入下一行（因为需要的后缀0个数是从大到小的顺序（理解这一点非常重要），所以不必担心前面的会抢后面的，自己不够用的时候放心的去抢后面的，因为当前行的需求（优先级）比后面都高）//如果该行后缀0个数不满足条件，那么就往下遍历找到最先（贪心，这是最小次数）满足条件的行，一行一行换上来，记录交换的次数int minSwaps(vector&lt;vector&lt;int&gt;&gt;&amp; grid) &#123;    vector&lt;int&gt; resV;	int res = 0;    int n = grid.size();    //统计每行后缀0个数，存到resV中	for (int i = 0; i &lt; n; i++)	&#123;		int num = 0;		for (int j = 0; j &lt; grid[i].size(); j++)		&#123;			if (grid[i][j] == 0)			&#123;			    num++;			&#125;			else 			&#123;			    num = 0;			&#125;		&#125;		resV.push_back(num);	&#125;    for(int i = 0; i &lt; n - 1; i++)    &#123;        //如果当前行的后缀0个数够用，直接往下遍历，不用担心抢了后面的，因为当前行的需求量比后面的都高        if(resV[i] &gt;= n - i - 1)        continue;        else        &#123;            int j = i + 1;            while(resV[j] &lt; n - i - 1 )            &#123;                j++;                //找到最后都没有找到满足个数的后缀0，就直接退出                if(j == n)                    return -1;            &#125;            //while之后到这里说明找到了一行满足当前行的后缀0的个数需求，把找到的行一行一行的往上换，换到当前行，每次swap的同时更新交换次数            for(int m = j; m &gt; i; m--)            &#123;                swap(resV[m], resV[m - 1]);                res++;            &#125;            &#125;    &#125;    return res;&#125;
+
+5484. 找出第 N 个二进制字符串中的第 K 位12345678910输入：n = 3, k = 1输出：&quot;0&quot;解释：S3 为 &quot;0111001&quot;，其第 1 位为 &quot;0&quot; 输入：n = 4, k = 11输出：&quot;1&quot;解释：S4 为 &quot;011100110110001&quot;，其第 11 位为 &quot;1&quot;输入：n = 1, k = 1输出：&quot;0&quot;
+
+12345678910111213141516private:// invert处理    char ch_not(char ch) &#123;        if(ch == '0') &#123; return '1'; &#125;        else          &#123; return '0'; &#125;    &#125;public:    char findKthBit(int n, int k) &#123;        if(n == 1) &#123; return '0'; &#125;        // 1左移n-1位，pow(2, n-1)        int mid = (1&lt;&lt;(n-1));        if(k == mid) &#123; return '1'; &#125;        if(k &lt; mid) &#123; return findKthBit(n-1, k); &#125;        // k &gt; mid的情况需要把k挪到对称位置：(1&lt;&lt;n) - k，并进行invert        return ch_not(findKthBit(n-1, (1&lt;&lt;n) - k));     &#125;
+
+5483. 整理字符串123456789101112输入：s = &quot;leEeetcode&quot;输出：&quot;leetcode&quot;解释：无论你第一次选的是 i = 1 还是 i = 2，都会使 &quot;leEeetcode&quot; 缩减为 &quot;leetcode&quot;输入：s = &quot;abBAcC&quot;输出：&quot;&quot;解释：存在多种不同情况，但所有的情况都会导致相同的结果。例如：&quot;abBAcC&quot; --&gt; &quot;aAcC&quot; --&gt; &quot;cC&quot; --&gt; &quot;&quot;&quot;abBAcC&quot; --&gt; &quot;abBA&quot; --&gt; &quot;aA&quot; --&gt; &quot;&quot;输入：s = &quot;s&quot;输出：&quot;s&quot;
+
+1234567891011121314151617181920string makeGood(string s) &#123;int i = 0;while (i != s.length() - 1)&#123;    for (i = 0; i &lt; s.length() - 1; i++)    &#123;        if (abs(s[i] - s[i + 1]) == 32)        &#123;            s.erase(i, 2);            i = 0;            break;        &#125;    &#125;    if(s.empty())    &#123;        return "";    &#125;&#125;return s;&#125;
+
+1234567891011121314151617181920212223//William Lin版string makeGood(string s)&#123;    bool ch = 1;    while(ch)    &#123;        ch = 0;        string t = s;        //size()返回类型是size_t, (unsigned) 和后面的int相减可能会溢出        for(int i = 0; i &lt; (int)s.size() - 1; i++)        &#123;            if(s[i] + 32 == s[i + 1] || s[i + 1] + 32 == s[i])            &#123;                //string的substr()使用，带首不带尾，单个参数默认从参数位置取到末尾                t = s.substr(0, i) + s.substr(i + 2);            	ch = 1;                break;            &#125;        &#125;        s = t;    &#125;    return s;&#125;
+
+5468. 第 k 个缺失的正整数1234567输入：arr = [2,3,4,7,11], k = 5输出：9解释：缺失的正整数包括 [1,5,6,8,9,10,12,13,...]输入：arr = [1,2,3,4], k = 2输出：6解释：缺失的正整数包括 [5,6,7,...]
+
+1234567891011121314151617181920212223242526272829int findKthPositive(vector&lt;int&gt;&amp; arr, int k) &#123;    int init = 0;    int res = 0;    int resNum = 0;    res = arr[0] - init -1;    if(res &gt;= k)    &#123;        return k;    &#125;    int i = 1;    while(i &lt; arr.size() &amp;&amp; res &lt; k)    &#123;        if(res + arr[i] - arr[i-1] - 1 &lt; k)        &#123;            res += arr[i] - arr[i-1] - 1;        &#125;        else        &#123;            resNum = arr[i-1] + (k - res);             res = k;        &#125;        i++;    &#125;    if(i == arr.size() &amp;&amp; res &lt; k)    &#123;        resNum = arr.back() + (k - res);    &#125;    return resNum;&#125;
+
+5469. K 次操作转变字符串1234567891011输入：s = &quot;input&quot;, t = &quot;ouput&quot;, k = 9输出：true解释：第 6 次操作时，我们将 &apos;i&apos; 切换 6 次得到 &apos;o&apos; 。第 7 次操作时，我们将 &apos;n&apos; 切换 7 次得到 &apos;u&apos;输入：s = &quot;abc&quot;, t = &quot;bcd&quot;, k = 10输出：false解释：我们需要将每个字符切换 1 次才能得到 t 。我们可以在第 1 次操作时将 &apos;a&apos; 切换成 &apos;b&apos; ，但另外 2 个字母在剩余操作中无法再转变为 t 中对应字母输入：s = &quot;aab&quot;, t = &quot;bbb&quot;, k = 27输出：true解释：第 1 次操作时，我们将第一个 &apos;a&apos; 切换 1 次得到 &apos;b&apos; 。在第 27 次操作时，我们将第二个字母 &apos;a&apos; 切换 27 次得到 &apos;b&apos;
+
+12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455//结果出现的位置有数组首之前，数组中间，数组末尾之后，分别处理//创建一个数组存储每一位需要的操作数，将操作数按大小排好，一次遍历去对应k值看是否满足要求//addNum记录某个操作数出现的次数，比如6在某一位上出现一次，某另一位的操作数也是6，那么操作数只能选择6 + 26，第三次出现时操作数为6 + 26 * 2bool canConvertString(string s, string t, int k) &#123;        if (s.length() != t.length())        &#123;            return false;        &#125;        vector&lt;int&gt; resV;        int temp = 0;        vector&lt;int&gt; addNum(26, 0);        for (int i = 0; i &lt; s.length(); i++)        &#123;            if (t[i] - s[i] &gt;= 0)            &#123;                temp = t[i] - s[i];                addNum[temp] += 1;            &#125;            else            &#123;                temp = t[i] - 'a' + 'z' - s[i] + 1;                addNum[temp] += 1;            &#125;            //操作数为0是可以重复的，不需要加重叠次数*26            if (temp != 0)            &#123;                int pushNum = temp + 26 * (addNum[temp] - 1);                resV.push_back(pushNum);            &#125;            else            &#123;                resV.push_back(temp);            &#125;        &#125;        sort(resV.begin(), resV.end());        while (!resV.empty() &amp;&amp; resV.back() != 0)        &#123;            if (k &gt; resV.back())            &#123;                k = resV.back() - 1;                resV.pop_back();            &#125;            else if (k == resV.back())            &#123;                resV.pop_back();                k--;            &#125;            else            &#123;                return false;            &#125;        &#125;        return true;    &#125;
+
+1546. 和为目标值的最大数目不重叠非空子数组数目1234567891011121314输入：nums = [1,1,1,1,1], target = 2输出：2解释：总共有 2 个不重叠子数组（加粗数字表示） [1,1,1,1,1] ，它们的和为目标值 2 输入：nums = [-1,3,5,1,4,2,-9], target = 6输出：2解释：总共有 3 个子数组和为 6 。([5,1], [4,2], [3,5,1,4,2,-9]) 但只有前 2 个是不重叠的输入：nums = [-2,6,6,3,5,4,1,2,8], target = 10输出：3输入：nums = [0,0,0], target = 0输出：3
+
+12345678910111213141516171819202122// 贪心int maxNonOverlapping(vector&lt;int&gt;&amp; nums, int target)&#123;    set&lt;int&gt; s;    //初始时累计值为0，保证在&#123;-1, 3, 5, 1&#125;中找target=6时能找去掉-1, 3，找到&#123;5, 1&#125;    s.insert(0);    int ps = 0, ans = 0;    //一个替代遍历vector中每个值的方法（不关注下标时可使用）    for(int a : nums)    &#123;        //记录到每个当前值的累计值，其中的两个值相减就是两者之间的子数组中的各个值和        ps += a;        //注意理解ps - target的含义，是在当前位置根据target找前面是否有能截断而得到要的子数组的位置        if(s.find(ps - target != s.end()))        &#123;            ++ans;            s.clear();        &#125;        s.insert(ps);    &#125;    return ans;&#125;
+
+
+                        
+                    </p>
+                </a>
+            </div>
+
+            
+                <div class="post-footer">
+                    
+                        <i class="fa fa-folder-open-o"></i>
+                        <a class="category-link" href="/categories/Algorithm/">Algorithm</a>
+
+                        
+                            <span class="dotted">|</span>
+                        
+
+                    
+                    
+                        <i class="fa fa-tags"></i>
+                        <a class="tag-link" href="/tags/Algorithm/">Algorithm</a>
+                    
+                </div>
+            
+        </article>
+    
+
+    
+        <article class="box post post-item">
+            <div class="post-title"><a href="/2020/08/01/bfs专题/">LeetCode广度优先搜索</a></div>
+            <div class="post-meta">
+                
+                <i class="fa fa-calendar"></i> <time>2020-08-01</time>
+                <span class="dotted">|</span>
+                <i class="fa fa-user"></i> 
+            </div>
+
+            <div class="post-excerpt">
+                <a href="/2020/08/01/bfs专题/">
+                    <p>
+                        
+                            107. 二叉树的层次遍历给定一个二叉树，返回其节点值自底向上的层次遍历。 （即按从叶子节点所在层到根节点所在的层，逐层从左向右遍历）
+STL queue：原理：队尾（rear）插入，队首（front）删除
+头文件： 
+1#include&lt;queue&gt;
+
+方法：
+123456push(): 推一个元素进队列front(): 返回队首元素(栈对应的是top())back(): 返回队尾元素pop(): 移除队首元素empty()size()
+
+创建：
+1queue&lt;string&gt; q;
+
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647/** * Definition for a binary tree node. * struct TreeNode &#123; *     int val; *     TreeNode *left; *     TreeNode *right; *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;public:    vector&lt;vector&lt;int&gt;&gt; levelOrderBottom(TreeNode* root) &#123;        vector&lt;vector&lt;int&gt;&gt; resV;        vector&lt;int&gt; levelNumV;        TreeNode* cur = root;        //层次遍历借助队列实现        queue&lt;TreeNode*&gt; q;        q.push(cur);        //跳出遍历的条件为队列为空        while(!q.empty())        &#123;            int size = q.size();            while(size-- &gt; 0)            &#123;                cur = q.front();                //砍头操作                q.pop();                if(cur)                &#123;                levelNumV.push_back(cur-&gt;val);                //爆菊操作                q.push(cur-&gt;left);                q.push(cur-&gt;right);                &#125;            &#125;            if(!levelNumV.empty())            &#123;            //输出格式不是规则的二维数组可选用vector&lt;vector&gt;，它的push_back内容为vector（不限制子vector长度）            resV.push_back(levelNumV);            levelNumV.clear();            &#125;        &#125;        //vector中reverse的使用        reverse(resV.begin(), resV.end());        return resV;    &#125;&#125;;
+
+207. 课程表你这个学期必须选修 numCourse 门课程，记为 0 到 numCourse-1 。
+在选修某些课程之前需要一些先修课程。 例如，想要学习课程 0 ，你需要先完成课程 1 ，我们用一个匹配来表示他们：[0,1]
+给定课程总量以及它们的先决条件，请你判断是否可能完成所有课程的学习？
+1234567输入: 2, [[1,0]] 输出: true解释: 总共有2门课程。学习课程1之前，你需要完成课程0。所以这是可能的输入: 2, [[1,0],[0,1]]输出: false解释: 总共有2门课程。学习课程1之前，你需要先完成课程0；并且学习课程0之前，你还应先完成课程1。这是不可能的
+
+我们就可以将本题建模成一个求拓扑排序的问题了：
+我们将每一门课看成一个节点
+如果想要学习课程 A之前必须完成课程 B，那么我们从B到A连接一条有向边。这样以来，在拓扑排序中，B一定出现在 A的前面
+思路：
+考虑拓扑排序中最前面的节点，该节点一定不会有任何入边，也就是它没有任何的先修课程要求。当我们将一个节点加入答案中后，我们就可以移除它的所有出边，代表着它的相邻节点少了一门先修课程的要求。如果某个相邻节点变成了「没有任何入边的节点」，那么就代表着这门课可以开始学习了。按照这样的流程，我们不断地将没有入边的节点加入答案，直到答案中包含所有的节点（得到了一种拓扑排序）或者不存在没有入边的节点（图中包含环）
+算法：
+使用一个队列来进行广度优先搜索。初始时，所有入度为 00 的节点都被放入队列中，它们就是可以作为拓扑排序最前面的节点，并且它们之间的相对顺序是无关紧要的。
+在广度优先搜索的每一步中，我们取出队首的节点u：
+我们将u放入答案中
+我们移除 u的所有出边，也就是将u的所有相邻节点的入度减少1。如果某个相邻节点v的入度变为0，那么我们就将v放入队列中
+在广度优先搜索的过程结束后。如果答案中包含了这n个节点，那么我们就找到了一种拓扑排序，否则说明图中存在环，也就不存在拓扑排序了
+1234567891011121314151617181920212223242526272829303132333435363738394041bool canFinish(int numCourses, vector&lt;vector&lt;int&gt;&gt;&amp; prerequisites) &#123;    //入度 in degree    vector&lt;int&gt; indeg;    vector&lt;vector&lt;int&gt;&gt; edges;    //resize内的默认初始化值为0    indeg.resize(numCourses);    edges.resize(numCourses);    for (const auto&amp; info : prerequisites)    &#123;        //以info[1]为起始的边，指向info[0]        edges[info[1]].push_back(info[0]);        //info[0]的入度加一，指向它的是info[1]        ++indeg[info[0]];    &#125;    queue&lt;int&gt; q;    for (int i = 0; i &lt; numCourses; i++)    &#123;        //把最开始入度为0的点push进去        if (indeg[i] == 0)        &#123;            q.push(i);        &#125;    &#125;    int visited = 0;    while (!q.empty())    &#123;        visited++;        int u = q.front();        q.pop();        for (int v : edges[u])        &#123;            --indeg[v];            //如果去掉指向它的u之后，v点的入度变为0，那么push进队列            if (indeg[v] == 0)            &#123;                q.push(v);            &#125;        &#125;    &#125;    return visited == numCourses;&#125;
+
+
+                        
+                    </p>
+                </a>
+            </div>
+
+            
+                <div class="post-footer">
+                    
+                        <i class="fa fa-folder-open-o"></i>
+                        <a class="category-link" href="/categories/Algorithm/">Algorithm</a>
+
+                        
+                            <span class="dotted">|</span>
+                        
+
+                    
+                    
+                        <i class="fa fa-tags"></i>
+                        <a class="tag-link" href="/tags/Algorithm/">Algorithm</a>
+                    
+                </div>
+            
+        </article>
+    
+
+    
+        <article class="box post post-item">
+            <div class="post-title"><a href="/2020/08/01/字节夏令营20游戏程序笔试题/">字节夏令营20游戏程序笔试题</a></div>
+            <div class="post-meta">
+                
+                <i class="fa fa-calendar"></i> <time>2020-08-01</time>
+                <span class="dotted">|</span>
+                <i class="fa fa-user"></i> 
+            </div>
+
+            <div class="post-excerpt">
+                <a href="/2020/08/01/字节夏令营20游戏程序笔试题/">
+                    <p>
+                        
+                            给素材分类，若作品1中有素材1和素材2，则认为素材1和素材2为一类，若作品2中有素材2和素材3，那么此后认为素材1、2、3为一类
+输入：第一行为作品数n，此后n行中每行第一位为该作品中的素材总数m，此后m个数字为素材名（int型）
+输出：素材的分类，并且每一类素材，类内顺序由小到大，类外顺序按照类内最小值由小到大排序输出
+示例：
+1234567891011输入：42 1 33 0 5 63 2 3 41 7输出：0 5 61 2 3 47
+
+12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970#include &lt;iostream&gt;#include&lt;vector&gt;#include&lt;string&gt;using namespace std;int main()&#123;    vector&lt;vector&lt;int&gt;&gt; resV;    int num;    cin &gt;&gt; num;    for (int i = 0; i &lt; num; i++)    &#123;        int cat;        cin &gt;&gt; cat;        //存放该作品内所有素材的vector        vector&lt;int&gt; tempV;        for (int j = 0; j &lt; cat; j++)        &#123;            int mem;            cin &gt;&gt; mem;            tempV.push_back(mem);            //cout &lt;&lt; tempV[j];        &#125;        //能否找到已存在的类，能找到就将tempV添加进去        int label = 0;        for (int k = 0; k &lt; tempV.size(); k++)        &#123;            for (int out = 0; out &lt; resV.size(); out++)            &#123;                int flag = 0;                for (int in = 0; in &lt; resV[out].size(); in++)                &#123;                                        if (tempV[k] == resV[out][in])                    &#123;                        label = 1;                        flag = 1;                        for (int copy = 0; copy &lt; tempV.size(); copy++)                        &#123;                            //检查重复素材，重复的素材不添加，只在已有的分类中添加还未加入的素材                            if (find(resV[out].begin(), resV[out].end(), tempV[copy]) == resV[out].end())                                resV[out].push_back(tempV[copy]);                        &#125;                        break;                    &#125;                   &#125;                //不用再继续遍历后面的子vector了，添加进一个分类中就一定不会添加进另外一个分类                if (flag == 1)                    break;            &#125;        &#125;        //是新的素材分类        if (label == 0)        &#123;            resV.push_back(tempV);        &#125;    &#125;    //子vector按最小元素排序    sort(resV.begin(), resV.end());    for (int i = 0; i &lt; resV.size(); i++)    &#123;        //子vector内部排序        sort(resV[i].begin(), resV[i].end());        for (int j = 0; j &lt; resV[i].size(); j++)            cout &lt;&lt; resV[i][j] &lt;&lt; " ";        cout &lt;&lt; endl;    &#125;    return 0;&#125;
+
+计算给出时间和格林尼治时间之间的秒数，格式：YYYY/MM/DD hh:mm:ss
+需要考虑平年和闰年
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495#include &lt;iostream&gt;#include&lt;vector&gt;#include&lt;string&gt;using namespace std;int main()&#123;    string date, time;    cin &gt;&gt; date &gt;&gt; time;    long long int year, month, day;    //切分成子字符串之后再转整型，赋给年月日时分秒    //atoi()的参数是 const char* ,因此对于一个字符串str我们必须调用c_str()的方法把这个string转换成const char*类型的    //substr(pos, num)两个参数是从起始位置和pos开始取的字符个数，而不是起始位置和末尾位置    year = atoi(date.substr(0, 4).c_str());    month = atoi(date.substr(5, 2).c_str());    day = atoi(date.substr(8, 2).c_str());    long long int hour, minute, second;    hour = atoi(time.substr(0, 2).c_str());    minute = atoi(time.substr(3, 2).c_str());    second = atoi(time.substr(6, 2).c_str());    long long int time1 = 0;    //cout &lt;&lt; hour &lt;&lt; " " &lt;&lt; minute &lt;&lt; " " &lt;&lt; second;    cout &lt;&lt; year &lt;&lt; " " &lt;&lt; month &lt;&lt; " " &lt;&lt; day &lt;&lt; endl;    //cout &lt;&lt; second &lt;&lt; to_string(minute * 60) &lt;&lt; to_string(hour * 3600) &lt;&lt; second + minute * 60 + hour * 3600;    //给出的一天内的时间计算    time1 = second + minute * 60 + hour * 3600;    long long int time2 = 0;    long long int run = 0;    for (int i = 1970; i &lt; year; i++)    &#123;        if ((i % 4 == 0 &amp;&amp; i % 100 != 0) || i % 400 == 0)            run++;    &#125;    cout &lt;&lt; run &lt;&lt; endl;    //给出的年月日的时间计算    time2 += run * 366 * 3600 * 24 + (year - 1970 - run) * 365 * 3600 * 24;    cout &lt;&lt; time2 &lt;&lt; endl;    long long int temp = 0;    //最后一年单独计算，因为最后一年未满整一年    //最后一年是闰年还是平年    if ((year % 4 == 0 &amp;&amp; year % 100 != 0) || year % 400 == 0)        temp = 29;    else        temp = 28;    //最后一年除掉最后一个月的时间，因为最后一个月未满整一个月    switch (month)    &#123;    case 01:        time2 += 0;        break;    case 02:        time2 += 31 * 3600 * 24;        break;    case 03:        time2 += (31 + temp) * 3600 * 24;        break;    case 04:        time2 += (62 + temp) * 3600 * 24;        break;    case 05:        time2 += (92 + temp) * 3600 * 24;        break;    case 06:        time2 += (123 + temp) * 3600 * 24;        break;    case 07:        time2 += (153 + temp) * 3600 * 24;        break;    //8和9特殊，编译器在识别08和09时不会自动转换成8和9，而是提示错误的八进制数    case 8:        time2 += (184 + temp) * 3600 * 24;        break;    case 9:        time2 += (215 + temp) * 3600 * 24;        break;    case 10:        time2 += (245 + temp) * 3600 * 24;        break;    case 11:        time2 += (276 + temp) * 3600 * 24;        break;    case 12:        time2 += (306 + temp) * 3600 * 24;        break;    &#125;    //cout &lt;&lt; time2 &lt;&lt; endl;    time2 += (day - 1) * 24 * 3600;    //整的年月日的时间计算加上最后一日内的时分秒时间计算    long long int res = time1 + time2;    cout &lt;&lt; res &lt;&lt; endl;    return 0;    //1970/02/01 00:00:00    //2716/02/02 00:00:00&#125;
+
+
+                        
+                    </p>
+                </a>
+            </div>
+
+            
+                <div class="post-footer">
+                    
+                        <i class="fa fa-folder-open-o"></i>
+                        <a class="category-link" href="/categories/Algorithm/">Algorithm</a>
+
+                        
+                            <span class="dotted">|</span>
+                        
+
+                    
+                    
+                        <i class="fa fa-tags"></i>
+                        <a class="tag-link" href="/tags/Algorithm/">Algorithm</a>
+                    
+                </div>
+            
+        </article>
+    
+
+    
+        <article class="box post post-item">
+            <div class="post-title"><a href="/2020/07/31/网易20秋招Unity工程师笔试编程题/">网易20秋招Unity工程师笔试编程题</a></div>
+            <div class="post-meta">
+                
+                <i class="fa fa-calendar"></i> <time>2020-07-31</time>
+                <span class="dotted">|</span>
+                <i class="fa fa-user"></i> 
+            </div>
+
+            <div class="post-excerpt">
+                <a href="/2020/07/31/网易20秋招Unity工程师笔试编程题/">
+                    <p>
+                        
+                            定义S(n)，表示n在十进制下的各位数字和。
+现在给定一个x,请你求出最小正整数n，满足x&lt;=S(n)。
+123456789101112131415161718192021222324252627282930313233343536#include &lt;iostream&gt;#include&lt;vector&gt;#include&lt;algorithm&gt;#include&lt;string&gt;int main()&#123;    int num;    cin &gt;&gt; num;    vector&lt;string&gt; resV;    string a = "9";    for (int n = 0; n &lt; num; n++)    &#123;        int x;        cin &gt;&gt; x;        //long long int multi = 1;        string res;        while (x &gt; 9)        &#123;            x -= 9;            res = a + res;            //multi *= 10;        &#125;        if (x != 0)        &#123;            //res += multi * x;            res = to_string(x) + res;        &#125;        resV.push_back(res);    &#125;    for (int n = 0; n &lt; num; n++)    &#123;        cout &lt;&lt; resV[n] &lt;&lt; endl;    &#125;    return 0;&#125;
+
+小易给定你数字A, B (A &lt; B)和系数p, q。每次操作你可以将A变成A + p或者将p变成p * q。问至少几次操作使得B &lt;= A。
+12345678910111213141516171819202122232425262728293031323334353637383940414243#include &lt;iostream&gt;#include&lt;vector&gt;#include&lt;algorithm&gt;#include&lt;string&gt;int main()&#123;    int num;    cin &gt;&gt; num;    vector&lt;long long int&gt; resV;        for (int n = 0; n &lt; num; n++)    &#123;        long long int a;        long long int b;        long long int p;        long long int q;        cin &gt;&gt; a &gt;&gt; b &gt;&gt; p &gt;&gt; q;        long long int res = 0;        if (b - a &gt; p)        &#123;            long long int temp = b - a;            long long int multiNum = p;            while (temp &gt; multiNum)            &#123;                multiNum *= q;                res++;            &#125;            res++;        &#125;        else        &#123;            res++;        &#125;        resV.push_back(res);    &#125;    for (int n = 0; n &lt; num; n++)    &#123;        cout &lt;&lt; resV[n] &lt;&lt; endl;    &#125;    return 0;&#125;
+
+小易定义一个数字序列是完美的，当且仅当对于任意2 &lt;= i &lt;= n，都满足，即每个数字都要大于等于前面所有数字的和。现在给定数字序列Ai，小易想请你从中找出最长的一段连续子序列，满足它是完美的。
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647#include &lt;iostream&gt;#include&lt;vector&gt;#include&lt;algorithm&gt;#include&lt;string&gt;int main()&#123;    vector&lt;int&gt; resV;    int num;    cin &gt;&gt; num;    for (int i = 0; i &lt; num; i++)    &#123;        int tempLength = 1;        int maxLength = 0;        vector&lt;int&gt; n;        int serialNum;        cin &gt;&gt; serialNum;        for (int j = 0; j &lt; serialNum; j++)        &#123;            int data;            cin &gt;&gt; data;            n.push_back(data);        &#125;        int compute = n[0];        for (int k = 1; k &lt; serialNum; k++)        &#123;            if (n[k] &gt;= compute)            &#123;                compute += n[k];                tempLength++;            &#125;            else            &#123;                maxLength = max(maxLength, tempLength);                tempLength = 1;                compute = n[k];            &#125;        &#125;        resV.push_back(maxLength);    &#125;    for (int i = 0; i &lt; num; i++)    &#123;        cout &lt;&lt; resV[i] &lt;&lt; endl;    &#125;    return 0;&#125;
+
+小易的公司一共有n名员工, 第i个人每个月的薪酬是xi万元。现在小易的老板向小易提了m次询问, 每次询问老板都会给出一个整数k, 小易要快速回答老板工资等于k的员工的数量。
+1234567891011121314151617181920212223242526272829303132333435363738394041424344#include &lt;iostream&gt;#include&lt;vector&gt;#include&lt;algorithm&gt;#include&lt;string&gt;#include&lt;unordered_map&gt;using namespace std;int main()&#123;    int people, question;    cin &gt;&gt; people &gt;&gt; question;    vector&lt;int&gt; resV(question, 0);    vector&lt;int&gt; salaryV;    vector&lt;int&gt; questionV;    unordered_map&lt;string, size_t&gt; questionMap;    for (int i = 0; i &lt; people; i++)    &#123;        int salary;        cin &gt;&gt; salary;        salaryV.push_back(salary);    &#125;    for (int i = 0; i &lt; question; i++)    &#123;        int data;        cin &gt;&gt; data;        questionV.push_back(data);        questionMap[to_string(data)];    &#125;    for (int i = 0; i &lt; people; i++)    &#123;        if (questionMap.find(to_string(salaryV[i])) != questionMap.end())        &#123;            ++questionMap[to_string(salaryV[i])];        &#125;    &#125;       for (int i = 0; i &lt; question; i++)    &#123;        cout &lt;&lt; questionMap.find(to_string(questionV[i]))-&gt;second &lt;&lt; endl;    &#125;    return 0;&#125;
+
+
+                        
+                    </p>
+                </a>
+            </div>
+
+            
+                <div class="post-footer">
+                    
+                        <i class="fa fa-folder-open-o"></i>
+                        <a class="category-link" href="/categories/Algorithm/">Algorithm</a>
+
+                        
+                            <span class="dotted">|</span>
+                        
+
+                    
+                    
+                        <i class="fa fa-tags"></i>
+                        <a class="tag-link" href="/tags/Algorithm/">Algorithm</a>
+                    
+                </div>
+            
+        </article>
+    
+
+    
+        <article class="box post post-item">
+            <div class="post-title"><a href="/2020/07/26/百度之星2020-1003-Permutation/">百度之星2020---1003.Permutation</a></div>
+            <div class="post-meta">
+                
+                <i class="fa fa-calendar"></i> <time>2020-07-26</time>
+                <span class="dotted">|</span>
+                <i class="fa fa-user"></i> 
+            </div>
+
+            <div class="post-excerpt">
+                <a href="/2020/07/26/百度之星2020-1003-Permutation/">
+                    <p>
+                        
+                            Problem Description
+一开始有 n个数，他们按 1…n的顺序排列，要求交换最多 m对数字（同一个数字可以参与多次交换），使得逆序对数目最大。
+对于一个序列 A，如果存在正整数 i, j使得1≤i&lt;j≤n 而且 A[i] &gt; A[j]，则 &lt;A[i],A[j]&gt; 这个有序对称为 A的一个逆序对。
+Input
+第一行一个正整数test (1≤test≤100000) 表示数据组数。
+对于每组数据，一行两个整数 n，m (1≤n≤1000000,0≤m≤1000000) 表示数字个数和最多可以交换的数字对数。
+Output
+对于每组数据，一行一个整数表示答案。
+Sample Input
+123456761 12 02 13 14 14 2
+
+Sample Output
+123456001356
+
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071#include &lt;iostream&gt;#include&lt;vector&gt;#include&lt;algorithm&gt;using namespace std;// 对每个（n, 1）结果都为：2 * n - 3int com(int n)&#123;    int com = 2 * n - 3;    return com;&#125;// 把（n, m）转换为（n, 1）, (n -2, 1)...(n - 2m + 2, 1)之和的形式并利用com()计算结果int arr(int n, int m)&#123;    int res = 0;    for (int i = 0; i &lt; m; i++)    &#123;        res += com(n - 2 * i);        //cout &lt;&lt; i &lt;&lt;" "&lt;&lt; res&lt;&lt;endl;    &#125;    return res;&#125;vector&lt;int&gt; compute() &#123;        int groupNum;    cin &gt;&gt; groupNum;    vector&lt;int&gt; output;    for (int i = 0; i &lt; groupNum; i++)    &#123;        int n;        int m;        //cout &lt;&lt; "choiseNum:" &lt;&lt; choiseNum &lt;&lt; endl;        cin &gt;&gt; n;            //cout &lt;&lt; "b:" &lt;&lt; b &lt;&lt; endl;        cin &gt;&gt; m;            //cout &lt;&lt; "c:" &lt;&lt; c &lt;&lt; endl;        if (n == 1 || m == 0)        &#123;            output.push_back(0);        &#125;        else &#123;            if (2 * m &lt; n)            &#123;                int res = arr(n, m);                output.push_back(res);            &#125;            else             &#123;                m = n / 2;                int res = arr(n, m);                output.push_back(res);            &#125;        &#125;        &#125;    return output;    &#125;int main()&#123;    vector&lt;int&gt; res = compute();    for (int i = 0; i &lt; res.size(); i++)    &#123;        //cout &lt;&lt; res[i];        printf("%d\n", res[i]);    &#125;    return 0;&#125;
+
+
+                        
+                    </p>
+                </a>
+            </div>
+
+            
+                <div class="post-footer">
+                    
+                        <i class="fa fa-folder-open-o"></i>
+                        <a class="category-link" href="/categories/Algorithm/">Algorithm</a>
+
+                        
+                            <span class="dotted">|</span>
+                        
+
+                    
+                    
+                        <i class="fa fa-tags"></i>
+                        <a class="tag-link" href="/tags/Algorithm/">Algorithm</a>
+                    
+                </div>
+            
+        </article>
+    
+
+    
+        <article class="box post post-item">
+            <div class="post-title"><a href="/2020/07/26/百度之星2020-1002-Game/">百度之星2020---1002.Game</a></div>
+            <div class="post-meta">
+                
+                <i class="fa fa-calendar"></i> <time>2020-07-26</time>
+                <span class="dotted">|</span>
+                <i class="fa fa-user"></i> 
+            </div>
+
+            <div class="post-excerpt">
+                <a href="/2020/07/26/百度之星2020-1002-Game/">
+                    <p>
+                        
+                            Problem Description
+Alice 和 Bob 在玩游戏。
+桌面上有两堆金币，少的那堆有 x 个金币，多的那堆有 2x 个金币。
+假设金币可以被无限细分。Alice 和 Bob 事先都不知道 x是几，但是他们都知道 x是一个 (0, 1]之间均匀分布的随机实数。
+Alice 会等概率的被分配到其中的一堆金币，Bob 会得到另一堆。x的值和两堆金币的分配是相互独立的。
+拿到金币以后，Alice 会马上数清自己拿到多少金币。然后 Alice 可以选择是否和 Bob 那堆换。
+给定 Alice 拿到的金币数目，请问 Alice 要不要交换，使得她期望能得到的金币数目更多？
+如果交换期望得到的金币数目多于不交换期望得到的金币数目，输出交换，否则不交换。
+Input
+第一行一个正整数test (1≤test≤200000) 表示数据组数。
+接下来每行一个小数p(0&lt;p≤2)，p最多保留五位小数，表示 Alice 拿到的金币数目。
+Output
+对于每组数据，输出 Yes 表示需要交换，输出 No 表示不要交换。
+Sample Input
+1211.00000
+
+Sample Output
+1Yes
+
+12345678910111213141516171819202122232425262728293031323334353637383940414243444546#include &lt;iostream&gt;#include&lt;vector&gt;#include&lt;algorithm&gt;#include &lt;string&gt;using namespace std;vector&lt;string&gt; compute()&#123;    int groupNum;    std::cin &gt;&gt; groupNum;    vector&lt;string&gt; output;    for (int i = 0; i &lt; groupNum; i++)    &#123;        float num;        std::cin &gt;&gt; num;        //float exception;        if (num &gt; 1)        &#123;            output.push_back("No");        &#125;        else        &#123;            if (2 * num * 0.5 + num / 2 * 0.5 &gt; num)            &#123;                output.push_back("Yes");            &#125;            else            &#123;                output.push_back("No");            &#125;        &#125;    &#125;    return output;&#125;int main()&#123;    vector&lt;string&gt; res = compute();    for (int i = 0; i &lt; res.size(); i++)    &#123;        //cout &lt;&lt; res[i];        printf("%s\n", res[i].c_str());    &#125;    return 0;&#125;
+
+
+                        
+                    </p>
+                </a>
+            </div>
+
+            
+                <div class="post-footer">
+                    
+                        <i class="fa fa-folder-open-o"></i>
+                        <a class="category-link" href="/categories/Algorithm/">Algorithm</a>
+
+                        
+                            <span class="dotted">|</span>
+                        
+
+                    
+                    
+                        <i class="fa fa-tags"></i>
+                        <a class="tag-link" href="/tags/Algorithm/">Algorithm</a>
+                    
+                </div>
+            
+        </article>
+    
+
+
+
+    <nav class="page-nav">
+        <a class="extend prev" rel="prev" href="/tags/Algorithm/">Prev</a><a class="page-number" href="/tags/Algorithm/">1</a><span class="page-number current">2</span><a class="page-number" href="/tags/Algorithm/page/3/">3</a><a class="extend next" rel="next" href="/tags/Algorithm/page/3/">Next</a>
+    </nav>
+
+            </div>
+            <div class="aside">
+    
+        <div class="box widget">
+    <div class="introduction">
+        <p><img src="/images/avatar.jpg" alt="head-sculpture"></p>
+        <p class="name">
+            CHAsencenge
+        </p>
+        <p class="slogan">解字</p>
     </div>
-  
-
-  
-  
-
-  
-  
-
-  </header>
-
-    <!-- 标签归档 -->
-
-<!-- post list container -->
-<div class="body-container float">
-  <div class="content-container article-list">
-    <div class="card-container card-articles">
-      <div class="card-wrap">
+</div>
+    
         
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover20.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/08/24/剑指offer/" itemprop="url"></a>
-              
-              <h2 class="article-title"></h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/08/24/剑指offer/" class="article-date">
-    <time datetime="2020-08-24T06:51:21.000Z" itemprop="datePublished">2020-08-24</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-              </div>
-            </article>
-          </div>
+<div class="box widget">
+    <div class="title">Recent</div>
+    <ul class="item-box">
         
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover29.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/08/18/dp专题/" itemprop="url"></a>
-              
-              <h2 class="article-title">dp专题</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/08/18/dp专题/" class="article-date">
-    <time datetime="2020-08-18T07:54:15.000Z" itemprop="datePublished">2020-08-18</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-              </div>
-            </article>
-          </div>
+            
+                <li><a href="/2020/11/30/手撸算法终版/">手撸算法终版</a></li>
+            
         
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover32.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/08/03/LeetCode-top刷题/" itemprop="url"></a>
-              
-              <h2 class="article-title">LeetCode top100刷题</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/08/03/LeetCode-top刷题/" class="article-date">
-    <time datetime="2020-08-03T15:15:27.000Z" itemprop="datePublished">2020-08-03</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-              </div>
-            </article>
-          </div>
+            
+                <li><a href="/2020/10/29/哈希专题/">哈希专题</a></li>
+            
         
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover31.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/08/02/LeetCode周赛/" itemprop="url"></a>
-              
-              <h2 class="article-title">LeetCode200周赛</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/08/02/LeetCode周赛/" class="article-date">
-    <time datetime="2020-08-02T14:18:15.000Z" itemprop="datePublished">2020-08-02</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-              </div>
-            </article>
-          </div>
+            
+                <li><a href="/2020/10/29/特殊技巧专题/">特殊技巧专题</a></li>
+            
         
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover32.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/08/01/bfs专题/" itemprop="url"></a>
-              
-              <h2 class="article-title">LeetCode广度优先搜索</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/08/01/bfs专题/" class="article-date">
-    <time datetime="2020-08-01T10:13:29.000Z" itemprop="datePublished">2020-08-01</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-              </div>
-            </article>
-          </div>
+            
+                <li><a href="/2020/10/29/栈和队列专题/">栈和队列专题</a></li>
+            
         
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover34.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/08/01/字节夏令营20游戏程序笔试题/" itemprop="url"></a>
-              
-              <h2 class="article-title">字节夏令营20游戏程序笔试题</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/08/01/字节夏令营20游戏程序笔试题/" class="article-date">
-    <time datetime="2020-08-01T03:42:48.000Z" itemprop="datePublished">2020-08-01</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-              </div>
-            </article>
-          </div>
+            
+                <li><a href="/2020/10/28/树图专题/">树专题</a></li>
+            
         
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover6.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/31/网易20秋招Unity工程师笔试编程题/" itemprop="url"></a>
-              
-              <h2 class="article-title">网易20秋招Unity工程师笔试编程题</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/31/网易20秋招Unity工程师笔试编程题/" class="article-date">
-    <time datetime="2020-07-31T14:25:33.000Z" itemprop="datePublished">2020-07-31</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-              </div>
-            </article>
-          </div>
+            
+                <li><a href="/2020/10/28/空间换时间专题/">空间换时间专题</a></li>
+            
         
-          
-          <div class="card-item large img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover15.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/26/百度之星2020-1003-Permutation/" itemprop="url"></a>
-              
-              <h2 class="article-title">百度之星2020---1003.Permutation</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/26/百度之星2020-1003-Permutation/" class="article-date">
-    <time datetime="2020-07-26T10:04:53.000Z" itemprop="datePublished">2020-07-26</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-              </div>
-            </article>
-          </div>
+            
+                <li><a href="/2020/10/25/C-Lambda表达式/">C++ Lambda表达式</a></li>
+            
         
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover14.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/26/百度之星2020-1002-Game/" itemprop="url"></a>
-              
-              <h2 class="article-title">百度之星2020---1002.Game</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/26/百度之星2020-1002-Game/" class="article-date">
-    <time datetime="2020-07-26T10:04:18.000Z" itemprop="datePublished">2020-07-26</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-              </div>
-            </article>
-          </div>
+            
+                <li><a href="/2020/10/16/双指针专题/">双指针专题</a></li>
+            
         
-          
-          <div class="card-item large img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover18.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/07/26/百度之星2020-1001-Discount/" itemprop="url"></a>
-              
-              <h2 class="article-title">百度之星2020---1001.Discount</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/07/26/百度之星2020-1001-Discount/" class="article-date">
-    <time datetime="2020-07-26T10:03:53.000Z" itemprop="datePublished">2020-07-26</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/Algorithm/">Algorithm</a>
-              </div>
-            </article>
-          </div>
-        
-      </div>
-    </div>
-  </div>
+    </ul>
 </div>
 
-<!-- page container -->
-
-  <nav class="page-container">
     
-    <a class="extend prev" rel="prev" href="/tags/Algorithm/">ʚ</a><a class="page-number" href="/tags/Algorithm/">1</a><span class="page-number current">2</span>
-  </nav>
-
-
-    <!-- footer container -->
-<footer id="footer" class="footer">
-  <div class="footer-container">
-    
-    <div class="social-icons social-icons-footer">
-      <a href="mailto:958198376@qq.com" target="_blank" rel="noopener noreferrer">
-  <svg class="icon icon-email" viewbox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
-    <path d="M490.338462 592.738462c11.815385 11.815385 29.538462 11.815385 41.353846 0l445.046154-413.538462c7.876923-15.753846 5.907692-41.353846-25.6-41.353846l-880.246154 1.969231c-23.630769 0-43.323077 21.661538-25.6 41.353846l445.046154 411.569231zM984.615385 340.676923c0-19.692308-23.630769-31.507692-39.384616-17.723077L596.676923 643.938462c-23.630769 21.661538-53.169231 33.476923-84.676923 33.476923s-61.046154-11.815385-84.676923-31.507693L80.738462 322.953846c-15.753846-13.784615-39.384615-3.938462-39.384616 17.723077C39.384615 334.769231 39.384615 787.692308 39.384615 787.692308c0 43.323077 35.446154 78.769231 78.769231 78.76923h787.692308c43.323077 0 78.769231-35.446154 78.769231-78.76923V340.676923z"/>
-  </svg>
-</a><a href="https://github.com/CHAsencenge" target="_blank" rel="noopener noreferrer">
-  <svg class="icon icon-github" viewbox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
-    <path d="M64.6 512c0 195.6 125.4 361.9 300.1 422.9 23.5 5.9 19.9-10.8 19.9-22.2v-77.6c-135.8 15.9-141.3-74-150.5-89-18.5-31.5-61.9-39.5-49-54.5 31-15.9 62.5 4 98.9 58 26.4 39.1 77.9 32.5 104.1 26 5.7-23.5 17.9-44.5 34.7-60.9-140.7-25.2-199.4-111.1-199.4-213.3 0-49.5 16.4-95.1 48.4-131.8-20.4-60.6 1.9-112.4 4.9-120.1 58.2-5.2 118.5 41.6 123.3 45.3 33.1-8.9 70.8-13.7 112.9-13.7 42.4 0 80.3 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.4-43.9 2.9 7.7 24.7 58.3 5.5 118.1 32.5 36.8 49 82.8 49 132.4 0 102.3-59 188.3-200.2 213.2 23.5 23.3 38.1 55.5 38.1 91.1v112.7c0.8 9 0 17.9 15.1 17.9C832.7 877 960.4 709.4 960.4 512.1c0-247.5-200.6-447.9-447.9-447.9C265 64.1 64.6 264.5 64.6 512z"/>
-  </svg>
-</a><a href="https://weibo.com/u/5701921017" target="_blank" rel="noopener noreferrer">
-  <svg class="icon icon-weibo" viewbox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
-    <path d="M385.682429 733.696q11.995429-19.456 6.290286-39.424t-25.746286-28.598857q-19.456-7.972571-41.691429-0.585143t-34.304 26.258286q-12.580571 19.456-7.460571 39.131429t24.576 28.891429 42.569143 1.462857 35.693714-27.136zM439.442429 664.576q4.534857-7.460571 1.974857-15.140571t-10.020571-10.605714q-7.972571-2.852571-16.310857 0.292571t-12.288 10.605714q-9.728 17.700571 7.460571 25.746286 7.972571 2.852571 16.603429-0.292571t12.580571-10.605714zM538.843572 725.723429q-25.746286 58.294857-90.258286 85.723429t-128 6.875429q-61.147429-19.456-84.260571-72.265143t3.730286-107.154286q26.843429-53.174857 86.601143-79.433143t120.32-10.825143q63.414857 16.603429 90.550857 68.315429t1.462857 108.836571zM717.165858 634.294857q-5.12-54.857143-50.834286-97.133714t-119.149714-62.317714-156.891429-11.995429q-127.414857 13.165714-211.163429 80.822857t-75.702857 151.113143q5.12 54.857143 50.834286 97.133714t119.149714 62.317714 156.891429 11.995429q127.414857-13.165714 211.163429-80.822857t75.702857-151.113143zM893.147572 636.562286q0 38.838857-21.138286 79.725714t-62.317714 78.262857-96.256 67.145143-129.170286 47.396571-154.550857 17.700571-157.110857-19.163429-137.435429-53.174857-98.011429-86.308571-37.156571-114.029714q0-65.682286 39.716571-139.995429t112.859429-147.456q96.548571-96.548571 195.145143-134.875429t140.873143 4.022857q37.156571 36.571429 11.410286 119.442286-2.267429 7.972571-0.585143 11.410286t5.705143 4.022857 8.265143-0.292571 7.68-1.974857l3.437714-1.170286q79.433143-33.718857 140.580571-33.718857t87.405714 34.889143q25.746286 35.986286 0 101.741714-1.170286 7.460571-2.56 11.410286t2.56 7.168 6.875429 4.315429 9.728 3.437714q32.548571 10.313143 58.88 26.843429t45.714286 46.592 19.456 66.56zM850.871001 279.990857q23.990857 26.843429 31.158857 62.025143t-3.730286 67.145143q-4.534857 13.165714-16.822857 19.456t-25.453714 2.267429q-13.165714-4.534857-19.456-16.822857t-2.267429-25.453714q11.410286-35.986286-13.677714-63.414857t-61.147429-19.968q-13.677714 2.852571-25.746286-4.534857t-14.262857-21.138286q-2.852571-13.677714 4.534857-25.453714t21.138286-14.555429q34.304-7.460571 68.022857 3.145143t57.709714 37.449143zM954.295001 186.88q49.737143 54.857143 64.292571 127.122286t-7.68 138.020571q-5.12 15.433143-19.456 22.820571t-29.696 2.267429-22.820571-19.456-2.852571-29.696q16.018286-46.884571 5.705143-98.304t-45.714286-90.258286q-35.401143-39.424-84.553143-54.564571t-98.889143-4.827429q-16.018286 3.437714-29.696-5.412571t-17.115429-24.868571 5.412571-29.403429 24.868571-16.822857q70.290286-14.848 139.410286 6.582857t118.857143 76.873143z"/>
-  </svg>
-</a><a href="https://music.163.com/#/user/home?id=92407481" target="_blank" rel="noopener noreferrer">
-  <svg class="icon icon-cloudmusic" viewbox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
-    <path d="M952.17867 503.263237a341.054956 341.054956 0 0 0-56.853199-113.706399 408.604266 408.604266 0 0 0-109.723463-98.352823 304.662484 304.662484 0 0 0-143.257215-42.077792L621.305897 170.238394a40.343287 40.343287 0 0 1 10.792472-36.392472 56.88532 56.88532 0 0 1 36.392472-18.758344 102.785445 102.785445 0 0 1 56.853199 18.758344c6.263488 3.404768 10.792472 9.090088 17.05596 13.073024a57.335006 57.335006 0 0 0 82.999247-70.632873 66.521455 66.521455 0 0 0-22.74128-27.848432 237.691343 237.691343 0 0 0-89.262735-43.202007A170.559598 170.559598 0 0 0 625.288833 6.42409a167.026349 167.026349 0 0 0-60.836135 37.516688 164.328231 164.328231 0 0 0-40.921456 51.713927 156.908407 156.908407 0 0 0-8.54404 113.706399l13.651192 52.870264a284.298118 284.298118 0 0 0-158.064743 109.209535 256.963614 256.963614 0 0 0-43.202007 156.908407 248.419573 248.419573 0 0 0 13.651192 74.487327 205.281807 205.281807 0 0 0 80.718695 104.616312 185.945295 185.945295 0 0 0 136.447679 25.696361 193.879046 193.879046 0 0 0 156.330238-196.705646L708.802008 503.263237c-11.948808-46.060728-24.443664-91.543287-35.814304-137.025847a182.283563 182.283563 0 0 1 47.763112 18.180176 316.611292 316.611292 0 0 1 47.763111 34.690088A239.907654 239.907654 0 0 1 840.752823 529.987453a284.169636 284.169636 0 0 1 0 158.064743 252.241907 252.241907 0 0 1-21.584943 51.167879 308.741782 308.741782 0 0 1-168.279047 144.542033 387.918695 387.918695 0 0 1-130.184191 23.319448 332.607277 332.607277 0 0 1-155.206022-37.516688A367.233124 367.233124 0 0 1 194.87478 672.666499a373.014806 373.014806 0 0 1-20.460727-180.806022A366.173149 366.173149 0 0 1 406.869762 198.536512a57.399247 57.399247 0 0 0 13.073023-100.055207 76.189711 76.189711 0 0 0-63.662735-3.404768A479.815307 479.815307 0 0 0 68.705646 436.163614a488.905395 488.905395 0 0 0 129.027855 450.84266 454.857716 454.857716 0 0 0 248.997741 131.886574 470.885822 470.885822 0 0 0 138.117942 0A454.889837 454.889837 0 0 0 773.042911 952.949561a427.523212 427.523212 0 0 0 170.559598-209.232622 417.276788 417.276788 0 0 0 22.74128-109.209536 378.089837 378.089837 0 0 0-14.165119-131.244166z m-412.747804 118.845671a72.174655 72.174655 0 0 1-56.8532-10.792471 98.352823 98.352823 0 0 1-37.516687-61.382184 170.68808 170.68808 0 0 1 0-65.943287 133.042911 133.042911 0 0 1 33.533751-63.662735 181.35207 181.35207 0 0 1 80.718695-46.606776l39.219072 148.364367a204.189711 204.189711 0 0 1 5.107152 26.146048 79.594479 79.594479 0 0 1-64.208783 73.844918z"/>
-  </svg>
-</a>    </div>
-     
-    <p>&copy; 2020 <a href="/" target="_blank">CHAsencenge</a></p>
+        
+    <div class="box widget">
+        <div class="title">Categories</div>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/GameDev/">GameDev</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Laya/">Laya</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Light-Frequency-Authenticate/">Light Frequency Authenticate</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/LoRa/">LoRa</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Unity/">Unity</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Unity/Unreal/">Unreal</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Writing/">Writing</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cpp/">cpp</a><span class="category-list-count">3</span></li></ul>
+    </div>
 
     
-      <p id="hitokoto"></p>
-      <script src="https://v1.hitokoto.cn/?c=a&amp;encode=js&select=%23hitokoto" defer></script>
-    
-
-    
-
-    <p>Powered by <a href="https://hexo.io" target="_blank" rel="noopener noreferrer">Hexo</a> Theme - <a href="https://github.com/miiiku/flex-block" target="_blank" rel="noopener noreferrer author">flex-block</a></p>
+        
+  <div class="box widget">
+    <div class="title">Archives</div>
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">2020-11</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">2020-10</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">2020-09</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">2020-08</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">2020-07</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">2019-11</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">2019-09</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">2019-07</a><span class="archive-list-count">6</span></li></ul>
   </div>
+
+    
+        
+    <div class="box widget">
+        <div class="title">Tags</div>
+        <div class="item-box cloud-label">
+            <a href="/tags/Algorithm/" style="font-size: 20px;">Algorithm</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/GameDev/" style="font-size: 14px;">GameDev</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/Hexo/" style="font-size: 12px;">Hexo</a> <a href="/tags/Laya/" style="font-size: 16px;">Laya</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Python/" style="font-size: 16px;">Python</a> <a href="/tags/Unity/" style="font-size: 18px;">Unity</a> <a href="/tags/Unreal/" style="font-size: 10px;">Unreal</a> <a href="/tags/Writing/" style="font-size: 12px;">Writing</a> <a href="/tags/cpp/" style="font-size: 14px;">cpp</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/lightFre/" style="font-size: 10px;">lightFre</a> <a href="/tags/writing/" style="font-size: 10px;">writing</a> <a href="/tags/远程登录/" style="font-size: 10px;">远程登录</a>
+        </div>
+    </div>
+
+    
+</div>
+        </section>
+        <footer class="footer">
+    <div class="global-width footer-box">
+        <div class="copyright">
+            <span>Copyright &copy; 2019</span>
+            <span class="dotted">|</span>
+            <span>Powered by <a href="https://hexo.io/">Hexo</a></span>
+            <span class="dotted">|</span>
+            <span>Theme by <a href="javascript:">Loren</a></span>
+            <span class="dotted">|</span>
+            <span><a href="http://www.beian.miit.gov.cn">浙ICP备18016660号-1</a></span>
+        </div>
+    </div>
 </footer>
-  </div>
+    </div>
 
-  <div class="back-to-top-fixed">
-    <svg class="icon icon-back-to-top" viewbox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
-  <path d="M725.333333 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8l-213.333333-213.333333c-17.066667-17.066667-17.066667-42.666667 0-59.733333s42.666667-17.066667 59.733333 0l213.333333 213.333333c17.066667 17.066667 17.066667 42.666667 0 59.733333C746.666667 422.4 738.133333 426.666667 725.333333 426.666667z"/>
-  <path d="M298.666667 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8-17.066667-17.066667-17.066667-42.666667 0-59.733333l213.333333-213.333333c17.066667-17.066667 42.666667-17.066667 59.733333 0s17.066667 42.666667 0 59.733333l-213.333333 213.333333C320 422.4 311.466667 426.666667 298.666667 426.666667z"/>
-  <path d="M512 896c-25.6 0-42.666667-17.066667-42.666667-42.666667L469.333333 170.666667c0-25.6 17.066667-42.666667 42.666667-42.666667s42.666667 17.066667 42.666667 42.666667l0 682.666667C554.666667 878.933333 537.6 896 512 896z"/>
-</svg> 
-  </div>
-
-  
-  
-
-
-  <!-- aplayer 音频 start -->
-  <link rel="stylesheet" href="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.css">
-  <script type="text/javascript" src="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.js"></script>
-  <script type="text/javascript">
-    const aplayer = document.querySelectorAll(".aplayer");
-    aplayer && initaplayer(aplayer);
-    function initaplayer(els) {
-      let elsArr = Array.from(els);
-      elsArr.forEach(el => {
-        new APlayer({
-          container: el,
-          audio: { ...el.dataset },
-          theme: "#b7daff",
-          lrcType: 3,
-          autoplay: false,
-          loop: false,
-          mutex: true,
-        });
-      });
-    }
-  </script>
-  <!-- aplayer 音频 end -->
-  
-
-<!-- dplayer 视频 start -->
-<script type="text/javascript" src="https://unpkg.com/dplayer@1.25.1/dist/DPlayer.min.js"></script>
-<script type="text/javascript">
-  const dplayer = document.querySelectorAll(".dplayer");
-  dplayer && initDPlayer(dplayer);
-  function initDPlayer(els) {
-    let elsArr = Array.from(els);
-    elsArr.forEach(el => {
-      let url = el.dataset.url;
-      let cover = el.dataset.cover;
-      let subtitle = el.dataset.subtitle;
-
-      let options = {
-        container: el,
-        video: { url: url, pic: cover },
-        theme: "#b7daff",
-        autoplay: false,
-        loop: false,
-        mutex: true,
-      }
-
-      if (subtitle) {
-        options.subtitle = {
-          url: el.dataset.subtitle,
-        }
-      }
-      new DPlayer(options);
-    });
-  }
+<script>
+    hljs.initHighlightingOnLoad();
 </script>
-<!-- dplayer 视频 end -->
-
-
-<!-- waterfall 瀑布流 start -->
-<script src="/lib/waterfall.min.js"></script>
-<script type="text/javascript">
-
-const waterfalls = document.querySelectorAll(".waterfall-container");
-
-if (waterfalls && waterfalls.length > 0) {
-  waterfalls.forEach((waterfall, index) => {
-    let cls = "waterfall-container-" + index;
-    waterfall.classList.add(cls);
-    initWaterfall(cls, waterfall);
-  });
-}
-
-function initWaterfall(selector, el) {
-  const options = {};
-  if (Object.keys(el.dataset).length > 0) {
-    for (let k in el.dataset) {
-      options[k] = el.dataset[k];
-    }
-  }
-  waterfall(`.${selector}`, options);
-}
-</script>
-<!-- waterfall 瀑布流 end -->
-
-
-  <!-- zoom start -->
-  <script src="/lib/zoom.min.js"></script>
-  <script type="text/javascript">
-    document.querySelector(".article-content") && zoom(".article-content");
-  </script>
-  <!-- zoom end -->
-  
-
-
-
-  
-
-
-  
-
-
-  
-
-
-
-<script src="/js/script.js"></script>
-  
-  <!-- 尾部用户自定义相关内容 -->
-
 </body>
 </html>

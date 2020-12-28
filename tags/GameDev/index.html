@@ -1,359 +1,453 @@
 <!DOCTYPE html>
 <html lang="en">
 <head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="theme-color" content="#3367D6">
-  <link rel="apple-touch-icon" href="/icons-192.png">
-  <link rel="manifest" href="/manifest.json">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
 
-  
+
+
+
+    <meta name="keywords" content>
+
+
+
     <meta name="description" content="解字无果">
-  
 
-  
 
-  
-    <meta name="author" content="CHAsencenge">
-  
+<meta name="Robots" content="all">
 
-  
 
-  
+    <title>解字</title>
 
-  <title>Tag: GameDev | 解字</title>
 
-  
-
-  
-    <link rel="icon" href="/favicon.ico">
-  
-
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-    <link href="https://cdn.bootcss.com/highlight.js/9.15.6/styles/monokai-sublime.min.css" rel="stylesheet">
-  
-
-  <link rel="stylesheet" href="/css/style.css">
+<link rel="icon" href="/images/favicon.ico">
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/atom-one-dark.css">
+<link rel="stylesheet" href="/css/style.css">
+<script src="/js/highlight.min.js"></script>
 </head>
 <body>
-  <div class="root-container">
-    <!-- navbar -->
-<nav class="navbar">
-  <div class="navbar-content">
-    <!-- logo -->
-    <div class="navbar-logo">
-      <a href="/">
-        
-          解字
-        
-      </a>
+    <div class="main-container">
+        <header class="header">
+    <div class="global-width">
+        <nav class="nav-box">
+            
+                <a class="nav-item" href="/">Home</a>
+            
+                <a class="nav-item" href="/resume">Resume</a>
+            
+                <a class="nav-item" href="/mood" target="_blank">Mood</a>
+            
+                <a class="nav-item" href="/amusement/tetris" target="_blank">Amusement</a>
+            
+                <a class="nav-item" href="/about">About</a>
+            
+        </nav>
     </div>
-    <!-- link -->
-    <div class="navbar-link">
-      <div class="navbar-btn">
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-      <ul class="navbar-list">
-        
-          <li class="navbar-list-item"><a href="/">主页</a></li>
-        
-          <li class="navbar-list-item"><a href="/about">关于</a></li>
-        
-          <li class="navbar-list-item"><a href="/links">友链</a></li>
-        
-          <li class="navbar-list-item"><a href="/tags">标签</a></li>
-        
-          <li class="navbar-list-item"><a href="/categories">分类</a></li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
+</header>
+
+        <section class="content global-width">
+            <div class="main">
+                
+    
+        <article class="box post post-item">
+            <div class="post-title"><a href="/2020/10/12/UE学习笔记/">UE学习文档</a></div>
+            <div class="post-meta">
+                
+                <i class="fa fa-calendar"></i> <time>2020-10-12</time>
+                <span class="dotted">|</span>
+                <i class="fa fa-user"></i> 
+            </div>
+
+            <div class="post-excerpt">
+                <a href="/2020/10/12/UE学习笔记/">
+                    <p>
+                        
+                            UE4源码编译git clone源码
+运行Setup.bat下载依赖文件
+运行GenerateProjectFiles.bat生成工程文件
+运行UE.sln
+在vs打开的工程中，最上方的解决方案配置设置为Development Editor，启动项目设置为UE4，平台WIN64，右键UE4 – Build进行编译
+编译完成后按F5在vs中启动
+注意
+生成工程文件前可能会报错，根据报错信息可判断是否缺少相应的.NET Framework，如果缺少在vs installer中选中相应版本的vs – 修改 – 添加相应的.NET工具
+Epic Game Launcher中不能识别非公版的引擎，向编译版的引擎创建的工程中添加保管库中的素材时，点击添加到工程–显示所有工程–为相应工程手动选择对应的版本号即可添加素材（因为又编译版引擎创建的工程在Launcher中显示的版本标识为“其他”，不选择相应的版本号则素材或插件都会显示不兼容）
+项目打包项目打包注意事项启动地图构建项目时会从游戏默认地图开始，需要点击Project Settings — Maps &amp; Modes 设置game default map
+
+选择目标平台
+还要记得选择目标硬件(Target Hardware)
+编辑器查看方式
+细化平台性能控制
+打开Device Profiles以后点击想要修改的设备型号后面的扳手即可对其值进行修改
+
+Android设置和打包方式设置方式寻找UE4 Android Works文件夹，一般默认为C:/Program Files/Epic Games/UE_4_版本/Engine/Extras/Android Works/Win64
+安装后可看到CodeWorks Manager窗口
+在手机端，有时需找到usb driver才能使用，一般连数据线即可
+http://developer.android.com/tools/extras/oem-usb.html
+解锁设备时要开启开发者模式，开启usb调试
+在设置主页找到“已连接设备”选择启用文件传输
+在电脑上cmd输入adb devices，如果列出了自己的手机设备名，则准备就绪
+注意：
+手机开发者选项中不但需开启USB调试，还打开USB安装，允许通过USB安装应用
+打包方式为了更准确的测试，使用Play – Mobile Preview
+
+退出游戏方式： “~”打开控制台，输入quit game
+确保项目做好准备：
+Settings – Project Settings – Platforms – Android 
+页面顶部会有警告称项目尚未对Android完成配置，点击configure now
+设置文件包名称，格式为：com.MyGameCompany.MyCoolGame
+并完成项目命名
+如果要计划使用Google Play服务，向下滚动到Google Play Services并点击Configure Now，以将平台构建到游戏中
+
+构建到设备：
+
+测试并部署到自己的设备很方便，如果需要部署到其他设备，需打包
+
+双击生成的.bat项目可以将其安装到自己的Android设备上
+注意
+记得在项目设置 – Android勾选将游戏数据打包至.apk中
+UE4游戏框架 游戏架构的基类是GameMode，设置游戏规则，也分则处理生成玩家
+Pawn作为世界中的一个“代理”Actor，可由控制器处理 ，可接收输入并且可执行各种各样类似于玩家的动作（但不假定Pawn就是类人的）
+Character类人的Pawn，本身默认具有用于碰撞的CapsuleComponent（胶囊体组件）和CharacterMovementComponent（角色运动组件）；可进行基本的拟人运动、平滑地在网格上复制运动，并具有一些动画相关的功能
+控制PawnController负责管理Pawn的Actor，一般分为PlayerController和AIController，控制器可以“具有”一个Pawn并控制它
+HUD平视显示信息
+GameMode游戏的定义，包括像游戏规则和获胜条件这样的内容；仅存在于服务器上，一般在游戏过程中不会有太多数据改变，并且一定不会具有客户端需要的临时数据
+GameState包含游戏状态，包括像关联玩家的列表、分数、象棋游戏中的棋子位置或在开放世界中已经完成的任务列表
+存在于服务器和所有客户端上，可以自由地进行复制来保持同步
+PlayerState表示游戏中一个参与者的状态（AI没有PlayerState），适合包含的实例数据有：玩家姓名，分数，多人在线竞技场比赛中的级别，夺旗模式游戏中玩家当前是否占领旗帜
+所有玩家的PlayerStates在所有的机器上都存在，并且可以自由复制包持同步
+UE C++命名规则派生自Actor的类前缀为A
+派生自Object的类前缀为U
+派生自Swidget（Slate UI）的类前缀为S
+Enums的类前缀为E
+Interface类的前缀通常为I
+Template类的前缀为T
+其余类的前缀均为F
+布尔值用b前缀
+全局元素用G前缀
+输入参数用In前缀
+输出参数用Out前缀
+在API文档寻找类或函数进入UE4文档 –&gt; Unreal Engine API Reference –&gt; Contents
+Contents下面点击All classes或者All Functions查看所有的类和函数
+防止头文件被编译多次的两种方法（1）
+1234# ifndef _SOMEFILE_H_# define _SOMEFILE_H_......# endif
+
+（2）
+1# pragma once
+
+UCLASS()UCLASS 宏（在头文件）可用于标记从 UObject 派生的类，使 UObject 处理系统识别到它们
+GENERATED_BODY 宏不获取参数，但会对类进行设置，以支持引擎要求的基础结构。所有 UCLASS 均有此要求
+UPROPERTY()为将变量公开到虚幻引擎，需使其成为 UPROPERTY。利用此操作，可在启动游戏或加载保存的关卡时保留变量的值。带有空括号的 UPROPERTY 标记，将被添加到受其它影响的变量正上方
+UPROPERTY 支持改变虚幻引擎使用变量方式的参数。将变量设为可编辑，可添加 EditAnywhere 参数
+12UPROPERTY(EditAnywhere)int32 CountdownTime;
+
+然后该变量的修改便可在Details（细节面板）中进行
+UFUNCTION()UFUNCTION()宏把C++函数对反射系统公开，BlueprintCallable选项将对其蓝图虚拟机公开
+BlueprintCallable：该函数可以在蓝图或关卡蓝图图表中执行
+BlueprintImplementableEvent：此函数可以在蓝图或关卡蓝图图表内进行重载
+BlueprintNativeEvent：此函数将由蓝图进行重载，但同时也包含native类的执行。提供一个名称为[FunctionName]_Implementation的函数本体而非[FunctionName];自动生成的代码将包含转换程序,此程序在需要时会调用实施方式
+游戏客户端公开课学习文档
+                        
+                    </p>
+                </a>
+            </div>
+
+            
+                <div class="post-footer">
+                    
+                        <i class="fa fa-folder-open-o"></i>
+                        <a class="category-link" href="/categories/GameDev/">GameDev</a>
+
+                        
+                            <span class="dotted">|</span>
+                        
+
+                    
+                    
+                        <i class="fa fa-tags"></i>
+                        <a class="tag-link" href="/tags/GameDev/">GameDev</a>
+                    
+                </div>
+            
+        </article>
+    
 
     
-<!-- header container -->
-<header class="header-container">
+        <article class="box post post-item">
+            <div class="post-title"><a href="/2020/10/02/实时计算机图形学笔记/">实时计算机图形学笔记</a></div>
+            <div class="post-meta">
+                
+                <i class="fa fa-calendar"></i> <time>2020-10-02</time>
+                <span class="dotted">|</span>
+                <i class="fa fa-user"></i> 
+            </div>
 
-  
-  
+            <div class="post-excerpt">
+                <a href="/2020/10/02/实时计算机图形学笔记/">
+                    <p>
+                        
+                            
+                        
+                    </p>
+                </a>
+            </div>
 
-  
-  
+            
+                <div class="post-footer">
+                    
+                        <i class="fa fa-folder-open-o"></i>
+                        <a class="category-link" href="/categories/GameDev/">GameDev</a>
 
-  
-  
+                        
+                            <span class="dotted">|</span>
+                        
 
-  
-  
+                    
+                    
+                        <i class="fa fa-tags"></i>
+                        <a class="tag-link" href="/tags/GameDev/">GameDev</a>
+                    
+                </div>
+            
+        </article>
     
-    <div class="header-content">
-      <div class="post-image" style="background-image: url(https://chasencenge.github.io/links/Asset/cover44.jpg)"></div>
-      <div class="post-text">
-        <h1 class="title-wrap">GameDev</h1>
-        <h2 class="title-sub-wrap">当前标签下共有3篇文章</h2>
-      </div>
+
+    
+        <article class="box post post-item">
+            <div class="post-title"><a href="/2020/09/25/腾讯游戏开发精粹笔记/">腾讯游戏开发精粹笔记</a></div>
+            <div class="post-meta">
+                
+                <i class="fa fa-calendar"></i> <time>2020-09-25</time>
+                <span class="dotted">|</span>
+                <i class="fa fa-user"></i> 
+            </div>
+
+            <div class="post-excerpt">
+                <a href="/2020/09/25/腾讯游戏开发精粹笔记/">
+                    <p>
+                        
+                            一、游戏数学1.基于SDF的摇杆移动SDF：SDF全称Signed Distance Field（有号距离场），定义为空间中的点到形状表面的最小距离，并用正值表示点在形状外部，负值表示点在形状内部。
+为什么要使用SDF？空间换时间，在O(1)时间复杂度计算出是否碰撞。
+如何判断碰撞？基于已有SDF信息的栅格，使用其邻近四个角的SD信息进行插值，得到当前点的SD，若SD&lt;=0, 则判定该点和碰撞物发生了碰撞。
+插值获得任意点的SD值：123456789101112//计算位置pos的SD值//每个栅格的实际尺寸为grid，横向栅格数量为widthpublic float Sample(Vector2 pos)&#123;    pos = pos / grid;    int fx = Mathf.FloorToInt(pos.x);    int fy = Mathf.FloorToInt(pos.y);    float rx = pos.x - fx;    float ry = pos.y - fy;    int i = fy * width + fx;    return (sdf[i]*(1-rx) + sdf[i+1]*rx)*(1-ry) + (sdf[i+width]*(1-rx) + sdf[i+width+1]*rx)*ry;&#125;
+
+如何实现发生碰撞后绕障碍物滑行？
+v表示摇杆方向，与障碍物发生碰撞后需要沿着v’方向滑行，n为碰撞法线，v’和v有以上关系。
+如何获取碰撞法线n？利用SDF的梯度作为碰撞法线。
+求梯度方向：12345678public Vector2 Gradient(Vector2 pos)&#123;    float delta = 1f;    return 0.5f * new Vector2(    Sample(new Vector2(pos.x+delta, pos.y)) - Sample(new Vector2(pos.x-delta, pos.y)),     Sample(new Vector2(pos.x, pos.y+delta)) - Sample(new Vector2(pos.x, pos.y-delta))    );&#125;
+
+发生碰撞后实际移动方向代码：123456789101112131415161718192021222324252627282930//获取在移动过程使用SDF得到的最佳位置public Vector2 GetValidPositionBySDF(Vector2 pos, Vector2 dir, float speed)&#123;    Vector2 newPos = pos + dir * speed;    float SD = Sample(newPos);        //不可行走    if(SD &lt; playerRadius)    &#123;        Vector2 gradient = Gradient(newPos);        Vector2 adjustDir = dir - gradient * Vector2.Dot(gradient, dir);        newPos = pos + adjustDir.normalized * speed;    &#125;        //多次迭代    for(int i = 0; i &lt; 3; i++)    &#123;        SD = Sample(newPos);        if(SD &gt;= playerRadius)            break;        newPos += Gradient(newPos) * (playerRadius - SD);    &#125;        //避免往返    if(Vector2.Dot(newPos - pos, dir) &lt; 0)    &#123;        newPos = pos;    &#125;    return newPos;&#125;
+
+角色不能越过障碍物的远距离移动用于当校色进行瞬时远距离移动但不能越过障碍物的情况。
+使用连续碰撞检测规避穿越障碍物的情况，具体方法是圆盘投射（Disk Casting）。
+使用圆盘投射计算位置：123456789101112131415//oriPos:原始位置，dir:冲刺方向，radius:角色半径，maxDist:最大冲刺距离public Vector2 DiskCast(Vector2 origin, Vector2 dir, float radius, float maxDist)&#123;    float t = 0f;    while(true)    &#123;        Vector2 p = origin + dir * t;        float sd = Sample(p);        if(sd &lt;= radius)            return p;        t += sd - radius;        if(t &gt;= maxDist)            return origin + dir * maxDist;    &#125;&#125;
+
+动态地图在均匀网格地图上，当角色在一帧内的行走距离不会超过单个网格大小时，可以通过检测每一帧与玩家所在网格相邻的8个网格的碰撞来实现规避障碍物的功能。
+
+红色为障碍物区域，虚线圆圈为角色。
+实现规避障碍物：12345678910111213141516171819202122232425262728293031323334353637383940414243float EvalSDF(Vector2 p)&#123;    //坐标离散成网格    int x = posToGridX(p);    int y = posToGridY(p);    float dist = cellSize;    int center = grid[y * width + x];    //WALL格子不可行走    //检测与玩家最近的距离    if(center == WALL)    &#123;        dist = min(dist, sdBox(centerPos - vecTopLeft, cellExtents));    &#125;    int topleft = grid[(y - 1) * width + (x - 1)];    if(topleft == WALL)    &#123;        dist = min(dist, sdBox(centerPos - vecTop, cellExtents));    &#125;    //...    return dist;&#125;Vector2 EvalGradient(Vector2 p)&#123;    //...&#125;void Update()&#123;    //新目标位置    Vector2 nextPlayerPos = playerPos + moveDir * moveSpeed;    //目标位置的最近距离    float d = EvalSDF(nextPlayerPos);    //距离小于玩家半径，有穿插    if(d &lt; playerRadius)    &#123;        //计算最近表面的法线        Vector2 n = EvalGradient(nextPlayerPos);        //将玩家推出障碍区域        nextPlayerPos = nextPlayerPos + n * (playerRadius - d);    &#125;    playerPos = nextPlayerPos;&#125;
+
+场景中的其他障碍物，如较大的汽车、其他玩家等，可通过矩形、圆形的SDF函数来表示，并将结果与网格地图取出的SDF做交集操作。
+圆盘SDF:12345//x为任意点坐标，c为圆盘中心，r为圆盘半径float sdCircle(Vector2 x, Vector2 c, float r)&#123;    return (x - c).length() - r;&#125;
+
+矩形SDF:d = (x - c)R(-θ) - b
+Φx = min(max(dx, dy), 0) + ||max(d, 0)||
+
+1234567//x为任意点坐标，c为矩形中心，rot为矩形旋转角度，b为矩形边长float sdBox(Vector2 x, Vector c, Vector2 rot, Vector2 b)&#123;    Vector2 p = Vector2.Dot(x - c, -rot);    Vector2 d = Vector2.Abs(p) - b;    return Mathf.Min(Mathf.Max(d.x, d.y), 0f) + Vector2.Max(d, Vector2.zero).Length(); &#125;
+
+2. 高性能的定点数实现方案用途解决不同平台上的浮点数运算结果不同而导致的对帧同步的严重影响。
+32位浮点数结构
+S=0时为正数，S=1时为负数
+基于整数的二进制表示的定点数原理设a为定点数，f(a)为这个定点数对应的整数值
+a = 2^-n^f(a)
+32和64位定点数表示原理
+32位定点数表示的范围：[-2^21^, 2^21^ - 2^-10^]
+64位定点数表示的范围：[-2^31^, 2^31^ - 2^-32^]
+定点数四则运算a + b = 2^-n^ (f(a) + f(b))
+a - b = 2^-n^ (f(a) - f(b))
+ab = (2^-n^)^2^ f(a) f(b) = 2^-n^ (2^-n^ f(a) f(b))
+a / b = 2^-n^ (2^n^ f(a) / f(b))
+二、游戏物理1. 一种高效的弧长参数化路径系统需求在跑酷游戏中，人物的移动靠路径引导；想要实现“弧长参数化”的特性—即令曲线参数t与曲线长度为L为线性关系，从而将参数t的线性变化映射到长度的线性变化上，实现曲线上的匀线速度运动。
+曲线路径系统需求：路径布置简单，最直观的就是布置路点。
+修改具有局部性，修改一个路点只会影响上下游。
+曲线至少具有C1连续性，满足基本的光滑需求。
+两个路点之间的曲线可以是异面曲线，等同于可以自由控制邻接路点曲线的方向。
+与曲线相关的计算尽量简单，尽量少地进行迭代计算。
+端点间二次样条的构建为什么要拼接两条二次曲线？要求两个路点可以自由控制位置和朝向（切线方向），单一的一段二次曲线自由度不够。
+二次样条曲线：
+起点P0、起点切线T0、终点P1、终点切线T1。
+f1(t) = a1t^2^ + b1t + c1
+f2(t) = a2t^2^ + b2t + c2
+为了将分段曲线当作一段曲线使用，需将两段曲线的参数t归一化到统一的[0, 1]范围内，fs(0) = P0，fs(1) = P1。
+
+例如当L1长度为4，L2长度为6，归一化t = 0.3时，fs(t) = fs(0.3) = f1(0.3 x 10 / 4) = f1(3/4)，恰好对应L1的四分之三位置。
+路径的构建路径为路点间曲线的拼接，切线的设置模仿Catmull-Rom这类Cardinal曲线的做法：路点i处的切线由路点i-1和路点i+1的位置决定：
+Ti = τ(Pi+1 - Pi-1), τ为切线的缩放因子（张弛因子）
+
+使用邻接路点的信息构建曲线时，将邻接路点转换到自己的局部坐标系下，在上图的构建中，Pi处于坐标原点且旋转为(0, 0, 0)，最后在使用路径时，每段曲线的计算结果要做一次从局部到世界坐标系的转换，好处是路径作为一个整体不受刚体变换的影响，适合游戏中场景动态拼接的需求。
+弧长的重参数化（arc-length parametrization）为什么要做弧长的重参数化？可近似理解为在曲线上，每一点处的速度不同，相同的Δt内对应“走过”的弧长也不相同。
+例如，对于曲线：
+
+直接用t取点，具有明显不均匀现象：
+
+arc-length:定义一个映射Δ: [a, b] -&gt; [0, L], 获取原弧线参数t的定义域到弧长区间上的一个满射：
+
+其反函数设为Φ(s)，那么在给定s位置下，对应曲线参数为Φ(s)，对于上述曲线，先求Δ(t)，再求其反函数：
+
+其反函数：
+
+重参数化形式：
+
+arc-length参数化后结果：
+
+曲线上的简单运动法平面定义：过空间曲线的切点并且与切线垂直的平面。
+相邻路径的切换路径切换的过程中，使用当前路径上的基准点的法平面与另一路径的交点（等位点），由于路径的切换不能瞬时完成，将当前基准点变换到相邻路径基准点的局部坐标系下，将变换后的值和(O, X, Y, Z)插值的结果转换到世界坐标系，作为当前基准点及其关联的局部坐标系输入给物理模块。
+
+曲线上的旋转插值
+2. 船的物理模拟及同步设计船的两种刚体移动碰撞体：用于计算浮力的动态刚体
+射击碰撞体：用来做射击检测的动力学动态刚体
+浮力计算中计算多面体入水体积分成三角面判断，一个三角面只有三种状态：完全入水、完全出水、部分出水。
+三角面完全入水，则三角面可以和P形成四面体为入水体积（点P必须在水面上）。
+三角面完全出水，丢弃。
+三角面部分入水，分两种情况，两点入水和一点入水。两点入水，分成的三个三角形，将水面上部的丢弃；一点入水，分成的三个三角形将水面上的两个三角形丢弃。
+
+于是，入水体积的求解收敛为两个问题：
+求一个四面体的体积。
+已知三角形的顶点A, B, C, 求与水面的交点问题。
+浮力系统物理更新机制
+三种第三方位置同步方法：
+设置位置：会造成物体瞬移。
+设置速度：通过计算位移差求出速度，在物理引擎进行物理模拟前应用到动态刚体上。
+设置力：增加了一层间接性。
+问题：第三方同步组件会每帧更新刚体的速度，浮力组件会每帧更新刚体受到的力，会造成位置的不一致（例如第三方刚体本来以速度v移动到位置X，但是浮力组件在速度方向上施加了阻力、浮力和升力，从而使物理系统算出的速度和v有偏差，导致最终物理模拟结束时物体的位置不是X）。
+解决：浮力系统根据是否是第一方选择最终计算结果是力还是速度。
+Component物理更新的过程：第一方通过引擎组件(EngineComponent)计算出驱动力，通过浮力组件(BuoyancyComponent)计算出浮力，将这些力在物理引擎进行物理模拟之前统一施加在刚体组件(PhyComponent)上；
+第三方通过同步组件(SyncComponent)计算出下一帧的同步速度，通过浮力组件计算出的浮力推算出下一帧的浮力速度，将这两个速度糅合后，在物理引擎进行物理模拟之前设置在刚体组件上。
+
+                        
+                    </p>
+                </a>
+            </div>
+
+            
+                <div class="post-footer">
+                    
+                        <i class="fa fa-folder-open-o"></i>
+                        <a class="category-link" href="/categories/GameDev/">GameDev</a>
+
+                        
+                            <span class="dotted">|</span>
+                        
+
+                    
+                    
+                        <i class="fa fa-tags"></i>
+                        <a class="tag-link" href="/tags/GameDev/">GameDev</a>
+                    
+                </div>
+            
+        </article>
+    
+
+
+
+            </div>
+            <div class="aside">
+    
+        <div class="box widget">
+    <div class="introduction">
+        <p><img src="/images/avatar.jpg" alt="head-sculpture"></p>
+        <p class="name">
+            CHAsencenge
+        </p>
+        <p class="slogan">解字</p>
     </div>
-  
-
-  
-  
-
-  
-  
-
-  </header>
-
-    <!-- 标签归档 -->
-
-<!-- post list container -->
-<div class="body-container float">
-  <div class="content-container article-list">
-    <div class="card-container card-articles">
-      <div class="card-wrap">
+</div>
+    
         
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover49.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/10/12/UE学习文档/" itemprop="url"></a>
-              
-              <h2 class="article-title">UE学习文档</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/10/12/UE学习文档/" class="article-date">
-    <time datetime="2020-10-12T08:43:46.000Z" itemprop="datePublished">2020-10-12</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/GameDev/">GameDev</a>
-              </div>
-            </article>
-          </div>
+<div class="box widget">
+    <div class="title">Recent</div>
+    <ul class="item-box">
         
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover42.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/10/02/实时计算机图形学笔记/" itemprop="url"></a>
-              
-              <h2 class="article-title">实时计算机图形学笔记</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/10/02/实时计算机图形学笔记/" class="article-date">
-    <time datetime="2020-10-02T12:04:03.000Z" itemprop="datePublished">2020-10-02</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/GameDev/">GameDev</a>
-              </div>
-            </article>
-          </div>
+            
+                <li><a href="/2020/11/30/手撸算法终版/">手撸算法终版</a></li>
+            
         
-          
-          <div class="card-item img">
-            <article>
-              
-                <div class="card-cover" style="background-image: url(cover40.jpg)"></div>
-              
-              
-                <a class="article-link card-link" href="/2020/09/25/腾讯游戏开发精粹笔记/" itemprop="url"></a>
-              
-              <h2 class="article-title">腾讯游戏开发精粹笔记</h2>
-              <div class="article-meta">
-                <strong>CHAsencenge</strong>
-                <span>发布于</span>
-                
-  <a href="/2020/09/25/腾讯游戏开发精粹笔记/" class="article-date">
-    <time datetime="2020-09-25T06:07:13.000Z" itemprop="datePublished">2020-09-25</time>
-  </a>
-
-              </div>
-              <div class="article-category">
-                <a class="article-category-link" href="/categories/GameDev/">GameDev</a>
-              </div>
-            </article>
-          </div>
+            
+                <li><a href="/2020/10/29/哈希专题/">哈希专题</a></li>
+            
         
-      </div>
-    </div>
-  </div>
+            
+                <li><a href="/2020/10/29/特殊技巧专题/">特殊技巧专题</a></li>
+            
+        
+            
+                <li><a href="/2020/10/29/栈和队列专题/">栈和队列专题</a></li>
+            
+        
+            
+                <li><a href="/2020/10/28/树图专题/">树专题</a></li>
+            
+        
+            
+                <li><a href="/2020/10/28/空间换时间专题/">空间换时间专题</a></li>
+            
+        
+            
+                <li><a href="/2020/10/25/C-Lambda表达式/">C++ Lambda表达式</a></li>
+            
+        
+            
+                <li><a href="/2020/10/16/双指针专题/">双指针专题</a></li>
+            
+        
+    </ul>
 </div>
 
-<!-- page container -->
-
-
-    <!-- footer container -->
-<footer id="footer" class="footer">
-  <div class="footer-container">
     
-    <div class="social-icons social-icons-footer">
-      <a href="mailto:958198376@qq.com" target="_blank" rel="noopener noreferrer">
-  <svg class="icon icon-email" viewbox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
-    <path d="M490.338462 592.738462c11.815385 11.815385 29.538462 11.815385 41.353846 0l445.046154-413.538462c7.876923-15.753846 5.907692-41.353846-25.6-41.353846l-880.246154 1.969231c-23.630769 0-43.323077 21.661538-25.6 41.353846l445.046154 411.569231zM984.615385 340.676923c0-19.692308-23.630769-31.507692-39.384616-17.723077L596.676923 643.938462c-23.630769 21.661538-53.169231 33.476923-84.676923 33.476923s-61.046154-11.815385-84.676923-31.507693L80.738462 322.953846c-15.753846-13.784615-39.384615-3.938462-39.384616 17.723077C39.384615 334.769231 39.384615 787.692308 39.384615 787.692308c0 43.323077 35.446154 78.769231 78.769231 78.76923h787.692308c43.323077 0 78.769231-35.446154 78.769231-78.76923V340.676923z"/>
-  </svg>
-</a><a href="https://github.com/CHAsencenge" target="_blank" rel="noopener noreferrer">
-  <svg class="icon icon-github" viewbox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
-    <path d="M64.6 512c0 195.6 125.4 361.9 300.1 422.9 23.5 5.9 19.9-10.8 19.9-22.2v-77.6c-135.8 15.9-141.3-74-150.5-89-18.5-31.5-61.9-39.5-49-54.5 31-15.9 62.5 4 98.9 58 26.4 39.1 77.9 32.5 104.1 26 5.7-23.5 17.9-44.5 34.7-60.9-140.7-25.2-199.4-111.1-199.4-213.3 0-49.5 16.4-95.1 48.4-131.8-20.4-60.6 1.9-112.4 4.9-120.1 58.2-5.2 118.5 41.6 123.3 45.3 33.1-8.9 70.8-13.7 112.9-13.7 42.4 0 80.3 4.9 113.5 13.9 11.3-8.6 67.3-48.8 121.4-43.9 2.9 7.7 24.7 58.3 5.5 118.1 32.5 36.8 49 82.8 49 132.4 0 102.3-59 188.3-200.2 213.2 23.5 23.3 38.1 55.5 38.1 91.1v112.7c0.8 9 0 17.9 15.1 17.9C832.7 877 960.4 709.4 960.4 512.1c0-247.5-200.6-447.9-447.9-447.9C265 64.1 64.6 264.5 64.6 512z"/>
-  </svg>
-</a><a href="https://weibo.com/u/5701921017" target="_blank" rel="noopener noreferrer">
-  <svg class="icon icon-weibo" viewbox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
-    <path d="M385.682429 733.696q11.995429-19.456 6.290286-39.424t-25.746286-28.598857q-19.456-7.972571-41.691429-0.585143t-34.304 26.258286q-12.580571 19.456-7.460571 39.131429t24.576 28.891429 42.569143 1.462857 35.693714-27.136zM439.442429 664.576q4.534857-7.460571 1.974857-15.140571t-10.020571-10.605714q-7.972571-2.852571-16.310857 0.292571t-12.288 10.605714q-9.728 17.700571 7.460571 25.746286 7.972571 2.852571 16.603429-0.292571t12.580571-10.605714zM538.843572 725.723429q-25.746286 58.294857-90.258286 85.723429t-128 6.875429q-61.147429-19.456-84.260571-72.265143t3.730286-107.154286q26.843429-53.174857 86.601143-79.433143t120.32-10.825143q63.414857 16.603429 90.550857 68.315429t1.462857 108.836571zM717.165858 634.294857q-5.12-54.857143-50.834286-97.133714t-119.149714-62.317714-156.891429-11.995429q-127.414857 13.165714-211.163429 80.822857t-75.702857 151.113143q5.12 54.857143 50.834286 97.133714t119.149714 62.317714 156.891429 11.995429q127.414857-13.165714 211.163429-80.822857t75.702857-151.113143zM893.147572 636.562286q0 38.838857-21.138286 79.725714t-62.317714 78.262857-96.256 67.145143-129.170286 47.396571-154.550857 17.700571-157.110857-19.163429-137.435429-53.174857-98.011429-86.308571-37.156571-114.029714q0-65.682286 39.716571-139.995429t112.859429-147.456q96.548571-96.548571 195.145143-134.875429t140.873143 4.022857q37.156571 36.571429 11.410286 119.442286-2.267429 7.972571-0.585143 11.410286t5.705143 4.022857 8.265143-0.292571 7.68-1.974857l3.437714-1.170286q79.433143-33.718857 140.580571-33.718857t87.405714 34.889143q25.746286 35.986286 0 101.741714-1.170286 7.460571-2.56 11.410286t2.56 7.168 6.875429 4.315429 9.728 3.437714q32.548571 10.313143 58.88 26.843429t45.714286 46.592 19.456 66.56zM850.871001 279.990857q23.990857 26.843429 31.158857 62.025143t-3.730286 67.145143q-4.534857 13.165714-16.822857 19.456t-25.453714 2.267429q-13.165714-4.534857-19.456-16.822857t-2.267429-25.453714q11.410286-35.986286-13.677714-63.414857t-61.147429-19.968q-13.677714 2.852571-25.746286-4.534857t-14.262857-21.138286q-2.852571-13.677714 4.534857-25.453714t21.138286-14.555429q34.304-7.460571 68.022857 3.145143t57.709714 37.449143zM954.295001 186.88q49.737143 54.857143 64.292571 127.122286t-7.68 138.020571q-5.12 15.433143-19.456 22.820571t-29.696 2.267429-22.820571-19.456-2.852571-29.696q16.018286-46.884571 5.705143-98.304t-45.714286-90.258286q-35.401143-39.424-84.553143-54.564571t-98.889143-4.827429q-16.018286 3.437714-29.696-5.412571t-17.115429-24.868571 5.412571-29.403429 24.868571-16.822857q70.290286-14.848 139.410286 6.582857t118.857143 76.873143z"/>
-  </svg>
-</a><a href="https://music.163.com/#/user/home?id=92407481" target="_blank" rel="noopener noreferrer">
-  <svg class="icon icon-cloudmusic" viewbox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
-    <path d="M952.17867 503.263237a341.054956 341.054956 0 0 0-56.853199-113.706399 408.604266 408.604266 0 0 0-109.723463-98.352823 304.662484 304.662484 0 0 0-143.257215-42.077792L621.305897 170.238394a40.343287 40.343287 0 0 1 10.792472-36.392472 56.88532 56.88532 0 0 1 36.392472-18.758344 102.785445 102.785445 0 0 1 56.853199 18.758344c6.263488 3.404768 10.792472 9.090088 17.05596 13.073024a57.335006 57.335006 0 0 0 82.999247-70.632873 66.521455 66.521455 0 0 0-22.74128-27.848432 237.691343 237.691343 0 0 0-89.262735-43.202007A170.559598 170.559598 0 0 0 625.288833 6.42409a167.026349 167.026349 0 0 0-60.836135 37.516688 164.328231 164.328231 0 0 0-40.921456 51.713927 156.908407 156.908407 0 0 0-8.54404 113.706399l13.651192 52.870264a284.298118 284.298118 0 0 0-158.064743 109.209535 256.963614 256.963614 0 0 0-43.202007 156.908407 248.419573 248.419573 0 0 0 13.651192 74.487327 205.281807 205.281807 0 0 0 80.718695 104.616312 185.945295 185.945295 0 0 0 136.447679 25.696361 193.879046 193.879046 0 0 0 156.330238-196.705646L708.802008 503.263237c-11.948808-46.060728-24.443664-91.543287-35.814304-137.025847a182.283563 182.283563 0 0 1 47.763112 18.180176 316.611292 316.611292 0 0 1 47.763111 34.690088A239.907654 239.907654 0 0 1 840.752823 529.987453a284.169636 284.169636 0 0 1 0 158.064743 252.241907 252.241907 0 0 1-21.584943 51.167879 308.741782 308.741782 0 0 1-168.279047 144.542033 387.918695 387.918695 0 0 1-130.184191 23.319448 332.607277 332.607277 0 0 1-155.206022-37.516688A367.233124 367.233124 0 0 1 194.87478 672.666499a373.014806 373.014806 0 0 1-20.460727-180.806022A366.173149 366.173149 0 0 1 406.869762 198.536512a57.399247 57.399247 0 0 0 13.073023-100.055207 76.189711 76.189711 0 0 0-63.662735-3.404768A479.815307 479.815307 0 0 0 68.705646 436.163614a488.905395 488.905395 0 0 0 129.027855 450.84266 454.857716 454.857716 0 0 0 248.997741 131.886574 470.885822 470.885822 0 0 0 138.117942 0A454.889837 454.889837 0 0 0 773.042911 952.949561a427.523212 427.523212 0 0 0 170.559598-209.232622 417.276788 417.276788 0 0 0 22.74128-109.209536 378.089837 378.089837 0 0 0-14.165119-131.244166z m-412.747804 118.845671a72.174655 72.174655 0 0 1-56.8532-10.792471 98.352823 98.352823 0 0 1-37.516687-61.382184 170.68808 170.68808 0 0 1 0-65.943287 133.042911 133.042911 0 0 1 33.533751-63.662735 181.35207 181.35207 0 0 1 80.718695-46.606776l39.219072 148.364367a204.189711 204.189711 0 0 1 5.107152 26.146048 79.594479 79.594479 0 0 1-64.208783 73.844918z"/>
-  </svg>
-</a>    </div>
-     
-    <p>&copy; 2020 <a href="/" target="_blank">CHAsencenge</a></p>
+        
+    <div class="box widget">
+        <div class="title">Categories</div>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/GameDev/">GameDev</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Laya/">Laya</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Light-Frequency-Authenticate/">Light Frequency Authenticate</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/LoRa/">LoRa</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Unity/">Unity</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Unity/Unreal/">Unreal</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Writing/">Writing</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cpp/">cpp</a><span class="category-list-count">3</span></li></ul>
+    </div>
 
     
-      <p id="hitokoto"></p>
-      <script src="https://v1.hitokoto.cn/?c=a&amp;encode=js&select=%23hitokoto" defer></script>
-    
-
-    
-
-    <p>Powered by <a href="https://hexo.io" target="_blank" rel="noopener noreferrer">Hexo</a> Theme - <a href="https://github.com/miiiku/flex-block" target="_blank" rel="noopener noreferrer author">flex-block</a></p>
+        
+  <div class="box widget">
+    <div class="title">Archives</div>
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">2020-11</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">2020-10</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">2020-09</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">2020-08</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">2020-07</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">2019-11</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">2019-09</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">2019-07</a><span class="archive-list-count">6</span></li></ul>
   </div>
+
+    
+        
+    <div class="box widget">
+        <div class="title">Tags</div>
+        <div class="item-box cloud-label">
+            <a href="/tags/Algorithm/" style="font-size: 20px;">Algorithm</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/GameDev/" style="font-size: 14px;">GameDev</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/Hexo/" style="font-size: 12px;">Hexo</a> <a href="/tags/Laya/" style="font-size: 16px;">Laya</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Python/" style="font-size: 16px;">Python</a> <a href="/tags/Unity/" style="font-size: 18px;">Unity</a> <a href="/tags/Unreal/" style="font-size: 10px;">Unreal</a> <a href="/tags/Writing/" style="font-size: 12px;">Writing</a> <a href="/tags/cpp/" style="font-size: 14px;">cpp</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/lightFre/" style="font-size: 10px;">lightFre</a> <a href="/tags/writing/" style="font-size: 10px;">writing</a> <a href="/tags/远程登录/" style="font-size: 10px;">远程登录</a>
+        </div>
+    </div>
+
+    
+</div>
+        </section>
+        <footer class="footer">
+    <div class="global-width footer-box">
+        <div class="copyright">
+            <span>Copyright &copy; 2019</span>
+            <span class="dotted">|</span>
+            <span>Powered by <a href="https://hexo.io/">Hexo</a></span>
+            <span class="dotted">|</span>
+            <span>Theme by <a href="javascript:">Loren</a></span>
+            <span class="dotted">|</span>
+            <span><a href="http://www.beian.miit.gov.cn">浙ICP备18016660号-1</a></span>
+        </div>
+    </div>
 </footer>
-  </div>
+    </div>
 
-  <div class="back-to-top-fixed">
-    <svg class="icon icon-back-to-top" viewbox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
-  <path d="M725.333333 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8l-213.333333-213.333333c-17.066667-17.066667-17.066667-42.666667 0-59.733333s42.666667-17.066667 59.733333 0l213.333333 213.333333c17.066667 17.066667 17.066667 42.666667 0 59.733333C746.666667 422.4 738.133333 426.666667 725.333333 426.666667z"/>
-  <path d="M298.666667 426.666667c-12.8 0-21.333333-4.266667-29.866667-12.8-17.066667-17.066667-17.066667-42.666667 0-59.733333l213.333333-213.333333c17.066667-17.066667 42.666667-17.066667 59.733333 0s17.066667 42.666667 0 59.733333l-213.333333 213.333333C320 422.4 311.466667 426.666667 298.666667 426.666667z"/>
-  <path d="M512 896c-25.6 0-42.666667-17.066667-42.666667-42.666667L469.333333 170.666667c0-25.6 17.066667-42.666667 42.666667-42.666667s42.666667 17.066667 42.666667 42.666667l0 682.666667C554.666667 878.933333 537.6 896 512 896z"/>
-</svg> 
-  </div>
-
-  
-  
-
-
-  <!-- aplayer 音频 start -->
-  <link rel="stylesheet" href="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.css">
-  <script type="text/javascript" src="https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.js"></script>
-  <script type="text/javascript">
-    const aplayer = document.querySelectorAll(".aplayer");
-    aplayer && initaplayer(aplayer);
-    function initaplayer(els) {
-      let elsArr = Array.from(els);
-      elsArr.forEach(el => {
-        new APlayer({
-          container: el,
-          audio: { ...el.dataset },
-          theme: "#b7daff",
-          lrcType: 3,
-          autoplay: false,
-          loop: false,
-          mutex: true,
-        });
-      });
-    }
-  </script>
-  <!-- aplayer 音频 end -->
-  
-
-<!-- dplayer 视频 start -->
-<script type="text/javascript" src="https://unpkg.com/dplayer@1.25.1/dist/DPlayer.min.js"></script>
-<script type="text/javascript">
-  const dplayer = document.querySelectorAll(".dplayer");
-  dplayer && initDPlayer(dplayer);
-  function initDPlayer(els) {
-    let elsArr = Array.from(els);
-    elsArr.forEach(el => {
-      let url = el.dataset.url;
-      let cover = el.dataset.cover;
-      let subtitle = el.dataset.subtitle;
-
-      let options = {
-        container: el,
-        video: { url: url, pic: cover },
-        theme: "#b7daff",
-        autoplay: false,
-        loop: false,
-        mutex: true,
-      }
-
-      if (subtitle) {
-        options.subtitle = {
-          url: el.dataset.subtitle,
-        }
-      }
-      new DPlayer(options);
-    });
-  }
+<script>
+    hljs.initHighlightingOnLoad();
 </script>
-<!-- dplayer 视频 end -->
-
-
-<!-- waterfall 瀑布流 start -->
-<script src="/lib/waterfall.min.js"></script>
-<script type="text/javascript">
-
-const waterfalls = document.querySelectorAll(".waterfall-container");
-
-if (waterfalls && waterfalls.length > 0) {
-  waterfalls.forEach((waterfall, index) => {
-    let cls = "waterfall-container-" + index;
-    waterfall.classList.add(cls);
-    initWaterfall(cls, waterfall);
-  });
-}
-
-function initWaterfall(selector, el) {
-  const options = {};
-  if (Object.keys(el.dataset).length > 0) {
-    for (let k in el.dataset) {
-      options[k] = el.dataset[k];
-    }
-  }
-  waterfall(`.${selector}`, options);
-}
-</script>
-<!-- waterfall 瀑布流 end -->
-
-
-  <!-- zoom start -->
-  <script src="/lib/zoom.min.js"></script>
-  <script type="text/javascript">
-    document.querySelector(".article-content") && zoom(".article-content");
-  </script>
-  <!-- zoom end -->
-  
-
-
-
-  
-
-
-  
-
-
-  
-
-
-
-<script src="/js/script.js"></script>
-  
-  <!-- 尾部用户自定义相关内容 -->
-
 </body>
 </html>
