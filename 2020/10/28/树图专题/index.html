@@ -12,11 +12,11 @@
 
 
 
-    <meta name="description" content="
+    <meta name="description" content="207. 课程表我们可以将本题建模成一个求拓扑排序的问题：将每一门课看成一个节点，如果想要学习课程 A之前必须完成课程 B，那么我们从B到A连接一条有向边。这样以来，在拓扑排序中，B一定出现在 A的前面
 
-207. 课程表你这个学期必须选修 numCourse 门课程，记为 0 到 numCourse-1 。
-在选修某些课程之前需要一些先修课程。 例如，想要学习课程 0 ，你需要先完成课程 1 ，我们用一个匹配来表示他们：[0,1]
-给定课程总量以及它们的先决条件，请你判断是否可能完成所有课...">
+
+思路：
+考虑拓扑排序中最前面的节点，该节点一定不会有任何入边，也就是它没有任何的先修课...">
 
 
 <meta name="Robots" content="all">
@@ -25,7 +25,7 @@
     <title>解字 | 树专题</title>
 
 
-<link rel="icon" href="/images/favicon.ico">
+<link rel="icon" href="/images/avatar.ico">
 <link rel="stylesheet" href="/css/font-awesome.min.css">
 <link rel="stylesheet" href="/css/atom-one-dark.css">
 <link rel="stylesheet" href="/css/style.css">
@@ -79,16 +79,9 @@
     </div>
 
     <div class="post-content">
-        <a id="more"></a>
+        <h4 id="207-课程表"><a href="#207-课程表" class="headerlink" title="207. 课程表"></a>207. 课程表</h4><p>我们可以将本题建模成一个求拓扑排序的问题：将每一门课看成一个节点，如果想要学习课程 A之前必须完成课程 B，那么我们从B到A连接一条有向边。这样以来，在拓扑排序中，B一定出现在 A的前面</p>
+<a id="more"></a>
 
-<h4 id="207-课程表"><a href="#207-课程表" class="headerlink" title="207. 课程表"></a>207. 课程表</h4><p>你这个学期必须选修 numCourse 门课程，记为 0 到 numCourse-1 。</p>
-<p>在选修某些课程之前需要一些先修课程。 例如，想要学习课程 0 ，你需要先完成课程 1 ，我们用一个匹配来表示他们：[0,1]</p>
-<p>给定课程总量以及它们的先决条件，请你判断是否可能完成所有课程的学习？</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c++">输入: <span class="hljs-number">2</span>, [[<span class="hljs-number">1</span>,<span class="hljs-number">0</span>]] <br>输出: <span class="hljs-literal">true</span><br>解释: 总共有<span class="hljs-number">2</span>门课程。学习课程<span class="hljs-number">1</span>之前，你需要完成课程<span class="hljs-number">0</span>。所以这是可能的<br><br>输入: <span class="hljs-number">2</span>, [[<span class="hljs-number">1</span>,<span class="hljs-number">0</span>],[<span class="hljs-number">0</span>,<span class="hljs-number">1</span>]]<br>输出: <span class="hljs-literal">false</span><br>解释: 总共有<span class="hljs-number">2</span>门课程。学习课程<span class="hljs-number">1</span>之前，你需要先完成课程<span class="hljs-number">0</span>；并且学习课程<span class="hljs-number">0</span>之前，你还应先完成课程<span class="hljs-number">1</span>。这是不可能的<br></code></pre></td></tr></table></figure>
-
-<p>我们就可以将本题建模成一个求拓扑排序的问题了：</p>
-<p>我们将每一门课看成一个节点</p>
-<p>如果想要学习课程 A之前必须完成课程 B，那么我们从B到A连接一条有向边。这样以来，在拓扑排序中，B一定出现在 A的前面</p>
 <p><strong>思路：</strong></p>
 <p>考虑拓扑排序中最前面的节点，该节点一定不会有任何入边，也就是它没有任何的先修课程要求。当我们将一个节点加入答案中后，我们就可以移除它的所有出边，代表着它的相邻节点少了一门先修课程的要求。如果某个相邻节点变成了「没有任何入边的节点」，那么就代表着这门课可以开始学习了。按照这样的流程，我们不断地将没有入边的节点加入答案，直到答案中包含所有的节点（得到了一种拓扑排序）或者不存在没有入边的节点（图中包含环）</p>
 <p><strong>算法：</strong></p>
@@ -109,7 +102,7 @@
     
         <div class="box widget">
     <div class="introduction">
-        <p><img src="/images/avatar.jpg" alt="head-sculpture"></p>
+        <p><img src="/images/avatar.png" alt="head-sculpture"></p>
         <p class="name">
             CHAsencenge
         </p>

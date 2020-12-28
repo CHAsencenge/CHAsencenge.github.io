@@ -14,9 +14,11 @@
 
     <meta name="description" content="5.最长回文子串单独处理长度为1和2的字符串
 状态转移：字串加上相同的首尾
+
+
 1dp[i][j] = (s[i] == s[j] &amp;&amp; dp[i+1][j-1]);
 
-12345678910111213141516171819202122232425262728293031323...">
+123456789101112131415161718192021222324252627282930313...">
 
 
 <meta name="Robots" content="all">
@@ -25,7 +27,7 @@
     <title>解字 | dp专题</title>
 
 
-<link rel="icon" href="/images/favicon.ico">
+<link rel="icon" href="/images/avatar.ico">
 <link rel="stylesheet" href="/css/font-awesome.min.css">
 <link rel="stylesheet" href="/css/atom-one-dark.css">
 <link rel="stylesheet" href="/css/style.css">
@@ -81,6 +83,8 @@
     <div class="post-content">
         <h4 id="5-最长回文子串"><a href="#5-最长回文子串" class="headerlink" title="5.最长回文子串"></a>5.最长回文子串</h4><p>单独处理长度为1和2的字符串</p>
 <p>状态转移：字串加上相同的首尾</p>
+<a id="more"></a>
+
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined">dp[i][j] = (s[i] == s[j] &amp;&amp; dp[i+1][j-1]);<br></code></pre></td></tr></table></figure>
 
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">longestPalindrome</span><span class="hljs-params">(<span class="hljs-built_in">string</span> s)</span> </span>&#123;<br>    <span class="hljs-built_in">string</span> ans;<br>    <span class="hljs-keyword">int</span> n = s.size();<br>    <span class="hljs-comment">//初始化二维vector，初始值为0</span><br>    <span class="hljs-function"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&gt; <span class="hljs-title">dp</span><span class="hljs-params">(n, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;(n))</span></span>;<br>    <span class="hljs-comment">//外层循环用的是字串的长度，dp矩阵对角线（i==j）代表字串长度为1，对角线两侧的斜线代表字串长度为2，依次往外扩展更新</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> len = <span class="hljs-number">0</span>; len &lt; n; len++)<br>    &#123;c<br>        <span class="hljs-comment">//对于dbabcad，首轮更新d, b, a, b, c, a, d对应的dp; 第二轮更新db, ba, ab, bc, ca, ad对应的dp; 然后是dba, bab, abc......（它根据首轮的更新的dp做s[i] == s[j] &amp;&amp; dp[i + 1][j - 1]判断）</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n - len; i++)<br>        &#123;<br>            <span class="hljs-keyword">int</span> j = i + len;<br>            <span class="hljs-keyword">if</span> (len == <span class="hljs-number">0</span>)<br>            &#123;<br>                dp[i][j] = <span class="hljs-number">1</span>;<br>            &#125;<br>            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (len == <span class="hljs-number">1</span>)<br>            &#123;<br>                dp[i][j] = s[i] == s[j];<br>            &#125;<br>            <span class="hljs-keyword">else</span><br>            &#123;<br>                dp[i][j] = (s[i] == s[j] &amp;&amp; dp[i + <span class="hljs-number">1</span>][j - <span class="hljs-number">1</span>]);<br>            &#125;<br>            <span class="hljs-comment">//如果找到了更长的字串，更新新的字串</span><br>            <span class="hljs-keyword">if</span> (dp[i][j] &amp;&amp; len + <span class="hljs-number">1</span> &gt; ans.size())<br>            &#123;<br>                <span class="hljs-comment">//substr(i, j): 从下标i开始截取j位</span><br>                ans = s.substr(i, len + <span class="hljs-number">1</span>);<br>            &#125;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> ans;<br>&#125;<br></code></pre></td></tr></table></figure>
@@ -142,7 +146,7 @@
     
         <div class="box widget">
     <div class="introduction">
-        <p><img src="/images/avatar.jpg" alt="head-sculpture"></p>
+        <p><img src="/images/avatar.png" alt="head-sculpture"></p>
         <p class="name">
             CHAsencenge
         </p>

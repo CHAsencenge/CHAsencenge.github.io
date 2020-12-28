@@ -21,7 +21,7 @@
     <title>解字</title>
 
 
-<link rel="icon" href="/images/favicon.ico">
+<link rel="icon" href="/images/avatar.ico">
 <link rel="stylesheet" href="/css/font-awesome.min.css">
 <link rel="stylesheet" href="/css/atom-one-dark.css">
 <link rel="stylesheet" href="/css/style.css">
@@ -267,13 +267,6 @@ docker registry进行镜像数据的存储和转发，通过 docker push可以�
                     <p>
                         
                             12. 整数转罗马数字12345678910111213141516// 处理上有优先级，对于当前的数，优先处理大于1000的部分，然后处理900，500，400.....（每一部分的处理方式也有固定的对应） --&gt; 贪心算法string intToRoman(int num) &#123;    string res;    vector&lt;int&gt; store&#123; 1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1 &#125;;    vector&lt;string&gt; strs&#123; "M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I" &#125;;    int n = store.size();    for (int i = 0; i &lt; n; i++)    &#123;        while (num &gt;= store[i])        &#123;            res.append(strs[i]);            num -= store[i];        &#125;    &#125;    return res;&#125;
-
-13. 罗马数字转整数123456789101112131415int romanToInt(string s) &#123;    int res = 0;    map&lt;char, int&gt; hash&#123; &#123;'M', 1000&#125;, &#123;'D', 500&#125;, &#123;'C', 100&#125;, &#123;'L', 50&#125;, &#123;'X', 10&#125;, &#123;'V', 5&#125;, &#123;'I', 1&#125; &#125;;    for (int i = 0; i &lt; s.size(); i++)    &#123;        // s.size()为'\0',将'\0'赋给int型变量时，变量值为0；        if (hash[s[i]] &lt; hash[s[i + 1]])            res -= hash[s[i]];        else            res += hash[s[i]];    &#125;    cout &lt;&lt; s[s.size()];    return res;&#125;
-
-55. 跳跃游戏在每个能到达的点检查从该点出发能到达的最远距离，最远距离超过nums.size() - 1则能到达终点
-如何判断中间的某一点是否能到达？
-因为是顺序遍历所有位置，每次遍历当前位置时都用maxPos检查是否能达到下一点，如果无法达到说明已经中断，此时使用break跳出循环
-
                         
                     </p>
                 </a>
@@ -475,7 +468,7 @@ docker registry进行镜像数据的存储和转发，通过 docker push可以�
     
         <div class="box widget">
     <div class="introduction">
-        <p><img src="/images/avatar.jpg" alt="head-sculpture"></p>
+        <p><img src="/images/avatar.png" alt="head-sculpture"></p>
         <p class="name">
             CHAsencenge
         </p>

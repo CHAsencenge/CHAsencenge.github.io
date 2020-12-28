@@ -21,7 +21,7 @@
     <title>解字</title>
 
 
-<link rel="icon" href="/images/favicon.ico">
+<link rel="icon" href="/images/avatar.ico">
 <link rel="stylesheet" href="/css/font-awesome.min.css">
 <link rel="stylesheet" href="/css/atom-one-dark.css">
 <link rel="stylesheet" href="/css/style.css">
@@ -68,7 +68,6 @@
 对于每个字符串，对其进行字典排序，利用排序后的string作为map的key，将排序前的string推到value中
 用到的数据结构为：unordered_map&lt;string, vector&gt; mp
 最后将mp中的每个元素的second push_back到结果集ret中
-
                         
                     </p>
                 </a>
@@ -108,28 +107,10 @@
                 <a href="/2020/10/29/特殊技巧专题/">
                     <p>
                         
-                            
-
-48. 旋转图像对矩阵的原地旋转操作可通过转置并翻转来实现
+                            48. 旋转图像对矩阵的原地旋转操作可通过转置并翻转来实现
 本题要求完成90°旋转，可先求转置，再对每一行进行翻转
 如果要旋转180°，可以先对列翻转，再对行翻转
 如果要逆时针旋转90°，则先求转置，再对列进行翻转
-29. 顺时针打印矩阵123456处理移动四个移动方向用：vector&lt;vector&lt;int&gt;&gt; move&#123; &#123;0, 1&#125;, &#123;1, 0&#125;, &#123;0, -1&#125;, &#123;-1, 0&#125; &#125;;或者：static constexpr int directions[4][2] = &#123;&#123;0, 1&#125;, &#123;1, 0&#125;, &#123;0, -1&#125;, &#123;-1, 0&#125;&#125;;标记矩阵的已访问元素和未访问元素用一个相同大小的bool矩阵visit输入一个空matrix时，如果对其求matrix[0].size()会报错，因为没有matrix[0]
-
-12345678910111213141516171819202122232425262728293031vector&lt;int&gt; spiralOrder(vector&lt;vector&lt;int&gt;&gt;&amp; matrix) &#123;    vector&lt;int&gt; order;    if (matrix.size() == 0 || matrix[0].size() == 0) &#123;        return &#123;&#125;;    &#125;    int rowRange = matrix.size();    int colRange = matrix[0].size();    vector&lt;vector&lt;bool&gt;&gt; visit(rowRange, vector&lt;bool&gt;(colRange));    int total = rowRange * colRange;    vector&lt;vector&lt;int&gt;&gt; move&#123; &#123;0, 1&#125;, &#123;1, 0&#125;, &#123;0, -1&#125;, &#123;-1, 0&#125; &#125;;    int row = 0;    int col = 0;    int moveIndex = 0;    int nextRow, nextCol;    for (int i = 0; i &lt; total; i++)    &#123;        order.push_back(matrix[row][col]);        visit[row][col] = true;        nextRow = row + move[moveIndex][0];        nextCol = col + move[moveIndex][1];        if (nextRow &gt;= rowRange || nextRow &lt; 0 || nextCol &gt;= colRange || nextCol &lt; 0 || visit[nextRow][nextCol])        &#123;            moveIndex = (moveIndex + 1) % 4;        &#125;        row += move[moveIndex][0];        col += move[moveIndex][1];    &#125;    return order;&#125;
-
-56. 合并区间先按区间左边界进行升序排序
-每次检查是否能合并时，比较：当前区间的左边界和结果集合中最后一个区间的右边界
-1if(intervals[i][0] &lt;= ret.back()[1])
-
-如果当前区间左边界小于结果集合中最后一个区间的右边界，说明区间重叠，修改当前区间的右边界，选择当前比较的两个区间的右边界中的较大值作为新的右边界
-如果不能合并，在结果集合ret中push_back当前检查的区间
-62. 不同路径求只能往右或者往下走的全路径：排列组合中的组合
-尽可能的防止溢出，每次循环中更新完分子和分母后，都用分子和分母分别除以公约数
-公约数计算方法：
-1234int gcd(int a, int b)       &#123;        return b == 0 ? a : gcd(b, a % b);    &#125;
-
-
                         
                     </p>
                 </a>
@@ -209,29 +190,7 @@
                 <a href="/2020/10/28/树图专题/">
                     <p>
                         
-                            
-
-207. 课程表你这个学期必须选修 numCourse 门课程，记为 0 到 numCourse-1 。
-在选修某些课程之前需要一些先修课程。 例如，想要学习课程 0 ，你需要先完成课程 1 ，我们用一个匹配来表示他们：[0,1]
-给定课程总量以及它们的先决条件，请你判断是否可能完成所有课程的学习？
-1234567输入: 2, [[1,0]] 输出: true解释: 总共有2门课程。学习课程1之前，你需要完成课程0。所以这是可能的输入: 2, [[1,0],[0,1]]输出: false解释: 总共有2门课程。学习课程1之前，你需要先完成课程0；并且学习课程0之前，你还应先完成课程1。这是不可能的
-
-我们就可以将本题建模成一个求拓扑排序的问题了：
-我们将每一门课看成一个节点
-如果想要学习课程 A之前必须完成课程 B，那么我们从B到A连接一条有向边。这样以来，在拓扑排序中，B一定出现在 A的前面
-思路：
-考虑拓扑排序中最前面的节点，该节点一定不会有任何入边，也就是它没有任何的先修课程要求。当我们将一个节点加入答案中后，我们就可以移除它的所有出边，代表着它的相邻节点少了一门先修课程的要求。如果某个相邻节点变成了「没有任何入边的节点」，那么就代表着这门课可以开始学习了。按照这样的流程，我们不断地将没有入边的节点加入答案，直到答案中包含所有的节点（得到了一种拓扑排序）或者不存在没有入边的节点（图中包含环）
-算法：
-使用一个队列来进行广度优先搜索。初始时，所有入度为 00 的节点都被放入队列中，它们就是可以作为拓扑排序最前面的节点，并且它们之间的相对顺序是无关紧要的。
-在广度优先搜索的每一步中，我们取出队首的节点u：
-我们将u放入答案中
-我们移除 u的所有出边，也就是将u的所有相邻节点的入度减少1。如果某个相邻节点v的入度变为0，那么我们就将v放入队列中
-在广度优先搜索的过程结束后。如果答案中包含了这n个节点，那么我们就找到了一种拓扑排序，否则说明图中存在环，也就不存在拓扑排序了
-1234567891011121314151617181920212223242526272829303132333435363738394041bool canFinish(int numCourses, vector&lt;vector&lt;int&gt;&gt;&amp; prerequisites) &#123;    //入度 in degree    vector&lt;int&gt; indeg;    vector&lt;vector&lt;int&gt;&gt; edges;    //resize内的默认初始化值为0    indeg.resize(numCourses);    edges.resize(numCourses);    for (const auto&amp; info : prerequisites)    &#123;        //以info[1]为起始的边，指向info[0]        edges[info[1]].push_back(info[0]);        //info[0]的入度加一，指向它的是info[1]        ++indeg[info[0]];    &#125;    queue&lt;int&gt; q;    for (int i = 0; i &lt; numCourses; i++)    &#123;        //把最开始入度为0的点push进去        if (indeg[i] == 0)        &#123;            q.push(i);        &#125;    &#125;    int visited = 0;    while (!q.empty())    &#123;        visited++;        int u = q.front();        q.pop();        for (int v : edges[u])        &#123;            --indeg[v];            //如果去掉指向它的u之后，v点的入度变为0，那么push进队列            if (indeg[v] == 0)            &#123;                q.push(v);            &#125;        &#125;    &#125;    return visited == numCourses;&#125;
-
-8. 字符串转换整数123456789101112131415161718192021222324252627282930313233343536373839404142434445464748// 有限自动机，写一个有限自动机类class Automation&#123;public:    unordered_map&lt;string, vector&lt;string&gt;&gt; table = &#123;        &#123;"start", &#123;"start", "signed", "in_number", "end"&#125;&#125;,        &#123;"signed", &#123;"end", "end", "in_number", "end"&#125;&#125;,        &#123;"in_number", &#123;"end", "end", "in_number", "end"&#125;&#125;,        &#123;"end", &#123;"end", "end", "end", "end"&#125;&#125;    &#125;;    string status = "start";    int get_col(char c)    &#123;        if(c == ' ')            return 0;        if(c == '+' || c == '-')            return 1;        if(isdigit(c))            return 2;        return 3;    &#125;    int sign = 1;    long long res = 0;    void get(char c)    &#123;        status = table[status][get_col(c)];        if(status == "in_number")        &#123;            res =  res * 10 + (c - '0');            res = sign == 1 ? min(res, (long long)INT_MAX) : min(res, -(long long)INT_MIN);        &#125;        if(status == "signed")        &#123;            sign = c == '+' ? 1 : -1;        &#125;    &#125;&#125;;class Solution&#123;public:    int myAtoi(string str) &#123;        Automation atmn;        for(char c : str)        &#123;            atmn.get(c);        &#125;        return atmn.sign * atmn.res;    &#125;&#125;;
-
-
+                            207. 课程表我们可以将本题建模成一个求拓扑排序的问题：将每一门课看成一个节点，如果想要学习课程 A之前必须完成课程 B，那么我们从B到A连接一条有向边。这样以来，在拓扑排序中，B一定出现在 A的前面
                         
                     </p>
                 </a>
@@ -370,42 +329,6 @@ Lambda表达式的变量截取[] 不截取任何变量
                         
                             16. 最接近的三数之和相对于暴力解法，双指针能够通过首尾指针和合理移动，减少不合理情况的遍历，即a+b+c &lt; target，则c向左移动，a+b+c &gt; target，b向右移动
 进一步可以总结出：若想要使两数之和逼近某一个目标值，可使用双指针对已排序数组进行查找
-对已排序数组的遍历时跳过重复值的通用优化：
-123int p0 = p + 1;while(nums[p0] == nums[p] &amp;&amp; p0 &lt; q)    p0++;
-
-1234567891011121314151617181920212223242526272829303132333435363738394041424344454647int threeSumClosest(vector&lt;int&gt;&amp; nums, int target) &#123;    int ans = 1e7;    int n = nums.size();    sort(nums.begin(), nums.end());    int sum;    auto update = [&amp;](int cur)    &#123;        if(abs(cur - target) &lt; abs(ans - target))        &#123;            ans = cur;        &#125;    &#125;;    for(int i = 0; i &lt; n - 2; i++)    &#123;        if(i &gt; 0 &amp;&amp; nums[i] == nums[i-1])            continue;        int p = i + 1;        int q = n - 1;        while(p &lt; q)        &#123;            sum = nums[i] + nums[p] + nums[q];            if(sum == target)            &#123;                return target;            &#125;            update(sum);            if(sum &lt; target)            &#123;                int p0 = p + 1;                while(nums[p0] == nums[p] &amp;&amp; p0 &lt; q)                    p0++;                p = p0;            &#125;            if(sum &gt; target)            &#123;                int q0 = q - 1;                while(q0 &gt; p &amp;&amp; nums[q0] == nums[q])                &#123;                    q0--;                &#125;                q = q0;            &#125;        &#125;    &#125;    return ans;&#125;
-
-19. 删除链表的倒数第N个节点怎样一次遍历找到倒数第N个节点？双指针，前面的指针在后面的指针前N+1的位置，同步前进，然后当前面的指针指到nullptr时，后面的指针处于倒数N+1位置，这时令：
-1p-&gt;next = p-&gt;next-&gt;next;
-
-怎样保证最后返回正确的头节点？（原链表的头节点可能被删除）开始时在head前new一个节点hair：
-1ListNode* hair = new ListNode(0, head); // (val, next)
-
-最后返回hair-&gt;next
-18. 四数之和先将数组用sort()进行排序
-双重循环遍历前两个数，后两个数分配双指针一前一后
-外面双重循环：
-1234567for(int i = 0; i &lt; n-3; i++)&#123;	for(int j = i+1; j &lt; n-2; j++)	&#123;		......	&#125;&#125;
-
-双指针起始位置：
-12int p = j + 1;int q = n - 1;
-
-剪枝操作：
-在外层的两重循环中分别做如下几种情况的剪枝：
-当前值nums[i]与上一个值nums[i-1]相同时，continue
-当前值nums[i]加上后面连续三个数nums[i+1], nums[i+2], nums[i+3]的和大于target，则之后不论如何取值都一定大于target，直接跳出循环break
-当前值nums[i]加上倒数三个最大的值nums[n-1], nums[n-2], nums[n-3]的和小于target，说明以nums[i]起始的任意四个数的和均小于target，跳出本次循环continue
-对于第二层循环做类似的三种情况的剪枝处理
-415. 字符串相加实现两个字符串的数值相加，不能用类型转换
-12345678910111213141516171819202122232425262728293031string addStrings(string num1, string num2) &#123;    //双指针，双指针的“指针”不一定非得是指针类型，能做flag标记就行	int i = num1.length() - 1;	int j = num2.length() - 1;	string res;	int multi = 1;    //进位	int add = 0;	while (i &gt;= 0 || j &gt;= 0 || add &gt; 0)	&#123;		int x = 0;		int y = 0;		if (i &gt;= 0)		&#123;            //两者相减得到的是int型			x = num1[i] - '0';		&#125;		if (j &gt;= 0)		&#123;			y = num2[j] - '0';		&#125;		int result = x + y + add;		res.push_back('0' + result % 10);		add = result / 10;		i--;		j--;	&#125;    //因为每次push_back是从低位到高位的，所以结果要翻转	reverse(res.begin(), res.end());	return res;&#125;
-
-75. 颜色分类数组中只有0，1，2三种值，对其排序的方式：
-双指针p0和p2，p0用于交换0，p2用于交换2
-p0 = 0，p2 = n - 1
-一次遍历，当前值如果为0，交换当前位置和p0位置的值，当前值如果为2，和p2交换
-1234567891011// 这里while的使用要注意，对照输入[2,1,2]while(i &lt;= p2 &amp;&amp; nums[i] == 2)&#123;    swap(nums[i], nums[p2]);    --p2;&#125;if(nums[i] == 0)&#123;    swap(nums[i], nums[p0]);    ++p0;&#125;
-
-
                         
                     </p>
                 </a>
@@ -601,7 +524,7 @@ BlueprintNativeEvent：此函数将由蓝图进行重载，但同时也包含nat
     
         <div class="box widget">
     <div class="introduction">
-        <p><img src="/images/avatar.jpg" alt="head-sculpture"></p>
+        <p><img src="/images/avatar.png" alt="head-sculpture"></p>
         <p class="name">
             CHAsencenge
         </p>
