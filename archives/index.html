@@ -64,7 +64,9 @@
                 <a href="/2020/11/30/手撸算法终版/">
                     <p>
                         
-                            1. 两数之和（为目标值）   3min123456789101112vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target)&#123;    umordered_map&lt;int, int&gt; hashtable;    for(int i = 0; i &lt; nums.size(); i++)    &#123;        auto it = hashtable.find(target - nums[i]);        if(it != hashtable.end())            return &#123;it-&gt;second, i&#125;;        hashtable[nums[i]] = i;    &#125;    return &#123;&#125;;&#125;
+                            
+
+1. 两数之和（为目标值）   3min123456789101112vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target)&#123;    umordered_map&lt;int, int&gt; hashtable;    for(int i = 0; i &lt; nums.size(); i++)    &#123;        auto it = hashtable.find(target - nums[i]);        if(it != hashtable.end())            return &#123;it-&gt;second, i&#125;;        hashtable[nums[i]] = i;    &#125;    return &#123;&#125;;&#125;
 
 2. 两数相加（链表形式给出，返回同样格式的链表）  4min12345678910111213141516171819202122232425262728293031ListNode* addTwoNumbers(ListNode* l1, ListNode* l2)&#123;	ListNode* head = nullptr;    ListNode* tail = nullptr;    int carry = 0;    while(l1 || l2)    &#123;        int n1 = l1 ? l1-&gt;val : 0;        int n2 = l2 ? l2-&gt;val : 0;        int sum = n1 + n2 + carry;        if(!head)        &#123;            head = tail = new ListNode(sum % 10);        &#125;        else        &#123;            tail-&gt;next = new ListNode(sum % 10);            tail = tail-&gt;next;        &#125;        carry = sum / 10;        if(l1)            l1 = l1-&gt;next;        if(l2)            l2 = l2-&gt;next;    &#125;    if(carry)    &#123;        tail-&gt;next = new ListNode(carry);    &#125;    return head;&#125;
 
@@ -202,7 +204,9 @@ Morris123456789101112131415161718192021222324252627282930313233vector&lt;int&gt;
                 <a href="/2020/10/29/特殊技巧专题/">
                     <p>
                         
-                            48. 旋转图像对矩阵的原地旋转操作可通过转置并翻转来实现
+                            
+
+48. 旋转图像对矩阵的原地旋转操作可通过转置并翻转来实现
 本题要求完成90°旋转，可先求转置，再对每一行进行翻转
 如果要旋转180°，可以先对列翻转，再对行翻转
 如果要逆时针旋转90°，则先求转置，再对列进行翻转
@@ -301,7 +305,9 @@ Morris123456789101112131415161718192021222324252627282930313233vector&lt;int&gt;
                 <a href="/2020/10/28/树图专题/">
                     <p>
                         
-                            207. 课程表你这个学期必须选修 numCourse 门课程，记为 0 到 numCourse-1 。
+                            
+
+207. 课程表你这个学期必须选修 numCourse 门课程，记为 0 到 numCourse-1 。
 在选修某些课程之前需要一些先修课程。 例如，想要学习课程 0 ，你需要先完成课程 1 ，我们用一个匹配来表示他们：[0,1]
 给定课程总量以及它们的先决条件，请你判断是否可能完成所有课程的学习？
 1234567输入: 2, [[1,0]] 输出: true解释: 总共有2门课程。学习课程1之前，你需要完成课程0。所以这是可能的输入: 2, [[1,0],[0,1]]输出: false解释: 总共有2门课程。学习课程1之前，你需要先完成课程0；并且学习课程0之前，你还应先完成课程1。这是不可能的

@@ -64,7 +64,9 @@
                 <a href="/2020/11/30/手撸算法终版/">
                     <p>
                         
-                            1. 两数之和（为目标值）   3min123456789101112vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target)&#123;    umordered_map&lt;int, int&gt; hashtable;    for(int i = 0; i &lt; nums.size(); i++)    &#123;        auto it = hashtable.find(target - nums[i]);        if(it != hashtable.end())            return &#123;it-&gt;second, i&#125;;        hashtable[nums[i]] = i;    &#125;    return &#123;&#125;;&#125;
+                            
+
+1. 两数之和（为目标值）   3min123456789101112vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target)&#123;    umordered_map&lt;int, int&gt; hashtable;    for(int i = 0; i &lt; nums.size(); i++)    &#123;        auto it = hashtable.find(target - nums[i]);        if(it != hashtable.end())            return &#123;it-&gt;second, i&#125;;        hashtable[nums[i]] = i;    &#125;    return &#123;&#125;;&#125;
 
 2. 两数相加（链表形式给出，返回同样格式的链表）  4min12345678910111213141516171819202122232425262728293031ListNode* addTwoNumbers(ListNode* l1, ListNode* l2)&#123;	ListNode* head = nullptr;    ListNode* tail = nullptr;    int carry = 0;    while(l1 || l2)    &#123;        int n1 = l1 ? l1-&gt;val : 0;        int n2 = l2 ? l2-&gt;val : 0;        int sum = n1 + n2 + carry;        if(!head)        &#123;            head = tail = new ListNode(sum % 10);        &#125;        else        &#123;            tail-&gt;next = new ListNode(sum % 10);            tail = tail-&gt;next;        &#125;        carry = sum / 10;        if(l1)            l1 = l1-&gt;next;        if(l2)            l2 = l2-&gt;next;    &#125;    if(carry)    &#123;        tail-&gt;next = new ListNode(carry);    &#125;    return head;&#125;
 
