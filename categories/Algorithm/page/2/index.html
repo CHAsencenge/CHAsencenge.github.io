@@ -233,53 +233,6 @@
 |arr[i] - arr[k]| &lt;= c
 其中 |x| 表示 x 的绝对值
 返回 好三元组的数量 
-1234567输入：arr = [3,0,1,1,9,7], a = 7, b = 2, c = 3输出：4解释：一共有 4 个好三元组：[(3,0,1), (3,0,1), (3,1,1), (0,1,1)]输入：arr = [1,1,2,2,3], a = 0, b = 0, c = 1输出：0解释：不存在满足所有条件的三元组
-
-123456789101112131415161718int countGoodTriplets(vector&lt;int&gt;&amp; arr, int a, int b, int c) &#123;	int res = 0;	for (int i = 0; i &lt; arr.size() - 2; i++)	&#123;		for (int j = i + 1; j &lt; arr.size() - 1; j++)		&#123;			for (int k = j + 1; k &lt; arr.size(); k++)			&#123;                //使用abs()需引用cmath头文件				if (abs(arr[i] - arr[j]) &lt;= a &amp;&amp; abs(arr[j] - arr[k]) &lt;= b &amp;&amp; abs(arr[i] - arr[k]) &lt;= c)				&#123;					res++;				&#125;			&#125;		&#125;	&#125;	return res;&#125;
-
-给你一个由 不同 整数组成的整数数组 arr 和一个整数 k 
-每回合游戏都在数组的前两个元素（即 arr[0] 和 arr[1] ）之间进行。比较 arr[0] 与 arr[1] 的大小，较大的整数将会取得这一回合的胜利并保留在位置 0 ，较小的整数移至数组的末尾。当一个整数赢得 k 个连续回合时，游戏结束，该整数就是比赛的 赢家 
-返回赢得比赛的整数
-题目数据 保证 游戏存在赢家
-123456789输入：arr = [3,2,1], k = 10输出：3解释：3 将会在前 10 个回合中连续获胜    输入：arr = [1,9,8,2,3,7,6,4,5], k = 7输出：9    输入：arr = [1,11,22,33,44,55,66,77,88,99], k = 1000000000输出：99
-
-123456//vector操作a.erase(a.begin()+1,a.begin()+3); //包前不包后，删除第1、2个元素a.insert(a.begin()+1,5); //在a的第1个元素（从第0个算起）的位置插入数值5a.insert(a.begin()+1,3,5); //在a的第1个元素（从第0个算起）的位置插入3个数，其值都为5a.back(); //返回a的最后一个元素a.front(); //返回a的第一个元素
-
-123456789101112131415161718192021222324252627282930//按命题逻辑操作vector，遇到超长数组同时超大K值时会超时int getWinner(vector&lt;int&gt;&amp; arr, int k) &#123;	int num = 0;	int res = arr[0];	if (k &gt; arr.size())	&#123;		k = arr.size();	&#125;		while (num &lt; k)	&#123;		if (arr[0] &gt; arr[1])		&#123;			num++;			int temp = arr[1];			arr.erase(arr.begin() + 1, arr.begin() + 2);			arr.push_back(temp);		&#125;		else		&#123;			num = 1;			int temp = arr[0];			res = arr[1];			arr.erase(arr.begin(), arr.begin() + 1);			arr.push_back(temp);		&#125;	&#125;	return res;&#125;
-
-123456789101112131415161718192021222324252627282930//trick，不用按题述方式操作vector，从前向后遍历即可int getWinner(vector&lt;int&gt;&amp; arr, int k) &#123;        int num = 0;	    int res = arr[0];	    if (k &gt; arr.size())	    &#123;	    	k = arr.size();	    &#125;	    for(int i = 0; i &lt; arr.size(); i++)        &#123;            if(arr[i]&gt;arr[i+1])            &#123;                //直接修改arr[i+1]的值为arr[i]，这样继续和后面比较时仍是类似命题中的：上一组的较大者和新数值比较                arr[i+1] = arr[i];                num++;            &#125;            else            &#123;                //当遇到前者小于后者的情况，看此时的num值是否满足大于等于k的要求，符合即作为结果返回                if(num &gt;= k)                &#123;                    return arr[i];                &#125;                //不符合则设置num为1，不设置为0的原因是因为已经淘汰掉上一个值，已经赢了一回合                res = arr[i+1];                num = 1;             &#125;        &#125;	    return res;    &#125;
-
-给你一个 n x n 的二进制网格 grid，每一次操作中，你可以选择网格的 相邻两行 进行交换
-一个符合要求的网格需要满足主对角线以上的格子全部都是 0 
-请你返回使网格满足要求的最少操作次数，如果无法使网格符合要求，请你返回 -1 
-主对角线指的是从 (1, 1) 到 (n, n) 的这些格子
-123456789输入：grid = [[0,0,1],[1,1,0],[1,0,0]]输出：3输入：grid = [[0,1,1,0],[0,1,1,0],[0,1,1,0],[0,1,1,0]]输出：-1解释：所有行都是一样的，交换相邻行无法使网格符合要求输入：grid = [[1,0,0],[1,1,0],[1,1,1]]输出：0
-
-12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849//贪心//从第一行开始，如果该行的后缀0满足条件，那么直接跳过进入下一行（因为需要的后缀0个数是从大到小的顺序（理解这一点非常重要），所以不必担心前面的会抢后面的，自己不够用的时候放心的去抢后面的，因为当前行的需求（优先级）比后面都高）//如果该行后缀0个数不满足条件，那么就往下遍历找到最先（贪心，这是最小次数）满足条件的行，一行一行换上来，记录交换的次数int minSwaps(vector&lt;vector&lt;int&gt;&gt;&amp; grid) &#123;    vector&lt;int&gt; resV;	int res = 0;    int n = grid.size();    //统计每行后缀0个数，存到resV中	for (int i = 0; i &lt; n; i++)	&#123;		int num = 0;		for (int j = 0; j &lt; grid[i].size(); j++)		&#123;			if (grid[i][j] == 0)			&#123;			    num++;			&#125;			else 			&#123;			    num = 0;			&#125;		&#125;		resV.push_back(num);	&#125;    for(int i = 0; i &lt; n - 1; i++)    &#123;        //如果当前行的后缀0个数够用，直接往下遍历，不用担心抢了后面的，因为当前行的需求量比后面的都高        if(resV[i] &gt;= n - i - 1)        continue;        else        &#123;            int j = i + 1;            while(resV[j] &lt; n - i - 1 )            &#123;                j++;                //找到最后都没有找到满足个数的后缀0，就直接退出                if(j == n)                    return -1;            &#125;            //while之后到这里说明找到了一行满足当前行的后缀0的个数需求，把找到的行一行一行的往上换，换到当前行，每次swap的同时更新交换次数            for(int m = j; m &gt; i; m--)            &#123;                swap(resV[m], resV[m - 1]);                res++;            &#125;            &#125;    &#125;    return res;&#125;
-
-5484. 找出第 N 个二进制字符串中的第 K 位12345678910输入：n = 3, k = 1输出：&quot;0&quot;解释：S3 为 &quot;0111001&quot;，其第 1 位为 &quot;0&quot; 输入：n = 4, k = 11输出：&quot;1&quot;解释：S4 为 &quot;011100110110001&quot;，其第 11 位为 &quot;1&quot;输入：n = 1, k = 1输出：&quot;0&quot;
-
-12345678910111213141516private:// invert处理    char ch_not(char ch) &#123;        if(ch == '0') &#123; return '1'; &#125;        else          &#123; return '0'; &#125;    &#125;public:    char findKthBit(int n, int k) &#123;        if(n == 1) &#123; return '0'; &#125;        // 1左移n-1位，pow(2, n-1)        int mid = (1&lt;&lt;(n-1));        if(k == mid) &#123; return '1'; &#125;        if(k &lt; mid) &#123; return findKthBit(n-1, k); &#125;        // k &gt; mid的情况需要把k挪到对称位置：(1&lt;&lt;n) - k，并进行invert        return ch_not(findKthBit(n-1, (1&lt;&lt;n) - k));     &#125;
-
-5483. 整理字符串123456789101112输入：s = &quot;leEeetcode&quot;输出：&quot;leetcode&quot;解释：无论你第一次选的是 i = 1 还是 i = 2，都会使 &quot;leEeetcode&quot; 缩减为 &quot;leetcode&quot;输入：s = &quot;abBAcC&quot;输出：&quot;&quot;解释：存在多种不同情况，但所有的情况都会导致相同的结果。例如：&quot;abBAcC&quot; --&gt; &quot;aAcC&quot; --&gt; &quot;cC&quot; --&gt; &quot;&quot;&quot;abBAcC&quot; --&gt; &quot;abBA&quot; --&gt; &quot;aA&quot; --&gt; &quot;&quot;输入：s = &quot;s&quot;输出：&quot;s&quot;
-
-1234567891011121314151617181920string makeGood(string s) &#123;int i = 0;while (i != s.length() - 1)&#123;    for (i = 0; i &lt; s.length() - 1; i++)    &#123;        if (abs(s[i] - s[i + 1]) == 32)        &#123;            s.erase(i, 2);            i = 0;            break;        &#125;    &#125;    if(s.empty())    &#123;        return "";    &#125;&#125;return s;&#125;
-
-1234567891011121314151617181920212223//William Lin版string makeGood(string s)&#123;    bool ch = 1;    while(ch)    &#123;        ch = 0;        string t = s;        //size()返回类型是size_t, (unsigned) 和后面的int相减可能会溢出        for(int i = 0; i &lt; (int)s.size() - 1; i++)        &#123;            if(s[i] + 32 == s[i + 1] || s[i + 1] + 32 == s[i])            &#123;                //string的substr()使用，带首不带尾，单个参数默认从参数位置取到末尾                t = s.substr(0, i) + s.substr(i + 2);            	ch = 1;                break;            &#125;        &#125;        s = t;    &#125;    return s;&#125;
-
-5468. 第 k 个缺失的正整数1234567输入：arr = [2,3,4,7,11], k = 5输出：9解释：缺失的正整数包括 [1,5,6,8,9,10,12,13,...]输入：arr = [1,2,3,4], k = 2输出：6解释：缺失的正整数包括 [5,6,7,...]
-
-1234567891011121314151617181920212223242526272829int findKthPositive(vector&lt;int&gt;&amp; arr, int k) &#123;    int init = 0;    int res = 0;    int resNum = 0;    res = arr[0] - init -1;    if(res &gt;= k)    &#123;        return k;    &#125;    int i = 1;    while(i &lt; arr.size() &amp;&amp; res &lt; k)    &#123;        if(res + arr[i] - arr[i-1] - 1 &lt; k)        &#123;            res += arr[i] - arr[i-1] - 1;        &#125;        else        &#123;            resNum = arr[i-1] + (k - res);             res = k;        &#125;        i++;    &#125;    if(i == arr.size() &amp;&amp; res &lt; k)    &#123;        resNum = arr.back() + (k - res);    &#125;    return resNum;&#125;
-
-5469. K 次操作转变字符串1234567891011输入：s = &quot;input&quot;, t = &quot;ouput&quot;, k = 9输出：true解释：第 6 次操作时，我们将 &apos;i&apos; 切换 6 次得到 &apos;o&apos; 。第 7 次操作时，我们将 &apos;n&apos; 切换 7 次得到 &apos;u&apos;输入：s = &quot;abc&quot;, t = &quot;bcd&quot;, k = 10输出：false解释：我们需要将每个字符切换 1 次才能得到 t 。我们可以在第 1 次操作时将 &apos;a&apos; 切换成 &apos;b&apos; ，但另外 2 个字母在剩余操作中无法再转变为 t 中对应字母输入：s = &quot;aab&quot;, t = &quot;bbb&quot;, k = 27输出：true解释：第 1 次操作时，我们将第一个 &apos;a&apos; 切换 1 次得到 &apos;b&apos; 。在第 27 次操作时，我们将第二个字母 &apos;a&apos; 切换 27 次得到 &apos;b&apos;
-
-12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455//结果出现的位置有数组首之前，数组中间，数组末尾之后，分别处理//创建一个数组存储每一位需要的操作数，将操作数按大小排好，一次遍历去对应k值看是否满足要求//addNum记录某个操作数出现的次数，比如6在某一位上出现一次，某另一位的操作数也是6，那么操作数只能选择6 + 26，第三次出现时操作数为6 + 26 * 2bool canConvertString(string s, string t, int k) &#123;        if (s.length() != t.length())        &#123;            return false;        &#125;        vector&lt;int&gt; resV;        int temp = 0;        vector&lt;int&gt; addNum(26, 0);        for (int i = 0; i &lt; s.length(); i++)        &#123;            if (t[i] - s[i] &gt;= 0)            &#123;                temp = t[i] - s[i];                addNum[temp] += 1;            &#125;            else            &#123;                temp = t[i] - 'a' + 'z' - s[i] + 1;                addNum[temp] += 1;            &#125;            //操作数为0是可以重复的，不需要加重叠次数*26            if (temp != 0)            &#123;                int pushNum = temp + 26 * (addNum[temp] - 1);                resV.push_back(pushNum);            &#125;            else            &#123;                resV.push_back(temp);            &#125;        &#125;        sort(resV.begin(), resV.end());        while (!resV.empty() &amp;&amp; resV.back() != 0)        &#123;            if (k &gt; resV.back())            &#123;                k = resV.back() - 1;                resV.pop_back();            &#125;            else if (k == resV.back())            &#123;                resV.pop_back();                k--;            &#125;            else            &#123;                return false;            &#125;        &#125;        return true;    &#125;
-
-1546. 和为目标值的最大数目不重叠非空子数组数目1234567891011121314输入：nums = [1,1,1,1,1], target = 2输出：2解释：总共有 2 个不重叠子数组（加粗数字表示） [1,1,1,1,1] ，它们的和为目标值 2 输入：nums = [-1,3,5,1,4,2,-9], target = 6输出：2解释：总共有 3 个子数组和为 6 。([5,1], [4,2], [3,5,1,4,2,-9]) 但只有前 2 个是不重叠的输入：nums = [-2,6,6,3,5,4,1,2,8], target = 10输出：3输入：nums = [0,0,0], target = 0输出：3
-
-12345678910111213141516171819202122// 贪心int maxNonOverlapping(vector&lt;int&gt;&amp; nums, int target)&#123;    set&lt;int&gt; s;    //初始时累计值为0，保证在&#123;-1, 3, 5, 1&#125;中找target=6时能找去掉-1, 3，找到&#123;5, 1&#125;    s.insert(0);    int ps = 0, ans = 0;    //一个替代遍历vector中每个值的方法（不关注下标时可使用）    for(int a : nums)    &#123;        //记录到每个当前值的累计值，其中的两个值相减就是两者之间的子数组中的各个值和        ps += a;        //注意理解ps - target的含义，是在当前位置根据target找前面是否有能截断而得到要的子数组的位置        if(s.find(ps - target != s.end()))        &#123;            ++ans;            s.clear();        &#125;        s.insert(ps);    &#125;    return ans;&#125;
-
-
                         
                     </p>
                 </a>

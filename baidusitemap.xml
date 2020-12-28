@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://chasencenge.github.io/2020/08/02/LeetCode%E5%91%A8%E8%B5%9B/</loc>
+    <lastmod>2020-12-28</lastmod>
+  </url>
+  <url>
     <loc>https://chasencenge.github.io/2020/10/28/%E7%A9%BA%E9%97%B4%E6%8D%A2%E6%97%B6%E9%97%B4%E4%B8%93%E9%A2%98/</loc>
     <lastmod>2020-12-28</lastmod>
   </url>
@@ -170,10 +174,6 @@
   </url>
   <url>
     <loc>https://chasencenge.github.io/2020/07/13/C-h%E5%92%8C-cpp/</loc>
-    <lastmod>2020-10-26</lastmod>
-  </url>
-  <url>
-    <loc>https://chasencenge.github.io/2020/08/02/LeetCode%E5%91%A8%E8%B5%9B/</loc>
     <lastmod>2020-10-26</lastmod>
   </url>
   <url>
