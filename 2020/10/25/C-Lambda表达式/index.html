@@ -80,6 +80,8 @@
 <h3 id="声明方式：-captrues-params-gt-ret-Statements"><a href="#声明方式：-captrues-params-gt-ret-Statements" class="headerlink" title="声明方式：[captrues(params) -&gt;ret {Statements};"></a>声明方式：[captrues(params) -&gt;ret {Statements};</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">auto</span> fadd = [](<span class="hljs-keyword">int</span> a, <span class="hljs-keyword">int</span> b)<br>&#123;<br>	<span class="hljs-keyword">return</span> a + b;<br>&#125;; <span class="hljs-comment">// 注意最后有分号</span><br></code></pre></td></tr></table></figure>
 
 <p>[]表示开始定定义Lambda表达式，()里面是函数的参数 ，{}里面是函数体</p>
+<a id="more"></a>
+
 <h3 id="显示指明返回值："><a href="#显示指明返回值：" class="headerlink" title="显示指明返回值："></a>显示指明返回值：</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">auto</span> fadd = [](<span class="hljs-keyword">int</span> a, <span class="hljs-keyword">int</span> b) -&gt; ret<br>&#123;<br>	<span class="hljs-keyword">return</span> a + b;<br>&#125;;<br></code></pre></td></tr></table></figure>
 
 <h1 id="Lambda表达式的变量截取"><a href="#Lambda表达式的变量截取" class="headerlink" title="Lambda表达式的变量截取"></a>Lambda表达式的变量截取</h1><p>[] 不截取任何变量</p>

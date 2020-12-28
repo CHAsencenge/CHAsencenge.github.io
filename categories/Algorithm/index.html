@@ -275,7 +275,6 @@
 如果不用空间换时间，计算每个点左右两侧的最大值都需要遍历一次所有数据
 所以用两个数组leftMax和rightMax分别存储每个点左侧的最大值和右侧的最大值
 最后再一次遍历计算总蓄水量
-
                         
                     </p>
                 </a>
@@ -396,31 +395,7 @@
                 <a href="/2020/09/08/回溯专题/">
                     <p>
                         
-                            回溯算法的写法：画出递归树，找到状态变量（回溯函数的参数）根据题意确立结束条件找准选择列表判断是否需要剪枝（去掉重复的集合，即去掉递归树上的某些分支）做出选择，递归调用，进入下一层撤销选择77. 组合12345678910111213141516171819202122232425262728293031323334//给出n，k返回可能的组合vector&lt;vector&lt;int&gt;&gt; res;vector&lt;int&gt; temp;void dfs(int cur, int n, int k)&#123;    // 如果[cur, n]中元素的个数加上temo中元素的个数少于k，无法构成需要的组合    if (temp.size() + (n - cur + 1) &lt; k)    &#123;        return;    &#125;    // 如果temp的size == k，说明找到了组合，插入res    if (temp.size() == k)    &#123;        res.push_back(temp);        return;    &#125;    // 小于k的话继续往里添加元素    if (temp.size() &lt; k)    &#123;        // 考虑选择当前位置        temp.push_back(cur);        dfs(cur + 1, n, k);        temp.pop_back();        // 考虑不选择当前位置        dfs(cur + 1, n, k);    &#125;&#125;vector&lt;vector&lt;int&gt;&gt; combine(int n, int k) &#123;    dfs(1, n, k);    return res;&#125;
-
-39. 组合总和12345678910111213141516171819202122232425262728293031323334// 因为是数据可重复选择的情况，所以在回溯中，可选择跳过和不跳过当前数值，这样就会包括某一个值重复选择的情况，在不跳过当前值的选择中，需要确定当前数值没有超过所需值vector&lt;vector&lt;int&gt;&gt; res;vector&lt;int&gt; temp;void dfs(int cur, int n, vector&lt;int&gt;&amp; candidates, int remain)&#123;            if(cur == n)    &#123;        return;    &#125;    if(remain == 0)    &#123;        res.push_back(temp);        return;    &#125;    // 不选择当前位置，直接跳过    dfs(cur + 1, n, candidates, remain);    // 选择当前数，不跳过，不跳过的话需要判断当前数是否还能选择    if(candidates[cur] &lt;= remain)    &#123;        temp.push_back(candidates[cur]);        remain -= candidates[cur];         dfs(cur, n, candidates, remain);        temp.pop_back();    &#125;       &#125;vector&lt;vector&lt;int&gt;&gt; combinationSum(vector&lt;int&gt;&amp; candidates, int target) &#123;    int n = candidates.size();    dfs(0, n,candidates, target);    return res;&#125;
-
-401. 二进制手表123456789101112131415161718192021222324252627282930313233343536373839404142434445464748vector&lt;string&gt; res;unordered_map&lt;int, int&gt; hashdata = &#123;&#123;0,1&#125;,&#123;1,2&#125;,&#123;2,4&#125;,&#123;3,8&#125;,&#123;4,1&#125;,&#123;5,2&#125;,&#123;6,4&#125;,&#123;7,8&#125;,&#123;8,16&#125;,&#123;9,32&#125;&#125;;void backtrack(int num,int start,pair&lt;int,int&gt;&amp; time)&#123;    // 结束条件    if(num == 0)    &#123;        if(time.first &gt; 11 || time.second &gt; 59)        &#123;            return;        &#125;        string temp_hour = to_string(time.first);        string temp_minute = to_string(time.second);        if(temp_minute.size() == 1)        &#123;            temp_minute.insert(0, "0");        &#125;        res.push_back(temp_hour + ":" + temp_minute);        return;    &#125;    for(int i = start; i &lt; 10; i++)    &#123;        if(time.first &gt; 11 || time.second &gt; 59)        &#123;            continue;        &#125;        // 在本层中创建一个变量store用来存储当前的time值，回退时使用        pair&lt;int, int&gt; store = time;        if(i &lt; 4)        &#123;            time.first += hashdata[i];        &#125;        else        &#123;            time.second += hashdata[i];                &#125;        backtrack(num - 1, i + 1, time);        // 在同层回退时把前面存好的store再赋给time，时time恢复到原状态        time = store;            &#125;&#125;vector&lt;string&gt; readBinaryWatch(int num) &#123;    pair&lt;int, int&gt; time(0, 0);    backtrack(num, 0, time);    return res;&#125;
-
-40. 组合总数212345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152// 去重复结果组合使用pair计数，将给的数组里的相同数值的数放在一起去递归处理vector&lt;int&gt; temp;vector&lt;vector&lt;int&gt;&gt; res;vector&lt;pair&lt;int, int&gt;&gt; freq;void dfs(int pos, int rest)&#123;    if(rest == 0)    &#123;        res.push_back(temp);        return;    &#125;    if(pos == freq.size() || rest &lt; freq[pos].first)    &#123;        return;    &#125;        dfs(pos+1, rest);	// most用来判断处理相同数值的数时，进行几次递归，例如有五个2，但是target是7，那么只进行对2这个数值只进行三次递归    int most = min(rest / freq[pos].first, freq[pos].second);        for(int a = 1; a &lt;= most; a++)    &#123;        temp.push_back(freq[pos].first);        dfs(pos+1, rest - a * freq[pos].first);    &#125;    for(int b = 1; b &lt;= most; b++)    &#123;        temp.pop_back();    &#125;  &#125;vector&lt;vector&lt;int&gt;&gt; combinationSum2(vector&lt;int&gt;&amp; candidates, int target) &#123;    // vector&lt;pair&lt;int, int&gt;&gt; freq;    sort(candidates.begin(), candidates.end());    for(int num : candidates)    &#123;        if(freq.empty() || num != freq.back().first)        &#123;            // 用push_back的话需要make_pair，用emplace_back则不需要            // freq.push_back(make_pair(num, 1));            freq.emplace_back(num, 1);        &#125;        else        &#123;            ++freq.back().second;        &#125;    &#125;    dfs(0, target);    return res;&#125;
-
-216. 组合总数3123456789101112131415161718192021222324vector&lt;int&gt; temp;vector&lt;vector&lt;int&gt;&gt; res;void dfs(int cur, int remain, int k)&#123;    if(remain == 0 &amp;&amp; temp.size() == k)    &#123;        res.push_back(temp);        return;    &#125;    if(cur &gt; remain || temp.size() == k || cur &gt; 9)    &#123;        return;    &#125;    temp.push_back(cur);    dfs(cur+1, remain-cur, k);    temp.pop_back();    dfs(cur+1, remain, k);&#125;vector&lt;vector&lt;int&gt;&gt; combinationSum3(int k, int n) &#123;    dfs(1, n, k);    return res;&#125;
-
-22. 括号生成回溯函数参数：要生成的括号对数n，存结果的vector rets，单个结果的string ret，当前左括号数open，当前右括号数close
-用ret.size() == 2 * n判断是否将ret添加到结果rets
-用open &lt; n判断是否继续添加左括号
-用close &lt; open判断当前是否能添加右括号
-46. 全排列什么情况适合使用回溯法：
-通过探索所有可能的候选解来找出所有解
-终止条件为：
-1cur == len
-
-回溯体结构为：
-从已构造长度开始往后，逐个与当前位置进行数据交换
-123456for(int i = cur; i &lt; len; i++)&#123;	swap(output[cur], output[i]);    backtrack(ret, output, cur+1, len);    swap(output[cur], output[i]); //回溯里一定要记得的撤销操作&#125;
-
-78. 子集没啥说的，最基础的回溯….
-
+                            回溯算法的写法：画出递归树，找到状态变量（回溯函数的参数）根据题意确立结束条件找准选择列表判断是否需要剪枝（去掉重复的集合，即去掉递归树上的某些分支）做出选择，递归调用，进入下一层撤销选择
                         
                     </p>
                 </a>
@@ -461,22 +436,6 @@
                     <p>
                         
                             4. 寻找两个正序数组的中位数123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354//二分查找//写一个查找第k大的函数，k值在运行过程中会慢慢减小int findKthElement(vector&lt;int&gt;&amp; nums1, vector&lt;int&gt;&amp; nums2, int k)&#123;    int m = nums1.size();    int n = nums2.size();    int index1 = 0;    int index2 = 0;    while (true)    &#123;        //nums1中的指针位置已经到了末尾，直接在num2中找剩下的第k大        if (index1 == m)        &#123;            return nums2[index2 + k - 1];        &#125;        if (index2 == n)        &#123;            return nums1[index1 + k - 1];        &#125;        if (k == 1)        &#123;            return min(nums1[index1], nums2[index2]);        &#125;		//边界检测，index如果加了k / 2 - 1越界了，就直接将新的index设置为数组的最后一位        int newIndex1 = min(index1 + k / 2 - 1, m - 1);        int newIndex2 = min(index2 + k / 2 - 1, n - 1);        int pivot1 = nums1[newIndex1];        int pivot2 = nums2[newIndex2];        if (pivot1 &lt;= pivot2)        &#123;            //更新k和index            k -= newIndex1 - index1 + 1;            index1 = newIndex1 + 1;        &#125;        else        &#123;            k -= newIndex2 - index2 + 1;            index2 = newIndex2 + 1;        &#125;    &#125;&#125;double findMedianSortedArrays(vector&lt;int&gt;&amp; nums1, vector&lt;int&gt;&amp; nums2) &#123;    int totalLength = nums1.size() + nums2.size();    if (totalLength % 2 == 1)    &#123;	//奇数总数和偶数总数分开讨论        return findKthElement(nums1, nums2, (totalLength + 1) / 2);    &#125;    else    &#123;        return (findKthElement(nums1, nums2, totalLength / 2) + findKthElement(nums1, nums2, totalLength / 2 + 1)) / 2.0;    &#125;&#125;
-
-34. 在排序数组中查找元素的第一个和最后一个位置排序数组直接联想二分查找
-对二分查找做适合题目要求的改动，有多个连续的target值，寻找左边界时要找到最左面的target下标，则需要在findLeft函数中添加判断：
-12if(nums[mid] == target)	right = mid;
-
-使有边界逐渐向左逼近，以保证最后走出 while(left &lt; right) 循环时，left在多个相同的target中的最左面
-在findRight函数中不仅需要添加判断：
-12if(nums[mid] == target)	left = mid;
-
-特别注意，还需要修改mid的计算：
-1mid = (left + right + 1) / 2
-
-这里如果不加1的话，当left == right-1时，计算mid永远等于left，无法退出循环
-347. 前 K 个高频元素12345678910111213141516171819202122232425262728293031323334353637383940// 这里的static的添加是因为sory()第三个参数是个函数指针，然而cmp函数是一个非静态成员函数，非静态成员函数指针和普通函数指针是有区别的，为防止报错在类内的成员函数定义前添加static，或者把cmp函数定义写在类外static bool cmp(pair&lt;int,int&gt; a, pair&lt;int,int&gt; b)    &#123;        return a.second &gt; b.second;    &#125;    vector&lt;int&gt; topKFrequent(vector&lt;int&gt;&amp; nums, int k) &#123;        map&lt;int,int&gt; countMap;        int n = nums.size();        map&lt;int, int&gt;::iterator it;        for(int i = 0; i &lt; n; i++)        &#123;            // 判断map中某个key是否存在，使用find()，（find()返回的是迭代器）            it = countMap.find(nums[i]);            if(it != countMap.end())            &#123;                countMap[nums[i]]++;            &#125;            else            &#123;                // map中插入新的&lt;key, value&gt;对                countMap.insert(pair&lt;int,int&gt;(nums[i], 1));            &#125;        &#125;        // map没有sort()函数，因为map不是线性结构，所以为了排序，将map中的pair形式的成员放到vector中再进行排序        vector&lt;pair&lt;int,int&gt;&gt; vec;        for(map&lt;int,int&gt;::iterator it = countMap.begin(); it != countMap.end(); it++)        &#123;            vec.push_back(pair&lt;int,int&gt;(it-&gt;first, it-&gt;second));        &#125;        sort(vec.begin(), vec.end(), cmp);        vector&lt;int&gt; res;        vector&lt;pair&lt;int,int&gt;&gt;::iterator iter = vec.begin();        while(k)        &#123;            res.push_back(iter-&gt;first);            iter++;            k--;        &#125;        return res;    &#125;
-
-
                         
                     </p>
                 </a>

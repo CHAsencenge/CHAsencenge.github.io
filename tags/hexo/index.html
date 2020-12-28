@@ -71,58 +71,6 @@
 12# Writingpost_asset_folder: true
 
 这样每次创建新文件时会生成一个asset文件夹，用到的图片素材均放在此同名文件夹中进行调用
-还需安装相应插件：
-1npm install https://github.com/CodeFalling/hexo-asset-image --save
-
-在相应的.md文件中调用图片资源时，切记！！！！💊💊💊
-调用图片资源的路径直接写图片文件名，默认路径已经切到相应同名文件夹下，不可使用绝对路径名！！！！
-修改新建文件时给出的默认Front-MatterFront-Matter说明
-修改hexo/scaffolds下的：
-draft.md, page.md, post.md
-修改方式见：https://github.com/miiiku/flex-block
-添加代码高亮https://highlightjs.org/
-下载依赖：
-1npm install highlight.js
-
-hexo/_config.yml:
-（theme格式：小写，空格以“-”替代，如monokai-sublime）
-12345678highlight:  enable: true  line_number: true  auto_detect: false  tab_replace:  hljs: true  # theme: railscasts  theme: pojoaque
-
-添加社交平台链接hexo/themes/flex-block/_config.yml:
-12345678910111213social_icon:  header_enable: true  footer_enable: true  icons:    - &#123; type: email,      value: 958198376@qq.com&#125;    - &#123; type: github,     value: https://github.com/CHAsencenge&#125;    - &#123; type: google+,    value: &#125;    - &#123; type: ins,        value: &#125;    - &#123; type: twitter,    value: &#125;    - &#123; type: youtube,    value: &#125;    - &#123; type: weibo,      value: https://weibo.com/u/5701921017&#125;    - &#123; type: cloudmusic, value: https://music.163.com/#/user/home?id=92407481&#125;    - &#123; type: zhihu,      value: &#125;
-
-修改主页标签显示（英文-&gt;中文）hexo/themes/flex-block/_config.yml:
-修改其中的menu:
-123456menu:  主页: /  关于: /about  友链: /links  标签: /tags  分类: /categories
-
-添加友链页面并顺手放些要用的图片资源添加友链页面：(顺口一提，hexo new page 会生成与_post同级的文件夹)
-1hexo new page links
-
-在links/index.md中修改Front-matter，添加：
-1type: links
-
-确认hexo/themes/flex-block/_config.yml中是否有(左侧为标签显示，不重要，重要的是是否写了右侧的/links目录)：
-1links: /links
-
-存放友链数据在source目录下(与_post同级) ， 创建:
-_data文件夹
-在source/_data下新建links.yml
-一行一条友链数据，格式如下(现在links文件夹下创建Asset文件夹，存放相应的图片资源，并push到仓库，因为cover参数需要url，不能是本地路径，所以将资源推到仓库同时从仓库的对应url取图片资源作为cover)：
-1234567891011121314151617181920- &#123; "name" : "tianzixiao", "describe" : "测试", "link" : "Asset/tianzixiao.png", "cover" : "https://chasencenge.github.io/links/Asset/tianzixiao.png" &#125;- &#123; "name" : "cover1", "describe" : "测试", "link" : "Asset/cover1.jpg", "cover" : "https://chasencenge.github.io/links/Asset/cover1.jpg" &#125;- &#123; "name" : "cover2", "describe" : "测试", "link" : "Asset/cover2.jpg", "cover" : "https://chasencenge.github.io/links/Asset/cover2.jpg" &#125;- &#123; "name" : "cover3", "describe" : "测试", "link" : "Asset/cover3.jpg", "cover" : "https://chasencenge.github.io/links/Asset/cover3.jpg" &#125;- &#123; "name" : "cover4", "describe" : "测试", "link" : "Asset/cover4.jpg", "cover" : "https://chasencenge.github.io/links/Asset/cover4.jpg" &#125;- &#123; "name" : "cover5", "describe" : "测试", "link" : "Asset/cover5.jpg", "cover" : "https://chasencenge.github.io/links/Asset/cover5.jpg" &#125;- &#123; "name" : "cover6", "describe" : "测试", "link" : "Asset/cover6.jpg", "cover" : "https://chasencenge.github.io/links/Asset/cover6.jpg" &#125;- &#123; "name" : "cover7", "describe" : "测试", "link" : "Asset/cover7.jpg", "cover" : "https://chasencenge.github.io/links/Asset/cover7.jpg" &#125;- &#123; "name" : "cover8", "describe" : "测试", "link" : "Asset/cover8.jpg", "cover" : "https://chasencenge.github.io/links/Asset/cover8.jpg" &#125;- &#123; "name" : "cover9", "describe" : "测试", "link" : "Asset/cover9.jpg", "cover" : "https://chasencenge.github.io/links/Asset/cover9.jpg" &#125;- &#123; "name" : "cover10", "describe" : "测试", "link" : "Asset/cover10.jpg", "cover" : "https://chasencenge.github.io/links/Asset/cover10.jpg" &#125;- &#123; "name" : "cover11", "describe" : "测试", "link" : "Asset/cover11.jpg", "cover" : "https://chasencenge.github.io/links/Asset/cover11.jpg" &#125;- &#123; "name" : "cover12", "describe" : "测试", "link" : "Asset/cover12.jpg", "cover" : "https://chasencenge.github.io/links/Asset/cover12.jpg" &#125;- &#123; "name" : "cover13", "describe" : "测试", "link" : "Asset/cover13.jpg", "cover" : "https://chasencenge.github.io/links/Asset/cover13.jpg" &#125;- &#123; "name" : "cover14", "describe" : "测试", "link" : "Asset/cover14.jpg", "cover" : "https://chasencenge.github.io/links/Asset/cover14.jpg" &#125;- &#123; "name" : "cover15", "describe" : "测试", "link" : "Asset/cover15.jpg", "cover" : "https://chasencenge.github.io/links/Asset/cover15.jpg" &#125;- &#123; "name" : "cover16", "describe" : "测试", "link" : "Asset/cover16.jpg", "cover" : "https://chasencenge.github.io/links/Asset/cover16.jpg" &#125;- &#123; "name" : "cover17", "describe" : "测试", "link" : "Asset/cover17.jpg", "cover" : "https://chasencenge.github.io/links/Asset/cover17.jpg" &#125;- &#123; "name" : "cover18", "describe" : "测试", "link" : "Asset/cover18.jpg", "cover" : "https://chasencenge.github.io/links/Asset/cover18.jpg" &#125;- &#123; "name" : "cover19", "describe" : "测试", "link" : "Asset/cover19.jpg", "cover" : "https://chasencenge.github.io/links/Asset/cover19.jpg" &#125;
-
-修改主页bannerhexo/themes/flex-block/_config.yml:
-1banner: https://chasencenge.github.io/links/Asset/cover19.jpg
-
-关于card无法显示cover图片的问题在主页按F12查看页面bug，发现无法找到cover.jpg，对比其他文章页面，无error，说明主页card的图片寻径和文章页的cover寻径不同
-在F12调试工具中-&gt;Application，对比主页和文章页查看，发现各自的image加载是在各自的index.html同级目录下，故将用到的所有文件资源复制到hexo/public目录下，但是此目录仅支持主页正常显示，翻页时会进入page2，page3等等，所以将所用到的card资源同样放置在hexo/public/page/2、hexo/public/page/3等目录下
-
-btw，为了保证主页card显示的图片不冲突，以上目录下的图片不可重名，又由于以上目录的图片名需与hexo/source/_post中的每一篇的cover同名，故每个文章的asset-folder中的cover命名不要重名，文章front-matter同理
-asset-folder的cover命名：
-front-matter的cover命名保证与asset-folder一致，并与hexo/public中的资源名称一致：1cover: cover22.jpg
-
-添加鼠标拖拽如果没有拖拽移动的功能，代码部分无法通过鼠标拖拽看到右侧超出框宽的部分，页面很长时也无法通过拖拽快速下拉，只能用滚轮，很不方便
-解决：打开flex-block文件夹，source/css/style.styl，将9-11行注释掉
-
                         
                     </p>
                 </a>

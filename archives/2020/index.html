@@ -275,7 +275,6 @@
 如果不用空间换时间，计算每个点左右两侧的最大值都需要遍历一次所有数据
 所以用两个数组leftMax和rightMax分别存储每个点左侧的最大值和右侧的最大值
 最后再一次遍历计算总蓄水量
-
                         
                     </p>
                 </a>
@@ -319,15 +318,6 @@
 声明方式：[captrues(params) -&gt;ret {Statements};1234auto fadd = [](int a, int b)&#123;	return a + b;&#125;; // 注意最后有分号
 
 []表示开始定定义Lambda表达式，()里面是函数的参数 ，{}里面是函数体
-显示指明返回值：1234auto fadd = [](int a, int b) -&gt; ret&#123;	return a + b;&#125;;
-
-Lambda表达式的变量截取[] 不截取任何变量
-[&amp;] 截取外部作用域的所有变量，并作为引用在函数体中使用
-[=] 截取外部作用域中的所有变量，并拷贝一份在函数体中使用
-[=, &amp;foo] 截取外部作用域中所有变量并拷贝一份在函数体中使用，但对foo变量使用引用
-[bar] 截取bar变量并拷贝一份在函数体使用，不截取其他变量
-[this] 截取当前类中的指针
-
                         
                     </p>
                 </a>
@@ -417,81 +407,6 @@ Lambda表达式的变量截取[] 不截取任何变量
 注意
 生成工程文件前可能会报错，根据报错信息可判断是否缺少相应的.NET Framework，如果缺少在vs installer中选中相应版本的vs – 修改 – 添加相应的.NET工具
 Epic Game Launcher中不能识别非公版的引擎，向编译版的引擎创建的工程中添加保管库中的素材时，点击添加到工程–显示所有工程–为相应工程手动选择对应的版本号即可添加素材（因为又编译版引擎创建的工程在Launcher中显示的版本标识为“其他”，不选择相应的版本号则素材或插件都会显示不兼容）
-项目打包项目打包注意事项启动地图构建项目时会从游戏默认地图开始，需要点击Project Settings — Maps &amp; Modes 设置game default map
-
-选择目标平台
-还要记得选择目标硬件(Target Hardware)
-编辑器查看方式
-细化平台性能控制
-打开Device Profiles以后点击想要修改的设备型号后面的扳手即可对其值进行修改
-
-Android设置和打包方式设置方式寻找UE4 Android Works文件夹，一般默认为C:/Program Files/Epic Games/UE_4_版本/Engine/Extras/Android Works/Win64
-安装后可看到CodeWorks Manager窗口
-在手机端，有时需找到usb driver才能使用，一般连数据线即可
-http://developer.android.com/tools/extras/oem-usb.html
-解锁设备时要开启开发者模式，开启usb调试
-在设置主页找到“已连接设备”选择启用文件传输
-在电脑上cmd输入adb devices，如果列出了自己的手机设备名，则准备就绪
-注意：
-手机开发者选项中不但需开启USB调试，还打开USB安装，允许通过USB安装应用
-打包方式为了更准确的测试，使用Play – Mobile Preview
-
-退出游戏方式： “~”打开控制台，输入quit game
-确保项目做好准备：
-Settings – Project Settings – Platforms – Android 
-页面顶部会有警告称项目尚未对Android完成配置，点击configure now
-设置文件包名称，格式为：com.MyGameCompany.MyCoolGame
-并完成项目命名
-如果要计划使用Google Play服务，向下滚动到Google Play Services并点击Configure Now，以将平台构建到游戏中
-
-构建到设备：
-
-测试并部署到自己的设备很方便，如果需要部署到其他设备，需打包
-
-双击生成的.bat项目可以将其安装到自己的Android设备上
-注意
-记得在项目设置 – Android勾选将游戏数据打包至.apk中
-UE4游戏框架 游戏架构的基类是GameMode，设置游戏规则，也分则处理生成玩家
-Pawn作为世界中的一个“代理”Actor，可由控制器处理 ，可接收输入并且可执行各种各样类似于玩家的动作（但不假定Pawn就是类人的）
-Character类人的Pawn，本身默认具有用于碰撞的CapsuleComponent（胶囊体组件）和CharacterMovementComponent（角色运动组件）；可进行基本的拟人运动、平滑地在网格上复制运动，并具有一些动画相关的功能
-控制PawnController负责管理Pawn的Actor，一般分为PlayerController和AIController，控制器可以“具有”一个Pawn并控制它
-HUD平视显示信息
-GameMode游戏的定义，包括像游戏规则和获胜条件这样的内容；仅存在于服务器上，一般在游戏过程中不会有太多数据改变，并且一定不会具有客户端需要的临时数据
-GameState包含游戏状态，包括像关联玩家的列表、分数、象棋游戏中的棋子位置或在开放世界中已经完成的任务列表
-存在于服务器和所有客户端上，可以自由地进行复制来保持同步
-PlayerState表示游戏中一个参与者的状态（AI没有PlayerState），适合包含的实例数据有：玩家姓名，分数，多人在线竞技场比赛中的级别，夺旗模式游戏中玩家当前是否占领旗帜
-所有玩家的PlayerStates在所有的机器上都存在，并且可以自由复制包持同步
-UE C++命名规则派生自Actor的类前缀为A
-派生自Object的类前缀为U
-派生自Swidget（Slate UI）的类前缀为S
-Enums的类前缀为E
-Interface类的前缀通常为I
-Template类的前缀为T
-其余类的前缀均为F
-布尔值用b前缀
-全局元素用G前缀
-输入参数用In前缀
-输出参数用Out前缀
-在API文档寻找类或函数进入UE4文档 –&gt; Unreal Engine API Reference –&gt; Contents
-Contents下面点击All classes或者All Functions查看所有的类和函数
-防止头文件被编译多次的两种方法（1）
-1234# ifndef _SOMEFILE_H_# define _SOMEFILE_H_......# endif
-
-（2）
-1# pragma once
-
-UCLASS()UCLASS 宏（在头文件）可用于标记从 UObject 派生的类，使 UObject 处理系统识别到它们
-GENERATED_BODY 宏不获取参数，但会对类进行设置，以支持引擎要求的基础结构。所有 UCLASS 均有此要求
-UPROPERTY()为将变量公开到虚幻引擎，需使其成为 UPROPERTY。利用此操作，可在启动游戏或加载保存的关卡时保留变量的值。带有空括号的 UPROPERTY 标记，将被添加到受其它影响的变量正上方
-UPROPERTY 支持改变虚幻引擎使用变量方式的参数。将变量设为可编辑，可添加 EditAnywhere 参数
-12UPROPERTY(EditAnywhere)int32 CountdownTime;
-
-然后该变量的修改便可在Details（细节面板）中进行
-UFUNCTION()UFUNCTION()宏把C++函数对反射系统公开，BlueprintCallable选项将对其蓝图虚拟机公开
-BlueprintCallable：该函数可以在蓝图或关卡蓝图图表中执行
-BlueprintImplementableEvent：此函数可以在蓝图或关卡蓝图图表内进行重载
-BlueprintNativeEvent：此函数将由蓝图进行重载，但同时也包含native类的执行。提供一个名称为[FunctionName]_Implementation的函数本体而非[FunctionName];自动生成的代码将包含转换程序,此程序在需要时会调用实施方式
-游戏客户端公开课学习文档
                         
                     </p>
                 </a>
