@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+
+
+
+
+    <meta name="keywords" content="C++,">
+
+
+
+    <meta name="description" content="工厂模式工厂模式分三种，从简单到复杂依次为：简单工厂模式、工厂方法模式、抽象工厂模式。
+简单工厂模式结构包括：工厂类、抽象产品类和具体产品类。
+以一个工厂生产各种品牌的鞋为例，工厂单开一类，内设CreateShoes()函数，函数通过switch结构根据输入的鞋子类型名决定生产哪个牌子的鞋子；...">
+
+
+<meta name="Robots" content="all">
+
+
+    <title>解字 | 工厂模式</title>
+
+
+<link rel="icon" href="/images/avatar.ico">
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/atom-one-dark.css">
+<link rel="stylesheet" href="/css/style.css">
+<script src="/js/highlight.min.js"></script>
+</head>
+<body>
+    <div class="main-container">
+        <header class="header">
+    <div class="global-width">
+        <nav class="nav-box">
+            
+                <a class="nav-item" href="/">Home</a>
+            
+                <a class="nav-item" href="/resume">Resume</a>
+            
+                <a class="nav-item" href="/mood" target="_blank">Mood</a>
+            
+                <a class="nav-item" href="/amusement/tetris" target="_blank">Amusement</a>
+            
+                <a class="nav-item" href="/about">About</a>
+            
+        </nav>
+    </div>
+</header>
+
+        <section class="content global-width">
+            <div class="main">
+                <article class="box post">
+    <div class="post-title align-center detail-title">工厂模式</div>
+    <div class="post-meta align-center">
+        
+        <i class="fa fa-calendar"></i> <time>2020-12-29</time>
+        <span class="dotted">|</span>
+        <i class="fa fa-user"></i> 
+        
+            
+                <span class="dotted">|</span>
+                <i class="fa fa-folder-open-o"></i>
+                <a class="category-link" href="/categories/DesignPattern/">DesignPattern</a>
+
+                
+                    <span class="dotted">|</span>
+                
+
+            
+            
+                <i class="fa fa-tags"></i>
+                <a class="tag-link" href="/tags/C/">C++</a>
+            
+        
+    </div>
+
+    <div class="post-content">
+        <h3 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h3><p>工厂模式分三种，从简单到复杂依次为：简单工厂模式、工厂方法模式、抽象工厂模式。</p>
+<p>简单工厂模式结构包括：工厂类、抽象产品类和具体产品类。</p>
+<p>以一个工厂生产各种品牌的鞋为例，工厂单开一类，内设CreateShoes()函数，函数通过switch结构根据输入的鞋子类型名决定生产哪个牌子的鞋子；鞋子作为抽象产品类，覆盖了各个具体的鞋子牌子，细分到各个牌子的鞋子的模块则为具体产品类。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">/*简单工厂*/</span><br><br><span class="hljs-comment">/*抽象产品类和具体产品类*/</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Shoes</span><br>&#123;</span><br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-comment">/*虚析构函数，保证各个子类能正确析构*/</span><br>	<span class="hljs-keyword">virtual</span> ~Shoes() &#123;&#125;<br>	<span class="hljs-comment">/*纯虚函数，具体功能在具体的子类中定义*/</span><br>	<span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Show</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;<br>&#125;;<br><br><span class="hljs-comment">/*公有继承，成员函数公有*/</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NikeShoes</span> :</span> <span class="hljs-keyword">public</span> Shoes<br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Show</span><span class="hljs-params">()</span><br>	</span>&#123;<br>		<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Nike's show"</span> &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;<br>	&#125;<br>&#125;;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AdidasShoes</span> :</span> <span class="hljs-keyword">public</span> Shoes<br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Show</span><span class="hljs-params">()</span><br>	</span>&#123;<br>		<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Adidas's show"</span> &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;<br>	&#125;<br>&#125;;<br><br><br><span class="hljs-comment">/*工厂类*/</span><br><span class="hljs-keyword">enum</span> SHOES_TYPE<br>&#123;<br>	NIKE,<br>	ADIDAS<br>&#125;;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ShoesFactory</span><br>&#123;</span><br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-comment">/*根据鞋子的类型创建对应的鞋子对象*/</span><br>	<span class="hljs-function">Shoes* <span class="hljs-title">CreateShoes</span><span class="hljs-params">(SHOES_TYPE type)</span><br>	</span>&#123;<br>		<span class="hljs-keyword">switch</span> (type)<br>		&#123;<br>		<span class="hljs-keyword">case</span> NIKE:<br>			<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> NikeShoes();<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> ADIDAS:<br>			<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> AdidasShoes();<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">default</span>:<br>			<span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;<br>			<span class="hljs-keyword">break</span>;<br>		&#125;<br>	&#125;<br>&#125;;<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">()</span><br></span>&#123;<br>    <span class="hljs-comment">/*简单工厂模式*/</span><br>	ShoesFactory shoesFactory;<br><br>	<span class="hljs-comment">/*从工厂对象创建nike鞋对象*/</span><br>	Shoes* pNikeShoes = shoesFactory.CreateShoes(NIKE);<br>	<span class="hljs-keyword">if</span> (pNikeShoes != <span class="hljs-literal">nullptr</span>)<br>	&#123;<br>		pNikeShoes-&gt;Show();<br>		<span class="hljs-comment">/*用完释放资源*/</span><br>		<span class="hljs-keyword">delete</span> pNikeShoes;<br>		pNikeShoes = <span class="hljs-literal">nullptr</span>;<br>	&#125;<br>	<br>	Shoes* pAdidasShoes = shoesFactory.CreateShoes(ADIDAS);<br>	<span class="hljs-keyword">if</span> (pAdidasShoes != <span class="hljs-literal">nullptr</span>)<br>	&#123;<br>		pAdidasShoes-&gt;Show();<br>		<span class="hljs-keyword">delete</span> pAdidasShoes;<br>		pAdidasShoes = <span class="hljs-literal">nullptr</span>;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>可以为各种不同牌子的鞋子开设独立的生产线，每个生产线只生产同品牌的鞋子，此时转为工厂方法模式。</p>
+<p>工厂方法模式相比简单工厂模式，将工厂类分为抽象工厂类和具体工厂类，工厂和产品（鞋子）两块都有各自的抽象和具体。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FMShoes</span><br>&#123;</span><br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-keyword">virtual</span> ~FMShoes() &#123;&#125;<br>	<span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">void</span> <span class="hljs-title">FMShow</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;<br>&#125;;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FMNikeShoes</span> :</span> <span class="hljs-keyword">public</span> FMShoes<br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">FMShow</span><span class="hljs-params">()</span><br>	</span>&#123;<br>		<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Nike's show"</span> &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;<br>	&#125;<br>&#125;;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FMAdidasShoes</span> :</span> <span class="hljs-keyword">public</span> FMShoes<br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">FMShow</span><span class="hljs-params">()</span><br>	</span>&#123;<br>		<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Adidas's show"</span> &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;<br>	&#125;<br>&#125;;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FMShoesFactory</span><br>&#123;</span><br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-keyword">virtual</span> FMShoes* <span class="hljs-title">FMCreateShoes</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">virtual</span> ~FMShoesFactory() &#123;&#125;<br>&#125;;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FMNikeProducer</span> :</span> <span class="hljs-keyword">public</span> FMShoesFactory<br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function">FMShoes* <span class="hljs-title">FMCreateShoes</span><span class="hljs-params">()</span><br>	</span>&#123;<br>		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> FMNikeShoes();<br>	&#125;<br>&#125;;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FMAdidasProducer</span> :</span> <span class="hljs-keyword">public</span> FMShoesFactory<br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function">FMShoes* <span class="hljs-title">FMCreateShoes</span><span class="hljs-params">()</span><br>	</span>&#123;<br>		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> FMAdidasShoes();<br>	&#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p>当工厂与产品的生产关系不是一对一，而变成一对多时，比如原本只生产耐克鞋子的工厂现在生产耐克的各种产品，包括鞋子，衣服等，模式从工厂方法模式变为抽象工厂模式，不过四部分结构：抽象工厂类、具体工厂类、抽象产品类、具体产品类，仍然是这四部分。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AFShoes</span><br>&#123;</span><br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">void</span> <span class="hljs-title">AFShow</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">virtual</span> ~AFShoes() &#123;&#125;<br>&#125;;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AFNikeShoes</span> :</span> <span class="hljs-keyword">public</span> AFShoes<br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">AFShow</span><span class="hljs-params">()</span><br>	</span>&#123;<br>		<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"nike shoes show"</span> &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;<br>	&#125;<br>&#125;;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AFAdidasShoes</span> :</span> <span class="hljs-keyword">public</span> AFShoes<br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">AFShow</span><span class="hljs-params">()</span><br>	</span>&#123;<br>		<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"adidas shoes show"</span> &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;<br>	&#125;<br>&#125;;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AFClothes</span><br>&#123;</span><br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-keyword">virtual</span> ~AFClothes() &#123;&#125;<br>	<span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">void</span> <span class="hljs-title">AFShow</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;<br>&#125;;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AFNikeClothes</span> :</span> <span class="hljs-keyword">public</span> AFClothes<br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">AFShow</span><span class="hljs-params">()</span><br>	</span>&#123;<br>		<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"nike clothes show"</span> &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;<br>	&#125;<br>&#125;;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AFAdidasClothes</span> :</span> <span class="hljs-keyword">public</span> AFClothes<br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">AFShow</span><span class="hljs-params">()</span><br>	</span>&#123;<br>		<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"adidas clothes show"</span> &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;<br>	&#125;<br>&#125;;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AFFactory</span><br>&#123;</span><br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-keyword">virtual</span> AFShoes* <span class="hljs-title">AFCreateShoes</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;<br>	<span class="hljs-function"><span class="hljs-keyword">virtual</span> AFClothes* <span class="hljs-title">AFCreateClothes</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">virtual</span> ~AFFactory() &#123;&#125;<br>&#125;;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AFNikeProducer</span> :</span> <span class="hljs-keyword">public</span> AFFactory<br>&#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-comment">/*一个具体工厂管理生产多款该品牌的产品*/</span><br>	<span class="hljs-function">AFShoes* <span class="hljs-title">AFCreateShoes</span><span class="hljs-params">()</span><br>	</span>&#123;<br>		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> AFNikeShoes();<br>	&#125;<br><br>	<span class="hljs-function">AFClothes* <span class="hljs-title">AFCreateClothes</span><span class="hljs-params">()</span><br>	</span>&#123;<br>		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> AFNikeClothes();<br>	&#125;<br>&#125;;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AFAdidasProducer</span> :</span> <span class="hljs-keyword">public</span> AFFactory<br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function">AFShoes* <span class="hljs-title">AFCreateShoes</span><span class="hljs-params">()</span><br>	</span>&#123;<br>		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> AFAdidasShoes();<br>	&#125;<br><br>	<span class="hljs-function">AFClothes* <span class="hljs-title">AFCreateClothes</span><span class="hljs-params">()</span><br>	</span>&#123;<br>		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> AFAdidasClothes();<br>	&#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h4 id="进一步提高工厂类的封装性"><a href="#进一步提高工厂类的封装性" class="headerlink" title="进一步提高工厂类的封装性"></a>进一步提高工厂类的封装性</h4><p>以上三种方式在新增产品时，总要修改工厂类或新增具体的工厂类，怎样做到新增产品时不需要修改工厂类、不需要新增具体工厂类？</p>
+<p>使用模板工厂，将工厂方法封装成模板工厂类。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TFShoes</span><br>&#123;</span><br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">void</span> <span class="hljs-title">TFShow</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">virtual</span> ~TFShoes() &#123;&#125;<br>&#125;;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TFNikeShoes</span> :</span> <span class="hljs-keyword">public</span> TFShoes<br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">TFShow</span><span class="hljs-params">()</span><br>	</span>&#123;<br>		<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"nike shoes show"</span> &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;<br>	&#125;<br>&#125;;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TFClothes</span><br>&#123;</span><br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-keyword">void</span> <span class="hljs-title">TFShow</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">virtual</span> ~TFClothes() &#123;&#125;<br>&#125;;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TFUniqloClothes</span> :</span> <span class="hljs-keyword">public</span> TFClothes<br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">TFShow</span><span class="hljs-params">()</span><br>	</span>&#123;<br>		<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"uniqlo clothes show"</span> &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;<br>	&#125;<br>&#125;;<br><br><span class="hljs-comment">/*抽象模板工厂*/</span><br><span class="hljs-keyword">template</span>&lt;<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TFAbstractProduct_t</span>&gt;<br><span class="hljs-title">class</span> <span class="hljs-title">TFAbstractFactory</span><br>&#123;</span><br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-keyword">virtual</span> TFAbstractProduct_t* <span class="hljs-title">TFCreateProduct</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">virtual</span> ~TFAbstractFactory() &#123;&#125;<br>&#125;;<br><br><span class="hljs-keyword">template</span>&lt;<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TFAbstractProduct_t</span>, <span class="hljs-title">class</span> <span class="hljs-title">TFConcreteProduct_t</span>&gt;<br><span class="hljs-title">class</span> <span class="hljs-title">TFConcreteFactory</span> :</span> <span class="hljs-keyword">public</span> TFAbstractFactory&lt;TFAbstractProduct_t&gt;<br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function">TFAbstractProduct_t* <span class="hljs-title">TFCreateProduct</span><span class="hljs-params">()</span><br>	</span>&#123;<br>		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> TFConcreteProduct_t();<br>	&#125;<br>&#125;;<br><br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">()</span><br></span>&#123;<br>    <span class="hljs-comment">/*模板工厂*/</span><br>	<span class="hljs-comment">/*创建nike鞋的工厂对象，这种方式是创建在栈上*/</span><br>	TFConcreteFactory&lt;TFShoes, TFNikeShoes&gt; nikeFactory;<br>	<span class="hljs-comment">/*创建nike鞋对象*/</span><br>	TFShoes* pNikeShoes = nikeFactory.TFCreateProduct();<br>	pNikeShoes-&gt;TFShow();<br>	<span class="hljs-keyword">delete</span> pNikeShoes;<br>	pNikeShoes = <span class="hljs-literal">NULL</span>;<br><br>	TFConcreteFactory&lt;TFClothes, TFUniqloClothes&gt; uniqloFactory;<br>	TFClothes* pUniqloClothes = uniqloFactory.TFCreateProduct();<br>	pUniqloClothes-&gt;TFShow();<br>	<span class="hljs-keyword">delete</span> pUniqloClothes;<br>	pUniqloClothes = <span class="hljs-literal">NULL</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+    </div>
+</article>
+            </div>
+            <div class="aside">
+    
+        <div class="box widget">
+    <div class="introduction">
+        <p><img src="/images/avatar.png" alt="head-sculpture"></p>
+        <p class="name">
+            CHAsencenge
+        </p>
+        <p class="slogan">解字</p>
+    </div>
+</div>
+    
+        
+<div class="box widget">
+    <div class="title">Recent</div>
+    <ul class="item-box">
+        
+            
+                <li><a href="/2020/12/29/工厂模式/">工厂模式</a></li>
+            
+        
+            
+                <li><a href="/2020/11/30/手撸算法终版/">手撸算法终版</a></li>
+            
+        
+            
+                <li><a href="/2020/10/29/哈希专题/">哈希专题</a></li>
+            
+        
+            
+                <li><a href="/2020/10/29/特殊技巧专题/">特殊技巧专题</a></li>
+            
+        
+            
+                <li><a href="/2020/10/29/栈和队列专题/">栈和队列专题</a></li>
+            
+        
+            
+                <li><a href="/2020/10/28/树图专题/">树专题</a></li>
+            
+        
+            
+                <li><a href="/2020/10/28/空间换时间专题/">空间换时间专题</a></li>
+            
+        
+            
+                <li><a href="/2020/10/25/C-Lambda表达式/">C++ Lambda表达式</a></li>
+            
+        
+    </ul>
+</div>
+
+    
+        
+    <div class="box widget">
+        <div class="title">Categories</div>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DesignPattern/">DesignPattern</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/GameDev/">GameDev</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Laya/">Laya</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Light-Frequency-Authenticate/">Light Frequency Authenticate</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/LoRa/">LoRa</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Unity/">Unity</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Unity/Unreal/">Unreal</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Writing/">Writing</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cpp/">cpp</a><span class="category-list-count">3</span></li></ul>
+    </div>
+
+    
+        
+  <div class="box widget">
+    <div class="title">Archives</div>
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">2020-12</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">2020-11</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">2020-10</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">2020-09</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">2020-08</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">2020-07</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">2019-11</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">2019-09</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">2019-07</a><span class="archive-list-count">6</span></li></ul>
+  </div>
+
+    
+        
+    <div class="box widget">
+        <div class="title">Tags</div>
+        <div class="item-box cloud-label">
+            <a href="/tags/Algorithm/" style="font-size: 20px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/GameDev/" style="font-size: 14px;">GameDev</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/Hexo/" style="font-size: 12px;">Hexo</a> <a href="/tags/Laya/" style="font-size: 16px;">Laya</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Python/" style="font-size: 16px;">Python</a> <a href="/tags/Unity/" style="font-size: 18px;">Unity</a> <a href="/tags/Unreal/" style="font-size: 10px;">Unreal</a> <a href="/tags/Writing/" style="font-size: 12px;">Writing</a> <a href="/tags/cpp/" style="font-size: 14px;">cpp</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/lightFre/" style="font-size: 10px;">lightFre</a> <a href="/tags/writing/" style="font-size: 10px;">writing</a> <a href="/tags/远程登录/" style="font-size: 10px;">远程登录</a>
+        </div>
+    </div>
+
+    
+</div>
+        </section>
+        <footer class="footer">
+    <div class="global-width footer-box">
+        <div class="copyright">
+            <span>Copyright &copy; 2019</span>
+            <span class="dotted">|</span>
+            <span>Powered by <a href="https://hexo.io/">Hexo</a></span>
+            <span class="dotted">|</span>
+            <span>Theme by <a href="javascript:">Loren</a></span>
+            <span class="dotted">|</span>
+            <span><a href="http://www.beian.miit.gov.cn">浙ICP备18016660号-1</a></span>
+        </div>
+    </div>
+</footer>
+    </div>
+
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+</body>
+</html>

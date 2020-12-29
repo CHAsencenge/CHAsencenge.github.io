@@ -52,6 +52,62 @@
                 
     
         <article class="box post post-item">
+            <div class="post-title"><a href="/2020/12/29/工厂模式/">工厂模式</a></div>
+            <div class="post-meta">
+                
+                <i class="fa fa-calendar"></i> <time>2020-12-29</time>
+                <span class="dotted">|</span>
+                <i class="fa fa-user"></i> 
+            </div>
+
+            <div class="post-excerpt">
+                <a href="/2020/12/29/工厂模式/">
+                    <p>
+                        
+                            工厂模式工厂模式分三种，从简单到复杂依次为：简单工厂模式、工厂方法模式、抽象工厂模式。
+简单工厂模式结构包括：工厂类、抽象产品类和具体产品类。
+以一个工厂生产各种品牌的鞋为例，工厂单开一类，内设CreateShoes()函数，函数通过switch结构根据输入的鞋子类型名决定生产哪个牌子的鞋子；鞋子作为抽象产品类，覆盖了各个具体的鞋子牌子，细分到各个牌子的鞋子的模块则为具体产品类。
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283/*简单工厂*//*抽象产品类和具体产品类*/class Shoes&#123;public:	/*虚析构函数，保证各个子类能正确析构*/	virtual ~Shoes() &#123;&#125;	/*纯虚函数，具体功能在具体的子类中定义*/	virtual void Show() = 0;&#125;;/*公有继承，成员函数公有*/class NikeShoes : public Shoes&#123;public:	void Show()	&#123;		std::cout &lt;&lt; "Nike's show" &lt;&lt; std::endl;	&#125;&#125;;class AdidasShoes : public Shoes&#123;public:	void Show()	&#123;		std::cout &lt;&lt; "Adidas's show" &lt;&lt; std::endl;	&#125;&#125;;/*工厂类*/enum SHOES_TYPE&#123;	NIKE,	ADIDAS&#125;;class ShoesFactory&#123;public:	/*根据鞋子的类型创建对应的鞋子对象*/	Shoes* CreateShoes(SHOES_TYPE type)	&#123;		switch (type)		&#123;		case NIKE:			return new NikeShoes();			break;		case ADIDAS:			return new AdidasShoes();			break;		default:			return nullptr;			break;		&#125;	&#125;&#125;;void main()&#123;    /*简单工厂模式*/	ShoesFactory shoesFactory;	/*从工厂对象创建nike鞋对象*/	Shoes* pNikeShoes = shoesFactory.CreateShoes(NIKE);	if (pNikeShoes != nullptr)	&#123;		pNikeShoes-&gt;Show();		/*用完释放资源*/		delete pNikeShoes;		pNikeShoes = nullptr;	&#125;		Shoes* pAdidasShoes = shoesFactory.CreateShoes(ADIDAS);	if (pAdidasShoes != nullptr)	&#123;		pAdidasShoes-&gt;Show();		delete pAdidasShoes;		pAdidasShoes = nullptr;	&#125;&#125;
+
+可以为各种不同牌子的鞋子开设独立的生产线，每个生产线只生产同品牌的鞋子，此时转为工厂方法模式。
+工厂方法模式相比简单工厂模式，将工厂类分为抽象工厂类和具体工厂类，工厂和产品（鞋子）两块都有各自的抽象和具体。
+12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849class FMShoes&#123;public:	virtual ~FMShoes() &#123;&#125;	virtual void FMShow() = 0;&#125;;class FMNikeShoes : public FMShoes&#123;public:	void FMShow()	&#123;		std::cout &lt;&lt; "Nike's show" &lt;&lt; std::endl;	&#125;&#125;;class FMAdidasShoes : public FMShoes&#123;public:	void FMShow()	&#123;		std::cout &lt;&lt; "Adidas's show" &lt;&lt; std::endl;	&#125;&#125;;class FMShoesFactory&#123;public:	virtual FMShoes* FMCreateShoes() = 0;	virtual ~FMShoesFactory() &#123;&#125;&#125;;class FMNikeProducer : public FMShoesFactory&#123;public:	FMShoes* FMCreateShoes()	&#123;		return new FMNikeShoes();	&#125;&#125;;class FMAdidasProducer : public FMShoesFactory&#123;public:	FMShoes* FMCreateShoes()	&#123;		return new FMAdidasShoes();	&#125;&#125;;
+
+当工厂与产品的生产关系不是一对一，而变成一对多时，比如原本只生产耐克鞋子的工厂现在生产耐克的各种产品，包括鞋子，衣服等，模式从工厂方法模式变为抽象工厂模式，不过四部分结构：抽象工厂类、具体工厂类、抽象产品类、具体产品类，仍然是这四部分。
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586class AFShoes&#123;public:	virtual void AFShow() = 0;	virtual ~AFShoes() &#123;&#125;&#125;;class AFNikeShoes : public AFShoes&#123;public:	void AFShow()	&#123;		std::cout &lt;&lt; "nike shoes show" &lt;&lt; std::endl;	&#125;&#125;;class AFAdidasShoes : public AFShoes&#123;public:	void AFShow()	&#123;		std::cout &lt;&lt; "adidas shoes show" &lt;&lt; std::endl;	&#125;&#125;;class AFClothes&#123;public:	virtual ~AFClothes() &#123;&#125;	virtual void AFShow() = 0;&#125;;class AFNikeClothes : public AFClothes&#123;public:	void AFShow()	&#123;		std::cout &lt;&lt; "nike clothes show" &lt;&lt; std::endl;	&#125;&#125;;class AFAdidasClothes : public AFClothes&#123;public:	void AFShow()	&#123;		std::cout &lt;&lt; "adidas clothes show" &lt;&lt; std::endl;	&#125;&#125;;class AFFactory&#123;public:	virtual AFShoes* AFCreateShoes() = 0;	virtual AFClothes* AFCreateClothes() = 0;	virtual ~AFFactory() &#123;&#125;&#125;;class AFNikeProducer : public AFFactory&#123;public:    /*一个具体工厂管理生产多款该品牌的产品*/	AFShoes* AFCreateShoes()	&#123;		return new AFNikeShoes();	&#125;	AFClothes* AFCreateClothes()	&#123;		return new AFNikeClothes();	&#125;&#125;;class AFAdidasProducer : public AFFactory&#123;public:	AFShoes* AFCreateShoes()	&#123;		return new AFAdidasShoes();	&#125;	AFClothes* AFCreateClothes()	&#123;		return new AFAdidasClothes();	&#125;&#125;;
+
+进一步提高工厂类的封装性以上三种方式在新增产品时，总要修改工厂类或新增具体的工厂类，怎样做到新增产品时不需要修改工厂类、不需要新增具体工厂类？
+使用模板工厂，将工厂方法封装成模板工厂类。
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768class TFShoes&#123;public:	virtual void TFShow() = 0;	virtual ~TFShoes() &#123;&#125;&#125;;class TFNikeShoes : public TFShoes&#123;public:	void TFShow()	&#123;		std::cout &lt;&lt; "nike shoes show" &lt;&lt; std::endl;	&#125;&#125;;class TFClothes&#123;public:	virtual void TFShow() = 0;	virtual ~TFClothes() &#123;&#125;&#125;;class TFUniqloClothes : public TFClothes&#123;public:	void TFShow()	&#123;		std::cout &lt;&lt; "uniqlo clothes show" &lt;&lt; std::endl;	&#125;&#125;;/*抽象模板工厂*/template&lt;class TFAbstractProduct_t&gt;class TFAbstractFactory&#123;public:	virtual TFAbstractProduct_t* TFCreateProduct() = 0;	virtual ~TFAbstractFactory() &#123;&#125;&#125;;template&lt;class TFAbstractProduct_t, class TFConcreteProduct_t&gt;class TFConcreteFactory : public TFAbstractFactory&lt;TFAbstractProduct_t&gt;&#123;public:	TFAbstractProduct_t* TFCreateProduct()	&#123;		return new TFConcreteProduct_t();	&#125;&#125;;void main()&#123;    /*模板工厂*/	/*创建nike鞋的工厂对象，这种方式是创建在栈上*/	TFConcreteFactory&lt;TFShoes, TFNikeShoes&gt; nikeFactory;	/*创建nike鞋对象*/	TFShoes* pNikeShoes = nikeFactory.TFCreateProduct();	pNikeShoes-&gt;TFShow();	delete pNikeShoes;	pNikeShoes = NULL;	TFConcreteFactory&lt;TFClothes, TFUniqloClothes&gt; uniqloFactory;	TFClothes* pUniqloClothes = uniqloFactory.TFCreateProduct();	pUniqloClothes-&gt;TFShow();	delete pUniqloClothes;	pUniqloClothes = NULL;&#125;
+
+
+                        
+                    </p>
+                </a>
+            </div>
+
+            
+                <div class="post-footer">
+                    
+                        <i class="fa fa-folder-open-o"></i>
+                        <a class="category-link" href="/categories/DesignPattern/">DesignPattern</a>
+
+                        
+                            <span class="dotted">|</span>
+                        
+
+                    
+                    
+                        <i class="fa fa-tags"></i>
+                        <a class="tag-link" href="/tags/C/">C++</a>
+                    
+                </div>
+            
+        </article>
+    
+
+    
+        <article class="box post post-item">
             <div class="post-title"><a href="/2020/11/30/手撸算法终版/">手撸算法终版</a></div>
             <div class="post-meta">
                 
@@ -432,46 +488,6 @@ Epic Game Launcher中不能识别非公版的引擎，向编译版的引擎创�
         </article>
     
 
-    
-        <article class="box post post-item">
-            <div class="post-title"><a href="/2020/10/02/实时计算机图形学笔记/">实时计算机图形学笔记</a></div>
-            <div class="post-meta">
-                
-                <i class="fa fa-calendar"></i> <time>2020-10-02</time>
-                <span class="dotted">|</span>
-                <i class="fa fa-user"></i> 
-            </div>
-
-            <div class="post-excerpt">
-                <a href="/2020/10/02/实时计算机图形学笔记/">
-                    <p>
-                        
-                            
-                        
-                    </p>
-                </a>
-            </div>
-
-            
-                <div class="post-footer">
-                    
-                        <i class="fa fa-folder-open-o"></i>
-                        <a class="category-link" href="/categories/GameDev/">GameDev</a>
-
-                        
-                            <span class="dotted">|</span>
-                        
-
-                    
-                    
-                        <i class="fa fa-tags"></i>
-                        <a class="tag-link" href="/tags/GameDev/">GameDev</a>
-                    
-                </div>
-            
-        </article>
-    
-
 
 
     <nav class="page-nav">
@@ -495,6 +511,10 @@ Epic Game Launcher中不能识别非公版的引擎，向编译版的引擎创�
 <div class="box widget">
     <div class="title">Recent</div>
     <ul class="item-box">
+        
+            
+                <li><a href="/2020/12/29/工厂模式/">工厂模式</a></li>
+            
         
             
                 <li><a href="/2020/11/30/手撸算法终版/">手撸算法终版</a></li>
@@ -524,10 +544,6 @@ Epic Game Launcher中不能识别非公版的引擎，向编译版的引擎创�
                 <li><a href="/2020/10/25/C-Lambda表达式/">C++ Lambda表达式</a></li>
             
         
-            
-                <li><a href="/2020/10/16/双指针专题/">双指针专题</a></li>
-            
-        
     </ul>
 </div>
 
@@ -535,14 +551,14 @@ Epic Game Launcher中不能识别非公版的引擎，向编译版的引擎创�
         
     <div class="box widget">
         <div class="title">Categories</div>
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/GameDev/">GameDev</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Laya/">Laya</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Light-Frequency-Authenticate/">Light Frequency Authenticate</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/LoRa/">LoRa</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Unity/">Unity</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Unity/Unreal/">Unreal</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Writing/">Writing</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cpp/">cpp</a><span class="category-list-count">3</span></li></ul>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DesignPattern/">DesignPattern</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/GameDev/">GameDev</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Laya/">Laya</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Light-Frequency-Authenticate/">Light Frequency Authenticate</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/LoRa/">LoRa</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Unity/">Unity</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Unity/Unreal/">Unreal</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Writing/">Writing</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cpp/">cpp</a><span class="category-list-count">3</span></li></ul>
     </div>
 
     
         
   <div class="box widget">
     <div class="title">Archives</div>
-    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">2020-11</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">2020-10</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">2020-09</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">2020-08</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">2020-07</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">2019-11</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">2019-09</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">2019-07</a><span class="archive-list-count">6</span></li></ul>
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">2020-12</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">2020-11</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">2020-10</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">2020-09</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">2020-08</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">2020-07</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">2019-11</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">2019-09</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">2019-07</a><span class="archive-list-count">6</span></li></ul>
   </div>
 
     
@@ -550,7 +566,7 @@ Epic Game Launcher中不能识别非公版的引擎，向编译版的引擎创�
     <div class="box widget">
         <div class="title">Tags</div>
         <div class="item-box cloud-label">
-            <a href="/tags/Algorithm/" style="font-size: 20px;">Algorithm</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/GameDev/" style="font-size: 14px;">GameDev</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/Hexo/" style="font-size: 12px;">Hexo</a> <a href="/tags/Laya/" style="font-size: 16px;">Laya</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Python/" style="font-size: 16px;">Python</a> <a href="/tags/Unity/" style="font-size: 18px;">Unity</a> <a href="/tags/Unreal/" style="font-size: 10px;">Unreal</a> <a href="/tags/Writing/" style="font-size: 12px;">Writing</a> <a href="/tags/cpp/" style="font-size: 14px;">cpp</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/lightFre/" style="font-size: 10px;">lightFre</a> <a href="/tags/writing/" style="font-size: 10px;">writing</a> <a href="/tags/远程登录/" style="font-size: 10px;">远程登录</a>
+            <a href="/tags/Algorithm/" style="font-size: 20px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/GameDev/" style="font-size: 14px;">GameDev</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/Hexo/" style="font-size: 12px;">Hexo</a> <a href="/tags/Laya/" style="font-size: 16px;">Laya</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Python/" style="font-size: 16px;">Python</a> <a href="/tags/Unity/" style="font-size: 18px;">Unity</a> <a href="/tags/Unreal/" style="font-size: 10px;">Unreal</a> <a href="/tags/Writing/" style="font-size: 12px;">Writing</a> <a href="/tags/cpp/" style="font-size: 14px;">cpp</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/lightFre/" style="font-size: 10px;">lightFre</a> <a href="/tags/writing/" style="font-size: 10px;">writing</a> <a href="/tags/远程登录/" style="font-size: 10px;">远程登录</a>
         </div>
     </div>
 

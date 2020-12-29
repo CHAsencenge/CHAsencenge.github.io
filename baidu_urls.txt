@@ -1,3 +1,4 @@
+https://chasencenge.github.io/2020/12/29/工厂模式/
 https://chasencenge.github.io/2020/11/30/手撸算法终版/
 https://chasencenge.github.io/2020/10/29/哈希专题/
 https://chasencenge.github.io/2020/10/29/特殊技巧专题/
@@ -47,4 +48,3 @@ https://chasencenge.github.io/2019/09/14/Hexo发布/
 https://chasencenge.github.io/2019/07/25/Python的yield关键字/
 https://chasencenge.github.io/2019/07/18/Gradle相关知识(转载自Bonker)/
 https://chasencenge.github.io/2019/07/17/Linux远程登录/
-https://chasencenge.github.io/2019/07/05/可见光认证/
