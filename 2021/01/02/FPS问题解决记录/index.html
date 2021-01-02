@@ -84,19 +84,21 @@
 <p>其实在找“Blend”的时候还有相似的概念，Blend和Blend poses by bool，前者是混合Pose，根据权重来计算最后融合的Pose，想要的不是这个，只是想单纯的分离而已，Blend poses by bool它用于连接动画，并在动画切换时进行融合，因此也pass掉。</p>
 <p>那知道了要用ayered blend per bone来进行分层以后，我发现它的输入是Base Pose和Blend Poses 0，也就是要考虑这个“层”具体怎么分开然后输入到这两个地方。</p>
 <p>用插槽(Slot)，插槽中排了装弹的动画。</p>
-<p><img src="/2021/01/02/FPS问题解决记录/slot.png" alt="slot"></p>
+<img src="/2021/01/02/FPS问题解决记录/slot.png" width="80%" height="80%">
+
 <p>然后就是在角色动画蓝图中使用Layered blend per bone实现分层动画了。</p>
-<p><img src="/2021/01/02/FPS问题解决记录/layered.png" alt="layered"></p>
+<img src="/2021/01/02/FPS问题解决记录/layered.png" width="80%" height="80%">
+
 <p>角色的事件图表中也要有相应的装弹的逻辑。</p>
-<p><img src="/2021/01/02/FPS问题解决记录/reload.png" alt="reload"></p>
+<img src="/2021/01/02/FPS问题解决记录/reload.png" width="80%" height="80%">
+
 <p>这样，功能就基本完成了。</p>
 <h3 id="怎样保证长按装弹键时，子弹数的持续增长"><a href="#怎样保证长按装弹键时，子弹数的持续增长" class="headerlink" title="怎样保证长按装弹键时，子弹数的持续增长"></a>怎样保证长按装弹键时，子弹数的持续增长</h3><p>在我一直按下装弹键时，装弹的动画利用Slot中Reloading的循环是可以持续播放的，但是子弹数如何跟着每一次装弹动作来增加呢？</p>
 <p>使用定时器GetTimerManager().SetTimer()，先记录一下动画中每个装弹动作的周期，根据周期设定定时器时间，每完成一次装弹动作，子弹数加5。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs c++">.h<br>FTimerHandle ReloadDownTimerHandler;<br>.<span class="hljs-function">cpp<br><span class="hljs-keyword">void</span> <span class="hljs-title">ATPSShootCharacter::AddBullet</span><span class="hljs-params">()</span><br></span>&#123;<br>    <span class="hljs-keyword">if</span>(ReloadButtonDown)<br>        Bullet += <span class="hljs-number">5</span>;<br>    <span class="hljs-keyword">else</span><br>        GetWorldTimerManager().ClearTimer(ReloadDownTimerHandler);<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">ATPSShootCharacter::AddBulletByReloading</span><span class="hljs-params">()</span><br></span>&#123;<br>    GetWorldTimerManager().SetTimer(ReloadDownTimerHandler, <span class="hljs-keyword">this</span>, &amp;ATPSShootCharacter::AddBullet, <span class="hljs-number">0.9f</span>, <span class="hljs-literal">true</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h3 id="当角色的旋转度数过大时，进行角色平滑旋转"><a href="#当角色的旋转度数过大时，进行角色平滑旋转" class="headerlink" title="当角色的旋转度数过大时，进行角色平滑旋转"></a>当角色的旋转度数过大时，进行角色平滑旋转</h3><p>当角色视角的旋转角度大于90度时，上半身和下半身的相对旋转就显得有些不自然了，这时下半身应该平滑地旋转至上半身方向，这部分的功能实现主要还是熟悉向量的拆分和旋转体的创建。</p>
-<p><img src="/2021/01/02/FPS问题解决记录/rotation.png" alt="rotation"></p>
-<img src="/2021/01/02/FPS问题解决记录/rotation.png" width="50%" height="50%">
+<img src="/2021/01/02/FPS问题解决记录/rotation.png" width="80%" height="80%">
 
 
 
@@ -104,18 +106,21 @@
 <p>自由视角和一般视角不同之处主要在人物朝向和是否进行平滑旋转两部分，在自由视角中，人物的腿部不需要根据相机的角度改变而进行转动。</p>
 <p>人物的朝向逻辑也有一些不同，自由视角中，当相机在人身后时，人应当朝向相机指向的方向，这部分和一般视角相同，但是由于相机可以转到人的前方而面向人物，这时人物应该始终看向（朝向）相机。</p>
 <p>我的瞄准偏移范围设置为（-180°，180°），相机旋转一周对应的角度为（0°，360°）。</p>
-<p><img src="/2021/01/02/FPS问题解决记录/angle1.jpg" alt="angle1"></p>
+<img src="/2021/01/02/FPS问题解决记录/angle1.jpg" width="80%" height="80%">
+
 <p>根据上面提到的相机在人后和人前对应的逻辑不同，分情况讨论并完成逻辑：</p>
 <h4 id="1-当相机在人前对着人时，人看向相机，此时CameraYaw的范围为（90°，270°）"><a href="#1-当相机在人前对着人时，人看向相机，此时CameraYaw的范围为（90°，270°）" class="headerlink" title="1. 当相机在人前对着人时，人看向相机，此时CameraYaw的范围为（90°，270°）"></a>1. 当相机在人前对着人时，人看向相机，此时CameraYaw的范围为（90°，270°）</h4><p>举个例子，当相机和人物的位置关系为这样时，相机Yaw为120°，人物看向相机，Yaw应为-60°，即CharacterYaw = CameraYaw - 180，并且CharacterPitch = -CameraPitch（因为相机俯拍时，人的视线上仰）</p>
 <h4 id="2-当相机在人后时，人和相机看向的位置一致，此时CameraYaw范围为（0°，90°）∪（270°，360°）"><a href="#2-当相机在人后时，人和相机看向的位置一致，此时CameraYaw范围为（0°，90°）∪（270°，360°）" class="headerlink" title="2. 当相机在人后时，人和相机看向的位置一致，此时CameraYaw范围为（0°，90°）∪（270°，360°）"></a>2. 当相机在人后时，人和相机看向的位置一致，此时CameraYaw范围为（0°，90°）∪（270°，360°）</h4><p>此时不做上面的处理，还是保持原本的一般视角的逻辑。</p>
 <p>至此解决了人物朝向的问题，接下来还需要解决人物的平滑旋转问题，自由视角中人物不需要跟着视角方向做平滑旋转。</p>
 <p>那么只需要在原本的角色平滑旋转功能中添加一个逻辑，决定什么时候（一般视角）进行角色平滑旋转，什么时候（自由视角）不进行平滑旋转。</p>
 <p>首先在操作映射中添加FreeView事件，绑定到Alt键，然后在人物事件图表中添加变量FreeViewButtonDown，并修改原本的角色平滑旋转的逻辑（红色框为修改部分）。</p>
-<p><img src="/2021/01/02/FPS问题解决记录/rotate.png" alt="rotate"></p>
+<img src="/2021/01/02/FPS问题解决记录/rotate.jpg" width="80%" height="80%">
+
 <h3 id="准星和视角跟随"><a href="#准星和视角跟随" class="headerlink" title="准星和视角跟随"></a>准星和视角跟随</h3><p>这部分主要是通过获取枪支的插槽变换，然后由通道检测线条(LineTraceByChannel)确定HUD在屏幕的显示位置。</p>
 <p>创建瞄准偏移（混合空间）并采样枪瞄准九个方向的九个帧（并搭配前面说的角色平滑旋转）可使人物持枪瞄准各个方向。</p>
 <h3 id="怎样设置靶子仅被子弹命中时才计分，其它物体命中不计分"><a href="#怎样设置靶子仅被子弹命中时才计分，其它物体命中不计分" class="headerlink" title="怎样设置靶子仅被子弹命中时才计分，其它物体命中不计分"></a>怎样设置靶子仅被子弹命中时才计分，其它物体命中不计分</h3><p>最开始完成靶子命中计分功能时没有很好的区分命中物体，我想要完成只有子弹类命中时才计分；先是尝试Event Hit的“Other”而不是“Other Comp”引脚判断子弹的命中计分，经过测试发现如果使用前者，获取的是Bullet实体，这样用Get Object Name会发现每发子弹都对应不同的实体名，难以做判断，因此改成获取组件，这样对于每一类子弹，只需要添加该类子弹的组件名进行子弹的命中判断。</p>
-<p><img src="/2021/01/02/FPS问题解决记录/target.png" alt="target"></p>
+<img src="/2021/01/02/FPS问题解决记录/target.jpg" width="80%" height="80%">
+
 <h3 id="设计换枪功能是遇到的换枪后人物瞬移问题"><a href="#设计换枪功能是遇到的换枪后人物瞬移问题" class="headerlink" title="设计换枪功能是遇到的换枪后人物瞬移问题"></a>设计换枪功能是遇到的换枪后人物瞬移问题</h3><p>设计换枪功能时，发现将地上的枪支捡起换枪后人物瞬间以飞快的速度瞬移，且按下人物移动键时也没有向相同的方向瞬移，而是奇怪的未知方向。</p>
 <p>一开始我以为是哪里逻辑错误导致人物的移动和子弹绑定到了一起，因为这种瞬移的速度类似于子弹，但是经检测后发现不是这样的问题，而且人物瞬移的方向也并不是子弹发射的方向。</p>
 <p>既然不是这样的原因，想到了既然能使人飞速位移，还有一种可能原因，就是“力”。经过检测，果然是物理方面出现了设置错误，因为枪支Box的碰撞检测的错误设定导致和持枪人物冲撞，再加上人物移动时会有骨骼动画，和枪支Box冲撞使人物被弹飞。</p>
@@ -127,7 +132,8 @@
 <p>解决办法有两种，如果设置了相对旋转，要么删除相对旋转，要么在AttachComponenetToComponent中选择“Rotation Rule”为“对齐到目标”而不是“保持相对”。</p>
 <h3 id="怎样使不同类型的子弹命中场景中不同的静态网格体时有不同的反馈"><a href="#怎样使不同类型的子弹命中场景中不同的静态网格体时有不同的反馈" class="headerlink" title="怎样使不同类型的子弹命中场景中不同的静态网格体时有不同的反馈"></a>怎样使不同类型的子弹命中场景中不同的静态网格体时有不同的反馈</h3><p>因为场景中的各种静态网格体为不同的材质，如树木，箱子，地面等，为了真实感，不同类的场景网格体应该对子弹射击有不同的特效和音效反馈，同一物体对不同类型的子弹（如子弹，炮弹）命中也应有不同的音效和特效反馈。</p>
 <p>这部分我的解决办法是把特效和音效的区分放到各个网格体（已转换为蓝图）的事件图表中。</p>
-<p><img src="/2021/01/02/FPS问题解决记录/bullethit.png" alt="bullethit"></p>
+<img src="/2021/01/02/FPS问题解决记录/bullethit.jpg" width="80%" height="80%">
+
 <p>上图是场景中某一类物体的事件图表，添加了对两种类型子弹命中的音效和特效反馈。这种解决办法的缺点也很明显，就是为了完成这种反馈，许多静态网格体都要转换为蓝图类型，以便在其中添加逻辑。</p>
 <h3 id="怎样很好的混合使用蓝图和c"><a href="#怎样很好的混合使用蓝图和c" class="headerlink" title="怎样很好的混合使用蓝图和c++"></a>怎样很好的混合使用蓝图和c++</h3><p>对于复杂的功能，纯蓝图实现还是显得很乏力和冗余，那么怎么混合使用蓝图和C++？方法是让蓝图继承某个C++类。</p>
 <p>在编译角度来看二者，发现编译时需遵守C++只能调用C++，蓝图只能调用蓝图，但是C++类在运行时调用，可调用蓝图函数，运行时调用其实时一个C++类调用另一个C++类的接口，间接调用了蓝图函数。</p>
@@ -158,7 +164,7 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c++">UFUNCTION(BlueprintCallable, BlueprintPure)<br><span class="hljs-function">UPhysicsHandleComponent* <span class="hljs-title">GetPhysicsComponent</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span></span>;<br></code></pre></td></tr></table></figure>
 
 <p>根据节点在蓝图中的前后关系，要用到GetOwner和Get Component by Class（如下图），它的返回类型为Actor，于是添加Actor头文件（怎么判断什么时候需要添加头文件？没有联想功能的时候想想是不是未引入头文件）</p>
-<img src="/2021/01/02/FPS问题解决记录/Users\DELL\Desktop\新建文件夹\func.png" alt="func" style="zoom:50%;">
+<img src="/2021/01/02/FPS问题解决记录/func.png" alt="func" style="zoom:80%;">
 
 <p>此时函数体可以写到这里：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function">UPhysicsHandleComponent* <span class="hljs-title">GetPhysicsComponent</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span><br></span>&#123;<br>    GetOwner()-&gt;GetComponentByClass<br>&#125;<br></code></pre></td></tr></table></figure>
@@ -176,7 +182,8 @@
 <p>关于这个蓝图函数的问题我至今没有找到原因，开始以为是物体的重量，子弹的重量，冲力的大小等设定不合理导致看不到效果，但实际把径向冲量增加到很大的数值仍然没有效果。</p>
 <p>在UE4的官方论坛中尝试过搜索这个问题，据说是在某个版本后确实失效了（不确定）。</p>
 <p>所以使用了其他方法来替代，就是使用径向力组件，在子弹速度降低到某个阈值以下后，将径向力组件激活产生爆炸（这个有效）。</p>
-<p><img src="/2021/01/02/FPS问题解决记录/force.png" alt="force"></p>
+<img src="/2021/01/02/FPS问题解决记录/force.png" width="80%" height="80%">
+
 <h3 id="安卓端测试时发现的UMG-Button冲突："><a href="#安卓端测试时发现的UMG-Button冲突：" class="headerlink" title="安卓端测试时发现的UMG Button冲突："></a>安卓端测试时发现的UMG Button冲突：</h3><p>测试时发现按下Button大约1s左右Button会自动弹起，但此时我的手仍然是持续按压Button的；除此之外，在按下Button同时按操控杆，Button会瞬间弹起。</p>
 <p>解决方法是将UMG Button的IsFocusable属性设置为False。</p>
 
