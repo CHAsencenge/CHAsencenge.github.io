@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+
+
+
+
+    <meta name="keywords" content>
+
+
+
+    <meta name="description" content="解字无果">
+
+
+<meta name="Robots" content="all">
+
+
+    <title>解字</title>
+
+
+<link rel="icon" href="/images/avatar.ico">
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/atom-one-dark.css">
+<link rel="stylesheet" href="/css/style.css">
+<script src="/js/highlight.min.js"></script>
+</head>
+<body>
+    <div class="main-container">
+        <header class="header">
+    <div class="global-width">
+        <nav class="nav-box">
+            
+                <a class="nav-item" href="/">Home</a>
+            
+                <a class="nav-item" href="/resume">Resume</a>
+            
+                <a class="nav-item" href="/mood" target="_blank">Mood</a>
+            
+                <a class="nav-item" href="/amusement/tetris" target="_blank">Amusement</a>
+            
+                <a class="nav-item" href="/about">About</a>
+            
+        </nav>
+    </div>
+</header>
+
+        <section class="content global-width">
+            <div class="main">
+                
+    
+        <article class="box post post-item">
+            <div class="post-title"><a href="/2021/01/02/FPS问题解决记录/">FPS问题解决记录</a></div>
+            <div class="post-meta">
+                
+                <i class="fa fa-calendar"></i> <time>2021-01-02</time>
+                <span class="dotted">|</span>
+                <i class="fa fa-user"></i> 
+            </div>
+
+            <div class="post-excerpt">
+                <a href="/2021/01/02/FPS问题解决记录/">
+                    <p>
+                        
+                            FPS制作中的一些问题解决记录怎样实现人物的边走边进行装弹，即上半身和下半身动画的组合为实现这一功能，先圈一个大概的定位，在“动画”、“状态机”、“蒙太奇”等关键词上面。
+在“动画”部分看到了两个概念“动画合成”和“动画融合”都有点像完成这一功能的样子，所以先分清动画合成和动画融合两个概念，原来动画合成(composite)只是动画序列的组合，基本是newSequence = sequence1 + sequence2 + … + sequenceN，其中单个的序列可以调整开始、结束时间来控制长度。
+动画融合经过了解便是想要的功能，通过Layered blend per bone（每个骨骼的分层混合）可以在Locomotion中将下半身体的移动和上半身体的装弹进行融合，实现移动射击。
+其实在找“Blend”的时候还有相似的概念，Blend和Blend poses by bool，前者是混合Pose，根据权重来计算最后融合的Pose，想要的不是这个，只是想单纯的分离而已，Blend poses by bool它用于连接动画，并在动画切换时进行融合，因此也pass掉。
+那知道了要用ayered blend per bone来进行分层以后，我发现它的输入是Base Pose和Blend Poses 0，也就是要考虑这个“层”具体怎么分开然后输入到这两个地方。
+用插槽(Slot)，插槽中排了装弹的动画。
+
+然后就是在角色动画蓝图中使用Layered blend per bone实现分层动画了。
+
+角色的事件图表中也要有相应的装弹的逻辑。
+
+这样，功能就基本完成了。
+怎样保证长按装弹键时，子弹数的持续增长在我一直按下装弹键时，装弹的动画利用Slot中Reloading的循环是可以持续播放的，但是子弹数如何跟着每一次装弹动作来增加呢？
+使用定时器GetTimerManager().SetTimer()，先记录一下动画中每个装弹动作的周期，根据周期设定定时器时间，每完成一次装弹动作，子弹数加5。
+1234567891011121314.hFTimerHandle ReloadDownTimerHandler;.cppvoid ATPSShootCharacter::AddBullet()&#123;    if(ReloadButtonDown)        Bullet += 5;    else        GetWorldTimerManager().ClearTimer(ReloadDownTimerHandler);&#125;void ATPSShootCharacter::AddBulletByReloading()&#123;    GetWorldTimerManager().SetTimer(ReloadDownTimerHandler, this, &amp;ATPSShootCharacter::AddBullet, 0.9f, true);&#125;
+
+当角色的旋转度数过大时，进行角色平滑旋转当角色视角的旋转角度大于90度时，上半身和下半身的相对旋转就显得有些不自然了，这时下半身应该平滑地旋转至上半身方向，这部分的功能实现主要还是熟悉向量的拆分和旋转体的创建。
+
+怎样实现按下Alt键切换为自由视角也就是“自由视角”的功能实现。
+自由视角和一般视角不同之处主要在人物朝向和是否进行平滑旋转两部分，在自由视角中，人物的腿部不需要根据相机的角度改变而进行转动。
+人物的朝向逻辑也有一些不同，自由视角中，当相机在人身后时，人应当朝向相机指向的方向，这部分和一般视角相同，但是由于相机可以转到人的前方而面向人物，这时人物应该始终看向（朝向）相机。
+我的瞄准偏移范围设置为（-180°，180°），相机旋转一周对应的角度为（0°，360°）。
+
+根据上面提到的相机在人后和人前对应的逻辑不同，分情况讨论并完成逻辑：
+1. 当相机在人前对着人时，人看向相机，此时CameraYaw的范围为（90°，270°）举个例子，当相机和人物的位置关系为这样时，相机Yaw为120°，人物看向相机，Yaw应为-60°，即CharacterYaw = CameraYaw - 180，并且CharacterPitch = -CameraPitch（因为相机俯拍时，人的视线上仰）
+2. 当相机在人后时，人和相机看向的位置一致，此时CameraYaw范围为（0°，90°）∪（270°，360°）此时不做上面的处理，还是保持原本的一般视角的逻辑。
+至此解决了人物朝向的问题，接下来还需要解决人物的平滑旋转问题，自由视角中人物不需要跟着视角方向做平滑旋转。
+那么只需要在原本的角色平滑旋转功能中添加一个逻辑，决定什么时候（一般视角）进行角色平滑旋转，什么时候（自由视角）不进行平滑旋转。
+首先在操作映射中添加FreeView事件，绑定到Alt键，然后在人物事件图表中添加变量FreeViewButtonDown，并修改原本的角色平滑旋转的逻辑（红色框为修改部分）。
+
+准星和视角跟随这部分主要是通过获取枪支的插槽变换，然后由通道检测线条(LineTraceByChannel)确定HUD在屏幕的显示位置。
+创建瞄准偏移（混合空间）并采样枪瞄准九个方向的九个帧（并搭配前面说的角色平滑旋转）可使人物持枪瞄准各个方向。
+怎样设置靶子仅被子弹命中时才计分，其它物体命中不计分最开始完成靶子命中计分功能时没有很好的区分命中物体，我想要完成只有子弹类命中时才计分；先是尝试Event Hit的“Other”而不是“Other Comp”引脚判断子弹的命中计分，经过测试发现如果使用前者，获取的是Bullet实体，这样用Get Object Name会发现每发子弹都对应不同的实体名，难以做判断，因此改成获取组件，这样对于每一类子弹，只需要添加该类子弹的组件名进行子弹的命中判断。
+
+设计换枪功能是遇到的换枪后人物瞬移问题设计换枪功能时，发现将地上的枪支捡起换枪后人物瞬间以飞快的速度瞬移，且按下人物移动键时也没有向相同的方向瞬移，而是奇怪的未知方向。
+一开始我以为是哪里逻辑错误导致人物的移动和子弹绑定到了一起，因为这种瞬移的速度类似于子弹，但是经检测后发现不是这样的问题，而且人物瞬移的方向也并不是子弹发射的方向。
+既然不是这样的原因，想到了既然能使人飞速位移，还有一种可能原因，就是“力”。经过检测，果然是物理方面出现了设置错误，因为枪支Box的碰撞检测的错误设定导致和持枪人物冲撞，再加上人物移动时会有骨骼动画，和枪支Box冲撞使人物被弹飞。
+解决办法是将枪支Box的碰撞检测从BlockAll设定为Block Visibility。
+换枪后枪支反向的问题在换枪功能中发现换枪后，换上来的枪支是反向的，但是在骨骼中检查的时候插槽没有问题，是正向的。
+这部分在解决的过程中我首先检查的是枪支的骨骼网格体的骨骼是不是在设计的时候就出了错，检查发现网格体骨骼本身和方向都没有问题。
+于是调整组件之间的相对旋转，但是因为原本的枪支方向没有问题，新换的枪支却是反的，这样调整相对旋转又会导致原来的枪支方向出错。
+想到可能是其他设置的选择参数出了问题，经过排查，发现再将组件添加到组件(AttachComponenetToComponent)之前设置了相对旋转。
+解决办法有两种，如果设置了相对旋转，要么删除相对旋转，要么在AttachComponenetToComponent中选择“Rotation Rule”为“对齐到目标”而不是“保持相对”。
+怎样使不同类型的子弹命中场景中不同的静态网格体时有不同的反馈因为场景中的各种静态网格体为不同的材质，如树木，箱子，地面等，为了真实感，不同类的场景网格体应该对子弹射击有不同的特效和音效反馈，同一物体对不同类型的子弹（如子弹，炮弹）命中也应有不同的音效和特效反馈。
+这部分我的解决办法是把特效和音效的区分放到各个网格体（已转换为蓝图）的事件图表中。
+
+上图是场景中某一类物体的事件图表，添加了对两种类型子弹命中的音效和特效反馈。这种解决办法的缺点也很明显，就是为了完成这种反馈，许多静态网格体都要转换为蓝图类型，以便在其中添加逻辑。
+怎样很好的混合使用蓝图和c++对于复杂的功能，纯蓝图实现还是显得很乏力和冗余，那么怎么混合使用蓝图和C++？方法是让蓝图继承某个C++类。
+在编译角度来看二者，发现编译时需遵守C++只能调用C++，蓝图只能调用蓝图，但是C++类在运行时调用，可调用蓝图函数，运行时调用其实时一个C++类调用另一个C++类的接口，间接调用了蓝图函数。
+具体来说，如果我想要给BP_Grabber创建对应的C++类：
+先到BP_Grabber的“类设置”中查看它的父类，为场景组件类“Scene Component”，因此我新建一个C++的“Scene Component”类，名为Grabber，然后便可以设置BP_Grabber的父类为Grabber（要注意Blueprintable）。
+将蓝图中的变量迁移到C++因为混合使用蓝图和C++，我想要我的变量也能在C++中访问。
+解决办法是在C++类体中添加同名的变量，设置合适的UPROPERTY访问修饰符，修改后发现蓝图中对应的同名变量都出现了warning，再次编译即可，这些蓝图中的变量都会成为一个副本，将它们删掉即可，对应的变量节点也要删掉重新放置成C++版本的变量。
+在将蓝图中的函数迁移到C++的过程中如何找到对应节点的函数在这个问题之前首先解决的是如何将蓝图的函数迁移到C++，心得基本就是注意几点：选择合适的UFUNCTION访问修饰符，没有输入引脚的设置为BlueprintPure，时刻注意根据函数功能添加或不添加const。将蓝图中的函数在C++中实现后便可将原本的蓝图删掉了。
+然而有一个基本但又很麻烦的问题，因为C++中对应的函数命名可能和蓝图节点不同，我怎么找到与蓝图节点对应的函数？
+例如：如何知道蓝图中的GetWorldLocation对应C++中的GetComponentLocation()？如何知道需要用到Kismet数学库？
+我的方法是一层一层的往下找，先在蓝图节点上看到GetWorldLocation为场景组件Scene Component，它对应C++中的USceneComponent（这块通过命名规则确定），选中USceneComponent利用VA插件可以找到SceneComponent头文件，在头文件中继续搜索GetWorldLocation发现他是添加在UFUNCTION中的元数据，UFUNCTION下面就是它在C++中的命名了。
+然而好像还是比较奇怪，因为下面显示的是：
+1234FVector USceneComponent::K2_GetComponent() const&#123;    return GetComponentLocation();&#125;
+
+继续F12看GetComponentLocation()发现才是正确的对应，到上一步总结下来是遇到名字奇怪的对应函数还是看一下它return的函数。
+怎么找到需要引入的头文件的路径常用的头文件有
+12345Engine/World.hGameFramework/Actor.hComponents/ActorComponent.hKismet/GameplayStatics.hMath/UnrealMathUtility.h
+
+那么我如果已知头文件名，怎么找到这些路径以引入头文件？路径名截取到哪个位置？
+总结下来是在VS中ctrl+‘，’搜索头文件，然后鼠标悬停到窗口标签上会有路径，通常只截取“Class”或者“Public”后的部分。
+迁移复杂的函数其实这些都是有一定经验便没什么难度的问题，但刚开始接触的时候也确确实实卡住自己很久。
+对于蓝图函数GetPhysicsComponent()，我要将其迁移至C++。
+为了在C++中创建同名函数，先查看蓝图函数的返回值类型。
+看到蓝图返回类型为“Physics Handle Component Object”，去找C++中对应的返回类型。
+VS中搜PhysicsHandleComponent.h，打开对应头文件。
+在头文件中找具体的类名，发现其名为UPhysicsHandleComponent。
+到此可写出同名C++函数声明：
+12UFUNCTION(BlueprintCallable, BlueprintPure)UPhysicsHandleComponent* GetPhysicsComponent() const;
+
+根据节点在蓝图中的前后关系，要用到GetOwner和Get Component by Class（如下图），它的返回类型为Actor，于是添加Actor头文件（怎么判断什么时候需要添加头文件？没有联想功能的时候想想是不是未引入头文件）
+
+
+此时函数体可以写到这里：
+1234UPhysicsHandleComponent* GetPhysicsComponent() const&#123;    GetOwner()-&gt;GetComponentByClass&#125;
+
+然后在GetComponentByClass按F12进入头文件搜索函数，发现附近有一个模板函数FindComponentByClass。
+通过其中的
+1return (T*)FindComponentByClass(T::StaticClass());
+
+可以知道它自动转换类型，可以确保返回正确的类型，用这个！
+然后上面的函数体可以继续写为：
+1234UPhysicsHandleComponent* GetPhysicsComponent() const&#123;    return GetOwner()-&gt;FindComponentByClass&lt;UPhysicsHandleComponent&gt;();&#125;
+
+至此完成此函数功能的迁移。
+爆炸效果中的冲量在实现抛体炸弹爆炸的功能时，抛体爆炸无法炸开周围物体，此时使用的是蓝图函数：添加径向冲量“Add Radial Impulse”。
+关于这个蓝图函数的问题我至今没有找到原因，开始以为是物体的重量，子弹的重量，冲力的大小等设定不合理导致看不到效果，但实际把径向冲量增加到很大的数值仍然没有效果。
+在UE4的官方论坛中尝试过搜索这个问题，据说是在某个版本后确实失效了（不确定）。
+所以使用了其他方法来替代，就是使用径向力组件，在子弹速度降低到某个阈值以下后，将径向力组件激活产生爆炸（这个有效）。
+
+安卓端测试时发现的UMG Button冲突：测试时发现按下Button大约1s左右Button会自动弹起，但此时我的手仍然是持续按压Button的；除此之外，在按下Button同时按操控杆，Button会瞬间弹起。
+解决方法是将UMG Button的IsFocusable属性设置为False。
+
+                        
+                    </p>
+                </a>
+            </div>
+
+            
+                <div class="post-footer">
+                    
+                        <i class="fa fa-folder-open-o"></i>
+                        <a class="category-link" href="/categories/GameDev/">GameDev</a>
+
+                        
+                            <span class="dotted">|</span>
+                        
+
+                    
+                    
+                        <i class="fa fa-tags"></i>
+                        <a class="tag-link" href="/tags/UE/">UE</a>
+                    
+                </div>
+            
+        </article>
+    
+
+    
+        <article class="box post post-item">
+            <div class="post-title"><a href="/2020/10/12/UE学习笔记/">UE学习文档</a></div>
+            <div class="post-meta">
+                
+                <i class="fa fa-calendar"></i> <time>2020-10-12</time>
+                <span class="dotted">|</span>
+                <i class="fa fa-user"></i> 
+            </div>
+
+            <div class="post-excerpt">
+                <a href="/2020/10/12/UE学习笔记/">
+                    <p>
+                        
+                            UE4源码编译git clone源码
+运行Setup.bat下载依赖文件
+运行GenerateProjectFiles.bat生成工程文件
+运行UE.sln
+在vs打开的工程中，最上方的解决方案配置设置为Development Editor，启动项目设置为UE4，平台WIN64，右键UE4 – Build进行编译
+编译完成后按F5在vs中启动
+注意
+生成工程文件前可能会报错，根据报错信息可判断是否缺少相应的.NET Framework，如果缺少在vs installer中选中相应版本的vs – 修改 – 添加相应的.NET工具
+Epic Game Launcher中不能识别非公版的引擎，向编译版的引擎创建的工程中添加保管库中的素材时，点击添加到工程–显示所有工程–为相应工程手动选择对应的版本号即可添加素材（因为又编译版引擎创建的工程在Launcher中显示的版本标识为“其他”，不选择相应的版本号则素材或插件都会显示不兼容）
+                        
+                    </p>
+                </a>
+            </div>
+
+            
+                <div class="post-footer">
+                    
+                        <i class="fa fa-folder-open-o"></i>
+                        <a class="category-link" href="/categories/GameDev/">GameDev</a>
+
+                        
+                            <span class="dotted">|</span>
+                        
+
+                    
+                    
+                        <i class="fa fa-tags"></i>
+                        <a class="tag-link" href="/tags/UE/">UE</a>
+                    
+                </div>
+            
+        </article>
+    
+
+
+
+            </div>
+            <div class="aside">
+    
+        <div class="box widget">
+    <div class="introduction">
+        <p><img src="/images/avatar.png" alt="head-sculpture"></p>
+        <p class="name">
+            CHAsencenge
+        </p>
+        <p class="slogan">解字</p>
+    </div>
+</div>
+    
+        
+<div class="box widget">
+    <div class="title">Recent</div>
+    <ul class="item-box">
+        
+            
+                <li><a href="/2021/01/02/FPS问题解决记录/">FPS问题解决记录</a></li>
+            
+        
+            
+                <li><a href="/2020/12/30/单例模式/">单例模式</a></li>
+            
+        
+            
+                <li><a href="/2020/12/29/工厂模式/">工厂模式</a></li>
+            
+        
+            
+                <li><a href="/2020/11/30/手撸算法终版/">手撸算法终版</a></li>
+            
+        
+            
+                <li><a href="/2020/10/29/哈希专题/">哈希专题</a></li>
+            
+        
+            
+                <li><a href="/2020/10/29/特殊技巧专题/">特殊技巧专题</a></li>
+            
+        
+            
+                <li><a href="/2020/10/29/栈和队列专题/">栈和队列专题</a></li>
+            
+        
+            
+                <li><a href="/2020/10/28/树图专题/">树专题</a></li>
+            
+        
+    </ul>
+</div>
+
+    
+        
+    <div class="box widget">
+        <div class="title">Categories</div>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DesignPattern/">DesignPattern</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/GameDev/">GameDev</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Laya/">Laya</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Light-Frequency-Authenticate/">Light Frequency Authenticate</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/LoRa/">LoRa</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Unity/">Unity</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Unity/Unreal/">Unreal</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Writing/">Writing</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cpp/">cpp</a><span class="category-list-count">3</span></li></ul>
+    </div>
+
+    
+        
+  <div class="box widget">
+    <div class="title">Archives</div>
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">2021-01</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">2020-12</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">2020-11</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">2020-10</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">2020-09</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">2020-08</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">2020-07</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">2019-11</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">2019-09</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">2019-07</a><span class="archive-list-count">6</span></li></ul>
+  </div>
+
+    
+        
+    <div class="box widget">
+        <div class="title">Tags</div>
+        <div class="item-box cloud-label">
+            <a href="/tags/Algorithm/" style="font-size: 20px;">Algorithm</a> <a href="/tags/C/" style="font-size: 12px;">C++</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/GameDev/" style="font-size: 12px;">GameDev</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/Hexo/" style="font-size: 12px;">Hexo</a> <a href="/tags/Laya/" style="font-size: 16px;">Laya</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Python/" style="font-size: 16px;">Python</a> <a href="/tags/UE/" style="font-size: 12px;">UE</a> <a href="/tags/Unity/" style="font-size: 18px;">Unity</a> <a href="/tags/Unreal/" style="font-size: 10px;">Unreal</a> <a href="/tags/Writing/" style="font-size: 12px;">Writing</a> <a href="/tags/cpp/" style="font-size: 14px;">cpp</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/lightFre/" style="font-size: 10px;">lightFre</a> <a href="/tags/writing/" style="font-size: 10px;">writing</a> <a href="/tags/远程登录/" style="font-size: 10px;">远程登录</a>
+        </div>
+    </div>
+
+    
+</div>
+        </section>
+        <footer class="footer">
+    <div class="global-width footer-box">
+        <div class="copyright">
+            <span>Copyright &copy; 2019</span>
+            <span class="dotted">|</span>
+            <span>Powered by <a href="https://hexo.io/">Hexo</a></span>
+            <span class="dotted">|</span>
+            <span>Theme by <a href="javascript:">Loren</a></span>
+            <span class="dotted">|</span>
+            <span><a href="http://www.beian.miit.gov.cn">浙ICP备18016660号-1</a></span>
+        </div>
+    </div>
+</footer>
+    </div>
+
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+</body>
+</html>

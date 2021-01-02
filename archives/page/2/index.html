@@ -52,6 +52,95 @@
                 
     
         <article class="box post post-item">
+            <div class="post-title"><a href="/2020/10/16/双指针专题/">双指针专题</a></div>
+            <div class="post-meta">
+                
+                <i class="fa fa-calendar"></i> <time>2020-10-16</time>
+                <span class="dotted">|</span>
+                <i class="fa fa-user"></i> 
+            </div>
+
+            <div class="post-excerpt">
+                <a href="/2020/10/16/双指针专题/">
+                    <p>
+                        
+                            16. 最接近的三数之和相对于暴力解法，双指针能够通过首尾指针和合理移动，减少不合理情况的遍历，即a+b+c &lt; target，则c向左移动，a+b+c &gt; target，b向右移动
+进一步可以总结出：若想要使两数之和逼近某一个目标值，可使用双指针对已排序数组进行查找
+                        
+                    </p>
+                </a>
+            </div>
+
+            
+                <div class="post-footer">
+                    
+                        <i class="fa fa-folder-open-o"></i>
+                        <a class="category-link" href="/categories/Algorithm/">Algorithm</a>
+
+                        
+                            <span class="dotted">|</span>
+                        
+
+                    
+                    
+                        <i class="fa fa-tags"></i>
+                        <a class="tag-link" href="/tags/Algorithm/">Algorithm</a>
+                    
+                </div>
+            
+        </article>
+    
+
+    
+        <article class="box post post-item">
+            <div class="post-title"><a href="/2020/10/12/UE学习笔记/">UE学习文档</a></div>
+            <div class="post-meta">
+                
+                <i class="fa fa-calendar"></i> <time>2020-10-12</time>
+                <span class="dotted">|</span>
+                <i class="fa fa-user"></i> 
+            </div>
+
+            <div class="post-excerpt">
+                <a href="/2020/10/12/UE学习笔记/">
+                    <p>
+                        
+                            UE4源码编译git clone源码
+运行Setup.bat下载依赖文件
+运行GenerateProjectFiles.bat生成工程文件
+运行UE.sln
+在vs打开的工程中，最上方的解决方案配置设置为Development Editor，启动项目设置为UE4，平台WIN64，右键UE4 – Build进行编译
+编译完成后按F5在vs中启动
+注意
+生成工程文件前可能会报错，根据报错信息可判断是否缺少相应的.NET Framework，如果缺少在vs installer中选中相应版本的vs – 修改 – 添加相应的.NET工具
+Epic Game Launcher中不能识别非公版的引擎，向编译版的引擎创建的工程中添加保管库中的素材时，点击添加到工程–显示所有工程–为相应工程手动选择对应的版本号即可添加素材（因为又编译版引擎创建的工程在Launcher中显示的版本标识为“其他”，不选择相应的版本号则素材或插件都会显示不兼容）
+                        
+                    </p>
+                </a>
+            </div>
+
+            
+                <div class="post-footer">
+                    
+                        <i class="fa fa-folder-open-o"></i>
+                        <a class="category-link" href="/categories/GameDev/">GameDev</a>
+
+                        
+                            <span class="dotted">|</span>
+                        
+
+                    
+                    
+                        <i class="fa fa-tags"></i>
+                        <a class="tag-link" href="/tags/UE/">UE</a>
+                    
+                </div>
+            
+        </article>
+    
+
+    
+        <article class="box post post-item">
             <div class="post-title"><a href="/2020/10/02/实时计算机图形学笔记/">实时计算机图形学笔记</a></div>
             <div class="post-meta">
                 
@@ -394,87 +483,6 @@ docker registry进行镜像数据的存储和转发，通过 docker push可以�
         </article>
     
 
-    
-        <article class="box post post-item">
-            <div class="post-title"><a href="/2020/08/18/dp专题/">dp专题</a></div>
-            <div class="post-meta">
-                
-                <i class="fa fa-calendar"></i> <time>2020-08-18</time>
-                <span class="dotted">|</span>
-                <i class="fa fa-user"></i> 
-            </div>
-
-            <div class="post-excerpt">
-                <a href="/2020/08/18/dp专题/">
-                    <p>
-                        
-                            5.最长回文子串单独处理长度为1和2的字符串
-状态转移：字串加上相同的首尾
-                        
-                    </p>
-                </a>
-            </div>
-
-            
-                <div class="post-footer">
-                    
-                        <i class="fa fa-folder-open-o"></i>
-                        <a class="category-link" href="/categories/Algorithm/">Algorithm</a>
-
-                        
-                            <span class="dotted">|</span>
-                        
-
-                    
-                    
-                        <i class="fa fa-tags"></i>
-                        <a class="tag-link" href="/tags/Algorithm/">Algorithm</a>
-                    
-                </div>
-            
-        </article>
-    
-
-    
-        <article class="box post post-item">
-            <div class="post-title"><a href="/2020/08/03/LeetCode-top&hot刷题/">LeetCode top100刷题</a></div>
-            <div class="post-meta">
-                
-                <i class="fa fa-calendar"></i> <time>2020-08-03</time>
-                <span class="dotted">|</span>
-                <i class="fa fa-user"></i> 
-            </div>
-
-            <div class="post-excerpt">
-                <a href="/2020/08/03/LeetCode-top&hot刷题/">
-                    <p>
-                        
-                            1. 两数之和12345678910111213vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target)&#123;    /*map*/     umordered_map&lt;int, int&gt; hashtable;    for(int i = 0; i &lt; nums.size(); i++)    &#123;        auto it = hashtable.find(target - nums[i]);        if(it != hashtable.end())            return &#123;it-&gt;second, i&#125;;        hashtable[nums[i]] = i;    &#125;    return &#123;&#125;;&#125;
-                        
-                    </p>
-                </a>
-            </div>
-
-            
-                <div class="post-footer">
-                    
-                        <i class="fa fa-folder-open-o"></i>
-                        <a class="category-link" href="/categories/Algorithm/">Algorithm</a>
-
-                        
-                            <span class="dotted">|</span>
-                        
-
-                    
-                    
-                        <i class="fa fa-tags"></i>
-                        <a class="tag-link" href="/tags/Algorithm/">Algorithm</a>
-                    
-                </div>
-            
-        </article>
-    
-
 
 
     <nav class="page-nav">
@@ -500,6 +508,14 @@ docker registry进行镜像数据的存储和转发，通过 docker push可以�
     <ul class="item-box">
         
             
+                <li><a href="/2021/01/02/FPS问题解决记录/">FPS问题解决记录</a></li>
+            
+        
+            
+                <li><a href="/2020/12/30/单例模式/">单例模式</a></li>
+            
+        
+            
                 <li><a href="/2020/12/29/工厂模式/">工厂模式</a></li>
             
         
@@ -523,14 +539,6 @@ docker registry进行镜像数据的存储和转发，通过 docker push可以�
                 <li><a href="/2020/10/28/树图专题/">树专题</a></li>
             
         
-            
-                <li><a href="/2020/10/28/空间换时间专题/">空间换时间专题</a></li>
-            
-        
-            
-                <li><a href="/2020/10/25/C-Lambda表达式/">C++ Lambda表达式</a></li>
-            
-        
     </ul>
 </div>
 
@@ -538,14 +546,14 @@ docker registry进行镜像数据的存储和转发，通过 docker push可以�
         
     <div class="box widget">
         <div class="title">Categories</div>
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DesignPattern/">DesignPattern</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/GameDev/">GameDev</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Laya/">Laya</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Light-Frequency-Authenticate/">Light Frequency Authenticate</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/LoRa/">LoRa</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Unity/">Unity</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Unity/Unreal/">Unreal</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Writing/">Writing</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cpp/">cpp</a><span class="category-list-count">3</span></li></ul>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithm/">Algorithm</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/DesignPattern/">DesignPattern</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/GameDev/">GameDev</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Git/">Git</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Laya/">Laya</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Light-Frequency-Authenticate/">Light Frequency Authenticate</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/LoRa/">LoRa</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Unity/">Unity</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Unity/Unreal/">Unreal</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Writing/">Writing</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/cpp/">cpp</a><span class="category-list-count">3</span></li></ul>
     </div>
 
     
         
   <div class="box widget">
     <div class="title">Archives</div>
-    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">2020-12</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">2020-11</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">2020-10</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">2020-09</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">2020-08</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">2020-07</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">2019-11</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">2019-09</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">2019-07</a><span class="archive-list-count">6</span></li></ul>
+    <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">2021-01</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">2020-12</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">2020-11</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">2020-10</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">2020-09</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">2020-08</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">2020-07</a><span class="archive-list-count">21</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">2019-11</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">2019-09</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">2019-07</a><span class="archive-list-count">6</span></li></ul>
   </div>
 
     
@@ -553,7 +561,7 @@ docker registry进行镜像数据的存储和转发，通过 docker push可以�
     <div class="box widget">
         <div class="title">Tags</div>
         <div class="item-box cloud-label">
-            <a href="/tags/Algorithm/" style="font-size: 20px;">Algorithm</a> <a href="/tags/C/" style="font-size: 10px;">C++</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/GameDev/" style="font-size: 14px;">GameDev</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/Hexo/" style="font-size: 12px;">Hexo</a> <a href="/tags/Laya/" style="font-size: 16px;">Laya</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Python/" style="font-size: 16px;">Python</a> <a href="/tags/Unity/" style="font-size: 18px;">Unity</a> <a href="/tags/Unreal/" style="font-size: 10px;">Unreal</a> <a href="/tags/Writing/" style="font-size: 12px;">Writing</a> <a href="/tags/cpp/" style="font-size: 14px;">cpp</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/lightFre/" style="font-size: 10px;">lightFre</a> <a href="/tags/writing/" style="font-size: 10px;">writing</a> <a href="/tags/远程登录/" style="font-size: 10px;">远程登录</a>
+            <a href="/tags/Algorithm/" style="font-size: 20px;">Algorithm</a> <a href="/tags/C/" style="font-size: 12px;">C++</a> <a href="/tags/Docker/" style="font-size: 10px;">Docker</a> <a href="/tags/GameDev/" style="font-size: 12px;">GameDev</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/Hexo/" style="font-size: 12px;">Hexo</a> <a href="/tags/Laya/" style="font-size: 16px;">Laya</a> <a href="/tags/LoRa/" style="font-size: 10px;">LoRa</a> <a href="/tags/Python/" style="font-size: 16px;">Python</a> <a href="/tags/UE/" style="font-size: 12px;">UE</a> <a href="/tags/Unity/" style="font-size: 18px;">Unity</a> <a href="/tags/Unreal/" style="font-size: 10px;">Unreal</a> <a href="/tags/Writing/" style="font-size: 12px;">Writing</a> <a href="/tags/cpp/" style="font-size: 14px;">cpp</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/lightFre/" style="font-size: 10px;">lightFre</a> <a href="/tags/writing/" style="font-size: 10px;">writing</a> <a href="/tags/远程登录/" style="font-size: 10px;">远程登录</a>
         </div>
     </div>
 
